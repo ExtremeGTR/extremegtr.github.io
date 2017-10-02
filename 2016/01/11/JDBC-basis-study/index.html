@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaSE,JDBC," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="JDBC（Java Data Base Connectivity）即Java数据库连接，它是由Sun官方提供的2个类库包java.sql和javax.sql所构成。这种技术遵循了Sun官方的接口，所以JDBC就能使用一套代码就能方便地连接和操作各种不同的数据库，这也正是面向接口编程的应用之一。 体验每次学习新知识之前，写一些类似于HelloWorld之类的小demo是很有帮助的，所以这里也先来弄一">
+<meta name="keywords" content="JavaSE,JDBC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDBC（Java数据库连接）基础学习笔记">
+<meta property="og:url" content="http://extremegtr.github.io/2016/01/11/JDBC-basis-study/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="JDBC（Java Data Base Connectivity）即Java数据库连接，它是由Sun官方提供的2个类库包java.sql和javax.sql所构成。这种技术遵循了Sun官方的接口，所以JDBC就能使用一套代码就能方便地连接和操作各种不同的数据库，这也正是面向接口编程的应用之一。 体验每次学习新知识之前，写一些类似于HelloWorld之类的小demo是很有帮助的，所以这里也先来弄一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/connection_hierarchy.png">
+<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/statement_hierarchy.png">
+<meta property="og:updated_time" content="2017-09-17T06:54:34.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JDBC（Java数据库连接）基础学习笔记">
+<meta name="twitter:description" content="JDBC（Java Data Base Connectivity）即Java数据库连接，它是由Sun官方提供的2个类库包java.sql和javax.sql所构成。这种技术遵循了Sun官方的接口，所以JDBC就能使用一套代码就能方便地连接和操作各种不同的数据库，这也正是面向接口编程的应用之一。 体验每次学习新知识之前，写一些类似于HelloWorld之类的小demo是很有帮助的，所以这里也先来弄一">
+<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImg/connection_hierarchy.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2016/01/11/JDBC-basis-study/"/>
+
+
+
+
+
+  <title>JDBC（Java数据库连接）基础学习笔记 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2016/01/11/JDBC-basis-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JDBC（Java数据库连接）基础学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-11T13:39:46+08:00">
+                2016-01-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:54:34+08:00">
+                2017-09-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/01/11/JDBC-basis-study/" class="leancloud_visitors" data-flag-title="JDBC（Java数据库连接）基础学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4,928
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>JDBC（Java Data Base Connectivity）即Java数据库连接，它是由Sun官方提供的2个类库包<code>java.sql</code>和<code>javax.sql</code>所构成。这种技术遵循了Sun官方的接口，所以JDBC就能使用一套代码就能方便地连接和操作各种不同的数据库，这也正是面向接口编程的应用之一。</p>
+<h2 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h2><p>每次学习新知识之前，写一些类似于HelloWorld之类的小demo是很有帮助的，所以这里也先来弄一个JDBC的demo，观摩一下JDBC这个技术是如何入手使用的。</p>
+<p><strong>准备数据</strong> </p>
+<p>创建数据库、表，并且插入几条数据。这里创建了名为<code>jdbc_practice</code>的数据库，并在里面创建了一张<code>user</code>表然后再插入了两条数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">database</span> jdbc_practice;</div><div class="line"></div><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span>(</div><div class="line">	<span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span>,</div><div class="line">	<span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>),</div><div class="line">	age <span class="built_in">int</span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span></div><div class="line"><span class="keyword">values</span>(<span class="number">1</span>, <span class="string">'jack'</span>, <span class="number">17</span>);</div><div class="line"></div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span></div><div class="line"><span class="keyword">values</span>(<span class="number">2</span>, <span class="string">'kate'</span>, <span class="number">20</span>);</div></pre></td></tr></table></figure>
+<p><strong>导入相关的jar包</strong></p>
+<p>在使用JDBC进行编程之前，我们必须要先导入这个jar包：<code>mysql-connector-java-x.x.xx.jar</code>，它包含了连接数据库时所需要的驱动程序。</p>
+<p>如果使用maven，则使用以下依赖配置即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.37<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>使用JDBC编写程序</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.DriverManager;</div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.sql.Statement;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.mysql.jdbc.Driver;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Experience</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 创建驱动类的实例</span></div><div class="line">		Driver driver = (Driver) Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>).newInstance();</div><div class="line">		<span class="comment">// 注册驱动实例</span></div><div class="line">		DriverManager.registerDriver(driver);</div><div class="line">		</div><div class="line">		<span class="comment">// 准备连接数据库的信息</span></div><div class="line">		String url = <span class="string">"jdbc:mysql://localhost:3306/jdbc_practice"</span>;</div><div class="line">		String user = <span class="string">"root"</span>;</div><div class="line">		String password = <span class="string">"root"</span>;</div><div class="line">		<span class="comment">// 获取数据库的连接</span></div><div class="line">		Connection conn = DriverManager.getConnection(url, user, password);</div><div class="line">		</div><div class="line">		<span class="comment">// 创建语句对象并执行sql</span></div><div class="line">		String sql = <span class="string">"select * from user"</span>;</div><div class="line">		Statement statement = conn.createStatement();</div><div class="line">		ResultSet set = statement.executeQuery(sql);</div><div class="line">		<span class="comment">// 处理执行后所返回的结果</span></div><div class="line">		<span class="keyword">while</span> (set.next()) &#123;</div><div class="line">			<span class="keyword">int</span> id = set.getInt(<span class="number">1</span>);</div><div class="line">			String name = set.getString(<span class="number">2</span>);</div><div class="line">			<span class="keyword">int</span> age = set.getInt(<span class="number">3</span>);</div><div class="line">			System.out.println(<span class="string">"id = "</span> + id + <span class="string">", name = "</span> + name + <span class="string">", age = "</span> + age);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="comment">// 释放资源</span></div><div class="line">		set.close();</div><div class="line">		statement.close();</div><div class="line">		conn.close();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这就是使用JDBC进行数据库查询的小demo，我们也可以发现这个代码步骤也十分简单：</p>
+<ul>
+<li>注册JDBC驱动程序</li>
+<li>通过连接信息创建数据库的连接</li>
+<li>执行SQL操作数据库</li>
+<li>处理执行后的结果</li>
+<li>释放连接等资源</li>
+</ul>
+<p>大体上来说，使用JDBC进行编程就这4大步骤。</p>
+<p><strong>运行结果</strong></p>
+<pre><code>id = 1, name = jack, age = 17
+id = 2, name = kate, age = 20
+</code></pre><h2 id="注册JDBC驱动程序的原理"><a href="#注册JDBC驱动程序的原理" class="headerlink" title="注册JDBC驱动程序的原理"></a>注册JDBC驱动程序的原理</h2><h3 id="使用Class-forName注册数据库驱动类即可"><a href="#使用Class-forName注册数据库驱动类即可" class="headerlink" title="使用Class.forName注册数据库驱动类即可"></a>使用Class.forName注册数据库驱动类即可</h3><p>在查看<code>com.mysql.jdbc.Driver</code>这个驱动类源码的时候我们会发现这一段代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Driver</span> <span class="keyword">extends</span> <span class="title">NonRegisteringDriver</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">sql</span>.<span class="title">Driver</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            java.sql.DriverManager.registerDriver(<span class="keyword">new</span> Driver());</div><div class="line">        &#125; <span class="keyword">catch</span> (SQLException E) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can't register driver!"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在静态块中，调用<code>DriverManager</code>的<code>registerDriver</code>方法注册本驱动实例。所以，当我们第一次使用<code>com.mysql.jdbc.Driver</code>这个类，即类加载器把它的加载到JVM时，就会执行静态块中的注册驱动语句。</p>
+<p>所以我们在开发的时候只需要使用一句话就可以加载驱动程序：<code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;)</code>。<br>所有的数据库驱动类都是这样统一实现的，我们想注册什么数据库驱动类，就直接这样做即可：<code>Class.forName(&quot;driver_class_qualified_name&quot;)</code>。</p>
+<p>至于上面体验时候所演示的那加载驱动程序的两行代码所做的工作就显得有点多余了，毕竟只是个刚入门的demo，纠结太多原理性的东西也没什么用。</p>
+<h3 id="隐秘于DriverManager中所做的注册工作"><a href="#隐秘于DriverManager中所做的注册工作" class="headerlink" title="隐秘于DriverManager中所做的注册工作"></a>隐秘于DriverManager中所做的注册工作</h3><p><strong>如果我们没有做任何手工注册驱动的工作，那会如何呢？</strong><br>在调试<code>DriverManager</code>类的源码时，其实可以发现它一开始就帮我们注册好了一些默认的驱动类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DriverManager</span> </span>&#123;</div><div class="line">    <span class="comment">// 存储注册驱动信息的容器</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = <span class="keyword">new</span> CopyOnWriteArrayList&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="comment">// 省略部分代码</span></div><div class="line"></div><div class="line">    <span class="comment">// 静态块中的loadInitialDrivers方法是进行初始化工作(非常重要)</span></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        loadInitialDrivers();</div><div class="line">        println(<span class="string">"JDBC DriverManager initialized"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">registerDriver</span><span class="params">(java.sql.Driver driver)</span></span></div><div class="line"><span class="function">        <span class="keyword">throws</span> SQLException </span>&#123;</div><div class="line"></div><div class="line">        registerDriver(driver, <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 真正执行注册驱动的方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">registerDriver</span><span class="params">(java.sql.Driver driver,</span></span></div><div class="line"><span class="function"><span class="params">            DriverAction da)</span></span></div><div class="line"><span class="function">        <span class="keyword">throws</span> SQLException </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(driver != <span class="keyword">null</span>) &#123;</div><div class="line">        	<span class="comment">// 如果驱动已注册，那就不会再进行注册</span></div><div class="line">            registeredDrivers.addIfAbsent(<span class="keyword">new</span> DriverInfo(driver, da));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        println(<span class="string">"registerDriver: "</span> + driver);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 省略部分代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>loadInitialDrivers</code>方法就做一件事情：<strong>加载初始驱动类，但在里面使用了<font color="red">两种</font>方式进行加载</strong>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DriverManager</span> </span>&#123;</div><div class="line">    <span class="comment">// 省略部分代码</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loadInitialDrivers</span><span class="params">()</span> </span>&#123;</div><div class="line">        String drivers;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            drivers = AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;String&gt;() &#123;</div><div class="line">                <span class="function"><span class="keyword">public</span> String <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                    <span class="keyword">return</span> System.getProperty(<span class="string">"jdbc.drivers"</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">            drivers = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">                ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</div><div class="line">                Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</div><div class="line"></div><div class="line">                <span class="keyword">try</span>&#123;</div><div class="line">                    <span class="keyword">while</span>(driversIterator.hasNext()) &#123;</div><div class="line">                        driversIterator.next();</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">catch</span>(Throwable t) &#123;</div><div class="line">                <span class="comment">// Do nothing</span></div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        println(<span class="string">"DriverManager.initialize: jdbc.drivers = "</span> + drivers);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (drivers == <span class="keyword">null</span> || drivers.equals(<span class="string">""</span>)) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        String[] driversList = drivers.split(<span class="string">":"</span>);</div><div class="line">        println(<span class="string">"number of Drivers:"</span> + driversList.length);</div><div class="line">        <span class="keyword">for</span> (String aDriver : driversList) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                println(<span class="string">"DriverManager.Initialize: loading "</span> + aDriver);</div><div class="line">                Class.forName(aDriver, <span class="keyword">true</span>,</div><div class="line">                        ClassLoader.getSystemClassLoader());</div><div class="line">            &#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">                println(<span class="string">"DriverManager.Initialize: load failed: "</span> + ex);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 省略部分代码   </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong><font color="blue">加载方式一：</font></strong><br>第一种加载驱动类的方式是最直观的，从<code>loadInitialDrivers</code>方法这几行代码直接得知。去除无关代码后，逻辑就显而易见了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String drivers;</div><div class="line"></div><div class="line"><span class="comment">// 通过jdbc.drivers这个键获取对应的驱动类名字符串</span></div><div class="line">drivers = AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;String&gt;() &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> System.getProperty(<span class="string">"jdbc.drivers"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 分割驱动类名字符串，得出每个驱动类名，并把它们加载到JVM，即注册它们</span></div><div class="line">String[] driversList = drivers.split(<span class="string">":"</span>);</div><div class="line"><span class="keyword">for</span> (String aDriver : driversList) &#123;</div><div class="line">    Class.forName(aDriver, <span class="keyword">true</span>, ClassLoader.getSystemClassLoader());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong><font color="blue">加载方式二：</font></strong><br>第二种加载驱动类的方式隐藏得比较深，从<code>loadInitialDrivers</code>方法中这段代码也没看出什么，但这块主体代码所做的工作确实就是加载驱动类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// load中的参数就是java.sql.Driver.class</span></div><div class="line">        ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</div><div class="line">        Iterator&lt;Driver&gt; driversIterator = loadedDrivers.iterator();</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(driversIterator.hasNext()) &#123;</div><div class="line">            driversIterator.next();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>所以，要继续深入查看<code>ServiceLoader</code>类的源码，我们才能了解到其中具体的加载步骤是如何的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceLoader</span>&lt;<span class="title">S</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">S</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PREFIX = <span class="string">"META-INF/services/"</span>;</div><div class="line"></div><div class="line">    <span class="comment">// The class or interface representing the service being loaded</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Class&lt;S&gt; service;</div><div class="line"></div><div class="line">    <span class="comment">// Cached providers, in instantiation order</span></div><div class="line">    <span class="keyword">private</span> LinkedHashMap&lt;String,S&gt; providers = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="comment">// The current lazy-lookup iterator</span></div><div class="line">    <span class="keyword">private</span> LazyIterator lookupIterator;</div><div class="line"></div><div class="line">    <span class="comment">// 省略部分代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>PREFIX</code>以及<code>service</code>这两个域对于后面理解加载过程是十分重要的，这里列出来留个印象。而接下来所展示的源码片段都是<code>ServiceLoader</code>类中的。</p>
+<p>我们首先从<code>ServiceLoader&lt;Driver&gt; loadedDrivers = ServiceLoader.load(Driver.class);</code>的<code>load</code>方法开始查看。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;S&gt; <span class="function">ServiceLoader&lt;S&gt; <span class="title">load</span><span class="params">(Class&lt;S&gt; service)</span> </span>&#123;</div><div class="line">    ClassLoader cl = Thread.currentThread().getContextClassLoader();</div><div class="line">    <span class="keyword">return</span> ServiceLoader.load(service, cl); <span class="comment">// 进入</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;S&gt; <span class="function">ServiceLoader&lt;S&gt; <span class="title">load</span><span class="params">(Class&lt;S&gt; service, ClassLoader loader)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ServiceLoader&lt;&gt;(service, loader); <span class="comment">// 进入</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="title">ServiceLoader</span><span class="params">(Class&lt;S&gt; svc, ClassLoader cl)</span> </span>&#123;</div><div class="line">    <span class="comment">// service被初始化为java.sql.Driver.class</span></div><div class="line">    service = Objects.requireNonNull(svc, <span class="string">"Service interface cannot be null"</span>);</div><div class="line"></div><div class="line">    loader = (cl == <span class="keyword">null</span>) ? ClassLoader.getSystemClassLoader() : cl;</div><div class="line">    acc = (System.getSecurityManager() != <span class="keyword">null</span>) ? AccessController.getContext() : <span class="keyword">null</span>;</div><div class="line">    reload(); <span class="comment">// 进入</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reload</span><span class="params">()</span> </span>&#123;</div><div class="line">    providers.clear();</div><div class="line">    lookupIterator = <span class="keyword">new</span> LazyIterator(service, loader); <span class="comment">// 进入</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源码片段到这里，<code>ServiceLoader</code>类的<code>service</code>域被初始化为<code>java.sql.Driver.class</code>。<br>最终，<code>ServiceLoader</code>类中<code>service</code>域的值传递给了成员内部类<code>LazyIterator</code>。</p>
+<p>那么接下来我们要重点关注的就是<code>ServiceLoader</code>类中的成员内部类<code>LazyIterator</code>的源码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">S</span>&gt; </span>&#123;</div><div class="line">    Class&lt;S&gt; service;</div><div class="line">    </div><div class="line">    ClassLoader loader;</div><div class="line">    Enumeration&lt;URL&gt; configs = <span class="keyword">null</span>;</div><div class="line">    Iterator&lt;String&gt; pending = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 下一个要进行加载到JVM中的全类名</span></div><div class="line">    String nextName = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyIterator</span><span class="params">(Class&lt;S&gt; service, ClassLoader loader)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.service = service;</div><div class="line">        <span class="keyword">this</span>.loader = loader;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasNextService</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nextName != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (configs == <span class="keyword">null</span>) &#123;</div><div class="line">            String fullName = PREFIX + service.getName();</div><div class="line">            <span class="keyword">if</span> (loader == <span class="keyword">null</span>)</div><div class="line">                configs = ClassLoader.getSystemResources(fullName);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                configs = loader.getResources(fullName);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> ((pending == <span class="keyword">null</span>) || !pending.hasNext()) &#123;</div><div class="line">            <span class="keyword">if</span> (!configs.hasMoreElements()) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            pending = parse(service, configs.nextElement());</div><div class="line">        &#125;</div><div class="line">        nextName = pending.next();</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> S <span class="title">nextService</span><span class="params">()</span> </span>&#123;</div><div class="line">        String cn = nextName;</div><div class="line">        nextName = <span class="keyword">null</span>;</div><div class="line">        Class&lt;?&gt; c = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="comment">// 在这里，驱动类就会被注册</span></div><div class="line">        c = Class.forName(cn, <span class="keyword">false</span>, loader);</div><div class="line">        S p = service.cast(c.newInstance());</div><div class="line"></div><div class="line">        providers.put(cn, p);</div><div class="line">        <span class="keyword">return</span> p;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (acc == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> hasNextService();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            PrivilegedAction&lt;Boolean&gt; action = <span class="keyword">new</span> PrivilegedAction&lt;Boolean&gt;() &#123;</div><div class="line">                <span class="function"><span class="keyword">public</span> Boolean <span class="title">run</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> hasNextService(); &#125;</div><div class="line">            &#125;;</div><div class="line">            <span class="keyword">return</span> AccessController.doPrivileged(action, acc);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> S <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (acc == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> nextService();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            PrivilegedAction&lt;S&gt; action = <span class="keyword">new</span> PrivilegedAction&lt;S&gt;() &#123;</div><div class="line">                <span class="function"><span class="keyword">public</span> S <span class="title">run</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> nextService(); &#125;</div><div class="line">            &#125;;</div><div class="line">            <span class="keyword">return</span> AccessController.doPrivileged(action, acc);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从这个迭代器<code>LazyIterator</code>的代码首先可得知3件事：</p>
+<ul>
+<li><code>ServiceLoader</code>外部类<code>service</code>域的值会传递给这个迭代器类的<code>service</code>域</li>
+<li><code>hasNext</code>方法必定会调用<code>hexNextService</code>方法</li>
+<li><code>next</code>方法必定会调用<code>nextService</code>方法</li>
+</ul>
+<p>我们最终重点关注的就是迭代器类中那两个实现加载工作的私有方法。</p>
+<blockquote>
+<p><strong><font color="black">16~35行<code>hasNextService</code>方法中最重要的一个语句</font></strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String fullName = PREFIX + service.getName();</div></pre></td></tr></table></figure>
+<p>其中，<code>PREFIX</code>和<code>service</code>的值已经知道了，而<code>fullName</code>的值自然而然就是<code>META-INF/services/java.sql.Driver</code>。而下面所做的工作就是在找到<code>fullName</code>所指定的资源文件，并读取它。资源文件里面就有初始驱动类的全限定驱动类名列表。</p>
+<p>不信的话，你可以自己展开<code>mysql-connector-java-x.x.xx.jar</code>这个jar包，根据<code>fullName</code>值所表示的目录就可以找到<code>java.sql.Driver</code>这个文件，<br>里面就有初始的驱动类的全类名列表，比如我这里使用的是<code>mysql-connector-java-5.1.37.jar</code>，里面就有：</p>
+<pre><code>com.mysql.jdbc.Driver
+com.mysql.fabric.jdbc.FabricMySQLDriver
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nextName = pending.next();</div></pre></td></tr></table></figure>
+<p>最后，<code>nextName</code>就会被赋予上一个驱动类名以供调用<code>nextService</code>方法时使用。</p>
+<blockquote>
+<p><strong><font color="black">最后来看37~48行<code>nextService</code>方法的具体实现</font></strong></p>
+</blockquote>
+<p><code>nextName</code>将它存储的驱动类名赋值给<code>cn</code>，并重置为空。那接下来的两个语句就起到的作用就是加载驱动类了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">c = Class.forName(cn, <span class="keyword">false</span>, loader);</div><div class="line">S p = service.cast(c.newInstance());</div></pre></td></tr></table></figure></p>
+<p>第一行<code>forName</code>方法并不会触发<code>cn</code>对应驱动类的静态块进行加载。而第二行<code>newInstance</code>这个调用就会触发驱动类加载注册了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在我们手工注册指定的数据库驱动之前，<code>DriverManager</code>会做这个工作：</p>
+<ul>
+<li><strong>首先通过系统属性中<code>jdbc.drivers</code>这个键获取对应的数据库驱动类名，并注册它们</strong></li>
+<li><strong>然后再通过读取数据库驱动jar包的配置文件<code>META-INF/services/java.sql.Driver</code>，并注册里面所存储好的数据库驱动类类名</strong></li>
+</ul>
+<h2 id="JDBC中相关的类与接口"><a href="#JDBC中相关的类与接口" class="headerlink" title="JDBC中相关的类与接口"></a>JDBC中相关的类与接口</h2><p>学习JDBC，我们只要把其中相关的类与接口都熟悉一遍，就能轻松地它们它们了。</p>
+<h3 id="DriverManager类"><a href="#DriverManager类" class="headerlink" title="DriverManager类"></a>DriverManager类</h3><p><code>java.sql.DriverManager</code>类是工具类，它主要负责数据库的驱动注册和连接获取。</p>
+<p>其中这个类常用的方法有：</p>
+<ul>
+<li><code>public static Driver getDriver(String url)</code> 根据指定的数据库URL地址获取JDBC驱动</li>
+<li><code>public static Enumeration&lt;Driver&gt; getDrivers()</code> 获取驱动管理器中所有已经加载好的JDBC驱动</li>
+<li><code>public static void registerDriver(Driver driver)</code> 注册指定的数据库驱动</li>
+<li><code>public static Connection getConnection(String url, String user, String password)</code> 获取数据库连接</li>
+</ul>
+<p>连接数据库的URL路径格式：<code>主协议:子协议://主机地址:端口/数据库名</code>，如果连接本地数据库，那么可以省略主机地址和端口，斜杠是绝对不能省略。</p>
+<h3 id="Connection接口"><a href="#Connection接口" class="headerlink" title="Connection接口"></a>Connection接口</h3><p><code>java.sql.Connection</code>是SUN定义的顶级接口，一般的数据库厂商所创建的接口都会继承该接口。</p>
+<p><img src="http://extremegtr.github.io/assets/blogImg/connection_hierarchy.png" alt="Connection类型层次"></p>
+<p>获取到数据库的连接，我们就可以对数据库进行操作了，而对数据库的操作可以分为两大部分：</p>
+<blockquote>
+<p><strong><font color="black">执行SQL语句</font></strong></p>
+</blockquote>
+<p>要执行SQL语句，则必须使用<code>Connection</code>接口中的方法创建相应的语句对象才行。</p>
+<ul>
+<li><code>Statement createStatement()</code> - <code>Statement</code>对象执行静态SQL语句，它不能接收参数</li>
+<li><code>PreparedStatement prepareStatement(String sql)</code> - <code>PreparedStatement</code>对象执行预编译SQL语句，它可以接收参数</li>
+<li><code>CallableStatement prepareCall(String sql)</code> - <code>CallableStatement</code>对象执行存储过程，并且它也可以接收参数</li>
+</ul>
+<blockquote>
+<p><strong><font color="black">执行事务操作</font></strong></p>
+</blockquote>
+<p>有关事务操作的常用方法比较多的，这些方法同样是在<code>Connection</code>接口中。</p>
+<ul>
+<li><code>void setAutoCommit(boolean autoCommit)</code> - 设置事务是否自动提交，一般设置为<code>false</code></li>
+<li><code>void rollback()</code> - 回滚事务</li>
+<li><code>Savepoint setSavepoint()</code> - 创建一个匿名的回滚点</li>
+<li><code>Savepoint setSavepoint(String name)</code> - 根据指定的名称创建一个带名称的回滚点</li>
+<li><code>void rollback(Savepoint savepoint)</code> - 回滚到指定的回滚点</li>
+<li><code>void commit()</code> - 提交事务</li>
+<li><code>void setTransactionIsolation(int level)</code> - 设置事务隔离级别</li>
+</ul>
+<h3 id="Statement接口"><a href="#Statement接口" class="headerlink" title="Statement接口"></a>Statement接口</h3><p><img src="http://extremegtr.github.io/assets/blogImg/statement_hierarchy.png" alt="Statement类型层次"></p>
+<p>正如前面所讲，<code>java.sql.Statement</code>类型的对象用于执行静态SQL语句，并且我们不能传递参数给它。其中常用于执行SQL的方法有：</p>
+<ul>
+<li><code>boolean execute(String sql)</code> - 执行指定的SQL，返回<code>true</code>表示执行结果是一个<code>ResultSet</code>，<code>false</code>表示执行结果是更新统计数或没有结果。</li>
+<li><code>ResultSet executeQuery(String sql)</code> - 执行SQL进行查询并返回结果集<code>ResultSet</code>对象。</li>
+<li><code>int executeUpdate(String sql)</code> - 执行SQL进行更新并返回影响的记录数</li>
+</ul>
+<h3 id="ResultSet接口"><a href="#ResultSet接口" class="headerlink" title="ResultSet接口"></a>ResultSet接口</h3><p><code>java.sql.ResultSet</code>接口代表的是查询结果。</p>
+<p>其中，查询后得出这个类型的对象后，我们常用以下方法来处理查询结果：</p>
+<ul>
+<li><code>boolean next()</code> - 将游标从当前位置移动到下一行</li>
+<li><code>boolean previous()</code> - 将游标从当前位置移动到上一行</li>
+<li><code>boolean last()</code> - 将游标移动到最后一行</li>
+<li><code>boolean first()</code> - 将游标移动到第一行</li>
+<li><code>boolean absolute(int row)</code> - 将游标移动到指定的行数</li>
+</ul>
+<p>除了这些方法，还有的就是各种<code>getXXX</code>方法用于获取数据。</p>
+<p>这里，使用JDBC技术进行普通的SQL查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBC</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Connection connection = <span class="keyword">null</span>;</div><div class="line">        Statement statement = <span class="keyword">null</span>;</div><div class="line">        ResultSet resultSet = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 注册驱动</span></div><div class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">            <span class="comment">// 定义连接数据库的信息</span></div><div class="line">            String url = <span class="string">"jdbc:mysql:///jdbc_practice"</span>;</div><div class="line">            String user = <span class="string">"root"</span>;</div><div class="line">            String password = <span class="string">"root"</span>;</div><div class="line">            <span class="comment">// 获取数据库连接</span></div><div class="line">            connection = DriverManager.getConnection(url, user, password);</div><div class="line">            <span class="comment">// 创建语句对象</span></div><div class="line">            String sql = <span class="string">"select * from user"</span>;</div><div class="line">            statement = connection.createStatement();</div><div class="line">            <span class="comment">// 执行SQL语句</span></div><div class="line">            resultSet = statement.executeQuery(sql);</div><div class="line">            <span class="comment">// next遍历</span></div><div class="line">            <span class="keyword">while</span> (resultSet.next()) &#123;</div><div class="line">                <span class="keyword">int</span> id = resultSet.getInt(<span class="number">1</span>);</div><div class="line">                String name = resultSet.getString(<span class="number">2</span>);</div><div class="line">                <span class="keyword">int</span> age = resultSet.getInt(<span class="number">3</span>);</div><div class="line">                System.out.println(id + <span class="string">", "</span> + name + <span class="string">", "</span> + age);</div><div class="line">            &#125;</div><div class="line">            System.out.println(<span class="string">"-------------------------------"</span>);</div><div class="line">            <span class="comment">// previous遍历</span></div><div class="line">            <span class="keyword">while</span> (resultSet.previous()) &#123;</div><div class="line">                <span class="keyword">int</span> id = resultSet.getInt(<span class="number">1</span>);</div><div class="line">                String name = resultSet.getString(<span class="number">2</span>);</div><div class="line">                <span class="keyword">int</span> age = resultSet.getInt(<span class="number">3</span>);</div><div class="line">                System.out.println(id + <span class="string">", "</span> + name + <span class="string">", "</span> + age);</div><div class="line">            &#125;</div><div class="line">            System.out.println(<span class="string">"-------------------------------"</span>);</div><div class="line">            <span class="comment">// 取第一条记录</span></div><div class="line">            resultSet.first();</div><div class="line">            <span class="keyword">int</span> id = resultSet.getInt(<span class="number">1</span>);</div><div class="line">            String name = resultSet.getString(<span class="number">2</span>);</div><div class="line">            <span class="keyword">int</span> age = resultSet.getInt(<span class="number">3</span>);</div><div class="line">            System.out.println(id + <span class="string">", "</span> + name + <span class="string">", "</span> + age);</div><div class="line">            System.out.println(<span class="string">"-------------------------------"</span>);</div><div class="line">            <span class="comment">// 取最后一条记录</span></div><div class="line">            resultSet.last();</div><div class="line">            id = resultSet.getInt(<span class="number">1</span>);</div><div class="line">            name = resultSet.getString(<span class="number">2</span>);</div><div class="line">            age = resultSet.getInt(<span class="number">3</span>);</div><div class="line">            System.out.println(id + <span class="string">", "</span> + name + <span class="string">", "</span> + age);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="comment">// 释放资源</span></div><div class="line">            <span class="keyword">if</span> (resultSet != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    resultSet.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                    resultSet = <span class="keyword">null</span>;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (statement != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    statement.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                    statement = <span class="keyword">null</span>;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    connection.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                    connection = <span class="keyword">null</span>;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="PreparedStatement接口"><a href="#PreparedStatement接口" class="headerlink" title="PreparedStatement接口"></a>PreparedStatement接口</h3><p>使用<code>java.sql.Statement</code>接口类型对象只能执行普通的SQL语句，而且我们不能通过它来给SQL语句指定参数，想要指定参数，我们必须将参数一个一个且准确无误地拼接到SQL语句中。所以当我们所要执行的SQL需要传参时，使用它是十分麻烦且容易出错的。</p>
+<p>但使用扩展<code>java.sql.Statement</code>接口的子接口<code>java.sql.PreparedStatement</code>接口来做这个工作就方便得多了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PreparedStatementTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        PreparedStatement pStmt = <span class="keyword">null</span>;</div><div class="line">        ResultSet rs = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 定义连接信息</span></div><div class="line">            String url = <span class="string">"jdbc:mysql:///jdbc_practice"</span>;</div><div class="line">            String user = <span class="string">"root"</span>;</div><div class="line">            String password = <span class="string">"root"</span>;</div><div class="line">            <span class="comment">// 注册驱动并获取连接</span></div><div class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line">            con = DriverManager.getConnection(url, user, password);</div><div class="line">            <span class="comment">// 创建预编译语句对象</span></div><div class="line">            String sql = <span class="string">"select * from user where id = ? and name = ? and age = ?"</span>;</div><div class="line">            pStmt = con.prepareStatement(sql);</div><div class="line">            </div><div class="line">            <span class="comment">// 设置参数</span></div><div class="line">            pStmt.setInt(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">            pStmt.setString(<span class="number">2</span>, <span class="string">"may"</span>);</div><div class="line">            pStmt.setInt(<span class="number">3</span>, <span class="number">18</span>);</div><div class="line">            </div><div class="line">            <span class="comment">// 执行</span></div><div class="line">            rs = pStmt.executeQuery();</div><div class="line">            <span class="keyword">while</span> (rs.next()) &#123;</div><div class="line">                <span class="keyword">int</span> id = rs.getInt(<span class="number">1</span>);</div><div class="line">                String name = rs.getString(<span class="number">2</span>);</div><div class="line">                <span class="keyword">int</span> age = rs.getInt(<span class="number">3</span>);</div><div class="line">                System.out.println(id + <span class="string">", "</span> + name + <span class="string">", "</span> + age);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="comment">// 释放资源</span></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (rs != <span class="keyword">null</span>)</div><div class="line">                    rs.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                rs = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (pStmt != <span class="keyword">null</span>)</div><div class="line">                    pStmt.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                pStmt = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (con != <span class="keyword">null</span>)</div><div class="line">                    con.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                con = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在SQL语句中，在需要使用参数的地方插入<code>?</code>作为参数占位符，在这之后调用预编译语句对象的<code>setXXX</code>方法设置参数即可。</p>
+<h3 id="CallableStatement接口"><a href="#CallableStatement接口" class="headerlink" title="CallableStatement接口"></a>CallableStatement接口</h3><p>如果要使用JDBC技术执行存储过程或函数，这就必须使用<code>java.sql.CallableStatement</code>接口才行。</p>
+<p>我们要使用这个接口之前，首先要知道调用存储过程或函数的语法，这个语法可以在API文档中找到：</p>
+<ul>
+<li>调用函数 - <code>{? = call &lt;function-name&gt;[(&lt;arg1&gt;,&lt;arg2&gt;, ...)]}</code></li>
+<li>调用存储过程 - <code>{call &lt;procedure-name&gt;[(&lt;arg1&gt;,&lt;arg2&gt;, ...)]}</code></li>
+</ul>
+<pre><code>细节：
+1.使用大括号{}包围中间的语句对于调用函数来说是必须的，省略它，调用函数时就会出错。
+2.存储过程和函数的每个参数都要用问号?作为占位符。
+3.如果是调用函数，第一个参数就是结果参数，必须使用CallableStatement接口中的registerOutParameter方法将它注册为输出参数。
+4.CallableStatement接口中的对应各种类型的set方法是传递参数值给存储过程或函数，而get方法是获取输出参数值或函数返回值。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableStatementTest</span> </span>&#123;</div><div class="line">    <span class="comment">// 连接数据库所要的驱动和信息</span></div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String JDBC_DRIVER = <span class="string">"com.mysql.jdbc.Driver"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String URL = <span class="string">"jdbc:mysql:///jdbc_practice"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String USER = <span class="string">"root"</span>;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String PASSWORD = <span class="string">"root"</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        Statement stmt = <span class="keyword">null</span>;</div><div class="line">        CallableStatement cStmt1 = <span class="keyword">null</span>;</div><div class="line">        CallableStatement cStmt2 = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 注册驱动, 获取数据库连接</span></div><div class="line">            Class.forName(JDBC_DRIVER);</div><div class="line">            con = DriverManager.getConnection(URL, USER, PASSWORD);</div><div class="line">            </div><div class="line">            <span class="comment">// 1.存储过程get_user_name</span></div><div class="line">            String sql1 = <span class="string">"drop procedure if exists `get_user_name`"</span>;</div><div class="line">            String sql2 = <span class="string">"create procedure get_user_name"</span></div><div class="line">                    + <span class="string">"(in u_id int, in u_age int, out u_name varchar(20)) "</span></div><div class="line">                    + <span class="string">"begin"</span></div><div class="line">                    + <span class="string">" select name into u_name"</span></div><div class="line">                    + <span class="string">" from user"</span></div><div class="line">                    + <span class="string">" where id = u_id and age = u_age;"</span></div><div class="line">                    + <span class="string">"end"</span>;</div><div class="line">            stmt = con.createStatement();</div><div class="line">            stmt.execute(sql1);</div><div class="line">            stmt.execute(sql2);</div><div class="line">            </div><div class="line">            <span class="comment">// 创建对应于存储过程的CallableStatement对象</span></div><div class="line">            String proc1 = <span class="string">"&#123;call get_user_name(?, ?, ?)&#125;"</span>;</div><div class="line">            cStmt1 = con.prepareCall(proc1);</div><div class="line">            </div><div class="line">            <span class="comment">// 设置参数</span></div><div class="line">            cStmt1.setInt(<span class="string">"u_id"</span>, <span class="number">2</span>);</div><div class="line">            cStmt1.setInt(<span class="string">"u_age"</span>, <span class="number">18</span>);</div><div class="line">            </div><div class="line">            <span class="comment">// 执行存储过程</span></div><div class="line">            cStmt1.execute();</div><div class="line">            String name = cStmt1.getString(<span class="string">"u_name"</span>);</div><div class="line">            System.out.println(name);</div><div class="line">            </div><div class="line">            <span class="comment">// 2.函数compare</span></div><div class="line">            String sql3 = <span class="string">"drop function if exists `compare`"</span>;</div><div class="line">            String sql4 = <span class="string">"create function compare(a int, b int) "</span></div><div class="line">                    + <span class="string">"returns int"</span></div><div class="line">                    + <span class="string">" if a &gt; b then return 1;"</span></div><div class="line">                    + <span class="string">" elseif a &lt; b then return -1;"</span></div><div class="line">                    + <span class="string">" else return 0;"</span></div><div class="line">                    + <span class="string">" end if;"</span>;</div><div class="line">            stmt.execute(sql3);</div><div class="line">            stmt.execute(sql4);</div><div class="line">            </div><div class="line">            <span class="comment">// 创建对应于函数的CallableStatement对象</span></div><div class="line">            String proc2 = <span class="string">"&#123;? = call compare(?, ?)&#125;"</span>;</div><div class="line">            cStmt2 = con.prepareCall(proc2);</div><div class="line">            </div><div class="line">            <span class="comment">// 设置参数</span></div><div class="line">            cStmt2.setInt(<span class="number">2</span>, <span class="number">1</span>);</div><div class="line">            cStmt2.setInt(<span class="number">3</span>, <span class="number">2</span>);</div><div class="line">            <span class="comment">// 注册输出参数</span></div><div class="line">            cStmt2.registerOutParameter(<span class="number">1</span>, Types.INTEGER);</div><div class="line">            </div><div class="line">            <span class="comment">// 执行函数</span></div><div class="line">            cStmt2.execute();</div><div class="line">            <span class="keyword">int</span> compare = cStmt2.getInt(<span class="number">1</span>);</div><div class="line">            System.out.println(compare);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (cStmt2 != <span class="keyword">null</span>)</div><div class="line">                    cStmt2.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                cStmt2 = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (cStmt1 != <span class="keyword">null</span>)</div><div class="line">                    cStmt1.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                cStmt1 = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (stmt != <span class="keyword">null</span>)</div><div class="line">                    stmt.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                stmt = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (con != <span class="keyword">null</span>)</div><div class="line">                    con.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                con = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h2><p>我们可以发现上面的代码例子是有问题的。如果说单独用作学习例子确实没什么问题，但这种代码应用于实际的项目中是十分不好的。</p>
+<p>问题：</p>
+<ul>
+<li>连接数据库所要用的参数信息都写死在代码中</li>
+<li>释放资源这种重复代码每次都要写</li>
+</ul>
+<p>所以，现在我们可以写一个工具类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DBUtils</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String driverClass;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String url;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String user;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String password;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="comment">// 加载配置文件</span></div><div class="line">        Properties p = <span class="keyword">new</span> Properties();</div><div class="line">        InputStream in = DBUtils.class.getResourceAsStream(<span class="string">"db.properties"</span>);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            p.load(in);</div><div class="line">            driverClass = p.getProperty(<span class="string">"driverClass"</span>);</div><div class="line">            url = p.getProperty(<span class="string">"url"</span>);</div><div class="line">            user = p.getProperty(<span class="string">"user"</span>);</div><div class="line">            password = p.getProperty(<span class="string">"password"</span>);</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> (driverClass != <span class="keyword">null</span>)</div><div class="line">                Class.forName(driverClass);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            System.out.println(<span class="string">"加载配置文件失败"</span>);</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 获取数据库连接</span></div><div class="line"><span class="comment">     * </span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">     * <span class="doctag">@throws</span> SQLException </span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</div><div class="line">        <span class="keyword">return</span> DriverManager.getConnection(url, user, password);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 释放数据库连接等资源</span></div><div class="line"><span class="comment">     * </span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> con</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> stmt</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> set</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Connection con, Statement stmt, ResultSet set)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (con != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                con.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                con = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (stmt != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                stmt.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                stmt = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (set != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                set.close();</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                set = <span class="keyword">null</span>;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Connection connection = DBUtils.getConnection();</div><div class="line">        System.out.println(connection);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，我们在项目中就能应用这个数据库工具类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDao</span> </span>&#123;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        Statement stmt = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 获取数据库连接并创建语句对象</span></div><div class="line">            con = DBUtils.getConnection();</div><div class="line">            stmt = con.createStatement();</div><div class="line">            <span class="comment">// 执行SQL语句</span></div><div class="line">            String update = <span class="string">"update user set age = 19 where name = 'kate'"</span>;</div><div class="line">            <span class="keyword">int</span> count = stmt.executeUpdate(update);</div><div class="line">            <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">                System.out.println(<span class="string">"有"</span> + count + <span class="string">"条记录被修改"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            DBUtils.release(con, stmt, <span class="keyword">null</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">()</span> </span>&#123;</div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        Statement stmt = <span class="keyword">null</span>;</div><div class="line">        ResultSet set = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 获取数据库连接并创建语句对象</span></div><div class="line">            con = DBUtils.getConnection();</div><div class="line">            stmt = con.createStatement();</div><div class="line">            <span class="comment">// 执行SQL语句</span></div><div class="line">            String query = <span class="string">"select * from user"</span>;</div><div class="line">            set = stmt.executeQuery(query);</div><div class="line">            </div><div class="line">            <span class="keyword">while</span> (set.next()) &#123;</div><div class="line">                <span class="keyword">int</span> id = set.getInt(<span class="number">1</span>);</div><div class="line">                String name = set.getString(<span class="number">2</span>);</div><div class="line">                <span class="keyword">int</span> age = set.getInt(<span class="number">3</span>);</div><div class="line">                System.out.println(id + <span class="string">", "</span> + name + <span class="string">", "</span> + age);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            DBUtils.release(con, stmt, set);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaSE/" rel="tag"><i class="fa fa-tag"></i> JavaSE</a>
+          
+            <a href="/tags/JDBC/" rel="tag"><i class="fa fa-tag"></i> JDBC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/04/Java-basis-of-concurrency-thread-info/" rel="next" title="Java多线程基础 - 线程相关信息的操作">
+                <i class="fa fa-chevron-left"></i> Java多线程基础 - 线程相关信息的操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/" rel="prev" title="使用Eclipse调试JDK源码时无法查看局部变量的问题">
+                使用Eclipse调试JDK源码时无法查看局部变量的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#体验"><span class="nav-number">1.</span> <span class="nav-text">体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册JDBC驱动程序的原理"><span class="nav-number">2.</span> <span class="nav-text">注册JDBC驱动程序的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Class-forName注册数据库驱动类即可"><span class="nav-number">2.1.</span> <span class="nav-text">使用Class.forName注册数据库驱动类即可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐秘于DriverManager中所做的注册工作"><span class="nav-number">2.2.</span> <span class="nav-text">隐秘于DriverManager中所做的注册工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC中相关的类与接口"><span class="nav-number">3.</span> <span class="nav-text">JDBC中相关的类与接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DriverManager类"><span class="nav-number">3.1.</span> <span class="nav-text">DriverManager类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connection接口"><span class="nav-number">3.2.</span> <span class="nav-text">Connection接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Statement接口"><span class="nav-number">3.3.</span> <span class="nav-text">Statement接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResultSet接口"><span class="nav-number">3.4.</span> <span class="nav-text">ResultSet接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreparedStatement接口"><span class="nav-number">3.5.</span> <span class="nav-text">PreparedStatement接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CallableStatement接口"><span class="nav-number">3.6.</span> <span class="nav-text">CallableStatement接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码优化"><span class="nav-number">4.</span> <span class="nav-text">代码优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

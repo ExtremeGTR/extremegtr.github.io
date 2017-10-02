@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IntelliJ IDEA," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="一直听说IntelliJ IDEA很好用，是最棒的Java IDE了，所以我也来学着用用了。网上教程还是很多的，不过还是要把那些我认为重要的记下来才行，那些新东西并不是只看一遍就能永远记住的。以前用习惯了Eclipse、MyEclipse这2个IDE，我也知道要用新东西，那肯定不能套用旧思维。初步感受是IntelliJ IDEA与Eclipse两者的理念以及操作相差还是挺大的，所以我一时半刻也">
+<meta name="keywords" content="IntelliJ IDEA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初次使用IntelliJ IDEA">
+<meta property="og:url" content="http://extremegtr.github.io/2017/03/16/First-time-to-use-IntelliJ-IDEA/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="一直听说IntelliJ IDEA很好用，是最棒的Java IDE了，所以我也来学着用用了。网上教程还是很多的，不过还是要把那些我认为重要的记下来才行，那些新东西并不是只看一遍就能永远记住的。以前用习惯了Eclipse、MyEclipse这2个IDE，我也知道要用新东西，那肯定不能套用旧思维。初步感受是IntelliJ IDEA与Eclipse两者的理念以及操作相差还是挺大的，所以我一时半刻也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-17T06:48:50.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初次使用IntelliJ IDEA">
+<meta name="twitter:description" content="一直听说IntelliJ IDEA很好用，是最棒的Java IDE了，所以我也来学着用用了。网上教程还是很多的，不过还是要把那些我认为重要的记下来才行，那些新东西并不是只看一遍就能永远记住的。以前用习惯了Eclipse、MyEclipse这2个IDE，我也知道要用新东西，那肯定不能套用旧思维。初步感受是IntelliJ IDEA与Eclipse两者的理念以及操作相差还是挺大的，所以我一时半刻也">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2017/03/16/First-time-to-use-IntelliJ-IDEA/"/>
+
+
+
+
+
+  <title>初次使用IntelliJ IDEA | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2017/03/16/First-time-to-use-IntelliJ-IDEA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初次使用IntelliJ IDEA</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-16T19:44:11+08:00">
+                2017-03-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:48:50+08:00">
+                2017-09-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IntelliJ-IDEA/" itemprop="url" rel="index">
+                    <span itemprop="name">IntelliJ IDEA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/16/First-time-to-use-IntelliJ-IDEA/" class="leancloud_visitors" data-flag-title="初次使用IntelliJ IDEA">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4,911
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　一直听说IntelliJ IDEA很好用，是最棒的Java IDE了，所以我也来学着用用了。网上教程还是很多的，不过还是要把那些我认为重要的记下来才行，那些新东西并不是只看一遍就能永远记住的。以前用习惯了Eclipse、MyEclipse这2个IDE，我也知道要用新东西，那肯定不能套用旧思维。初步感受是IntelliJ IDEA与Eclipse两者的理念以及操作相差还是挺大的，所以我一时半刻也适应不过来，挺多东西要记住的，当然这不是靠死记硬背就有用的，用得多才是王道。想想当年第一次使用Eclipse写Java代码也是一脸懵逼的，用着用着用多了现在还不是能流畅地运用这个工具。</p>
+<h2 id="使用前须知"><a href="#使用前须知" class="headerlink" title="使用前须知"></a>使用前须知</h2><ul>
+<li><p>觉得IntelliJ IDEA速度奇慢，最佳的解决办法是给自己的电脑来一块<strong>固态硬盘</strong>。<br>硬盘才是解决该问题最关键的一点，而不是CPU与内存（当然它们同样关键，只不过在这里没硬盘那么关键而已）。</p>
+</li>
+<li><p><strong><font color="black">IntelliJ IDEA没有<font color="red">工作空间</font>（work space）的概念，在一个IDE窗口只能打开一个项目。</font></strong><br><strong>IntelliJ IDEA中最大的处理单元就是<font color="#9B30FF">项目</font>（project），而项目中又包含了<font color="#9B30FF">模块</font>（module），模块可以有1个或多个。</strong></p>
+<ul>
+<li>如果要用IntelliJ IDEA打开多个项目，那只能是为每一个项目都打开一个IDE窗口，或者是将那些项目转变为模块放到同一个IntelliJ IDEA项目中。</li>
+<li>IntelliJ IDEA默认情况下创建的新项目就是单模块的，所以说项目目录和模块目录其实是同一个目录。</li>
+</ul>
+</li>
+<li><p>快捷键非常不适应问题，这个问题除了自己没有任何局外人可以帮到自己。<br>常用的快捷键记下来多用一点就行了，并不用记住所有，回想一下自己第一次用其他IDE的境况是如何的。<br><strong>一些能够让我们快速拥有生产力的快捷键才是最值得我们记住的快捷键</strong></p>
+</li>
+<li><p>IntelliJ IDEA的缓存和索引</p>
+<ul>
+<li><p>前面说到的为何硬盘性能是最关键的其实是因为这个IDE会给项目建立缓存和索引，<br>在使用IDEA做项目的时候，IDEA经常调用缓存和索引，所以硬盘的IO性能必须很叼那整个软件的运行速度才会有质的提升。</p>
+</li>
+<li><p>缓存和索引主要用来加快文件查询，从而加快各种查找，代码提示等操作速度。</p>
+</li>
+<li><p>使用IDEA工作途中有突发情况：蓝屏死机、强制关机等，这都能破坏缓存和索引，这导致重新打开项目时会出错。</p>
+</li>
+</ul>
+</li>
+<li><p>IntelliJ IDEA存储配置、缓存、日志等内容的目录<br>以Windows 7为例，IDEA的设置目录是这个<code>系统盘\用户目录\.IntelliJIdea&lt;Version&gt;</code>路径。</p>
+<ul>
+<li><p>其中里面名为<code>config</code>的目录是存储IntelliJ IDEA个性化配置的目录，我们对IDE的全局设置都存储在这里。</p>
+</li>
+<li><p>其中里面名为<code>system</code>的目录是存储IntelliJ IDEA项目的缓存和索引以及日志等等信息。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装完后的重要设置"><a href="#安装完后的重要设置" class="headerlink" title="安装完后的重要设置"></a>安装完后的重要设置</h2><h3 id="安装目录中配置文件的设置"><a href="#安装目录中配置文件的设置" class="headerlink" title="安装目录中配置文件的设置"></a><font color="#0072E3">安装目录中配置文件的设置</font></h3><p>在启动IDE前我们最好是对<code>IntelliJ IDEA安装目录\bin</code>内的几个文件进行配置。</p>
+<ul>
+<li><p><strong><code>idea.exe.vmoptions</code>和<code>idea64.exe.vmoptions</code>这两个文件是运行IDE的Java虚拟机的配置文件。</strong><br>当你内存资源宽裕的时候，那就可以通过修改这些文件来来增加虚拟机的堆内存从而加快IntelliJ IDEA的运行速度。</p>
+<p>一般情况下，我们只配置<code>idea64.exe.vmoptions</code>就可以了，毕竟现在是大内存时代，每个人几乎都用64位系统了，我的配置如下：</p>
+<pre><code>-Xms1024m
+-Xmx2048m
+-XX:ReservedCodeCacheSize=1024m
+-XX:+UseConcMarkSweepGC
+-XX:SoftRefLRUPolicyMSPerMB=50
+</code></pre><p>其实内存大怎么改都无所谓了，最大值那块改成4096m都是没问题的。</p>
+</li>
+<li><p><strong><code>idea.properties</code>这个文件用于配置IntelliJ IDEA本身最基础设定。</strong></p>
+<p>在这配置文件中，我们最常配置的也就以下那么几个属性：</p>
+<ul>
+<li><p><strong><code>idea.config.path</code></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Uncomment this option if you want to customize path to IDE config folder. Make sure you&apos;re using forward slashes.</div><div class="line"># idea.config.path=$&#123;user.home&#125;/.IntelliJIdea/config</div></pre></td></tr></table></figure>
+<p>这个属性用于指定IDEA配置目录的位置，指定哪个目录（默认配置目录名为<code>config</code>），那IDEA就会加载该目录内的配置文件。</p>
+</li>
+<li><p><strong><code>idea.system.path</code></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Uncomment this option if you want to customize path to IDE system folder. Make sure you&apos;re using forward slashes.</div><div class="line"># idea.system.path=$&#123;user.home&#125;/.IntelliJIdea/system</div></pre></td></tr></table></figure>
+<p>这个属性用于指定IDEA创建及利用的索引和缓存存储目录的位置（默认存储缓存和索引的目录名为<code>system</code>）。</p>
+</li>
+<li><p><strong><code>idea.max.intellisense.filesize</code></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># Maximum file size (kilobytes) IDE should provide code assistance for.</div><div class="line"># The larger file is the slower its editor works and higher overall system memory requirements are</div><div class="line"># if code assistance is enabled. Remove this property or set to very large number if you need</div><div class="line"># code assistance for any files available regardless their size.</div><div class="line">idea.max.intellisense.filesize=2500</div></pre></td></tr></table></figure>
+<p>这个属性描述IDEA至多会为多大的文件提供代码帮助（智能提示、各种说明什么的），<br>当你想要IDEA给任意大小的文件都能提供代码帮助的功能，那么就把这条属性给注释掉或者调高最大值。</p>
+</li>
+<li><p><strong><code>idea.cycle.buffer.size</code></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># This option controls console cyclic buffer: keeps the console output size not higher than the specified buffer size (Kb).</div><div class="line"># Older lines are deleted. In order to disable cycle buffer use idea.cycle.buffer.size=disabled</div><div class="line">idea.cycle.buffer.size=1024</div></pre></td></tr></table></figure>
+<p>这个属性用于设置控制台输出的缓冲区大小，一旦输出内容过多并超过所配置的缓冲区，所输出的老内容会被删除。<br>所以有些项目输出很多，但你又想控制台一次显示全部，那就把这个值改大，或者配置<code>idea.cycle.buffer.size=disabled</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>　　以上这4个属性的配置是我们最常用到的，我都是采用默认值，当然，IDEA的缓存和索引的体积可以说是非常大的，但它默认是放在系统盘，所以你可以斟酌情况来配置<code>system</code>目录的的位置，当然，IDEA的配置目录<code>config</code>默认也在系统盘，你觉得管理配置不方便的话，可以自定义该配置目录的路径。<br>　　同时我们要注意的是：配置路径时用的必须是正斜杠<code>/</code>。</p>
+<h3 id="编码设置"><a href="#编码设置" class="headerlink" title="编码设置"></a><font color="#0072E3">编码设置</font></h3><p>这其实就跟使用Eclipse、MyEclipse一样，首先把编码这块给设置好，以后做项目会少很多麻烦。编码建议都设置为<code>UTF-8</code>。</p>
+<ul>
+<li><strong>全局编码设置</strong><br><strong>Menu Bar → File → Settings → Editor → File Encodings</strong><br>按照这个步骤我们就可以来到一个设置编码的窗口：<br>其中<code>IDE Encoding</code>指的是整个IDE所用的编码，<code>Project Encoding</code>指的是所有项目的编码。<br>同时把<code>Default encoding for properties files</code>设置为<code>UTF-8</code>，并勾选<code>Transparent native-to-ascii conversion</code>，<br>这样，编码这块就完全OK了。</li>
+</ul>
+<ul>
+<li><p><strong>单个文件编码设置</strong><br>这有3种方式。</p>
+<ul>
+<li><p>也是在这<strong>Menu Bar → File → Settings → Editor → File Encodings</strong><br>选中项目模块中的某些文件进行编码设置。</p>
+</li>
+<li><p><strong>打开某个文件然后在编辑器上随便点一下鼠标右键 → File Encoding → 选择编码</strong></p>
+</li>
+<li><p><strong>Status Bar → 点击显示编码的地方 → 选择编码</strong></p>
+</li>
+</ul>
+<p>如果文件中含有英文字母以及数字外其他语言的字符，比如有中文，那么在选择编码后，就会弹出一个带3个选项的对话框：<br><code>Reload</code> - 通过你当前新选择的编码重新加载该文件，但以这种方式编码后的文件内容不会保存到本地原文件。<br><code>Convert</code> - 使用你当前新选择的编码将该文件的编码转换，并将重新编码后的内容存储到本地原文件。</p>
+</li>
+</ul>
+<h3 id="视觉上的设置"><a href="#视觉上的设置" class="headerlink" title="视觉上的设置"></a><font color="#0072E3">视觉上的设置</font></h3><ul>
+<li><p><strong>IDE主题个性化设置</strong><br><strong>File → Settings → Appearance &amp; Behavior → Appearance</strong>，在此处我们可以作以下配置。</p>
+<ul>
+<li>一般选择<code>Darcula</code>黑色主题（更加保护眼睛，色调也更帅）。</li>
+<li>勾选<code>Override default fonts by(not recommended)</code>，这就可以修改IDE字体，字体我用的默认<code>微软雅黑</code>，字体大小也是默认12。<br>选择字体的时候最好选择一些中英文都能够显示的字体，如果选择的字体只能显示英文，那么IDE显示中文时就会是乱码。</li>
+<li>勾选<code>Window Options</code>下的<code>Show memory indicator</code>，用于显示内存使用情况。</li>
+</ul>
+</li>
+<li><p><strong>代码编辑器设置</strong></p>
+<ul>
+<li><p><strong>File → Settings → Editor → General → Code Completion</strong><br>在此处，建议把<code>Case sensitive completion</code>改成<code>None</code>，这样无论我们输入的单词是大写还是小写，IDE都会进行补充提示。</p>
+</li>
+<li><p><strong>File → Settings → Editor → General → Appearance</strong><br>建议去掉<code>Show parameter name hints</code>的勾选关闭调用方法时的参数名暗示。</p>
+</li>
+<li><p><strong>File → Settings → Editor → Colors &amp; Fonts → Font</strong><br>在这里可以首先新建一个<code>Scheme</code>保存我们的字体配置方案。<br>第一主要字体肯定是选我大<code>Consolas</code>啦，字体大小17，当然字体大小是根据分辨率而定的。<br>勾选<code>Secondary font</code>，并选择字体，这个字体最好是选择中文字体。</p>
+</li>
+<li><p><strong>File → Settings → Editor → Colors &amp; Fonts → General</strong><br>这里是对编辑器内与语言无关的全局配色方案设置，一般设置以下几项：</p>
+<ul>
+<li>设置光标所在行：<strong>Editor → Caret row</strong>，这里我配置为全黑色。</li>
+<li>设置默认文字：<strong>Text → Default text</strong>，这里我设置前景色为：<code>#A9B7C6</code>、背景色为<code>#042029</code>。</li>
+<li>修改Java代码的配色方案： <strong>File → Settings → Editor → Colors &amp; Fonts → Java</strong> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="全局默认的IDE设置"><a href="#全局默认的IDE设置" class="headerlink" title="全局默认的IDE设置"></a><font color="#0072E3">全局默认的IDE设置</font></h3><p>　　一般在创建并打开新项目的环境下对IDE进行设置，某些IDE设置并不会被当作全局默认的IDE设置而被保存起来，IntelliJ IDEA只会把这些设置当作针对当前项目所做的设置。比如：文件编码、版本控制、编译、Maven等等设置。<br>    如果想要对这些内容进行全局默认设置，那么请到这里：<strong>File → Other Settings → Default Settings</strong>进行设置。</p>
+<h3 id="杂项设置"><a href="#杂项设置" class="headerlink" title="杂项设置"></a><font color="#0072E3">杂项设置</font></h3><ul>
+<li><p>如果刚开始选插件的时候开启了<code>Vim Emulator</code>，那么文本编辑器是用Vim模式的，没用过Vim的人肯定不会懂其中的规则，<br>特别是学习能力不强的新手(我也是这样)，本来要学新IDE已经够累了，再学Vim要死人呃，所以最好是让IDEA关闭Vim模式。<br>关闭方式：<strong>Menu Bar → Tools → 去掉Vim Emulator的勾选</strong></p>
+</li>
+<li><p>打开工具栏和工具按钮：<strong>Menu Bar → View → 勾选Toolbar以及Tool Buttons</strong><br>出现在菜单栏下的就是工具栏，出现在IDE两侧的是工具按钮。</p>
+</li>
+<li><p>在打开多个文件时，IDEA默认是单行显示的，但如果想以多行显示，<br>那就要这样设置：<strong>File → Settings → Editor → General → Editor Tabs</strong>，然后将<code>Show tabs in single row</code>的勾去掉。</p>
+</li>
+<li><p>设置编译项目时所用的堆内存<br>当你觉得编译项目不够快的时候，可以到这里设置：<br>进入<strong>File → Settings → Build, Execution, Deployment → Compiler</strong>，其中<code>Build process heap size(Mbytes)</code>默认700，你可以把它改成1500。</p>
+</li>
+<li><p>在打开IntelliJ IDEA时使它可以让我们选择要打开什么项目<br>IDEA默认是开启时就打开最后一次打开过的项目，但如果你想在开启时选择打开什么项目就得这么做了：<br><strong>File → Settings → Appearance &amp; Behavior → System Settings</strong>，然后将<code>Reopen last project on startup</code>的勾去掉。</p>
+</li>
+<li><p>当我们编辑指定文件时，显示项目目录结构的工具窗口可以自动定位。<br>在项目目录结构工具窗口那，点击<code>齿轮状设置按钮</code>，再把<code>Autoscroll from source</code>勾选上。</p>
+</li>
+</ul>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>快捷键是关键中的关键，我们是必须熟悉的。</p>
+<p>如果当你不知道某个快捷键是用来做什么的，那么可以直接按<code>Ctrl+Shift+A</code>，通过你所要执行的功能的名称来查看它的快捷键或者直接诶调用它。</p>
+<h3 id="工具窗口"><a href="#工具窗口" class="headerlink" title="工具窗口"></a>工具窗口</h3><p>　　工具窗口指的就是IDEA界面上的一片功能区，比如：代码编辑器就是一个工具窗口，显示项目目录的也是一个工具窗口，调试面板、显示文件内部结构的面板、运行程序时打印信息的面板等等这些都是工具窗口。</p>
+<pre><code>Project             alt+1              项目文件显示面板       
+Run                 alt+4              运行输出面板           
+Debug               alt+5              调试面板               
+Structure           alt+7              文件结构面板           
+Version Control     alt+9              版本控制面板           
+Terminal            alt+F12            控制台                 
+Editor              Escape             代码编辑器             
+</code></pre><ul>
+<li><p>瞬间隐藏所有工具窗口，让代码编辑器最大化：<code>Ctrl + Shift + F12</code>，编辑器最大化后再按一下就是恢复原状。</p>
+</li>
+<li><p>切换到导航栏：<code>alt + Home</code>，切换到导航条就能让我们快速打开文件。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong><font color="black"><font color="red">Tips:</font> IntelliJ IDEA大多数功能界面都能直接使用<font color="#9B30FF">快速查找</font>功能</font></strong><br>使用起来其实非常简单，比如<code>alt + 1</code>切换到<code>Project</code>工具窗口，然后直接输入你想要查找的内容，IDE就会给符合的文件进行高亮。</p>
+</blockquote>
+<h3 id="代码编辑器"><a href="#代码编辑器" class="headerlink" title="代码编辑器"></a>代码编辑器</h3><ul>
+<li><font color="#0072E3"><strong>一般常用的<code>Action</code></strong></font>
+
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><font color="red">英文描述</font></th>
+<th style="text-align:center"><font color="#FA6D0F">快捷键</font></th>
+<th><font color="blue">中文描述</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Move the current line of code</strong></td>
+<td style="text-align:center"><code>Ctrl+Shift+↑</code>或<code>Ctrl+Shift+↓</code></td>
+<td>将光标所在的行上移或下移<br>光标在特殊语法层面上，那上移或下移就作用于整个语法<br><font color="#9B30FF" style="font-size: 13px"><strong>光标在类名或方法名上，那么上移或下移的将是整个类或方法</strong></font></td>
+</tr>
+<tr>
+<td><strong>Duplicate a line of code</strong></td>
+<td style="text-align:center"><code>Ctrl+D</code></td>
+<td>复制光标所在行，并将复制内容粘贴到这一行后另起新行中<br>复制选中的内容并黏贴到后头</td>
+</tr>
+<tr>
+<td><strong>Remove a line of code</strong></td>
+<td style="text-align:center"><code>Ctrl+Y</code></td>
+<td>删除光标所在行</td>
+</tr>
+<tr>
+<td><strong>Cut a line of code</strong></td>
+<td style="text-align:center"><code>Ctrl+X</code></td>
+<td>剪切光标所在行 或 剪切选中内容</td>
+</tr>
+<tr>
+<td><strong>Comment or uncomment a line of code </strong></td>
+<td style="text-align:center"><code>Ctrl+Slash（正斜线）</code></td>
+<td>给光标所在行加行注释或取消行注释</td>
+</tr>
+<tr>
+<td><strong>Comment a block of code</strong></td>
+<td style="text-align:center"><code>Ctrl+Shift+Slash（正斜线）</code></td>
+<td>将选中内容用注释块包裹起来</td>
+</tr>
+<tr>
+<td><strong>Find in the currently opened file</strong></td>
+<td style="text-align:center"><code>Ctrl+F</code></td>
+<td>在当前所打开的文件中进行文本查找</td>
+</tr>
+<tr>
+<td><strong>Find and replace in the current file</strong></td>
+<td style="text-align:center"><code>Ctrl+R</code></td>
+<td>在当前所打开的文件中进行文本查找替换</td>
+</tr>
+<tr>
+<td><strong>Next occurrence</strong></td>
+<td style="text-align:center"><code>F3</code></td>
+<td>在查找过程中定位到下一个匹配处</td>
+</tr>
+<tr>
+<td><strong>Previous occurrence</strong></td>
+<td style="text-align:center"><code>Shift+F3</code></td>
+<td>在查找过程中定位到上一个匹配处</td>
+</tr>
+<tr>
+<td><strong>Navigate between opened tabs</strong></td>
+<td style="text-align:center"><code>Alt+←</code>或<code>Alt+→</code></td>
+<td>切换当前窗口中的子窗口<br><font color="#9B30FF" style="font-size: 13px"><strong>在编辑器中切换已打开文件，在调试窗口内切换调试器或控制台的子窗口</strong></font></td>
+</tr>
+<tr>
+<td><strong>Navigate back/forward</strong></td>
+<td style="text-align:center"><code>Ctrl+Alt+←</code>或<code>Ctrl+Alt+→</code></td>
+<td>向前或向后跳转到上一次操作的位置</td>
+</tr>
+<tr>
+<td><strong>Expand or collapse a code block in the editor</strong></td>
+<td style="text-align:center"><code>Ctrl+NumPad+</code>或<code>Ctrl+NumPad-</code></td>
+<td>展开或折叠光标所在的代码块</td>
+</tr>
+<tr>
+<td><strong>Create new</strong></td>
+<td style="text-align:center"><code>Alt+Insert</code></td>
+<td>新建元素（构造方法，toString等）</td>
+</tr>
+<tr>
+<td><strong>Surround with</strong></td>
+<td style="text-align:center"><code>Ctrl+Alt+T</code></td>
+<td>选择特定语法包裹选中的代码<br><font color="#9B30FF" style="font-size: 13px"><strong>使用for、if、try/catch等包裹所选代码</strong></font></td>
+</tr>
+<tr>
+<td><strong>Highlight usages of a symbol</strong></td>
+<td style="text-align:center"><code>Ctrl+F7</code></td>
+<td>将文件中所有与光标所在的符号相同的符号都高亮</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><font color="#0072E3"><strong>常用的文本选择快捷键</strong></font><ul>
+<li>向左、向右选中或反选一个字符：<code>Shift+←</code>或<code>Shift+→</code></li>
+<li>向左、向右选中或反选一个词：<code>Ctrl+Shift+←</code>或<code>Ctrl+Shift+→</code></li>
+<li>在语法基础层面上拓宽或缩窄选中代码范围：<code>Ctrl+W</code>或<code>Ctrl+Shift+W</code></li>
+<li>在同一时间内选中或反选多个内容相同的代码片段：<code>Alt+J</code>或<code>Alt+Shift+J</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="代码补全"><a href="#代码补全" class="headerlink" title="代码补全"></a>代码补全</h3><ul>
+<li><p><font color="#0072E3"><strong>基础补全</strong></font><br>当你想要让IDEA帮你补全代码，比如关键字、类型名、变量名、方法名等等的补全，<br>这些都能通过按<code>Ctrl+Space</code>进行补全，但建议把这个快捷键改成<code>Ctrl+,（逗号）</code>，这样就不会和Windows自带的输入法快捷键冲突。</p>
+</li>
+<li><p><font color="#0072E3"><strong>智能补全</strong></font><br>这是基础补全的进阶版：<code>Ctrl+Shift+Sapce</code>，建议改成<code>Ctrl+Shift+,（逗号）</code>。</p>
+</li>
+<li><p><font color="#0072E3"><strong>代码语句补全</strong></font><br>比如现在只写了一个<code>if</code>或<code>for</code>，你想要IDEA帮你补全这个语句所需的括号以及大括号或者分号，那么就直接按<code>Ctrl+Shift+Enter</code>。</p>
+</li>
+<li><p><font color="#0072E3"><strong>参数提示建议</strong></font><br>当你想要看你正在调用的一个方法，或使用的一个泛型等等接收什么样参数的时候，那就按<code>Ctrl+P</code>，IDEA会给出参数提示。</p>
+</li>
+</ul>
+<h2 id="导航定位"><a href="#导航定位" class="headerlink" title="导航定位"></a>导航定位</h2><table>
+<thead>
+<tr>
+<th><font color="red">英文描述</font></th>
+<th style="text-align:center"><font color="#9B30FF">快捷键</font></th>
+<th><font color="blue">中文描述</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Search everywhere</strong></td>
+<td style="text-align:center"><code>Double Shift</code></td>
+<td>在所有的范围中查找并定位</td>
+</tr>
+<tr>
+<td><strong>Navigate to class</strong></td>
+<td style="text-align:center"><code>Ctrl+N</code></td>
+<td>根据输入的类名定位到指定的Java类文件</td>
+</tr>
+<tr>
+<td><strong>Navigate to file</strong></td>
+<td style="text-align:center"><code>Ctrl+Shift+N</code></td>
+<td>根据输入的文件名定位到指定的文件</td>
+</tr>
+<tr>
+<td><strong>Navigate to symbol</strong></td>
+<td style="text-align:center"><code>Ctrl+Shift+Alt+N</code></td>
+<td>根据输入的标识符定位到指定的符号<br><font color="#9B30FF" style="font-size: 13px"><strong>真正来说是根据输入的字符定位到字段或方法</strong></font></td>
+</tr>
+<tr>
+<td><strong>Recent files</strong></td>
+<td style="text-align:center"><code>Ctrl+E</code></td>
+<td>列出最近操作过的文件，并通过它们进行定位</td>
+</tr>
+<tr>
+<td><strong>File structure</strong></td>
+<td style="text-align:center"><code>Ctrl+F12</code></td>
+<td>在文件结构弹窗中进行定位</td>
+</tr>
+<tr>
+<td><strong>Select in</strong></td>
+<td style="text-align:center"><code>Alt+F1</code></td>
+<td>选择以什么方式定位当前文件</td>
+</tr>
+<tr>
+<td><strong>Navigate to declaration</strong></td>
+<td style="text-align:center"><code>Ctrl+B</code></td>
+<td>定位到声明处</td>
+</tr>
+<tr>
+<td><strong>Navigate to type hierarchy</strong></td>
+<td style="text-align:center"><code>Ctrl+H</code></td>
+<td>在指定的类型层次进行定位</td>
+</tr>
+<tr>
+<td><strong>Show UML pop-up</strong></td>
+<td style="text-align:center"><code>Ctrl+Alt+U</code></td>
+<td>在当前类型的UML图弹窗中进行定位</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实时模版（live-template）"><a href="#实时模版（live-template）" class="headerlink" title="实时模版（live template）"></a>实时模版（live template）</h2><p>这个功能在IntelliJ IDEA中是十分有用的，它能够加快我们的编码速度。</p>
+<p>如果你是从Eclipse/MyEclipse转过来的，刚用IntelliJ IDEA，或许会十分不习惯：</p>
+<ul>
+<li>你想让IDE快速提供一个<code>main</code>方法，所以直接输入<code>main</code>，但很遗憾IDE并没有任何提示</li>
+<li>你想让IDE快速提供一个控制台的输出语句，所以直接输入<code>sysout</code>，但还是没有任何提示</li>
+</ul>
+<p>你或许会很烦，怎么都说这IDE比Eclipse强大，怎么连这些功能都没有？<br>其实IntelliJ IDEA里自带的标准模版只是没有<code>main</code>、<code>sysout</code>这些关键字对应的模版，所以IDE并没有提示。<br>但如果你输入<code>iter</code>这个关键字，IDE就会提示了，你可以快速使用这个模版内容。<br>如果你想加入Eclipse那些模版，其实是我们是可以加入自定义模版的。</p>
+<p>方法：<strong>File → Settings → Editor → Live Templates</strong></p>
+<p>到了这块面板，你就可以加入自己想要的模版了，当然，最好是把自定义的模版都归类到一个组，方便我们自己查找。</p>
+<h2 id="常见Q-amp-A汇总"><a href="#常见Q-amp-A汇总" class="headerlink" title="常见Q&amp;A汇总"></a>常见Q&amp;A汇总</h2><blockquote>
+<font color="black" style="font-size=19px"><strong>为什么使用正则表达式的向后引用、后向引用或回溯引用（back reference）这一特性时不起作用？</strong></font>
+
+</blockquote>
+<p>　　我们在IntelliJ IDEA内使用正则表达式查找字符或替换字符时使用这个特性一般初学者都会遵照网上的一些教程使用反斜杠开头<code>\</code>后跟组号或组名进行回溯引用，但你会发现结果与网上教程不一致的，而你检查语法又没错，那肯定是有另一些原因。后来我也查询了这个问题才得知，<strong>在IntelliJ IDEA中要使用正则的回溯引用那得用<code>$</code>作为开头才能发挥作用</strong>。<br>　　比如：有正则表达式<code>(\baa\b)x</code>，如果你还想在后头引用前面的那个子表达式或组所匹配到的内容，那就不能使用<code>\1</code>，而应该使用<code>$1</code>。</p>
+<table><br>    <tr><br>        <th>英文描述</th><br>        <th>Eclipse</th><br>        <th>IntelliJ IDEA</th><br>        <th>作用详细描述</th><br>    </tr><br>    <tr><br>        <td>Show UML pop-up</td><br>        <td><code>Ctrl+Alt+U</code></td><br>        <td><code>Ctrl+Alt+U</code></td><br>        <td>在当前类型的UML图弹窗中进行定位</td><br>    </tr><br>    <tr><br>        <td>Move the current line of code</td><br>        <td><code>Ctrl+Shift+↑</code>或<code>Ctrl+Shift+↓</code></td><br>        <td><code>Ctrl+Shift+↑</code>或<code>Ctrl+Shift+↓</code></td><br>        <td>将光标所在的行上移或下移<br>光标在特殊语法层面上，那上移或下移就作用于整个语法<br>光标在类名或方法名上，那么上移或下移的将是整个类或方法</td><br>    </tr><br><br></table>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IntelliJ-IDEA/" rel="tag"><i class="fa fa-tag"></i> IntelliJ IDEA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/22/Git-study-basic-operation/" rel="next" title="Git学习笔记 - 基础">
+                <i class="fa fa-chevron-left"></i> Git学习笔记 - 基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/23/Design-pattern-study-decorator/" rel="prev" title="设计模式学习笔记 - 装饰模式（Decorator）">
+                设计模式学习笔记 - 装饰模式（Decorator） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用前须知"><span class="nav-number">1.</span> <span class="nav-text">使用前须知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完后的重要设置"><span class="nav-number">2.</span> <span class="nav-text">安装完后的重要设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装目录中配置文件的设置"><span class="nav-number">2.1.</span> <span class="nav-text">安装目录中配置文件的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码设置"><span class="nav-number">2.2.</span> <span class="nav-text">编码设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视觉上的设置"><span class="nav-number">2.3.</span> <span class="nav-text">视觉上的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局默认的IDE设置"><span class="nav-number">2.4.</span> <span class="nav-text">全局默认的IDE设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#杂项设置"><span class="nav-number">2.5.</span> <span class="nav-text">杂项设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">3.</span> <span class="nav-text">快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工具窗口"><span class="nav-number">3.1.</span> <span class="nav-text">工具窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码编辑器"><span class="nav-number">3.2.</span> <span class="nav-text">代码编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码补全"><span class="nav-number">3.3.</span> <span class="nav-text">代码补全</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导航定位"><span class="nav-number">4.</span> <span class="nav-text">导航定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实时模版（live-template）"><span class="nav-number">5.</span> <span class="nav-text">实时模版（live template）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见Q-amp-A汇总"><span class="nav-number">6.</span> <span class="nav-text">常见Q&A汇总</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

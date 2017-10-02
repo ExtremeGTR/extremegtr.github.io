@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言　　装饰模式（decorator pattern）又名装饰器模式或包装器模式（wrapper pattern）。　　同样地，在初次学习一个从未接触过的设计模式，我们最好首先是从字面意思去进行思考：装饰很明显是个动作，抽象来说指的是给一个事物附加上另外一些事物。在生活中，“装饰”这种动作的具体形式是很常见的：给加一个名词加上形容词进行修饰、一个人化妆打扮、给毛胚房进行装修等等。 概念意图其实在设">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习笔记 - 装饰模式（Decorator）">
+<meta property="og:url" content="http://extremegtr.github.io/2017/03/23/Design-pattern-study-decorator/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="前言　　装饰模式（decorator pattern）又名装饰器模式或包装器模式（wrapper pattern）。　　同样地，在初次学习一个从未接触过的设计模式，我们最好首先是从字面意思去进行思考：装饰很明显是个动作，抽象来说指的是给一个事物附加上另外一些事物。在生活中，“装饰”这种动作的具体形式是很常见的：给加一个名词加上形容词进行修饰、一个人化妆打扮、给毛胚房进行装修等等。 概念意图其实在设">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/decorator_pattern_uml.png">
+<meta property="og:updated_time" content="2017-09-17T06:48:18.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式学习笔记 - 装饰模式（Decorator）">
+<meta name="twitter:description" content="前言　　装饰模式（decorator pattern）又名装饰器模式或包装器模式（wrapper pattern）。　　同样地，在初次学习一个从未接触过的设计模式，我们最好首先是从字面意思去进行思考：装饰很明显是个动作，抽象来说指的是给一个事物附加上另外一些事物。在生活中，“装饰”这种动作的具体形式是很常见的：给加一个名词加上形容词进行修饰、一个人化妆打扮、给毛胚房进行装修等等。 概念意图其实在设">
+<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImage/decorator_pattern_uml.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2017/03/23/Design-pattern-study-decorator/"/>
+
+
+
+
+
+  <title>设计模式学习笔记 - 装饰模式（Decorator） | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2017/03/23/Design-pattern-study-decorator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式学习笔记 - 装饰模式（Decorator）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T10:54:42+08:00">
+                2017-03-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:48:18+08:00">
+                2017-09-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/23/Design-pattern-study-decorator/" class="leancloud_visitors" data-flag-title="设计模式学习笔记 - 装饰模式（Decorator）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4,702
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　<strong><font color="red">装饰模式</font>（decorator pattern）</strong>又名<font color="red"><strong>装饰器模式</strong></font>或<strong><font color="red">包装器模式</font>（wrapper pattern）</strong>。<br>　　同样地，在初次学习一个从未接触过的设计模式，我们最好首先是从字面意思去进行思考：<strong>装饰</strong>很明显是个动作，抽象来说指的是给一个事物附加上另外一些事物。在生活中，“装饰”这种动作的具体形式是很常见的：<strong>给加一个名词加上形容词进行修饰</strong>、<strong>一个人化妆打扮</strong>、<strong>给毛胚房进行装修</strong>等等。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="意图"><a href="#意图" class="headerlink" title="意图"></a><font color="#0072E3">意图</font></h3><p>其实在设计模式描述中，装饰模式的描述和上面这些描述也差不了多少。</p>
+<p>在《设计模式 - 可复用面向对象软件的基础》中是这样描述装饰模式的意图：</p>
+<blockquote>
+<p><strong><font color="black">动态地给一个对象添加额外的职责。就增加功能来说，Decorator模式相比生成子类更为灵活。</font></strong></p>
+</blockquote>
+<p>而《Thinking in Patterns》中是这样描述的：</p>
+<blockquote>
+<p><strong><font color="black">用分层的对象（layered objects）动态地和透明地给单个对象添加职责功能（responsibilities）</font></strong></p>
+</blockquote>
+<p>至于网上大多博客文章里对它的描述都和上面这2个差不多，这里就不再一一列举。</p>
+<p>综上所述，装饰模式主要的作用就是：<strong>给<font color="red">一个对象</font><font color="#9B30FF">添加额外功能</font></strong>。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a><font color="#0072E3">适用场景</font></h3><ul>
+<li><p><strong>在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责，同时这些功能职责也能被动态透明地撤销。</strong></p>
+</li>
+<li><p><strong>当不能继续采用继承这种方式进行功能扩展或继承这种方式不利于功能的扩展和后期模块的维护。这分2种情况：</strong></p>
+<ul>
+<li><strong><font color="#9B30FF">有大量独立的功能，为了支持每一种功能组合而产生大量的子类，使得子类数目呈爆炸式增长。</font></strong></li>
+<li><strong><font color="#9B30FF">类定义被隐藏，或类定义不能用于生成子类。</font></strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a><font color="#0072E3">优点</font></h3><ul>
+<li><p><strong>灵活性：就扩展一个对象的功能来说，装饰模式比继承更加灵活，它不像继承那样会导致类的数量急剧增加。</strong><br><strong><font color="#9B30FF" style="font-size:13px">具体来说就是利用组合对象的方式进行功能扩展</font></strong></p>
+</li>
+<li><p><strong>动态性：在运行时，可以根据当前需求给一个对象附加或撤销某些功能，并且功能数量以及先后顺序都没有限制。</strong><br><strong><font color="#9B30FF" style="font-size:13px">就Java来说，表示我们可通过配置文件决定在运行时创建什么功能附加到某个对象上，并且这些功能数量也没有限制，可以在运行时任意进行组合。</font></strong></p>
+</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a><font color="#0072E3">缺点</font></h3><ul>
+<li><p>在使用装饰模式时会创建比较多小对象，所以比较占用系统资源。</p>
+</li>
+<li><p>更灵活的解决方案也意味着内部代码的复杂性提高了，这也意味着调试排错将会更加困难。</p>
+</li>
+</ul>
+<h3 id="必须弄懂的一个词"><a href="#必须弄懂的一个词" class="headerlink" title="必须弄懂的一个词"></a><font color="#FA6D0F">必须弄懂的一个词</font></h3><p>　　或许你看到<strong><font color="red" style="font-size: 17px">透明的</font></strong>这一个词，根本不知道它到底要表达什么意思，只能是一脸懵逼。<br>　　其实你不用苦思冥想，只要想想最简单的意思立马就豁然开朗了：<strong>生活中的空气，一眼望去，对于空气的实体我们什么都看不到，因为空气本身的构造是透明的，但空气又是客观存在于我们的周围，并且我们还在使用它们。<font color="#9B30FF">换成编程思想来说的就是实现细节是被隐藏的（即透明的），只有接口是被暴露的（我们可以使用的）</font>。</strong><br>　　其实说白了就是面向对象里封装这一回事。</p>
+<h2 id="结构、组成与实现"><a href="#结构、组成与实现" class="headerlink" title="结构、组成与实现"></a>结构、组成与实现</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>其实装饰模式的结构也算比较简单的，它的样子看起来其实和代理模式、适配器模式，下面是装饰模式抽象描述下的UML图。</p>
+<p><img src="http://extremegtr.github.io/assets/blogImage/decorator_pattern_uml.png" alt="装饰模式结构"></p>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>最经典的装饰模式含有以下这些元素。</p>
+<ul>
+<li><p><strong><font color="red">Component</font>（抽象组件）</strong><br><strong><font color="#9B30FF">它是具体组件和抽象装饰类的共同接口，其中声明了具体组件中实现的业务方法。</font></strong><br>它的引入可以使客户端以一致的方式处理未被装饰的对象以及装饰之后的对象，实现客户端的透明操作。</p>
+</li>
+<li><p><strong><font color="red">ConcreteComponent</font>（具体组件）</strong><br><strong><font color="#9B30FF">它是实现抽象组件接口的子类，用于定义具体组件对象，装饰器可以给它增加额外的职责（功能）。</font></strong></p>
+</li>
+<li><p><strong><font color="red">Decorator</font>（抽象装饰器）—— 抽象装饰器在实际应用过程中并非必须的。</strong><br><strong><font color="#9B30FF">它是实现抽象组件接口的抽象类，它用于给具体构建增加职责，但是具体职责在其子类中实现。</font></strong><br>它维护了一个指向抽象组件对象的引用，通过该引用可以调用装饰之前组件对象的方法，并通过其子类扩展该方法，以达到装饰的目的。</p>
+</li>
+</ul>
+<ul>
+<li><strong><font color="red">ConcreteDecorator</font>（具体装饰器）</strong><br><strong><font color="#9B30FF">它是继承抽象装饰器类的子类，负责向组件添加新的职责。</font></strong><br>每一个具体装饰类都定义了一些新的行为，它可以调用在抽象装饰类中定义的方法，并可以增加新的方法以扩展对象的行为。<br>就是说：<font color="#FA6D0F" style="font-size:13px"><strong>具体装饰器将请求转发给自己所维护的组件，或许在转发请求之前或之后执行一些额外的操作。</strong></font></li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>抽象组件</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正因为有了这个接口的抽象描述，所以在客户端可以透明而动态地给一个对象附加任意多的责任。</p>
+<p><strong>具体组件</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> <span class="keyword">implements</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"正在实现最基本的需求"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个具体组件代表着一种基本功能，所以真实情况下应用装饰模式，组件可以说有多个。</p>
+<p><strong><font color="#9B30FF" style="font-size: 17px">抽象装饰器</font></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Decorator</span> <span class="keyword">implements</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Component component; <span class="comment">// 维护了一个抽象组件</span></div><div class="line"></div><div class="line">    <span class="comment">// 在构造装饰器时传入抽象组件</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Decorator</span><span class="params">(Component component)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.component = component;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</div><div class="line">        component.operation(); <span class="comment">// 只调用抽象组件所具有的功能</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个抽象类<code>Decorator</code>正是整个装饰模式核心。<br>从实现来看，它也只不过是调用了组件原有的功能，并没有增添新功能，所以这个类并没有做出<strong><font color="red" style="font-size: 17px">装饰</font></strong>这一个动作，它只是整个模式的框架。</p>
+<p><strong>具体装饰器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecoratorA</span> <span class="keyword">extends</span> <span class="title">Decorator</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> addedState;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecoratorA</span><span class="params">(Component component)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(component);</div><div class="line">        addedState = <span class="number">3</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"被具体装饰器A增加了额外功能: 多增加了一个数据成员 -&gt; addedState = "</span> + addedState);</div><div class="line">        <span class="keyword">super</span>.operation();</div><div class="line">        System.out.println(<span class="string">"被具体装饰器A装饰结束"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecoratorB</span> <span class="keyword">extends</span> <span class="title">Decorator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecoratorB</span><span class="params">(Component component)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(component);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</div><div class="line">        addedBehavior();</div><div class="line">        <span class="keyword">super</span>.operation();</div><div class="line">        System.out.println(<span class="string">"被具体装饰器B装饰结束"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addedBehavior</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"被具体装饰器B增加了额外功能: 增加了一个方法 -&gt; addedBehavior()"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>两个具体装饰器类都是继承了抽象装饰器类，在调用原有功能的同时又增加了新功能，<strong>所以说，具体装饰器中就为组件作出<font color="red" style="font-size: 17px">装饰</font>这一个动作</strong>。<br>A、B两个不同的装饰器给组件”装饰”上不同的功能，这些新功能都默认加到了原功能之后。</p>
+<p>现在装饰模式该有的元素都有了，剩下的工作就是如何来使用它们。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">// 逐步添加功能</span></div><div class="line">        <span class="comment">// 创建将要被装饰的具体组件对象</span></div><div class="line">        Component component = <span class="keyword">new</span> ConcreteComponent();</div><div class="line">        component.operation();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"------------------------"</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 给具体组件对象透明地增加功能A</span></div><div class="line">        component = <span class="keyword">new</span> ConcreteDecoratorA(component);</div><div class="line">        component.operation();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"------------------------"</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 给具体组件对象透明地增加功能B</span></div><div class="line">        component = <span class="keyword">new</span> ConcreteDecoratorB(component);</div><div class="line">        component.operation();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"------------------------"</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 一步到位添加所有功能</span></div><div class="line">        <span class="comment">// 透明地给具体组件对象增加功能B, 然后增加功能A</span></div><div class="line">        component = <span class="keyword">new</span> ConcreteDecoratorA(<span class="keyword">new</span> ConcreteDecoratorB(<span class="keyword">new</span> ConcreteComponent()));</div><div class="line">        component.operation();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<pre><code>正在实现最基本的需求
+------------------------
+被具体装饰器A增加了额外功能: 增加了一个数据成员 -&gt; addedState = 3
+正在实现最基本的需求
+被具体装饰器A装饰结束
+------------------------
+被具体装饰器B增加了额外功能: 增加了一个方法 -&gt; addedBehavior()
+被具体装饰器A增加了额外功能: 增加了一个数据成员 -&gt; addedState = 3
+正在实现最基本的需求
+被具体装饰器A装饰结束
+被具体装饰器B装饰结束
+------------------------
+被具体装饰器A增加了额外功能: 增加了一个数据成员 -&gt; addedState = 3
+被具体装饰器B增加了额外功能: 增加了一个方法 -&gt; addedBehavior()
+正在实现最基本的需求
+被具体装饰器B装饰结束
+被具体装饰器A装饰结束
+</code></pre><p><br></p>
+<p>程序过程是非常简单，我想你也是一眼就能看明白的，但分析还是必要的：</p>
+<ul>
+<li><p>首先创建了一个具体组件对象，并调用了它所具有的功能。<br>这个简单具体组件所具有的功能很简单，就输出一句话<code>正在实现最基本的需求</code>然后就没了。</p>
+</li>
+<li><p>然后，我用具体装饰器A<code>ConcreteDecoratorA</code>来对这个具体组件<code>component</code>进行“装饰”（实际上就是将具体组件对象传递进去让它维护）。<br>经过“装饰”后的组件又重新赋值给<code>component</code>（把它读作被装饰器A装饰后的具体组件），然后调用它的功能方法，然后就有如下输出信息：</p>
+<pre><code>被具体装饰器A增加了额外功能: 增加了一个数据成员 -&gt; addedState = 3
+正在实现最基本的需求
+被具体装饰器A装饰结束e = 3
+</code></pre><p>这个输出结果很显然表明了原来那个具体组件的功能被“装饰”过了。<br><strong><font color="#9B30FF">从程序客户端的角度出发，我们并没有改动组件对象，但“装饰”后再次使用它同一个功能时，就发现功能被加强了——这正是装饰模式达到的效果。</font></strong></p>
+</li>
+<li><p>接着，我又用具体装饰器B<code>ConcreteDecoratorB</code>将刚才已经被<code>ConcreteDecoratorA</code>装饰过的组件再“装饰”一遍，<br>经过再次“装饰”后的组件又重新赋值给<code>component</code></p>
+<pre><code>被具体装饰器B增加了额外功能: 增加了一个方法 -&gt; addedBehavior()
+被具体装饰器A增加了额外功能: 增加了一个数据成员 -&gt; addedState = 3
+正在实现最基本的需求
+被具体装饰器A装饰结束
+被具体装饰器B装饰结束
+</code></pre><p><strong><font color="#9B30FF">对于一个组件对象，我们可以给它附加上很多很多的功能（即多次“装饰”）。</font></strong></p>
+</li>
+<li><p>最后，我将之前分开的“装饰”步骤都合并成一步来做，但“装饰”过程是倒过来的，之前是先A后B，现在是先B后A，也是调用同样的功能方法：</p>
+<pre><code>被具体装饰器A增加了额外功能: 增加了一个数据成员 -&gt; addedState = 3
+被具体装饰器B增加了额外功能: 增加了一个方法 -&gt; addedBehavior()
+正在实现最基本的需求
+被具体装饰器B装饰结束
+被具体装饰器A装饰结束
+</code></pre><p>我们可以非常清楚看到输出信息的顺序改变了。<br><strong><font color="#9B30FF">附加功能执行的顺序与“装饰”顺序是有关系的，不过想必你也清楚这同样也和方法调用的顺序相关。</font></strong></p>
+</li>
+</ul>
+<h3 id="并非一定要循规蹈矩"><a href="#并非一定要循规蹈矩" class="headerlink" title="并非一定要循规蹈矩"></a>并非一定要循规蹈矩</h3><p>上面那个是最典型的装饰模式抽象实现，但这只是最典型的模版，在实际应用中我们并非一定要照搬这套模版来使用。</p>
+<p>在实际开发应用中，如果无法套用模版，那么一般会用以下这些做法：</p>
+<ul>
+<li>如果并没有抽象组件，那么就直接让装饰器继承具体组件</li>
+<li>抽象装饰器并非必须的，所以如果发现一个装饰器体系中没有抽象装饰器你也不必感到意外。</li>
+</ul>
+<h2 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h2><p>装饰模式抽象描述就看完了，那到底怎么来应用它呢？</p>
+<p>现在就来实现一个小小的应用例子，代码所实现的功能非常非常简单，这例子只是为了让咱比较轻松地感受下装饰模式的作用。</p>
+<p>先来看一个小程序，<strong>它读取该程序的源码文件，每次都读取一行，并输出到控制台上。</strong></p>
+<h3 id="直接对实现进行改动"><a href="#直接对实现进行改动" class="headerlink" title="直接对实现进行改动"></a>直接对实现进行改动</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.makwan.c_decorator_pattern.example;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.BufferedReader;</div><div class="line"><span class="keyword">import</span> java.io.FileReader;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String fileName = <span class="string">"src\\com\\makwan\\c_decorator_pattern\\example\\Client.java"</span>;</div><div class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(fileName));</div><div class="line">        String line;</div><div class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">            System.out.println(line);</div><div class="line">        &#125;</div><div class="line">        reader.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此刻老板有个需求：<strong>在输出每一行内容的开头都必须带上行号</strong>。</p>
+<p>那解决方案非常简单啊，我们不就是继续修改<code>main</code>方法内的代码，多加一个变量用于存储行号即可，程序成了这样。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String fileName = <span class="string">"src\\com\\makwan\\c_decorator_pattern\\example\\Client.java"</span>;</div><div class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(fileName));</div><div class="line">        String line;</div><div class="line">        <span class="keyword">int</span> lineNumber = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">            System.out.println(lineNumber++ + <span class="string">" "</span> + line);</div><div class="line">        &#125;</div><div class="line">        reader.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>好了现在输出源码文件每一行内容前都加上行号了，但老板又改变了想法：<strong>不要行号了，不如用双引号把每一行的内容都包裹起来</strong>。</p>
+<p>好的，还是直接对<code>main</code>方法进行改动。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String fileName = <span class="string">"src\\com\\makwan\\c_decorator_pattern\\example\\Client.java"</span>;</div><div class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(fileName));</div><div class="line">        String line;</div><div class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (line.equals(<span class="string">""</span>)) &#123;</div><div class="line">                System.out.println();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                System.out.println(<span class="string">"\""</span> + line + <span class="string">"\""</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        reader.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在可好了，在输出每一行内容时，有内容一行用双引号包裹起来，没内容的一行则直接换行。</p>
+<p>但老板的需求真的是说变就变，在你改动演示过后下一秒需求又变了：<strong>不如还是加在一行的最前面上行号吧，然后内容还是用双引号括起来</strong>。</p>
+<p>我们作为员工当然只能是默默地再改啊，老板需要你做事，照做就是了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String fileName = <span class="string">"src\\com\\makwan\\c_decorator_pattern\\example\\Client.java"</span>;</div><div class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(fileName));</div><div class="line">        String line;</div><div class="line">        <span class="keyword">int</span> lineNumber = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (line.equals(<span class="string">""</span>)) &#123;</div><div class="line">                System.out.println(lineNumber++);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                System.out.println(lineNumber++ + <span class="string">" \""</span> + line + <span class="string">"\""</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        reader.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，输出结果是这样的：</p>
+<pre><code>1 &quot;package com.makwan.c_decorator_pattern.example;&quot;
+2
+3 &quot;import java.io.BufferedReader;&quot;
+4 &quot;import java.io.FileReader;&quot;
+5 &quot;import java.io.IOException;&quot;
+6
+7 &quot;public class Client {&quot;
+8 &quot;    public static void main(String[] args) throws IOException {&quot;
+9 &quot;        String fileName = &quot;src\\com\\makwan\\c_decorator_pattern\\example\\Client.java&quot;;&quot;
+10 &quot;        BufferedReader reader = new BufferedReader(new FileReader(fileName));&quot;
+11 &quot;        String line;&quot;
+12 &quot;        int lineNumber = 1;&quot;
+13 &quot;        while ((line = reader.readLine()) != null) {&quot;
+14 &quot;            if (line.equals(&quot;&quot;)) {&quot;
+15 &quot;                System.out.println(lineNumber++);&quot;
+16 &quot;            } else {&quot;
+17 &quot;                System.out.println(lineNumber++ + &quot; \&quot;&quot; + line + &quot;\&quot;&quot;);&quot;
+18 &quot;            }&quot;
+19 &quot;        }&quot;
+20 &quot;        reader.close();&quot;
+21 &quot;    }&quot;
+22 &quot;}&quot;
+</code></pre><p>老板看到结果后也暂时满意了，工作也暂时也告一段落。</p>
+<h3 id="使用继承的方式进行代码复用"><a href="#使用继承的方式进行代码复用" class="headerlink" title="使用继承的方式进行代码复用"></a>使用继承的方式进行代码复用</h3><p>　　工作告一段落后静下来想想，之前那样来解决问题只能是解决一时的燃眉之急，需求以后肯定还会千变万化的，如果老板又要求改回之前的需求咋办？所以如果一直直接修改实现，那代码就得不到复用，随着需求越来越多，我们所做的工作将会是大量重复的。有没有不用修改客户端的核心功能部分，而又能执行新添加的新功能呢？</p>
+<p>核心功能正是这一小段代码：<font color="#9B30FF">读取一行内容，输出一行</font>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String line;</div><div class="line"><span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">    System.out.println(line);</div><div class="line">&#125;</div><div class="line">reader.close();</div></pre></td></tr></table></figure></p>
+<p>要解决这个问题的最直接办法就是利用继承这一手段进行代码复用：<br><strong>直接继承<code>BufferedReader</code>，并重写<code>readLine</code>方法，将每个特殊需求的实现都抽取到子类所重写的<code>readLine</code>方法中</strong>。</p>
+<p>单纯只在一行内容的开头加行号的实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.makwan.c_decorator_pattern.example;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.BufferedReader;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.Reader;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LineNumberReader</span> <span class="keyword">extends</span> <span class="title">BufferedReader</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lineNumer = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LineNumberReader</span><span class="params">(Reader in)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(in);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readLine</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String line = <span class="keyword">super</span>.readLine();</div><div class="line">        <span class="keyword">if</span> (line == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> ++lineNumer + <span class="string">" "</span> + line;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用双引号包裹每一行内容的实现.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.makwan.c_decorator_pattern.example;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.BufferedReader;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.Reader;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WithinDoubleQuotation</span> <span class="keyword">extends</span> <span class="title">BufferedReader</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WithinDoubleQuotation</span><span class="params">(Reader in)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(in);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readLine</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String line = <span class="keyword">super</span>.readLine();</div><div class="line">        <span class="keyword">if</span> (line == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span> (line.equals(<span class="string">""</span>))</div><div class="line">            <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">        <span class="keyword">return</span> <span class="string">"\""</span> + line + <span class="string">"\""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在使用继承来实现最后一个需求：即在每一行的开头加上行号同时行中的内容要用双引号包裹起来。<br>但Java中并不能直接用多重继承来复用之前的代码（间接方式还是有的，就是很麻烦），所以说只能是再定义一个子类的同时，将之前所实现过的内容再实现一遍。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.makwan.c_decorator_pattern.example;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.BufferedReader;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.Reader;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WithLNAndWithinDQ</span> <span class="keyword">extends</span> <span class="title">BufferedReader</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lineNumber = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WithLNAndWithinDQ</span><span class="params">(Reader in)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(in);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readLine</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String line = <span class="keyword">super</span>.readLine();</div><div class="line">        <span class="keyword">if</span> (line == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span> (line.equals(<span class="string">""</span>))</div><div class="line">            <span class="keyword">return</span> ++lineNumber + <span class="string">""</span>;</div><div class="line">        <span class="keyword">return</span> ++lineNumber + <span class="string">" \""</span> + line + <span class="string">"\""</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以在客户端中核心部分并不用变动，变也只是根据需求创建对象那句要变。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        String fileName = <span class="string">"src\\com\\makwan\\c_decorator_pattern\\example\\Client.java"</span>;</div><div class="line">        BufferedReader reader = <span class="keyword">new</span> WithLNAndWithinDQ(<span class="keyword">new</span> FileReader(fileName));</div><div class="line">        String line;</div><div class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">           System.out.println(line);</div><div class="line">        &#125;</div><div class="line">        reader.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　现在你觉得毫无问题了，每种需求的实现被抽取到各个子类的方法中，以后也能随时复用了。确实，这挺好的，看上去没问题了，但也只是暂时的。如果以后老板还要添加各种想法新奇的需求：有时让我们增加单一功能点，有时候让我们组合之前所增加的单一功能点。这会发生什么？增加单一功能点会让子类增加一点点，但如果还要给它们进行组合，那么子类的数量会爆炸式地增长。并且，组合功能越多，重复代码也会越多。<br>　　看完这描述后，你不觉得是如此？那么有一个奇葩的需求：行号不放在最前了，不如放到最后吧，如果还是用继承，那么子类又要多一个了。组合可以说是无穷无尽的，所以只用继承这种手段并不是最佳的解决方案。</p>
+<h3 id="运用装饰模式"><a href="#运用装饰模式" class="headerlink" title="运用装饰模式"></a>运用装饰模式</h3><p>其实JavaI/O体系也是运用到装饰模式的，所以我们可以效仿这种做法便可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferedReader</span> <span class="keyword">extends</span> <span class="title">Reader</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> Reader in;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>按照之前我们的说法就是<code>BufferedReader</code>就是一个具体装饰器，<code>Reader</code>是一个</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/16/First-time-to-use-IntelliJ-IDEA/" rel="next" title="初次使用IntelliJ IDEA">
+                <i class="fa fa-chevron-left"></i> 初次使用IntelliJ IDEA
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/27/JavaSE-study-path-problem-summarization/" rel="prev" title="Java基础概念与路径问题总结">
+                Java基础概念与路径问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#意图"><span class="nav-number">2.1.</span> <span class="nav-text">意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适用场景"><span class="nav-number">2.2.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">2.3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">2.4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#必须弄懂的一个词"><span class="nav-number">2.5.</span> <span class="nav-text">必须弄懂的一个词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构、组成与实现"><span class="nav-number">3.</span> <span class="nav-text">结构、组成与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">3.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组成"><span class="nav-number">3.2.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并非一定要循规蹈矩"><span class="nav-number">3.4.</span> <span class="nav-text">并非一定要循规蹈矩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际应用"><span class="nav-number">4.</span> <span class="nav-text">实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接对实现进行改动"><span class="nav-number">4.1.</span> <span class="nav-text">直接对实现进行改动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用继承的方式进行代码复用"><span class="nav-number">4.2.</span> <span class="nav-text">使用继承的方式进行代码复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用装饰模式"><span class="nav-number">4.3.</span> <span class="nav-text">运用装饰模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

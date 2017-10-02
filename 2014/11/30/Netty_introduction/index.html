@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="netty," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Netty简介Netty框架Netty是一个NIO(Non-blocking IO或New IO)的客户端服务器框架，它可以快速和简单开发高性能、高可靠性的网络应用，极大地简化和提高网络编程的过程和效率。快速和简单并不会导致网络应用出现性能和维护性问题，Netty吸收了多种协议的实现经验，比如FTP、SMTP、HTTP、各种二进制和文本协议；最终，Netty成功找到一种方式，在保证易于开发的同时还">
+<meta name="keywords" content="netty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netty框架学习(一) - 初次接触Netty框架">
+<meta property="og:url" content="http://extremegtr.github.io/2014/11/30/Netty_introduction/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="Netty简介Netty框架Netty是一个NIO(Non-blocking IO或New IO)的客户端服务器框架，它可以快速和简单开发高性能、高可靠性的网络应用，极大地简化和提高网络编程的过程和效率。快速和简单并不会导致网络应用出现性能和维护性问题，Netty吸收了多种协议的实现经验，比如FTP、SMTP、HTTP、各种二进制和文本协议；最终，Netty成功找到一种方式，在保证易于开发的同时还">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2015-04-13T13:52:19.261Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Netty框架学习(一) - 初次接触Netty框架">
+<meta name="twitter:description" content="Netty简介Netty框架Netty是一个NIO(Non-blocking IO或New IO)的客户端服务器框架，它可以快速和简单开发高性能、高可靠性的网络应用，极大地简化和提高网络编程的过程和效率。快速和简单并不会导致网络应用出现性能和维护性问题，Netty吸收了多种协议的实现经验，比如FTP、SMTP、HTTP、各种二进制和文本协议；最终，Netty成功找到一种方式，在保证易于开发的同时还">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2014/11/30/Netty_introduction/"/>
+
+
+
+
+
+  <title>Netty框架学习(一) - 初次接触Netty框架 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2014/11/30/Netty_introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Netty框架学习(一) - 初次接触Netty框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-30T11:20:17+08:00">
+                2014-11-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2015-04-13T21:52:19+08:00">
+                2015-04-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/netty/" itemprop="url" rel="index">
+                    <span itemprop="name">netty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/11/30/Netty_introduction/" class="leancloud_visitors" data-flag-title="Netty框架学习(一) - 初次接触Netty框架">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,194
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Netty简介"><a href="#Netty简介" class="headerlink" title="Netty简介"></a>Netty简介</h2><h3 id="Netty框架"><a href="#Netty框架" class="headerlink" title="Netty框架"></a>Netty框架</h3><p>Netty是一个NIO(Non-blocking IO或New IO)的客户端服务器框架，它可以快速和简单开发高性能、高可靠性的网络应用，极大地简化和提高网络编程的过程和效率。快速和简单并不会导致网络应用出现性能和维护性问题，Netty吸收了多种协议的实现经验，比如FTP、SMTP、HTTP、各种二进制和文本协议；最终，Netty成功找到一种方式，在保证易于开发的同时还保证了其应用的性能、稳定性和扩展性。<br><a id="more"></a></p>
+<h3 id="使用Netty的好处"><a href="#使用Netty的好处" class="headerlink" title="使用Netty的好处"></a>使用Netty的好处</h3><ul>
+<li>整个Netty都是异步的(Asynchronous)，因此客户端不需要为线程被阻塞在等待服务器响应而浪费资源，因此系统的性能会提高</li>
+<li>Netty中是将Java网络编程API高度抽象化成简单易用的API，以致程序员可以从繁琐的网络处理代码中解耦业务逻辑</li>
+<li>Netty的功能丰富以及有完整的文档</li>
+</ul>
+<h2 id="Netty中所使用的关键技术"><a href="#Netty中所使用的关键技术" class="headerlink" title="Netty中所使用的关键技术"></a>Netty中所使用的关键技术</h2><h3 id="异步技术"><a href="#异步技术" class="headerlink" title="异步技术"></a>异步技术</h3><p>Netty整个框架的API都是异步的，异步处理能够使得系统更加有效地使用资源，它允许你创建一个任务，当有事件发生时将获取通知并等待事件的完成，不管事件完成与否都会及时返回，系统就可以利用剩下的资源做其他事情，提高了资源的利用率。 </p>
+<p><strong>1. 回调 Callback</strong></p>
+<p>回调是异步处理的其中一种实现技术。因为Java没有C/C++的函数指针或函数对象概念，所以不能够把函数当作对象传到别处进行调用。因此要在Java中实现回调，一般都用接口实现，即回调接口中有回调方法，真正使用的时候便是传递该回调接口的实现类。 </p>
+<p>下面是一个回调技术演示的简单例子</p>
+<ul>
+<li><p><strong>创建回调接口</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FetcherCallback</span> </span>&#123;</div><div class="line">	<span class="comment">// 当操作或接收数据时被调用</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">onDataAccess</span><span class="params">(Data data)</span> <span class="keyword">throws</span> Exception</span>;</div><div class="line">	<span class="comment">// 当有异常出现时被调用</span></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable cause)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建一个关于获取数据的业务逻辑接口, 获取数据方法接收回调对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Fetcher</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">fetchData</span><span class="params">(FetcherCallback callback)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>实现获取数据业务逻辑接口, 根据不同的情况, 使用回调对象调用不同的方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFetcher</span> <span class="keyword">implements</span> <span class="title">Fetcher</span> </span>&#123;</div><div class="line">	<span class="keyword">final</span> Data data;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyFetcher</span><span class="params">(Data data)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.data = data;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fetchData</span><span class="params">(FetcherCallback callback)</span> </span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			callback.onDataAccess(data);</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			callback.onError(e);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>定义Data类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> n;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> m;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Data</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.n = n;</div><div class="line">		<span class="keyword">this</span>.m = m;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> n + <span class="string">" / "</span> + m + <span class="string">" = "</span> + (n / m);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>创建业务逻辑类实例进行业务处理</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span> </span>&#123;</div><div class="line">		Fetcher fetcher = <span class="keyword">new</span> MyFetcher(<span class="keyword">new</span> Data(<span class="number">1</span>, <span class="number">0</span>));</div><div class="line">		<span class="comment">// 创建并传入回调对象到业务方法中, 并完成回调方法的具体实现</span></div><div class="line">		fetcher.fetchData(<span class="keyword">new</span> FetcherCallback() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDataAccess</span><span class="params">(Data data)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">				System.out.println(<span class="string">"Data received: "</span> + data);</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable cause)</span> </span>&#123;</div><div class="line">				System.out.println(<span class="string">"An error accour: "</span> + cause.getMessage());</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Worker worker = <span class="keyword">new</span> Worker();</div><div class="line">		worker.doWork();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">``` </div><div class="line">&gt; 从上面的示例我们可以得出使用回调技术的步骤</div><div class="line"><span class="number">1</span>. 创建一个回调接口, 里面有若干个针对业务逻辑不同情况的回调方法</div><div class="line"><span class="number">2</span>. 创建一个类并实现回调接口，该类所创建的对象就称作回调对象或函数对象了</div><div class="line"><span class="number">3</span>. 创建业务类(业务接口不是必须的，还是要根据实际情况而定)，通过业务类的构造方法或业务方法接收回调对象，在业务方法中，根据自己设定的不同情况下进而使用回调对象调用对应回调方法</div><div class="line"></div><div class="line"></div><div class="line">**<span class="number">2</span>. Future**</div><div class="line"></div><div class="line">如果你学习过Java，并且使用过Java写过并发程序，或许你就用过java.util.concurrent.Future这一个接口。但是不只局限于Java，其实Future是一种并发设计模式。Future模式是<span class="string">"生产者-消费者"</span>模型的扩展，经典的<span class="string">"生产者-消费者"</span>模型中的消息生产者不关心消费者何时处理完这条消息，也不关心处理结果；但Future模式则可以让消息生产者等待直到消费者对消息处理结束，还能取得处理结果。</div><div class="line"></div><div class="line">- **Java中Future的具体工作原理**</div><div class="line">Future对象本身可以看作是一个对异步处理结果的引用；由于其异步性质，在创建之初，它所引用的对象可能并不可用（比如在网络传输或等待、一些耗时运算）；这时，得到Future对象的程序流程如果并不急于使用Future所引用的对象，那么它可以处理其它任务，当程序流程运行到真正需要Future背后引用的对象时，&lt;font color="red"&gt;可能出现两种情况&lt;/font&gt;：</div><div class="line">&gt; - 程序流程希望可以使用该Future引用的对象，并以此继续完成后续的流程；若实在不可用，也可以进入其它分支流程</div><div class="line">&gt; - 程序流程一定要使用该Future引用的对象，所以会一直等待，或者会等到超时</div><div class="line">对于第一种情况，是通过调用isDone()判断该对象是否准备就绪，并采取不同的处理；而第二种情况则只需调用get()或get(<span class="keyword">long</span> timeout, TimeUnit unit)通过同步阻塞方式等待对象就绪。</div><div class="line"></div><div class="line">以下是代码示例</div><div class="line">```java</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FutureExample</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		ExecutorService executor = Executors.newCachedThreadPool();</div><div class="line">		</div><div class="line">		Runnable task1 = <span class="keyword">new</span> Runnable() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">				System.out.println(<span class="string">"task1 -&gt; run!"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">		</div><div class="line">		Callable&lt;Integer&gt; task2 = <span class="keyword">new</span> Callable&lt;Integer&gt;() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">				System.out.println(<span class="string">"task2 -&gt; run!"</span>);</div><div class="line">				<span class="keyword">return</span> <span class="keyword">new</span> Integer(<span class="number">100</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">		</div><div class="line">		Future&lt;?&gt; f1 = executor.submit(task1);</div><div class="line">		Future&lt;Integer&gt; f2 = executor.submit(task2);</div><div class="line">		System.out.println(<span class="string">"task1 is completed? "</span> + f1.isDone());</div><div class="line">		System.out.println(<span class="string">"task2 is completed? "</span> + f2.isDone());</div><div class="line">		</div><div class="line">		<span class="comment">// 等待任务1的完成</span></div><div class="line">		<span class="keyword">while</span> (f1.isDone()) &#123;</div><div class="line">			System.out.println(<span class="string">"task1 completed!"</span>);</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="comment">// 等待任务2的完成</span></div><div class="line">		<span class="keyword">while</span> (f2.isDone()) &#123;</div><div class="line">			System.out.println(<span class="string">"return value by task2: "</span> + f2.get());</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="非阻塞IO技术"><a href="#非阻塞IO技术" class="headerlink" title="非阻塞IO技术"></a>非阻塞IO技术</h3><p>Java中，非阻塞IO即NIO(Non-blocking IO或New IO)，在jdk1.4时提供的新API，它是基于通道(Channel)和缓冲区(Buffer)，支持锁和内存映射文件访问，提供多路非阻塞式的高伸缩性网络IO</p>
+<h2 id="Java的Blocking-IO和Non-blocking-IO的差异"><a href="#Java的Blocking-IO和Non-blocking-IO的差异" class="headerlink" title="Java的Blocking IO和Non-blocking IO的差异"></a>Java的Blocking IO和Non-blocking IO的差异</h2><h3 id="内部概念"><a href="#内部概念" class="headerlink" title="内部概念"></a>内部概念</h3><p>Java的阻塞IO使用的是流(Stream)的概念，而Java的非阻塞IO使用的是通道和缓冲区的概念 </p>
+<h3 id="性能差异"><a href="#性能差异" class="headerlink" title="性能差异"></a>性能差异</h3><p>若在一个线程下使用read()或write()等阻塞IO的API，则该线程就会被阻塞，直到那么数据完全被读取或者写入，该线程才能继续往下执行其他操作；而使用非阻塞IO时，线程不需等待IO操作完全地完成，它可以去做别的事情。</p>
+<p>最重要的就是这两个区别，其他区别可以查看NIO相关的文章。</p>
+<h2 id="Java-NIO的问题以及在Netty中是如何解决的"><a href="#Java-NIO的问题以及在Netty中是如何解决的" class="headerlink" title="Java NIO的问题以及在Netty中是如何解决的"></a>Java NIO的问题以及在Netty中是如何解决的</h2><h3 id="跨平台和兼容性问题"><a href="#跨平台和兼容性问题" class="headerlink" title="跨平台和兼容性问题"></a>跨平台和兼容性问题</h3><p>NIO是一个比较底层的API，它依赖操作系统IO的API，因此有可能发现代码在Linux上正常运行，但在Windows上就会出现问题，因此这个问题需要自己亲自验证。<br>Java7提供了NIO2的API，但是有的程序本身就是基于Java1.6开发的，这就无法使用NIO2了，并且NIO2没有提供DatagramSocket的支持，所以NIO2不支持UDP程序；而Netty提供了统一的API，同一功能下，无论是Java6还是Java7都能正常运行，使得开发人员无需关心API兼容性的问题。 </p>
+<h3 id="扩展ByteBuffer"><a href="#扩展ByteBuffer" class="headerlink" title="扩展ByteBuffer"></a>扩展ByteBuffer</h3><p>Java NIO中的ByteBuffer构造函数是私有的，因此它是不可以被自定义扩展的，如果开发人员希望尽量减少内存拷贝，这是不可能的；但Netty提供了另一种ByteBuffer实现，Netty通过简单的API就能对ByteBuffer进行构造和使用，以此解决NIO的一些限制。 </p>
+<h3 id="NIO对缓冲区的聚合和分散操作有可能造成内存泄露"><a href="#NIO对缓冲区的聚合和分散操作有可能造成内存泄露" class="headerlink" title="NIO对缓冲区的聚合和分散操作有可能造成内存泄露"></a>NIO对缓冲区的聚合和分散操作有可能造成内存泄露</h3><p>很多NIO的通道都实现支持Gather和Scatter操作，但是这可能会导致内存泄露，Java7解决了这一个问题；但Netty统一了API，因此Netty无论在Java6或7环境中使用，都不会有问题。 </p>
+<h3 id="著名的epoll缺陷"><a href="#著名的epoll缺陷" class="headerlink" title="著名的epoll缺陷"></a>著名的epoll缺陷</h3><p> Linux-like OSs的选择器使用的是epoll-IO事件通知工具。这是一个在操作系统以异步方式工作的网络stack.Unfortunately，即使是现在，著名的epoll-bug也可能会导致无效的状态的选择和100%的CPU利用率。要解决epoll-bug的唯一方法是回收旧的选择器，将先前注册的通道实例转移到新创建的选择器上。而Netty解决了这以一问题，开发人员无需再担心。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/netty/" rel="tag"><i class="fa fa-tag"></i> netty</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/11/22/Hexo_GitHub_Blog/" rel="next" title="第一次用Hexo+GitHub搭建博客">
+                <i class="fa fa-chevron-left"></i> 第一次用Hexo+GitHub搭建博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/12/03/Netty_helloworld/" rel="prev" title="Netty框架学习(二) - 第一个简单的Netty程序">
+                Netty框架学习(二) - 第一个简单的Netty程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty简介"><span class="nav-number">1.</span> <span class="nav-text">Netty简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Netty框架"><span class="nav-number">1.1.</span> <span class="nav-text">Netty框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Netty的好处"><span class="nav-number">1.2.</span> <span class="nav-text">使用Netty的好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty中所使用的关键技术"><span class="nav-number">2.</span> <span class="nav-text">Netty中所使用的关键技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步技术"><span class="nav-number">2.1.</span> <span class="nav-text">异步技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非阻塞IO技术"><span class="nav-number">2.2.</span> <span class="nav-text">非阻塞IO技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的Blocking-IO和Non-blocking-IO的差异"><span class="nav-number">3.</span> <span class="nav-text">Java的Blocking IO和Non-blocking IO的差异</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部概念"><span class="nav-number">3.1.</span> <span class="nav-text">内部概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能差异"><span class="nav-number">3.2.</span> <span class="nav-text">性能差异</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-NIO的问题以及在Netty中是如何解决的"><span class="nav-number">4.</span> <span class="nav-text">Java NIO的问题以及在Netty中是如何解决的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跨平台和兼容性问题"><span class="nav-number">4.1.</span> <span class="nav-text">跨平台和兼容性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展ByteBuffer"><span class="nav-number">4.2.</span> <span class="nav-text">扩展ByteBuffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NIO对缓冲区的聚合和分散操作有可能造成内存泄露"><span class="nav-number">4.3.</span> <span class="nav-text">NIO对缓冲区的聚合和分散操作有可能造成内存泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#著名的epoll缺陷"><span class="nav-number">4.4.</span> <span class="nav-text">著名的epoll缺陷</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Tomcat," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="问题与需求　　平常，我们把Web应用往Tomcat的安装目录一丢，就算是部署完成了，非常简单，只是一个手工操作，无过多技术可言。但这只是在开发或测试的时候是这么玩玩，到了真正运用Tomcat运行项目的时候，就并不是这样了。 资源利用率问题&amp;amp;Tomcat单实例问题　　在实际中，一台服务器基本都要物尽所用：服务器有多少资源那就尽量利用多少，有过多的空闲那就是等于浪费。更具体地可以说是一个服务器">
+<meta name="keywords" content="Tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat创建并运行多个实例">
+<meta property="og:url" content="http://extremegtr.github.io/2017/07/29/Tomcat-multiple-instances/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="问题与需求　　平常，我们把Web应用往Tomcat的安装目录一丢，就算是部署完成了，非常简单，只是一个手工操作，无过多技术可言。但这只是在开发或测试的时候是这么玩玩，到了真正运用Tomcat运行项目的时候，就并不是这样了。 资源利用率问题&amp;amp;Tomcat单实例问题　　在实际中，一台服务器基本都要物尽所用：服务器有多少资源那就尽量利用多少，有过多的空闲那就是等于浪费。更具体地可以说是一个服务器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-05T14:13:51.461Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat创建并运行多个实例">
+<meta name="twitter:description" content="问题与需求　　平常，我们把Web应用往Tomcat的安装目录一丢，就算是部署完成了，非常简单，只是一个手工操作，无过多技术可言。但这只是在开发或测试的时候是这么玩玩，到了真正运用Tomcat运行项目的时候，就并不是这样了。 资源利用率问题&amp;amp;Tomcat单实例问题　　在实际中，一台服务器基本都要物尽所用：服务器有多少资源那就尽量利用多少，有过多的空闲那就是等于浪费。更具体地可以说是一个服务器">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2017/07/29/Tomcat-multiple-instances/"/>
+
+
+
+
+
+  <title>Tomcat创建并运行多个实例 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2017/07/29/Tomcat-multiple-instances/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Tomcat创建并运行多个实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T10:36:43+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-05T22:13:51+08:00">
+                2017-08-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">Tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/29/Tomcat-multiple-instances/" class="leancloud_visitors" data-flag-title="Tomcat创建并运行多个实例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,498
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题与需求"><a href="#问题与需求" class="headerlink" title="问题与需求"></a><strong>问题与需求</strong></h2><p>　　平常，我们把Web应用往Tomcat的安装目录一丢，就算是部署完成了，非常简单，只是一个手工操作，无过多技术可言。但这只是在开发或测试的时候是这么玩玩，到了真正运用Tomcat运行项目的时候，就并不是这样了。</p>
+<h3 id="资源利用率问题-amp-Tomcat单实例问题"><a href="#资源利用率问题-amp-Tomcat单实例问题" class="headerlink" title="资源利用率问题&amp;Tomcat单实例问题"></a><strong>资源利用率问题&amp;Tomcat单实例问题</strong></h3><p>　　在实际中，一台服务器基本都要物尽所用：服务器有多少资源那就尽量利用多少，有过多的空闲那就是等于浪费。更具体地可以说是一个服务器单独运行一个非常耗费资源的大项目，或一个服务器同时运行多个小项目。<strong><font color="red">这是一个关于服务器资源利用率的问题。</font></strong><br>　　把这些情况代入到具体运用Tomcat的情景。按照最普通的做法就是<strong><font color="#0072E3">一个服务器只运行一个Tomcat实例，并且在里面部署了单个Web大应用或多个Web小应用。</font></strong>乍看之下，光运用单个Tomcat实例，之前的服务器资源利用率问题好像得到解决了。Tomcat单实例可以很好地适应前者，因为只是在Tomcat单独地运行一个Web大应用，只单独针对一个点，Tomcat版本升级、资源配置等操作就很好办了；但这种做法对于后者就不大适用了，试想一下，在Tomcat单实例下部署了5个Web小应用，这5个应用运行时所需的内存等资源都是各不相同的，但Tomcat的配置只能为指定的Tomcat实例进行配置，所以说这种解决方案仍不算可靠。不过问题缩小了：<strong><font color="red">Tomcat单实例问题。</font></strong></p>
+<p><br></p>
+<h3 id="有瑕疵的解决方案"><a href="#有瑕疵的解决方案" class="headerlink" title="有瑕疵的解决方案"></a><strong>有瑕疵的解决方案</strong></h3><p>　　既然Tomcat单实例无法100%有效地解决问题并实现需求。那么很自然地想到，那必须得实现<strong><font color="#9B30FF">Tomcat多实例</font></strong>才行。<br>　　<br>　　我们都清楚Tomcat安装目录自身其实就是一个Tomcat实例（默认情况下<code>$CATALINA_BASE</code>和<code>$CATALINA_HOME</code>是等价的，<a href="#u4E24_u4E2A_u91CD_u8981_u7684_u73AF_u5883_u53D8_u91CF">这是关于它们的简单描述</a>），所以最简单的做法就是复制Tomcat的安装目录，然后在每一个Tomcat实例里的<code>conf\server.xml</code>都给配置上不同的端口，这就形成了多个<strong>独立</strong>的Tomcat实例，接着每个实例里面只部署一个Web应用。具体步骤：</p>
+<ul>
+<li>复制完整的Tomcat安装目录，这就相当于创建了一个新的Tomcat实例（复制量根据所要部署的Web应用数量而定）</li>
+<li><p>修改每一个Tomcat实例里的<code>conf/server.xml</code>文件的这些端口：</p>
+<ul>
+<li><code>&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</code></li>
+<li><code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;</code></li>
+<li><code>&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</code></li>
+</ul>
+<p>每一个<code>port</code>属性你想改成什么都行，但它们必须是唯一的。</p>
+</li>
+<li><p>将Web应用部署到你所想要部署到的Tomcat实例上</p></li>
+<li><p>根据所每个Web应用所需而为对应Tomcat实例进行配置。</p>
+
+
+</li>
+</ul>
+<p>　　现在，确实是实现Tomcat多实例了，每一个实例里部署一个应用，并为这个应用进行所需的配置。资源利用率问题和Tomcat单实例问题都得到解决了，然而这种解决方案有一个缺陷：<strong><font color="red">这多个Tomcat实例都是完全独立的没有任何关联</font></strong>，进而引发这些问题：</p>
+<ul>
+<li><strong>Tomcat版本升级问题。</strong><br>如果需要进行Tomcat版本升级，那么我们无法1次性对所有实例进行升级，实例数量越多越麻烦</li>
+<li><strong>全局配置问题。</strong><br>如果需要修改某些配置，并且修改是对所有Tomcat实例要做的，那么我们无法1次性对所有实例的配置进行修改，也是实例越多越麻烦</li>
+</ul>
+<p>这种解决方案虽然可以解决之前的问题，但这是<strong><font color="red">牺牲统领全局的便利性</font></strong>而换来的，所以它还是不完美的，然而更好的办法还是有的：<br><strong><font color="blue">通过分离<code>CATALINA_HOME</code>和<code>CATALINA_BASE</code>所代表的目录进行实现。</font></strong></p>
+<h2 id="深入了解Tomcat"><a href="#深入了解Tomcat" class="headerlink" title="深入了解Tomcat"></a><strong>深入了解Tomcat</strong></h2><p>　　首先要了解一些概念那才开始讲实际操作，如果急着用那直接看实操也行，但我觉得概念和实操两者之间是相辅相成的，实操固然重要，但概念可以帮助我们更加深入地理解实操的本质，同时实操也能让我们对概念有更深刻的印象。</p>
+<h3 id="两个重要的环境变量"><a href="#两个重要的环境变量" class="headerlink" title="两个重要的环境变量"></a><strong><font color="red">两个重要的环境变量</font></strong></h3><ul>
+<li><p><strong><code>$CATALINA_HOME</code>：<font color="#9B30FF">Tomcat安装所在的根目录</font></strong></p>
+<ul>
+<li><p>官方文档描述</p>
+<blockquote>
+<p>This represents the root of your Tomcat installation. When we say, “This information can be found in your <strong><code>$CATALINA_HOME/README.txt</code></strong> file” we mean to look at the README.txt file at the root of your Tomcat install.</p>
+</blockquote>
+</li>
+<li><p>渣翻</p>
+<blockquote>
+<p>这个代表着Tomcat安装所在的根目录。<br>  当我们说：“某些信息能够在你的<strong><code>$CATALINA_HOME/README.txt</code></strong>中查找到”，<br>  这意指具体去看你的Tomcat安装所在的根目录的<strong><code>README.txt</code>。</strong></p>
+</blockquote>
+</li>
+</ul>
+<p><strong><font style="font-size: 15px">比如：你的Tomcat<code>apache-tomcat-8.5.16</code>安装在<code>D:\tomcat_server\</code>内，那么<code>$CATALINA_HOME</code>指代的就是<code>D:\tomcat_server\apache-tomcat-8.5.16</code></font></strong></p>
+</li>
+<li><p><strong><code>$CATALINA_BASE</code>：<font color="#9B30FF">Tomcat运行实例所在的根目录</font> 或 <font color="#9B30FF">Tomcat的工作根目录</font></strong></p>
+<ul>
+<li><p>官方文档描述</p>
+<blockquote><p>Tomcat may be configured for multiple instances by defining <strong><code>$CATALINA_BASE</code></strong> for each instance.<br>  If multiple instances are not configured, <strong><code>$CATALINA_BASE</code></strong> is the same as <strong><code>$CATALINA_HOME</code></strong>.<br></p></blockquote><blockquote><p>The <strong><code>CATALINA_BASE</code></strong> environment variable specifies location of the root directory of the “active configuration” of Tomcat.<br>It is optional. It defaults to be equal to <strong><code>CATALINA_HOME</code></strong>.</p></blockquote>
+</li>
+<li><p>渣翻</p>
+<blockquote><p>Tomcat可以通过为每个实例定义<strong><code>$CATALINA_BASE</code></strong>为多个实例进行配置。<br>如果Tomcat没有配置多个实例，那么<strong><code>$CATALINA_BASE</code></strong>与<strong><code>$CATALINA_HOME</code></strong>是一样的。</p></blockquote><blockquote><p><strong><code>CATALINA_BASE</code></strong>环境变量指定Tomcat”活动配置”的根目录的位置。这个环境变量的配置时可选的，它的默认值等于<strong><code>CATALINA_HOME</code></strong>的配值。</p></blockquote>
+
+</li>
+</ul>
+<p>更直白地说，默认情况下Tomcat的安装目录和工作目录是一致的，但也可以将它们分离，并且工作目录可以有多个，代表多个Tomcat实例。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tomcat/" rel="tag"><i class="fa fa-tag"></i> Tomcat</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/" rel="next" title="IntelliJ IDEA部署Web应用到Tomcat">
+                <i class="fa fa-chevron-left"></i> IntelliJ IDEA部署Web应用到Tomcat
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/17/IntelliJ-IDEA-problem-and-solution/" rel="prev" title="IntelliJ IDEA常见Q&A汇总">
+                IntelliJ IDEA常见Q&A汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与需求"><span class="nav-number">1.</span> <span class="nav-text">问题与需求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#资源利用率问题-amp-Tomcat单实例问题"><span class="nav-number">1.1.</span> <span class="nav-text">资源利用率问题&Tomcat单实例问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有瑕疵的解决方案"><span class="nav-number">1.2.</span> <span class="nav-text">有瑕疵的解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深入了解Tomcat"><span class="nav-number">2.</span> <span class="nav-text">深入了解Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个重要的环境变量"><span class="nav-number">2.1.</span> <span class="nav-text">两个重要的环境变量</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

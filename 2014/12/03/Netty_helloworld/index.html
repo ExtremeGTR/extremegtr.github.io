@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="netty," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言上一篇文章简要地介绍了Netty框架能够做什么以及其中所涉及的一些技术细节。而本文主要是从一个最简单的Netty程序入手，这样我们才能更快地熟悉Netty这个框架。  我也在网上找过很多教程，但是很多教程基本都是基于Netty3的，Netty4的教程比较少，但是Netty3到Netty4，里面API的变化可以说是翻天覆地，而现在普遍都是用Netty4，所以大多数教程都不太适合新手学习了，包括我">
+<meta name="keywords" content="netty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Netty框架学习(二) - 第一个简单的Netty程序">
+<meta property="og:url" content="http://extremegtr.github.io/2014/12/03/Netty_helloworld/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="前言上一篇文章简要地介绍了Netty框架能够做什么以及其中所涉及的一些技术细节。而本文主要是从一个最简单的Netty程序入手，这样我们才能更快地熟悉Netty这个框架。  我也在网上找过很多教程，但是很多教程基本都是基于Netty3的，Netty4的教程比较少，但是Netty3到Netty4，里面API的变化可以说是翻天覆地，而现在普遍都是用Netty4，所以大多数教程都不太适合新手学习了，包括我">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2015-04-13T13:58:26.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Netty框架学习(二) - 第一个简单的Netty程序">
+<meta name="twitter:description" content="前言上一篇文章简要地介绍了Netty框架能够做什么以及其中所涉及的一些技术细节。而本文主要是从一个最简单的Netty程序入手，这样我们才能更快地熟悉Netty这个框架。  我也在网上找过很多教程，但是很多教程基本都是基于Netty3的，Netty4的教程比较少，但是Netty3到Netty4，里面API的变化可以说是翻天覆地，而现在普遍都是用Netty4，所以大多数教程都不太适合新手学习了，包括我">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2014/12/03/Netty_helloworld/"/>
+
+
+
+
+
+  <title>Netty框架学习(二) - 第一个简单的Netty程序 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2014/12/03/Netty_helloworld/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Netty框架学习(二) - 第一个简单的Netty程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-03T23:23:37+08:00">
+                2014-12-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2015-04-13T21:58:26+08:00">
+                2015-04-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/netty/" itemprop="url" rel="index">
+                    <span itemprop="name">netty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/12/03/Netty_helloworld/" class="leancloud_visitors" data-flag-title="Netty框架学习(二) - 第一个简单的Netty程序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,230
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上一篇文章简要地介绍了Netty框架能够做什么以及其中所涉及的一些技术细节。而本文主要是从一个最简单的Netty程序入手，这样我们才能更快地熟悉Netty这个框架。 </p>
+<p>我也在网上找过很多教程，但是很多教程基本都是基于Netty3的，Netty4的教程比较少，但是Netty3到Netty4，里面API的变化可以说是翻天覆地，而现在普遍都是用Netty4，所以大多数教程都不太适合新手学习了，包括我，在工作中也是用Netty4的，这也是没办法的事，没理由我让公司的项目转变成用Netty3吧。当然英文水平好的可以直接看Netty官网指南，或者看《Netty In Action 第五版》，可惜这么好的书没出中文版，但是这也是不能奢望太多的，就算有中文版，若翻译粗糙，那也是误人子弟的。<br> <a id="more"></a><br>由于自己的英文水平也是马马虎虎，所以我也是硬着头皮看了一点点，现在我才感受到当初自己没有学好英文真是不应该啊，不过以后自己真心要恶补英语了。 </p>
+<h2 id="从HelloWorld开始"><a href="#从HelloWorld开始" class="headerlink" title="从HelloWorld开始"></a>从HelloWorld开始</h2><p>不管学什么编程语言，框架技术，从编写HelloWorld开始无疑是最简单快捷地认识新事物的。下面是一个最简单的Netty程序，话不多说，直接上代码 </p>
+<h3 id="HelloServer服务器代码"><a href="#HelloServer服务器代码" class="headerlink" title="HelloServer服务器代码"></a>HelloServer服务器代码</h3><pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServer</span> </span>{
+    <span class="keyword">private</span> <span class="keyword">int</span> port;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">HelloServer</span><span class="params">(<span class="keyword">int</span> port)</span> </span>{
+        <span class="keyword">this</span>.port = port;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+        EventLoopGroup bossGroup = <span class="keyword">new</span> NioEventLoopGroup();
+        EventLoopGroup workerGroup = <span class="keyword">new</span> NioEventLoopGroup();
+
+        <span class="keyword">try</span> {
+            ServerBootstrap b = <span class="keyword">new</span> ServerBootstrap();
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() {
+                        <span class="meta">@Override</span>
+                        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>{
+                            ChannelPipeline p = ch.pipeline();
+                            p.addLast(<span class="keyword">new</span> HelloServerHandler());
+                        }
+                    }).option(ChannelOption.SO_KEEPALIVE, <span class="keyword">true</span>);
+
+            <span class="comment">// 绑定端口, 并开始接受正到来的客户端连接</span>
+            ChannelFuture f = b.bind(port).sync();
+
+            <span class="comment">// 一直等待, 直到服务端socket已经关闭为止 </span>
+            f.channel().closeFuture().sync();
+        } <span class="keyword">finally</span> {
+            <span class="comment">// 释放所有的资源</span>
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+        }
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{
+        <span class="keyword">new</span> HelloServer(<span class="number">5000</span>).start();
+    }
+}
+</code></pre>
+<h3 id="HelloServerHandler服务器处理程序或服务器处理器"><a href="#HelloServerHandler服务器处理程序或服务器处理器" class="headerlink" title="HelloServerHandler服务器处理程序或服务器处理器"></a>HelloServerHandler服务器处理程序或服务器处理器</h3><pre><code class="java"><span class="comment">// 这里一般写服务器端的业务逻辑代码</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServerHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>{
+    <span class="comment">// channelActive 在与客户端连接建立并准备进行通信的时候被调用</span>
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>{
+        System.out.println(<span class="string">"Hi, I'm HelloServer!"</span>);
+    }
+
+    <span class="comment">// channelRead 在每当收到服务端发送的新数据时被调用</span>
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span> <span class="keyword">throws</span> Exception </span>{
+
+    }
+
+    <span class="comment">// exceptionCaught 在出现Throwable对象时, 即Netty由于IO出错或处理器处理事件抛出异常时被调用</span>
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exceptionCaught</span><span class="params">(ChannelHandlerContext ctx, Throwable cause)</span> <span class="keyword">throws</span> Exception </span>{
+        cause.printStackTrace();
+        ctx.close();
+    }
+}
+</code></pre>
+<h3 id="HelloClient客户端代码"><a href="#HelloClient客户端代码" class="headerlink" title="HelloClient客户端代码"></a>HelloClient客户端代码</h3><pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span> </span>{
+    <span class="keyword">private</span> String host;
+    <span class="keyword">private</span> <span class="keyword">int</span> port;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">HelloClient</span><span class="params">(String host, <span class="keyword">int</span> port)</span> </span>{
+        <span class="keyword">this</span>.host = host;
+        <span class="keyword">this</span>.port = port;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+        EventLoopGroup group = <span class="keyword">new</span> NioEventLoopGroup();
+
+        <span class="keyword">try</span> {
+            Bootstrap b = <span class="keyword">new</span> Bootstrap();
+            b.group(group).channel(NioSocketChannel.class)
+                    .handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() {
+                        <span class="meta">@Override</span>
+                        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>{
+                            ChannelPipeline p = ch.pipeline();
+                            p.addLast(<span class="keyword">new</span> HelloClientHandler());
+                        }
+                    });
+
+            <span class="comment">// 绑定ip地址和端口, 并使其尝试连接服务端</span>
+            ChannelFuture f = b.connect(host, port).sync();
+
+            <span class="comment">// 一直等待, 直到该连接已经断开为止</span>
+            f.channel().closeFuture().sync();
+        } <span class="keyword">finally</span> {
+            <span class="comment">// 释放资源</span>
+            group.shutdownGracefully();
+        }
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{
+        <span class="keyword">new</span> HelloClient(<span class="string">"127.0.0.1"</span>, <span class="number">5000</span>).start();
+    }
+}
+</code></pre>
+<h3 id="HelloClientHandler服务器处理程序或服务器处理器"><a href="#HelloClientHandler服务器处理程序或服务器处理器" class="headerlink" title="HelloClientHandler服务器处理程序或服务器处理器"></a>HelloClientHandler服务器处理程序或服务器处理器</h3><pre><code class="java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClientHandler</span> <span class="keyword">extends</span> <span class="title">ChannelInboundHandlerAdapter</span> </span>{
+    <span class="comment">// channelActive 在与服务端连接建立并准备进行通信的时候被调用</span>
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelActive</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>{
+        System.out.println(<span class="string">"Hello, I'm HelloClient~"</span>);
+    }
+
+    <span class="comment">// channelRead 在每当收到客户端发送的新数据时被调用</span>
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">channelRead</span><span class="params">(ChannelHandlerContext ctx, Object msg)</span></span>
+<span class="function">            <span class="keyword">throws</span> Exception </span>{
+
+    }
+
+    <span class="comment">// exceptionCaught 在出现Throwable对象时, 即Netty由于IO出错或处理器处理事件抛出异常时被调用</span>
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exceptionCaught</span><span class="params">(ChannelHandlerContext ctx, Throwable cause)</span></span>
+<span class="function">            <span class="keyword">throws</span> Exception </span>{
+        cause.printStackTrace();
+        ctx.close();
+    }
+}
+</code></pre>
+<h2 id="代码中的一些概念"><a href="#代码中的一些概念" class="headerlink" title="代码中的一些概念"></a>代码中的一些概念</h2><p>这个服务端/客户端代码并没有进行互相通信，里面的所做的只是简单的打印，毕竟只是HelloWorld程序，但也有足够的东西让我们学习了。 </p>
+<h3 id="1-EventLoopGroup"><a href="#1-EventLoopGroup" class="headerlink" title="1.EventLoopGroup"></a>1.EventLoopGroup</h3><p>它是一个用于处理I/O操作的多线程事件循环线程池，服务端一般要用2个EventLoopGroup，boss线程池用于处理接收的连接，接收到连接后，它就会把连接信息注册到worker线程池上；而worker线程池用于处理该连接的各种事件和I/O操作。而Netty为各种传输方式提供了多种EventLoopGroup的实现，NioEventLoopGroup就是其中一种。 </p>
+<h3 id="2-ServerBootstrap"><a href="#2-ServerBootstrap" class="headerlink" title="2.ServerBootstrap"></a>2.ServerBootstrap</h3><p>这是一个简化建立Netty服务端操作的帮助类。 </p>
+<h3 id="3-ChannelInitializer"><a href="#3-ChannelInitializer" class="headerlink" title="3.ChannelInitializer"></a>3.ChannelInitializer</h3><p>它是一个特殊的处理类，专门用于配置新Channel；使用它来配置Channel就像是通过ChannelPipeline配置新Channel有一样的效果。 </p>
+<p>以上这些都是最基本的，代码中比较重要的方法它的作用就如注释所写。接下来，只需要先启动服务端，再启动客户端，你就能看到服务端和客户端都会打印相应的消息了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/netty/" rel="tag"><i class="fa fa-tag"></i> netty</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/11/30/Netty_introduction/" rel="next" title="Netty框架学习(一) - 初次接触Netty框架">
+                <i class="fa fa-chevron-left"></i> Netty框架学习(一) - 初次接触Netty框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/12/13/Trifle/" rel="prev" title="Test~">
+                Test~ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从HelloWorld开始"><span class="nav-number">2.</span> <span class="nav-text">从HelloWorld开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HelloServer服务器代码"><span class="nav-number">2.1.</span> <span class="nav-text">HelloServer服务器代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HelloServerHandler服务器处理程序或服务器处理器"><span class="nav-number">2.2.</span> <span class="nav-text">HelloServerHandler服务器处理程序或服务器处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HelloClient客户端代码"><span class="nav-number">2.3.</span> <span class="nav-text">HelloClient客户端代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HelloClientHandler服务器处理程序或服务器处理器"><span class="nav-number">2.4.</span> <span class="nav-text">HelloClientHandler服务器处理程序或服务器处理器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码中的一些概念"><span class="nav-number">3.</span> <span class="nav-text">代码中的一些概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-EventLoopGroup"><span class="nav-number">3.1.</span> <span class="nav-text">1.EventLoopGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ServerBootstrap"><span class="nav-number">3.2.</span> <span class="nav-text">2.ServerBootstrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ChannelInitializer"><span class="nav-number">3.3.</span> <span class="nav-text">3.ChannelInitializer</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

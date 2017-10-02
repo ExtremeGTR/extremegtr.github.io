@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaSE," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="在使用Java编程开发这块，各种开源框架、Android开发以及平时我们很少碰到的GUI编程等等，会经常碰到回调这种技术。如果你之前就已经学过C/C++，那肯定学过函数指针，或多或少都会接触到回调。在C/C++中，回调一般都是用函数指针这个特性实现的，而其他语言的实现手法就不太一样了。 到底什么是回调？我的经历我看过很多关于描述回调的文章，仅有几篇文章是真正让读者理解到什么是回调，而大多数文章，有">
+<meta name="keywords" content="JavaSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的回调">
+<meta property="og:url" content="http://extremegtr.github.io/2015/06/29/CallBack-In-Java/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="在使用Java编程开发这块，各种开源框架、Android开发以及平时我们很少碰到的GUI编程等等，会经常碰到回调这种技术。如果你之前就已经学过C/C++，那肯定学过函数指针，或多或少都会接触到回调。在C/C++中，回调一般都是用函数指针这个特性实现的，而其他语言的实现手法就不太一样了。 到底什么是回调？我的经历我看过很多关于描述回调的文章，仅有几篇文章是真正让读者理解到什么是回调，而大多数文章，有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/Wiki_callback.png">
+<meta property="og:updated_time" content="2017-09-17T06:48:03.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中的回调">
+<meta name="twitter:description" content="在使用Java编程开发这块，各种开源框架、Android开发以及平时我们很少碰到的GUI编程等等，会经常碰到回调这种技术。如果你之前就已经学过C/C++，那肯定学过函数指针，或多或少都会接触到回调。在C/C++中，回调一般都是用函数指针这个特性实现的，而其他语言的实现手法就不太一样了。 到底什么是回调？我的经历我看过很多关于描述回调的文章，仅有几篇文章是真正让读者理解到什么是回调，而大多数文章，有">
+<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImg/Wiki_callback.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2015/06/29/CallBack-In-Java/"/>
+
+
+
+
+
+  <title>Java中的回调 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2015/06/29/CallBack-In-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java中的回调</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-29T01:26:18+08:00">
+                2015-06-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:48:03+08:00">
+                2017-09-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2015/06/29/CallBack-In-Java/" class="leancloud_visitors" data-flag-title="Java中的回调">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,004
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在使用Java编程开发这块，各种开源框架、Android开发以及平时我们很少碰到的GUI编程等等，会经常碰到回调这种技术。如果你之前就已经学过C/C++，那肯定学过函数指针，或多或少都会接触到回调。在C/C++中，回调一般都是用函数指针这个特性实现的，而其他语言的实现手法就不太一样了。</p>
+<h2 id="到底什么是回调？"><a href="#到底什么是回调？" class="headerlink" title="到底什么是回调？"></a>到底什么是回调？</h2><h3 id="我的经历"><a href="#我的经历" class="headerlink" title="我的经历"></a>我的经历</h3><p>我看过很多关于描述回调的文章，仅有几篇文章是真正让读者理解到什么是回调，而大多数文章，有的是简单地说了下什么是回调，然而这些内容并没清楚地说明回调的本质是什么，但让读者从某个语言的角度上理解个表面还是可以的，然后再列出一些让大家看了之后对回调理解更含糊的代码；反之，有的文章大篇幅的描述回调，举出各种例子，具体例子抽象例子都有，再加上各种术语，就不说读者看起来头很疼，估计写的人自己再回顾也会被绕晕。  </p>
+<h3 id="真正的问题所在"><a href="#真正的问题所在" class="headerlink" title="真正的问题所在"></a>真正的问题所在</h3><p>先不从语言上进行考虑，而是从本质上进行探究。为什么回调解释起来很让人懊恼？有时虽然是清楚了，但是写起代码来总是感到困惑，或者代码都写错了，自己并不知道。大多数情况下都是因为“回调”这一术语对你产生误导的作用。这一点，在stackoverflow或知乎上有些关于回调的话题讨论中也提到过：<font color="blue"><strong>“回调（callback）”这一个术语会让人对回调的理解产生迷惑。</strong></font>  </p>
+<p>这个术语会经常让我们单纯地认为回调就像打电话一样只是你我之间双方的互相呼应，可能就因为这样，所以有很多关于回调的文章都会出现<font color="blue"><strong>“If you call me, I will call you back.”</strong></font>或者是<font color="blue"><strong>“If you call me, I will call back.”</strong></font>。但这样来说明是有一定的误导性的，只能说双方相互呼应只是回调的一种特殊情况罢了。</p>
+<h3 id="回调的本质"><a href="#回调的本质" class="headerlink" title="回调的本质"></a>回调的本质</h3><p>首先来看看维基里回调的定义</p>
+<blockquote>
+<p>在计算机编程中，一小段可执行的代码作为一个参数传递到另一段代码，并且它将会在某个合适的时间回调（执行），这就是<strong><font color="black">回调（callback）</font></strong>。</p>
+</blockquote>
+<p>或许你会注意到定义里所提到的：<strong>某个合适的时间</strong>，其实这个指的是某些“事件”的发生，而这个“事件”可能是条件判定、函数调用、按钮点击事件或者是计时器计时等等。</p>
+<p>这是对回调广义上的描述，也是最本质的描述。但是我们在讨论关于回调的时候都经常将其称为回调函数。这是因为在我们使用各种编程语言再加以运用回调技术的时候，那段进行回调的代码基本上都是函数。不同的语言，实现回调的方式也不一样，可以用以下几种技术实现回调：子程序、lambda表达式、块、函数指针。</p>
+<p>那现在我们就来用自己的话来描述一下回调函数：</p>
+<ul>
+<li><strong><font color="red">回调函数（callback function）</font>所指的是一个函数<font color="red">作为参数传递</font>到另一个函数，并且它将在某些<font color="red">“事件”</font>（条件判定、函数调用、按钮点击事件或者是计时器计时等）触发后被调用执行，以完成我们指定的任务</strong>  </li>
+</ul>
+<p>这时，想必大家都对什么是回调，什么是回调函数都有了一个印象比较深刻的初步认识。这几句简洁易懂的描述的就是它们的本质，<font color="green"><strong>但是你是否发现这些定义都没有描述到回调的<font color="green">“回”这一个字的意思？</font></strong></font></p>
+<p><img src="http://extremegtr.github.io/assets/blogImg/Wiki_callback.png" alt="回调"></p>
+<p>上面这个图来源于维基百科。这个图很形象地描述了回调中“回”字的意思。</p>
+<p>我们通常都在使用别人已经编写好的库为自己所要做的应用进行编程。如上图所示，回调函数和应用的主函数处在同一个抽象层（高层抽象），所要做的应用有什么样的需求，我们就编写完成对应需求的回调函数传递给底层抽象，因此，回调函数和应用的主函数处于同一个抽象层这点是很自然而然的。</p>
+<p>在高层抽象向底层抽象传递回调函数的前提下，这个图所描述的过程：</p>
+<ul>
+<li><strong>高层抽象调用底层抽象</strong></li>
+<li><strong>底层抽象再<font color="red">回</font>过头来<font color="red">调</font>用高层抽象</strong></li>
+</ul>
+<p>综上所述：回调的“回”的意思就是程序执行流程从底层回到高层。</p>
+<h2 id="回调实例演示"><a href="#回调实例演示" class="headerlink" title="回调实例演示"></a>回调实例演示</h2><p>本人现阶段专攻Java，所以这里要演示的例子还是使用Java来实现。  </p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>Java没有C/C++里面的函数指针，那实现回调只能是另辟蹊径。在Java中，基本上都是使用接口或许附带内部类这一特性实现回调的。  </p>
+<p>现在还是来看一个现实中打电话的例子：</p>
+<blockquote>
+<p>老板和员工的情景：老板给员工分配一个任务，并且老板告诉员工：“这个任务完成后，你就打电话给我，并且向我说明一下解决方案”。分配完任务后，老板外出或者做其他事去了。在某个时刻，员工终于把那个任务完成了，他就打电话给老板报告一下任务完成的情况以及解决方案。</p>
+</blockquote>
+<p>在动手写代码之前，我们必须把这个情景中几个关键的动作搞清楚：</p>
+<ul>
+<li><strong>老板<font color="red">分配</font>任务给员工</strong></li>
+<li><strong>老板<font color="red">告诉</font>员工<font color="green">任务完成后</font>要<font color="blue">打电话</font>给他并说明解决方案</strong></li>
+<li><strong><font color="green">任务完成后</font>，员工给老板<font color="blue">打电话</font>并说明解决方案</strong></li>
+</ul>
+<p>按照上面关于回调函数的描述，从这几个动作我们可以得出：</p>
+<ul>
+<li><strong>员工打电话给老板这个动作就是回调方法（callback method）</strong></li>
+<li><strong>任务完成这个情况就是员工打电话给老板这个回调方法被调用之前所触发的事件</strong></li>
+<li><strong>老板告诉员工任务完成后要打电话给他这个动作就是注册回调方法（register callback method）</strong></li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>代码的具体实现细节我们暂且不关心，我们先用代码来模拟那个情景的具体过程，再逐步深入实现其中的细枝末节。  </p>
+<p>老板和员工整个情景过程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Company</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String EASY_TASK = <span class="string">"这是一个简单的任务"</span>;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DIFFICULT_TASK = <span class="string">"这是一个棘手的任务"</span>;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String VERY_DIFFICULT_TASK = <span class="string">"这是一个非常棘手的任务"</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 老板</span></div><div class="line">		Boss boss = <span class="keyword">new</span> Boss();</div><div class="line">		<span class="comment">// 打工仔</span></div><div class="line">		Worker worker = <span class="keyword">new</span> Worker();</div><div class="line">		<span class="comment">// 老板给属下员工分配任务</span></div><div class="line">		boss.assign(worker, DIFFICULT_TASK);</div><div class="line">		<span class="comment">// 派遣完任务后, 老板做其他事情去了</span></div><div class="line">		boss.doOtherThings();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个过程用代码模拟后看起来是不是很简单、很清晰？至于任务我就用常量作简化处理了，毕竟我们此处最关心的并不是这些。  </p>
+<p>再来看老板<code>Boss</code>的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Boss</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String telNumber = <span class="string">"1360****459"</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assign</span><span class="params">(<span class="keyword">final</span> Worker worker, <span class="keyword">final</span> String task)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"---老板开始分配任务---"</span>);</div><div class="line">		<span class="keyword">new</span> Thread() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">				<span class="comment">// 员工接受老板分配的任务, 并且接受老板吩咐任务完成后要做的事</span></div><div class="line">				worker.accept(task, <span class="keyword">new</span> OnTaskComplete() &#123;</div><div class="line">					<span class="meta">@Override</span></div><div class="line">					<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">callBack</span><span class="params">(String solution)</span> </span>&#123;</div><div class="line">						System.out.println(<span class="string">"打电话给xxx: "</span> + telNumber);</div><div class="line">						System.out.println(<span class="string">"并且报告解决方案: "</span> + solution);</div><div class="line">					&#125;</div><div class="line">				&#125;);</div><div class="line">			&#125;</div><div class="line">		&#125;.start();</div><div class="line">		System.out.println(<span class="string">"----老板分配任务完毕----"</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doOtherThings</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"-----老板去做其他事情了-----"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处，我们主要关注的肯定是<code>assign</code>分配任务的方法，这个方法接收2个参数，分别是员工<code>worker</code>和任务<code>task</code>。  </p>
+<p>既然老板分配任务给员工，员工<code>worker</code>肯定有一个方法接受任务并解决的。<br>员工着手任务时，不能让老板瞎等吧？所以要运用异步调用对这种情况进行模拟。这里便开辟一个新线程来调用员工<code>worker</code>接受任务的方法<code>accpet</code>。  </p>
+<p>方法<code>accept</code>同样是接收2个参数，任务<code>task</code>参数是必要的，而另一个参数是一个实现<code>OnTaskComplete</code>回调接口的匿名内部类对象。<br>　　在编程的角度上，这种行为就是上面分析所说的<strong>注册回调函数（register callback function）</strong>。<br>　　在情景的角度上，这就是对<strong>“老板告诉员工任务完成后要做什么什么”</strong>这个动作的模拟。</p>
+<p>而匿名内部类里的<code>callBack</code>方法就是<strong>回调方法（callback method）</strong><br>　　该方法的具体实现就如同之前的情景：<strong>“老板给员工交代过，任务完成后打电话给老板并向他说明一下解决方案”</strong>。<br>　　这里并没有具体的解决方案，因为这个解决方案需要员工在完成任务后回传才会有。</p>
+<p>看完了老板<code>Boss</code>，接着肯定要看看打工仔<code>Worker</code>啦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(String task, OnTaskComplete followUpWork)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (Company.EASY_TASK.equals(task)) &#123;</div><div class="line">			solve(task, <span class="number">1</span>, <span class="number">3</span>);</div><div class="line">			<span class="keyword">if</span> (followUpWork != <span class="keyword">null</span>) &#123;</div><div class="line">				followUpWork.callBack(<span class="string">"解决方案A"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (Company.DIFFICULT_TASK.equals(task)) &#123;</div><div class="line">			solve(task, <span class="number">4</span>, <span class="number">10</span>);</div><div class="line">			<span class="keyword">if</span> (followUpWork != <span class="keyword">null</span>) &#123;</div><div class="line">				followUpWork.callBack(<span class="string">"解决方案B"</span>);</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			System.out.println(<span class="string">"该任务中的需求过于复杂，需要大家开会讨论"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">(String task, <span class="keyword">int</span> bestTime, <span class="keyword">int</span> worstTime)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> actualTime = (<span class="keyword">int</span>) (Math.random() * (worstTime - bestTime + <span class="number">1</span>)) + bestTime;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(actualTime * <span class="number">1000</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">"解决任务( "</span> + task + <span class="string">" )实际耗时: "</span> + actualTime);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Worker</code>中有2个方法，其中方法<code>solve</code>只是模拟员工耗时解决任务。而员工接受任务的<code>accept</code>方法才是重点。  </p>
+<p>方法<code>accept</code>接收2个参数，一个是任务<code>task</code>，另一个则是<code>OnTaskComplete</code>接口形式的参数<code>followUpWork</code>，用于调用回调方法<code>callBack</code>。<br>方法<code>accpet</code>很好地模拟了员工解决任务并且在之后打电话并报告解决方案这个动作。<br>　　员工根据任务的难易，估算一下解决任务的时间，并开始着手解决，这个耗时动作使用方法<code>solve</code>进行模拟。<br>　　当<code>solve</code>执行完毕后，即任务完成了，员工需要打电话给老板说明解决方案，这里就使用<code>followUpWork</code><strong>回调</strong><code>callBack</code>并<strong>回传</strong>解决方案。</p>
+<p>最后，是回调接口的定义。这个就没什么可说了。接口这东西，只要你搞清楚需求，就很好去定义它了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnTaskComplete</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">callBack</span><span class="params">(String solution)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>虽然这个情景整个过程乍看之下是比较简单，代码过程简洁清晰之余，还符合文章之前一直强调的回调或回调函数的定义，不过在我用Java代码合理地把它模拟出来还是费了不少功夫的（毕竟之前我也没怎么研究过回调，讲道理嘛）。其实我看过的某些博客文章解释回调，文字上是挺清晰的，但是一旦看代码我就卡住了，总觉得代码对情景模拟得不够自然，大多数都是由于命名不怎么好而导致我有这种感觉（代码的命名很重要，命名不好，别人或自己看起来就纠结了）。  </p>
+<p>而使用回调的好处，就如《Thinking In Java》里所说的：<strong><font color="red">回调的价值在于它的灵活性——可以在运行时动态地决定需要调用什么方法</font></strong>。</p>
+<p>以上就是我对回调的一些总结和见解，希望这些能够对大家有所帮助。有些地方可能有误，如果你有不同的看法，可以提出来，3Q。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaSE/" rel="tag"><i class="fa fa-tag"></i> JavaSE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/27/Ti5/" rel="next" title="第5届DotA2国际邀请赛">
+                <i class="fa fa-chevron-left"></i> 第5届DotA2国际邀请赛
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/13/JavaSE-study-basics-of-generics/" rel="prev" title="JavaSE学习笔记 - 泛型基础">
+                JavaSE学习笔记 - 泛型基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#到底什么是回调？"><span class="nav-number">1.</span> <span class="nav-text">到底什么是回调？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我的经历"><span class="nav-number">1.1.</span> <span class="nav-text">我的经历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真正的问题所在"><span class="nav-number">1.2.</span> <span class="nav-text">真正的问题所在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回调的本质"><span class="nav-number">1.3.</span> <span class="nav-text">回调的本质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回调实例演示"><span class="nav-number">2.</span> <span class="nav-text">回调实例演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">2.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

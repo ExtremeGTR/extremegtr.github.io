@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Maven," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Maven官网Maven官网地址：https://maven.apache.org/ 　　Maven的下载、各种介绍里面都有，网上文章虽多，但专业度还是不及官网里的内容，所以一旦有什么疑难杂症搞不定，都可以到官网去查。 Maven核心概念Maven是什么？它能帮我们做什么？　　Maven是众多项目管理工具中的一个，它基于POM（project object model）即项目对象模型这种概念对项目">
+<meta name="keywords" content="Maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习使用Maven（一）">
+<meta property="og:url" content="http://extremegtr.github.io/2017/04/12/Learn-to-use-maven-1/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="Maven官网Maven官网地址：https://maven.apache.org/ 　　Maven的下载、各种介绍里面都有，网上文章虽多，但专业度还是不及官网里的内容，所以一旦有什么疑难杂症搞不定，都可以到官网去查。 Maven核心概念Maven是什么？它能帮我们做什么？　　Maven是众多项目管理工具中的一个，它基于POM（project object model）即项目对象模型这种概念对项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-03T07:35:51.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习使用Maven（一）">
+<meta name="twitter:description" content="Maven官网Maven官网地址：https://maven.apache.org/ 　　Maven的下载、各种介绍里面都有，网上文章虽多，但专业度还是不及官网里的内容，所以一旦有什么疑难杂症搞不定，都可以到官网去查。 Maven核心概念Maven是什么？它能帮我们做什么？　　Maven是众多项目管理工具中的一个，它基于POM（project object model）即项目对象模型这种概念对项目">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2017/04/12/Learn-to-use-maven-1/"/>
+
+
+
+
+
+  <title>学习使用Maven（一） | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2017/04/12/Learn-to-use-maven-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习使用Maven（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T19:29:40+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-03T15:35:51+08:00">
+                2017-09-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Maven/" itemprop="url" rel="index">
+                    <span itemprop="name">Maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/12/Learn-to-use-maven-1/" class="leancloud_visitors" data-flag-title="学习使用Maven（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  5,531
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Maven官网"><a href="#Maven官网" class="headerlink" title="Maven官网"></a>Maven官网</h2><p>Maven官网地址：<a href="https://maven.apache.org/" target="_blank" rel="external">https://maven.apache.org/</a></p>
+<p>　　Maven的下载、各种介绍里面都有，网上文章虽多，但专业度还是不及官网里的内容，所以一旦有什么疑难杂症搞不定，都可以到官网去查。</p>
+<h2 id="Maven核心概念"><a href="#Maven核心概念" class="headerlink" title="Maven核心概念"></a>Maven核心概念</h2><h3 id="Maven是什么？它能帮我们做什么？"><a href="#Maven是什么？它能帮我们做什么？" class="headerlink" title="Maven是什么？它能帮我们做什么？"></a>Maven是什么？它能帮我们做什么？</h3><p>　　Maven是众多项目管理工具中的一个，它基于<strong>POM（project object model）即<font color="#9B30FF">项目对象模型</font></strong>这种概念对项目进行管理。</p>
+<p><strong>具体来说，Maven主要用于管理项目的<font color="#9B30FF">构建</font>（build）、<font color="#9B30FF">依赖</font>（dependence）</strong>：</p>
+<ul>
+<li>构建指的是与项目相关的清理、编译、测试、生成报告、生成文档、打包、部署等等工作</li>
+<li>依赖指的是项目实现所需的各种构件（<code>jar</code>包）</li>
+</ul>
+<p>在没有项目管理工具之前，这些工作在每次做项目的时候都要重复做一遍，特别是jar包的管理，只需配置好后再用简单的指令就能自动执行它们。</p>
+<p><strong><font color="#0072E3">最令我们Java开发者开心的莫过于Maven可以帮我们系统地管理<code>jar</code>包</font></strong>：</p>
+<ul>
+<li>我们只需到配置文件中配置上该项目需要什么依赖（即<code>jar</code>包），Maven就会帮我们下载到指定的仓库中，并让项目引用它</li>
+<li>如果<code>jar</code>包之间有复杂的耦合（包含或版本关系），Maven会让项目引用必需且版本正确的<code>jar</code>包，而不会引用多余或错误的<code>jar</code>包。</li>
+</ul>
+<p><strong><font color="red">Maven帮助我们从这些重复繁琐的工作中解脱出来，让我们有更多的时间精力集中于项目的开发。</font></strong></p>
+<p><br></p>
+<h3 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h3><p><strong><font color="#9B30FF">Maven中的仓库（repository）所指的是一个存储jar包的地方，其中又分为远程仓库和本地仓库：</font></strong></p>
+<ul>
+<li><p><strong>远程仓库：远程仓库通俗来说就是公共仓库，它是一个服务器，大家都可以通过网络访问这个仓库获取<code>jar</code>包</strong></p>
+<font color="#FA6D0F" style="font-size: 13px"><strong>其中，<a href="http://repo1.maven.org/maven2/" title="中央仓库地址" target="_blank" rel="external">中央仓库</a>（central repository）是最特殊的远程仓库，它存储了世界上所有的<code>jar</code>包，世界各地的Java程序员都可以从这里获取自己想要的<code>jar</code>包</strong></font>
+</li>
+<li><p><strong>本地仓库：本地仓库指的就是在你的电脑硬盘中某个用于存储从远程仓库获取而来的<code>jar</code>包的目录</strong></p>
+</li>
+<li><p><strong>私服：私服是一种特殊的远程仓库，它是架设在局域网内的仓库服务，私服代理广域网上的远程仓库，提供局域网内的Maven用户使用</strong>
+　　</p>
+</li>
+</ul>
+<p>　　Maven根据坐标寻找构件，它首先会查看本地仓库是否存有该构件，如果有就直接用，如果没有，则会去远程仓库查找，找到后就把它下载到本地仓库再用，如果连远程仓库都没有，Maven会报错。</p>
+<p><br></p>
+<h3 id="Maven遵循的原则"><a href="#Maven遵循的原则" class="headerlink" title="Maven遵循的原则"></a>Maven遵循的原则</h3><p>Maven遵循以下这个原则：</p>
+<ul>
+<li><strong><font color="red">约定优于配置</font>（convention over configuration）</strong><br>它也被称作<strong>按约定编程</strong>，是一种软件设计范式，旨在减少软件开发人员需做决定的数量，获得简单的好处，而又不失灵活性。</li>
+</ul>
+<p>如果你以前接触过Spring、Hibernate等等框架，你应该知道这个原则具体所指是什么。<br>对于Maven管理项目来说，主要是对项目中的<code>pom.xml</code>进行配置。如果你遵守Maven默认情况的约定，那么，无需再进行额外的配置。</p>
+<p><font color="#9B30FF"><strong>最重要无疑是Maven对项目目录结构的约定：</strong></font></p>
+<ul>
+<li><p><strong>项目核心Java源码目录（Application/Library sources）：</strong><code>src/main/java</code><br>与项目主体逻辑相关的Java源码文件都放到这个目录中</p>
+</li>
+<li><p><strong>项目核心资源目录（Application/Library resources）：</strong><code>src/main/resources</code><br>与项目主体逻辑相关的一些配置文件或资源文件都放到这个目录中</p>
+</li>
+<li><p><strong>项目测试源码目录（Test sources）：</strong><code>src/test/java</code><br>与项目测试相关的Java源码都放到这个目录中</p>
+</li>
+<li><p><strong>项目测试资源目录（Test resources）：</strong><code>src/test/resources</code><br>与项目测试相关的配置一些配置文件或资源文件都放到这个目录中</p>
+</li>
+<li><p><strong>Java Web项目资源目录（Web application sources）：</strong><code>src/main/webapp</code><br>开发Java Web项目时, 这也是一个重要目录，里面存放了网站的配置文件<code>WEB-INF/web.xml</code>以及各种静态或动态的Web资源。  </p>
+</li>
+</ul>
+<p>这5个目录是我们开发时最常用的，其实还有其他目录相关的约定，这就不一一列举了。<br>要更全面地了解可以看<a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html" target="_blank" rel="external">官方文档里描述的标准目录结构</a>。你也可以看看本文的<a href="#u9075_u5FAAMaven_u7EA6_u5B9A_u6765_u4F7F_u7528Maven_u7BA1_u7406_u666E_u901AJava_u9879_u76EE">这一小节</a>。</p>
+<p>　　<font color="blue">如果你是新手，在使用Maven管理你的项目时，最好是遵循这种约定来创建目录，这样Maven才能自动识别并管理这些目录。</font>如果你不遵守这个约定，那么就得多付出一些代价（在<code>pom.xml</code>中针对不遵守约定而产生变动的部分进行额外配置）。不遵守约定那就要多做一些工作那是理所当然了。这就像生活中某些约定一样，比如交通灯的约定：红灯停，绿灯行，如果你不遵守这个约定，那就得付出代价了，这个代价有可能很轻，又有可能很重。</p>
+<p><br></p>
+<h3 id="pom-xml文件"><a href="#pom-xml文件" class="headerlink" title="pom.xml文件"></a><code>pom.xml</code>文件</h3><p>POM（project object model）即项目对象模型这个概念正是由<code>pom.xml</code>这个配置文件具体表现出来的。<br><code>pom.xml</code>是Maven管理项目的最最核心文件。Maven之所以能够便捷系统地对项目进行管理都是因为放置于项目目录中<code>pom.xml</code>这个配置文件。<br>Maven通过读取该配置文件，就能使它了解到一个项目中这些关键信息：</p>
+<ul>
+<li>项目的目录结构组成</li>
+<li>项目实现所需的<code>jar</code>包</li>
+</ul>
+<p><strong>所以，我们想要用Maven更好地进行项目管理，配置<code>pom.xml</code>将成为学习Maven的重点。</strong></p>
+<p>关于<code>pom.xml</code>这个文件的更多细节，可以去看<a href="http://maven.apache.org/pom.html#Build_Settings" title="文档地址" target="_blank" rel="external">Maven官方文档</a>。</p>
+<p><br></p>
+<h3 id="父POM（Super-POM）"><a href="#父POM（Super-POM）" class="headerlink" title="父POM（Super POM）"></a>父POM（<code>Super POM</code>）</h3><p>　　正如Java那样，<code>java.lang.Object</code>是所有引用类型的父类型，而Maven也沿用了这种思想，用户所有<code>POM</code>都会继承Maven中一个默认的<code>POM</code>，我们可以称它为父<code>POM</code>。更具体来说，即所有<code>pom.xml</code>文件都会继承Maven中一个默认的<code>pom.xml</code>。这个原始的<code>pom.xml</code>文件我们可以在Maven目录中的<code>lib\maven-model-builder-version.jar</code>这个文件找到，它名为<code>pom-4.0.0.xml</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- START SNIPPET: superpom --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Central Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.maven.apache.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>Central Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.maven.apache.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">updatePolicy</span>&gt;</span>never<span class="tag">&lt;/<span class="name">updatePolicy</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;project.basedir&#125;/target<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>$&#123;project.build.directory&#125;/classes<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>$&#123;project.artifactId&#125;-$&#123;project.version&#125;<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">testOutputDirectory</span>&gt;</span>$&#123;project.build.directory&#125;/test-classes<span class="tag">&lt;/<span class="name">testOutputDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">sourceDirectory</span>&gt;</span>$&#123;project.basedir&#125;/src/main/java<span class="tag">&lt;/<span class="name">sourceDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">scriptSourceDirectory</span>&gt;</span>$&#123;project.basedir&#125;/src/main/scripts<span class="tag">&lt;/<span class="name">scriptSourceDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">testSourceDirectory</span>&gt;</span>$&#123;project.basedir&#125;/src/test/java<span class="tag">&lt;/<span class="name">testSourceDirectory</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">resource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;project.basedir&#125;/src/main/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">testResources</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">testResource</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;project.basedir&#125;/src/test/resources<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">testResource</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">testResources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!-- <span class="doctag">NOTE:</span> These plugins will be removed from future versions of the super POM --&gt;</span></div><div class="line">      <span class="comment">&lt;!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2-beta-5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-dependency-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-release-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">reporting</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>$&#123;project.build.directory&#125;/site<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">reporting</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- <span class="doctag">NOTE:</span> The release profile will be removed from future versions of the super POM --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>release-profile<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>performRelease<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">inherited</span>&gt;</span>true<span class="tag">&lt;/<span class="name">inherited</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-source-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">id</span>&gt;</span>attach-sources<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                  <span class="tag">&lt;<span class="name">goal</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">              <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">inherited</span>&gt;</span>true<span class="tag">&lt;/<span class="name">inherited</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-javadoc-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">execution</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">id</span>&gt;</span>attach-javadocs<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">goals</span>&gt;</span></div><div class="line">                  <span class="tag">&lt;<span class="name">goal</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></div><div class="line">              <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">inherited</span>&gt;</span>true<span class="tag">&lt;/<span class="name">inherited</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">updateReleaseInfo</span>&gt;</span>true<span class="tag">&lt;/<span class="name">updateReleaseInfo</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- END SNIPPET: superpom --&gt;</span></div></pre></td></tr></table></figure>
+<p>这里面有2个关键点我们能够一眼就能看出并理解它们：</p>
+<ul>
+<li><strong>在<code>repositories</code>标签对中配置了下载<code>jar</code>所用到的中心仓库的地址<code>https://repo.maven.apache.org/maven2</code></strong></li>
+<li><strong>在<code>build</code>标签对中配置了之前提及到的关于项目构建的众多目录约定。</strong></li>
+</ul>
+<p>当我们给自己项目的<code>pom.xml</code>进行一样的配置，那么就会覆盖父<code>pom.xml</code>中相同的配置，这种行为也是和面向对象的继承一样的。  </p>
+<h2 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>一般我们只要到官网下载页面中下载<code>apache-maven-version-bin.zip</code>这个压缩包即可。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p><strong>首先解压<code>apache-maven-version-bin.zip</code>这个压缩包到指定目录</strong></p>
+</li>
+<li><p><strong>配置系统环境变量<code>MAVEN_HOME</code>，对应的值是maven压缩包解压后的目录路径</strong><br><strong><font color="9B30FF" style="font-size: 13px">比如：我的是解压在G盘，那么我就直接配置为<code>G:\apache-maven-3.5.0</code></font></strong></p>
+</li>
+<li><p><strong>配置系统环境变量<code>PATH</code>，正如给JDK配置一样，配置Maven也是一样的，在<code>PATH</code>后头加上值<code>;%MAVEN_HOME%\bin</code></strong></p>
+</li>
+<li><p><strong>配置堆内存：再增加一个系统环境变量<code>MAVEN_OPTS</code>，其值指定为<code>-Xms256m -Xmx512m</code></strong></p>
+</li>
+<li><p><strong>打开命令控制台，输入<code>mvn -v</code>验证Maven是否已经安装配置成功</strong></p>
+</li>
+</ul>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>Maven一是个Java编写的工具，所以说在使用它之前首先要确保你的电脑安装了<code>JRE</code>。</p>
+<h2 id="开始使用Maven"><a href="#开始使用Maven" class="headerlink" title="开始使用Maven"></a>开始使用Maven</h2><h3 id="settings-xml的起始配置"><a href="#settings-xml的起始配置" class="headerlink" title="settings.xml的起始配置"></a><code>settings.xml</code>的起始配置</h3><p>下载安装完Maven使用之前，我们都必须对<code>settings.xml</code>这个配置文件进行一些设置，Maven这个工具主体设置就是在这个配置文件进行设置的。</p>
+<p><br></p>
+<h4 id="文件位置"><a href="#文件位置" class="headerlink" title="文件位置"></a><strong><font color="#0072E3" style="font-size: 17px">文件位置</font></strong></h4><hr>
+
+<p>这个文件默认存在于2处：</p>
+<ul>
+<li><strong>Maven安装目录下的<code>config</code>目录里</strong></li>
+<li><strong><code>${user.home}/.m2</code>目录里，即系统用户目录里的一个名为<code>.m2</code>的目录</strong></li>
+</ul>
+<p><strong><font color="#9B30FF">前者是全局设置，针对所有用户，而后者是用户设置，针对的是单个系统用户</font></strong></p>
+<p>在你完全没有使用过Maven的情况下，系统用户目录里的<code>.m2</code>目录是不存在的，它在你首次使用Maven时才会被创建。</p>
+<p>这2个相同的配置文件在什么时候会被应用？</p>
+<ul>
+<li><strong>直接在命令行使用Maven命令，那么就会应用全局配置文件，即Maven安装目录下的<code>config/settings.xml</code></strong></li>
+<li><strong>常用的IDE：Eclipse、MyEclipse、IntelliJ IDEA默认情况下都使用用户目录里那个针对用户的配置文件，即<code>${user.home}/.m2/settings.xml</code></strong></li>
+</ul>
+<p><br></p>
+<h4 id="常用的配置项"><a href="#常用的配置项" class="headerlink" title="常用的配置项"></a><strong><font color="#0072E3" style="font-size: 17px">常用的配置项</font></strong></h4><hr>
+
+<ul>
+<li><p><strong>本地仓库即存储<code>jar</code>包的目录</strong><br>你在该配置文件中可以看到默认的本地仓库就在<code>${user.home}/.m2/repository</code>这个目录中。<br>通常将它配置你所想要的目录，比如我将本地仓库指定为<code>G</code>盘下的名为<code>maven_repository</code>的目录。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>G:\maven_repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>各种IDE默认情况下使用的是它内置的Maven，它的默认使用的还是<code>.m2</code>目录里默认生成的<code>setting.xml</code>，<br>而IDE在第一次打开运行时通常都会让内置的Maven下载<code>jar</code>包，<br>所以我们最好把<code>.m2</code>里也配置一下，这样不管我们使不使用IDE都好，本地仓库都是一致的。</p>
+</li>
+<li><p><strong><code>HTTP</code>代理</strong><br>这里我以<code>XX-Net</code>中的<code>GoAgent</code>为例进行配置。至于<code>XX-Net</code>这个翻墙软件这里就不说了，Github上有下载也有教程</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="tag">&lt;<span class="name">proxies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">proxy</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>xx-net-goagent<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">active</span>&gt;</span>true<span class="tag">&lt;/<span class="name">active</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">protocol</span>&gt;</span>http<span class="tag">&lt;/<span class="name">protocol</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">host</span>&gt;</span>127.0.0.1<span class="tag">&lt;/<span class="name">host</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">port</span>&gt;</span>8087<span class="tag">&lt;/<span class="name">port</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">proxy</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">proxies</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>光配置这个，还是不够的，我们配置的是<code>http</code>代理，但在下载<code>jar</code>包或maven插件时所访问的是<code>https</code>地址，这就会导致有<code>SSL</code>认证问题。<br>我在网上查询了这个问题，最后<a href="http://stackoverflow.com/questions/25911623/problems-using-maven-and-ssl-behind-proxy" title="答案地址" target="_blank" rel="external">找到了答案</a>所以，我们除了配置<code>proxy</code>外，还必须进行以下这些额外的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>securecentral<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>central<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>securecentral<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>中心仓库都是部署在国外的，所以不同的地区或网络连接它的速度都不一样，运气不好就是十分慢了，连<code>jar</code>包都下载不到。<br>所以，如果你看见maven的下载<code>jar</code>包的速度十分缓慢，那么你就可以配置<code>HTTP</code>代理以提高对中央仓库的访问速度。</p>
+</li>
+<li><p><strong>镜像</strong><br>如果你觉得使用代理并给Maven配置代理十分麻烦，那不妨试试配置镜像。</p>
+<p><strong><font color="red">镜像</font>（mirror）</strong>其实指的是一个仓库，如果仓库A可以提供仓库Y存储的所有内容，那么就可以称X是Y的一个镜像。</p>
+<p>Maven官网里给出了配置镜像的几个理由，其中一个：</p>
+<blockquote>
+<p><strong><font color="black">There is a synchronized mirror on the internet that is geographically closer and faster</font></strong><br>  直白来说就是一个对应于某远程仓库的镜像仓库, 它在地理位置上更靠近你的地区以便于更便捷地访问</p>
+</blockquote>
+<p>比如：国内有阿里云的中央仓库，它就是官方中央仓库<code>repo1.maven.org/maven2</code>的镜像仓库。<br>配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>ali-maven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中，<code>id</code>、<code>name</code>都可以随意，但最好是保持唯一性，<code>url</code>指的就是该镜像仓库的地址<br><strong><code>mirrorOf</code>配置为中央仓库的<code>id</code>值<code>central</code>表示当前该镜像仓库是对应于中央仓库的，任何对中央仓库的请求都会转至该镜像仓库</strong></p>
+</li>
+</ul>
+<h3 id="遵循Maven约定来使用Maven管理普通Java项目"><a href="#遵循Maven约定来使用Maven管理普通Java项目" class="headerlink" title="遵循Maven约定来使用Maven管理普通Java项目"></a>遵循Maven约定来使用Maven管理普通Java项目</h3><pre><code>| HelloMaven
+--| src
+----| main
+------| java          项目主体源码
+------| resources     与项目主体相关的配置文件
+----| test
+------| java          测试源码
+------| resources     与测试相关的配置文件
+--| target            这个是项目编译输出目录, Maven会自动生成它，无需手工创建
+--| pom.xml           项目对象模型配置文件
+</code></pre><ul>
+<li><p><strong>首先按照Maven的目录结构约定来创建Java项目目录</strong></p>
+<p><code>HelloMaven</code>里面有<code>src</code>，<code>src</code>里有<code>main</code>和<code>test</code>，<code>main</code>和<code>test</code>2个里面又有<code>java</code>和<code>resources</code>，刚开始我们创建这些文件夹即可。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>在项目文件夹<code>HelloMaven</code>中创建一个名为<code>pom.xml</code>的文件</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>  </div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.makwan.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hello-maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>HelloMaven<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在<code>src/main/java/com/makwan/maven</code>目录下新建一个<code>HelloMaven.java</code></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.makwan.maven;  </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloMaven</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Hello maven!"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在<code>src/test/java/com/makwan/maven</code>目录下新建一个<code>HelloMavenTest.java</code></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.makwan.maven;  </div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.Test;  </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloMavenTest</span> </span>&#123;</div><div class="line">	<span class="meta">@Test</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSayHello</span><span class="params">()</span> </span>&#123;</div><div class="line">		HelloMaven hw = <span class="keyword">new</span> HelloMaven();</div><div class="line">		hw.sayHello();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用命令行，进入到Java项目<code>HelloMaven</code>的根目录，那你就可以执行以下这些Maven命令</strong></p>
+<ul>
+<li><code>mvn clean</code> 清除输出目录，即把Maven把<code>target</code>输出目录删除</li>
+<li><code>mvn compile</code> 编译整个项目，并将编译后的内容置于输出目录<code>target</code>中</li>
+<li><code>mvn test</code> 执行项目里的所有测试</li>
+<li><code>mvn package</code> 将项目打成<code>jar</code>包并置于输出目录<code>target</code>中</li>
+<li><code>mvn install</code> 将项目打成<code>jar</code>包并将其放置到个人仓库中</li>
+</ul>
+<p>这些就是最常用的Maven命令，同时组合命令也是可以的，比如运行<code>mvn clean compile</code>，这样Maven就会先把<code>target</code>清除掉再进行编译</p>
+</li>
+</ul>
+<h3 id="pom-xml详解"><a href="#pom-xml详解" class="headerlink" title="pom.xml详解"></a><code>pom.xml</code>详解</h3><p>　　前面只是弄了一个极简的项目并让Maven来管理它，让它跑起来，但仅仅会用会复制粘贴是没什么用的，理解它内在的一些概念和原理才是最重要的。其中，充分理解<code>pom.xml</code>中某些元素才能让我们日后对Maven运用自如。</p>
+<p><br></p>
+<h4 id="pom-xml总体概览"><a href="#pom-xml总体概览" class="headerlink" title="pom.xml总体概览"></a><strong><font color="#0072E3" style="font-size: 17px"><code>pom.xml</code>总体概览</font></strong></h4><hr>
+
+<p>一个<code>pom.xml</code>管理一个项目，一个<code>pom.xml</code>的内容大概就是以下这些：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0</span></span></div><div class="line"><span class="tag"><span class="string">                             http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>    </div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- The Basics --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>...<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>...<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span>...<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span>...<span class="tag">&lt;/<span class="name">parent</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span>...<span class="tag">&lt;/<span class="name">modules</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span>...<span class="tag">&lt;/<span class="name">properties</span>&gt;</span>    </div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- Build Settings --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span>...<span class="tag">&lt;/<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">reporting</span>&gt;</span>...<span class="tag">&lt;/<span class="name">reporting</span>&gt;</span>    </div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- More Project Information --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>...<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>...<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>...<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">inceptionYear</span>&gt;</span>...<span class="tag">&lt;/<span class="name">inceptionYear</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">licenses</span>&gt;</span>...<span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">organization</span>&gt;</span>...<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">developers</span>&gt;</span>...<span class="tag">&lt;/<span class="name">developers</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">contributors</span>&gt;</span>...<span class="tag">&lt;/<span class="name">contributors</span>&gt;</span>    </div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- Environment Settings --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">issueManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">issueManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ciManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">ciManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mailingLists</span>&gt;</span>...<span class="tag">&lt;/<span class="name">mailingLists</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">scm</span>&gt;</span>...<span class="tag">&lt;/<span class="name">scm</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">prerequisites</span>&gt;</span>...<span class="tag">&lt;/<span class="name">prerequisites</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span>...<span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span>...<span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span>...<span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">profiles</span>&gt;</span>...<span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>其中，<code>The Basics</code>、<code>Build Settings</code>这两块是我们需要着重学习的，其余部分的重要性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></div><div class="line">      </div><div class="line">    <span class="comment">&lt;!-- 项目对象模型版本, 一直是4.0.0多年没变过 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>      </div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- groupId、artifactId、version 3个元素组成该项目的Maven坐标 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.makwan.project<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>project-calculate<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="什么是构件？什么是依赖？"><a href="#什么是构件？什么是依赖？" class="headerlink" title="什么是构件？什么是依赖？"></a><strong><font color="#0072E3" style="font-size: 17px">什么是构件？什么是依赖？</font></strong></h4><hr>
+
+<p><strong><font color="red">构件</font>（artifact）</strong><br>　　如果去查词典，可发现这一词在英文直译中就是<strong>“人工制品”</strong>，<strong>“手工艺品”</strong>，看着完全跟我们软件开发这块毫无关系，但再结合软件编程上下文进行更加深化地理解，其实在开发过程中通过程序员所制造出来的产物都可以将它理解为<strong><font color="#9B30FF">“构件”</font>（artifact）</strong>，如果你通过Google查询，也会得到含以上类似的解释：</p>
+<blockquote>
+<p>维基百科（Wikipedia）：An artifact is one of many kinds of tangible by-products produced during the development of software.<br>  翻译过来讲就是构件是在软件开发期间所产生的多种有形产物之一。</p>
+</blockquote>
+<p>更具体地说，源代码、文档、可执行文件、测试用例等等都可以看作是构件；<br>而在Maven中或平日一般的Java开发中，构件一般指的是模块<strong><font color="#FA6D0F" style="font-size: 13px">（比如在<code>Spring</code>中，<code>spring-context</code>、<code>spring-core</code>、<code>spring-aop</code>等等）</font></strong></p>
+<p><strong><font color="red">依赖</font>（dependency）</strong></p>
+<p>在Maven中依赖指的是<code>jar</code>包。</p>
+<p><br></p>
+<h4 id="什么是Maven坐标？"><a href="#什么是Maven坐标？" class="headerlink" title="什么是Maven坐标？"></a><strong><font color="#0072E3" style="font-size: 17px">什么是Maven坐标？</font></strong></h4><hr>
+
+<ul>
+<li><p><strong><font color="red">Maven坐标</font>（coordinate）概念</strong><br>坐标这一概念在几何中我们是最熟悉不过了，任何一个坐标都能唯一标识平面或空间内的一个点<br><strong><font color="#9B30FF">类似的在Maven中，任何一个坐标都能唯一标识Maven仓库中的一个依赖</font></strong>  </p>
+<p>想想以前，如果你要找一个<code>jar</code>包，到各种网站搜索，并且还要注意版本冲突问题，是十分麻烦的。但现在有了Maven所定义的坐标这一概念，使得世界上任何一个依赖都可以使用Maven坐标唯一标识，这样我们就能通过Maven坐标来定位查询下载并管理大量的依赖，这使得开发人员能够从这些必要且琐碎的工作中解脱出来。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Maven坐标组成</strong><br>在几何中，坐标由<code>x轴</code>、<code>y轴</code>、<code>z轴</code>等由人定义的数轴上的点组成，在Maven中也不例外，Maven坐标也是由几个部分组成，它才能真真正正地对所有依赖进行唯一标识。<strong>Maven坐标由3个元素所组成，只要明确这3个元素是什么，那就能明确坐标标识哪个依赖，更简短直白来说就是Maven坐标是三位一体的：<code>groupId</code>、<code>artifactId</code>、<code>version</code></strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>4.5.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>在我们开始理解这3个元素之前，我们必须带着这种思维：<font color="red">一个实际项目是由一个或多个模块组成，模块可以说是一个实际项目中的子项目</font>。</strong></p>
+<ul>
+<li><p><strong><code>groupId</code>：<font color="#9B30FF">当前模块隶属的项目</font></strong><br>一般来说，给<strong><code>groupId</code>所指定的值都是Java中的包名，即域名反写。所以这个值的一般格式是这样的<code>域名后缀.组织名或公司名.实际项目名</code></strong>，而域名后缀以及组织名或公司名都不是必须的。<strong><font style="font-size: 13px">比如：带组织名或公司名<code>org.apache.commons</code>、不带组织名或公司名<code>org.springframework</code>、只有实际项目名<code>junit</code></font></strong>  </p>
+<p>具体例子：<br>如果有这么一个模块<code>a</code>，它的<code>groupId</code>是<code>org.xxx.yyyy</code>，那么我们就可以说模块<code>a</code>是隶属于<code>xxx</code>非盈利组织下的一个实际项目<code>yyyy</code>，模块<code>a</code>实际会被下载并存放在本地仓库的<code>org/xxx/yyyy</code>目录内。</p>
+</li>
+<li><p><strong><code>artifactId</code>：<font color="#9B30FF">当前实际项目中的模块</font></strong><br><strong>我们给<code>artifactId</code>所指定的值一般都遵循这2种形式：<code>实际项目名-模块名</code>、<code>实际项目名简写-模块名</code></strong>，当然这也只是一种约定，并不是硬性规定，但我们最好还是遵守这种约定，这是因为在默认情况下Maven生成的构件是直接用<code>artifactId</code>作为前缀并后加版本号进行命名的，如果在这前面加上实际项目名，则能够更好地用命名区分，所以在此处遵守约定是有它的道理以及好处的。<br><strong><font style="font-size: 13px">比如：在实际项目<code>org.springframework</code>内有这些模块：<code>spring-context</code>、<code>spring-core</code>、<code>spring-aop</code>等等。</font></strong></p>
+</li>
+<li><p><strong><code>version</code>：<font color="#9B30FF">当前模块的版本号</font></strong><br>这个就更容易理解了，前面也说过Maven在生成构件的时候会在后面加版本号，指的就是这个，每个模块都有属于自己的版本号。版本号形式如下：<code>1.0</code>、<code>1.01</code>、<code>4.53</code>等等。</p>
+</li>
+</ul>
+<p>以上3个元素是最重要也是必须定义的。有了这3个元素就能唯一标识任意一个依赖了，不过还有2个不太重要的元素也是Maven坐标组成的部分。</p>
+<ul>
+<li><p><strong><code>packaging</code>：<font color="#9B30FF">当前模块的打包方式</font></strong><br>我们可以给它指定2种值：<code>jar</code>和<code>war</code>。默认情况下，该元素的值为<code>jar</code>，所以这个元素定义是可选的。</p>
+</li>
+<li><p><strong><code>classifier</code>：<font color="#9B30FF">当前模块生成构件时所附带的一些附属构件</font></strong><br>对一个模块生成构件时可以同时输出<code>javadoc</code>、<code>sources</code>等附属构件，即与该模块相关的Java文档以及源代码，它们就是附属构件。但是，这个元素并不能直接定义，因为这些附属构件不是由项目直接默认生成的，而是由附加的插件生成的。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Maven/" rel="tag"><i class="fa fa-tag"></i> Maven</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/JavaSE-study-path-problem-summarization/" rel="next" title="Java基础概念与路径问题总结">
+                <i class="fa fa-chevron-left"></i> Java基础概念与路径问题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/26/Tomcat-deploy-web-app/" rel="prev" title="Tomcat部署Web应用的方式总结">
+                Tomcat部署Web应用的方式总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven官网"><span class="nav-number">1.</span> <span class="nav-text">Maven官网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven核心概念"><span class="nav-number">2.</span> <span class="nav-text">Maven核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven是什么？它能帮我们做什么？"><span class="nav-number">2.1.</span> <span class="nav-text">Maven是什么？它能帮我们做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仓库"><span class="nav-number">2.2.</span> <span class="nav-text">仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven遵循的原则"><span class="nav-number">2.3.</span> <span class="nav-text">Maven遵循的原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pom-xml文件"><span class="nav-number">2.4.</span> <span class="nav-text">pom.xml文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父POM（Super-POM）"><span class="nav-number">2.5.</span> <span class="nav-text">父POM（Super POM）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载和安装"><span class="nav-number">3.</span> <span class="nav-text">下载和安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载"><span class="nav-number">3.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">3.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">3.3.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始使用Maven"><span class="nav-number">4.</span> <span class="nav-text">开始使用Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#settings-xml的起始配置"><span class="nav-number">4.1.</span> <span class="nav-text">settings.xml的起始配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件位置"><span class="nav-number">4.1.1.</span> <span class="nav-text">文件位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的配置项"><span class="nav-number">4.1.2.</span> <span class="nav-text">常用的配置项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遵循Maven约定来使用Maven管理普通Java项目"><span class="nav-number">4.2.</span> <span class="nav-text">遵循Maven约定来使用Maven管理普通Java项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pom-xml详解"><span class="nav-number">4.3.</span> <span class="nav-text">pom.xml详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pom-xml总体概览"><span class="nav-number">4.3.1.</span> <span class="nav-text">pom.xml总体概览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是构件？什么是依赖？"><span class="nav-number">4.3.2.</span> <span class="nav-text">什么是构件？什么是依赖？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Maven坐标？"><span class="nav-number">4.3.3.</span> <span class="nav-text">什么是Maven坐标？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

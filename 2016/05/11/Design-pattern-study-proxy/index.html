@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="概述　　代理，我们在各式各样的技术博客文章、书籍、框架中都见到过。这说明代理模式的运用是十分频繁。　　从字面意思上去理解十分简单：代表某事某物进行某种动作、行为。而这个词在不同的领域中，描述不同的事物。生活中与代理相关的事物是挺常见的，比如：代购商，房产中介，XXX代言人，VPN，网游代练等等。 我查阅了很多图书以及网上各种资料，它们都是这样来描述代理模式的。 在《设计模式 - 可复用面向对象软件">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习笔记 - 代理模式（Proxy）">
+<meta property="og:url" content="http://extremegtr.github.io/2016/05/11/Design-pattern-study-proxy/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="概述　　代理，我们在各式各样的技术博客文章、书籍、框架中都见到过。这说明代理模式的运用是十分频繁。　　从字面意思上去理解十分简单：代表某事某物进行某种动作、行为。而这个词在不同的领域中，描述不同的事物。生活中与代理相关的事物是挺常见的，比如：代购商，房产中介，XXX代言人，VPN，网游代练等等。 我查阅了很多图书以及网上各种资料，它们都是这样来描述代理模式的。 在《设计模式 - 可复用面向对象软件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/proxy_pattern_uml.png">
+<meta property="og:updated_time" content="2017-09-17T06:48:23.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式学习笔记 - 代理模式（Proxy）">
+<meta name="twitter:description" content="概述　　代理，我们在各式各样的技术博客文章、书籍、框架中都见到过。这说明代理模式的运用是十分频繁。　　从字面意思上去理解十分简单：代表某事某物进行某种动作、行为。而这个词在不同的领域中，描述不同的事物。生活中与代理相关的事物是挺常见的，比如：代购商，房产中介，XXX代言人，VPN，网游代练等等。 我查阅了很多图书以及网上各种资料，它们都是这样来描述代理模式的。 在《设计模式 - 可复用面向对象软件">
+<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImg/proxy_pattern_uml.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2016/05/11/Design-pattern-study-proxy/"/>
+
+
+
+
+
+  <title>设计模式学习笔记 - 代理模式（Proxy） | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2016/05/11/Design-pattern-study-proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式学习笔记 - 代理模式（Proxy）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-11T23:52:36+08:00">
+                2016-05-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:48:23+08:00">
+                2017-09-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/05/11/Design-pattern-study-proxy/" class="leancloud_visitors" data-flag-title="设计模式学习笔记 - 代理模式（Proxy）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,782
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>　　代理，我们在各式各样的技术博客文章、书籍、框架中都见到过。这说明代理模式的运用是十分频繁。<br>　　从字面意思上去理解十分简单：代表某事某物进行某种动作、行为。而这个词在不同的领域中，描述不同的事物。生活中与代理相关的事物是挺常见的，比如：代购商，房产中介，XXX代言人，VPN，网游代练等等。</p>
+<p>我查阅了很多图书以及网上各种资料，它们都是这样来描述代理模式的。</p>
+<p>在《设计模式 - 可复用面向对象软件的基础》中是这样描述代理模式的意图：</p>
+<blockquote>
+<p><strong><font color="black">为其他对象提供一种<font color="red">代理</font>以<font color="red">控制</font>对这个对象的<font color="red">访问</font>。</font></strong></p>
+</blockquote>
+<p>在《Thinking In Java》中，是这样描述代理的：</p>
+<blockquote>
+<p><strong><font color="black">代理是继承与组合之间的中庸之道，<br>  因为我们将一个成员对象置于所要构造的类中（就像组合），但与此同时我们在新类中暴露了该成员对象的所有方法（就像继承）。<br>  我们使用<font color="red">代理</font>时可以拥有<font color="red">更多的控制力</font>，因为我们可以选择只提供在成员对象中的方法的某个子集。</font></strong></p>
+</blockquote>
+<p>而网上有的资料是这样描述的：</p>
+<blockquote>
+<p><strong><font color="black">当无法直接访问某个对象或访问某个对象存在困难时可以通过一个<font color="red">代理</font>对象来<font color="red">间接访问</font>。</font></strong></p>
+</blockquote>
+<p>我们可以发现所有对代理模式的描述都有一个比较明显的共通点：<strong><font color="red" style="font-size: 20px">控制访问</font></strong>。这个是代理模式的核心理念。</p>
+<h2 id="应用形式"><a href="#应用形式" class="headerlink" title="应用形式"></a>应用形式</h2><p>根据不同的需求，代理模式又可以分为多种类型。</p>
+<ul>
+<li><p><strong>远程代理（Remote Proxy）</strong>：为一个位于不同的地址空间的对象提供一个本地的代理对象，这个不同的地址空间可以是在同一台主机中，也可以在另一台主机中，远程代理又被称为“大使”（Ambassador）。</p>
+</li>
+<li><p><strong>虚代理（Virtual Proxy）</strong>：如果需要创建一个资源消耗较大的对象，先创建一个消耗相对较小的对象来表示，真实对象只在需要时才会被真正创建。</p>
+</li>
+<li><p><strong>保护代理（Protect Proxy）</strong>：控制对原始对象的访问。保护代理用于对象应该有不同的访问权限的时候。</p>
+</li>
+<li><p><strong>智能引用代理（Smart Reference Proxy）</strong>: 取代了简单的指针，它在访问对象时执行一些附加操作。<br>　　1.对指向实际对象的引用计数，这样当该对象没有引用时，可以自动释放它。<br>　　2.当第一次引用一个持久对象时，将它装入内存。<br>　　3.在访问一个实际对象前，检查是否已经锁定了它，以确保其他对象不能改变它。</p>
+</li>
+</ul>
+<h2 id="代理模式的结构、组成与实现"><a href="#代理模式的结构、组成与实现" class="headerlink" title="代理模式的结构、组成与实现"></a>代理模式的结构、组成与实现</h2><p><strong>结构</strong></p>
+<p>代理模式相较其他模式之下，它的结构显得更加简单。下面是代理模式抽象描述下的UML图。</p>
+<p><img src="http://extremegtr.github.io/assets/blogImg/proxy_pattern_uml.png" alt="代理模式结构"></p>
+<p><strong>组成</strong></p>
+<p>对，结构正如这个图所示这么简单，3个类1个接口，除了客户端类，构成代理模式正是以下这3个元素：</p>
+<ul>
+<li><p><strong><font color="red">Subject（抽象主题）</font>：它声明了真实主题和代理的共同接口，这样依赖在任何使用真实主题的敌方都可以使用对应的代理，客户端通常是针对抽象主题进行编程。</strong></p>
+</li>
+<li><p><strong><font color="red">Proxy（代理）</font>：它包含了对真实主题的引用，从而可以在任何时候操作真实主题对象；通常，在代理中，客户端在调用所引用的真实主题操作之前或之后还附加执行一些内务处理（Housekeeping task）。</strong></p>
+</li>
+<li><p><strong><font color="red">Real Subject（真实主题）</font>：它定义了代理所代表的真实对象，在真实主题中实现了真实的业务操作，客户端可以通过代理间接调用真实主题中定义的操作。</strong></p>
+</li>
+</ul>
+<p><strong>实现</strong></p>
+<p>抽象主题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">request</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>真实主题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"---------真实主题中业务逻辑操作---------"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> RealSubject realSubject = <span class="keyword">new</span> RealSubject();</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</div><div class="line">		preprocess();</div><div class="line">		realSubject.request();</div><div class="line">		postprocess();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">preprocess</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"*********前置附加操作*********"</span>);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">postprocess</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"*********后置附加操作*********"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>客户端<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Subject proxy = <span class="keyword">new</span> Proxy();</div><div class="line">		proxy.request();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Java动态代理"><a href="#Java动态代理" class="headerlink" title="Java动态代理"></a>Java动态代理</h2><p>既然我这里要做的是有关代理模式的笔记，那现在顺便就把Java中的动态代理要点给一块记下来了。</p>
+<p>上面所演示的是最基本的静态代理，很简单；当然，代理模式的其他应用形式则复杂得多，不过不用特殊技术实现的话，它们还是属于静态代理。而在Java中，JDK提供了动态代理的实现方案。那么问题来了：<strong>动态代理比静态代理有什么优势呢？</strong></p>
+<p>这里还是用一个实际例子进行说明：<strong><font color="blue">一个业务类，在每个业务方法执行之后打印其所消耗的时间。</font></strong></p>
+<h3 id="起始阶段"><a href="#起始阶段" class="headerlink" title="起始阶段"></a>起始阶段</h3><p>首先我们来看业务接口，业务接口<code>Service</code>中有两个业务方法<code>doSomethingA</code>和<code>doSomethingB</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Service</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span></span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再来的就是实现业务接口的业务类<code>ServiceImpl</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceImpl</span> <span class="keyword">implements</span> <span class="title">Service</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"ServiceImpl.doSomethingA"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(<span class="number">300</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"ServiceImpl.doSomethingB"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(<span class="number">500</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="不使用代理"><a href="#不使用代理" class="headerlink" title="不使用代理"></a>不使用代理</h3><p>在没有接触到代理模式之前，我们可以这样做：在每个业务方法中加入这些统计时间的代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceImpl</span> <span class="keyword">implements</span> <span class="title">Service</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"ServiceImpl.doSomethingA"</span>);</div><div class="line">	</div><div class="line">		<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"doSomethingA - duration: "</span> + (end - start));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"ServiceImpl.doSomethingB"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"doSomethingB - duration: "</span> + (end - start));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做确实是可以的，但是随之而来的就有2个问题：</p>
+<ul>
+<li>统计时间这些与业务毫不相关的代码都置于业务方法中，业务方法的代码逻辑会显得混乱起来。</li>
+<li>如果这个业务类的方法越来越多，这样冗余代码会越来越多。</li>
+</ul>
+<h3 id="使用静态代理"><a href="#使用静态代理" class="headerlink" title="使用静态代理"></a>使用静态代理</h3><p>我们肯定要摒弃上面那种解决方案，再来就是运用代理模式来实现这个需求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceProxy</span> <span class="keyword">implements</span> <span class="title">Service</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> Service service = <span class="keyword">new</span> ServiceImpl();</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">		</div><div class="line">		service.doSomethingA();</div><div class="line">		</div><div class="line">		<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"duration: "</span> + (end - start));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">		</div><div class="line">		service.doSomethingB();</div><div class="line">		</div><div class="line">		<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">		System.out.println(<span class="string">"duration: "</span> + (end - start));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码也十分简单，这里就将统计时间的代码放到了静态代理<code>ServiceProxy</code>中，而<code>ServiceImpl</code>类还是跟起始阶段一样。静态代理把业务逻辑代码与其他额外操作的代码分离了，这解决了之前代码逻辑混乱的问题，而代码冗余过多的问题还是没能解决的。</p>
+<h3 id="使用JDK提供的动态代理"><a href="#使用JDK提供的动态代理" class="headerlink" title="使用JDK提供的动态代理"></a>使用JDK提供的动态代理</h3><p>JDK所提供的动态代理是由Java的反射技术所支撑起来的，所以这种方式是动态的，因为决定一个代理的许多因素都是在运行时指定的。</p>
+<p>在《Thinking In Java》中是这样描述动态代理的：<br><strong>Java的动态代理比代理的思想更向前迈进一步，因为它可以动态地创建代理并动态地处理对所代理方法的调用。</strong></p>
+<p>因为是JDK提供的这一特性，那肯定少不了动态代理相关的API了：<code>java.lang.reflect.Proxy</code>类和<code>java.lang.reflect.InvocationHandler</code>接口。</p>
+<p><code>Proxy</code>类中最主要的是运用<code>newProxyInstance</code>方法创建代理对象。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader loader, Class&lt;?&gt;[] interfaces, InvocationHandler h)</span></span></div></pre></td></tr></table></figure></p>
+<p>调用这个方法创建代理对象之前需要指定3个参数：</p>
+<ul>
+<li><code>loader</code>：加载代理类字节码到JVM中所用的类加载器。</li>
+<li><code>interfaces</code>：代理类所要实现的所有接口。</li>
+<li><code>h</code>：动态代理处理方法调用时所重定向的调用处理器。</li>
+</ul>
+<p>而实现<code>InvocationHandler</code>接口从而自定义调用处理器时最主要就是实现其中的<code>invoke</code>方法，它作为回调方法，代理对象会调用它。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable</span>;</div></pre></td></tr></table></figure></p>
+<p>这个方法同样是有3个参数：</p>
+<ul>
+<li><code>proxy</code>：正在调用该方法的代理对象。</li>
+<li><code>method</code>：相应于在代理对象上调用的接口方法。</li>
+<li><code>args</code>：调用代理对象上的接口方法时所用到的参数。</li>
+</ul>
+<p>动态代理的工作原理：<strong><font color="red">在动态代理所做的所有调用都被重定向到单一的调用处理器上。</font></strong><br>这一点十分重要，根据这个特性，就能解决代理中冗余代码过多的问题。而在实现调用处理器时，通常都会向其构造器传递一个“实际”对象的引用，从而使得调用处理器在执行其中介任务时，可以将请求转发，说通俗一点就是调用真正的业务逻辑方法。</p>
+<p>这里还是继续使用上面那个例子的代码，最主要的就是编写调用处理器类以及修改一下客户端。</p>
+<p>调用处理器，在<code>invoke</code>方法里，在调用委托对象目标方法的之前和之后都执行了与计时相关的代码，最后返回执行委托对象目标方法的返回值。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintDurationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> Object delegator;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">PrintDurationHandler</span><span class="params">(Object delegator)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.delegator = delegator;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></div><div class="line"><span class="function">			<span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">		</div><div class="line">		<span class="comment">// 调用目标方法</span></div><div class="line">		Object result = method.invoke(delegator, args);</div><div class="line">		</div><div class="line">		<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">		System.out.println(method.getName() + <span class="string">" - duration: "</span> + (end - start));</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Service proxy = (Service) Proxy.newProxyInstance(</div><div class="line">			Service.class.getClassLoader(),</div><div class="line">			<span class="keyword">new</span> Class&lt;?&gt;[] &#123;Service.class&#125;,</div><div class="line">			<span class="keyword">new</span> PrintDurationHandler(<span class="keyword">new</span> ServiceImpl())</div><div class="line">		);</div><div class="line">		</div><div class="line">		proxy.doSomethingA();</div><div class="line">		proxy.doSomethingB();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，之前使用静态代理那种解决方案所出现的代码冗余过多的问题就得以解决了，因为客户端调用任何代理对象中的方法，它们都会首先被转发到<code>PrintDurationHandler</code>类中的<code>invoke</code>方法。所以，现在增加再多的业务方法，我们只需关心业务方法的代码，而无需再为每个增多的业务方法编写计时代码。</p>
+<h3 id="使用CGLib动态代理"><a href="#使用CGLib动态代理" class="headerlink" title="使用CGLib动态代理"></a>使用CGLib动态代理</h3><p>我们也非常清楚地看到，若想使用JDK动态代理，我们所提供的委托对象必须实现某些接口。这是使用JDK动态代理的一个限制条件。</p>
+<p>如果我们所提供的委托对象没有实现任何接口呢？幸好，还有另一种解决方案，那就是使用<strong>CGLib动态代理</strong>。</p>
+<p>CGLib全称Code Generation Library，它是一个强大的，高性能，高质量的Code生成类库。它的底层主要是由ASM框架实现的，还有的就是，很多博客技术文章都说CGLib动态代理的性能要比JDK动态代理的要高，关于这个我就不打破沙锅问到底，现在我主要还是先把CGLib动态代理这种技术用上再说。</p>
+<p>既然要使用CGlib动态代理这种由第三方开发的工具，那我们首先就要导入jar包：</p>
+<p>1.使用Maven导入，只需配置该依赖即可。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.如果是纯手工导入jar包，则必须导入以下几个包。</p>
+<p><code>cglib-3.2.2.jar</code>CGlib核心功能，<code>asm-5.0.4</code>CGLib底层实现。</p>
+<p>那么接下来，我们肯定要了解使用哪些API才能实现我们所需。类比、模仿在学习新知识时非常重要；类似实现JDK动态代理，<br>在实现CGLib动态代理时最主要用到的两个API：<code>net.sf.cglib.proxy.Enhancer</code>类和<code>net.sf.cglib.proxy.MethodInterceptor</code>接口。</p>
+<p><code>Enhancer</code>类相当于之前<code>Proxy</code>类，它也提供了创建代理对象的方法<code>create</code>。同样的，<code>MethodInterceptor</code>接口的作用和<code>InvocationHandler</code>接口差不多。</p>
+<p><code>Enhancer</code>类中用于给用户创建代理对象的方法<code>create</code>有4种重载形式。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Generate a new class if necessary and uses the specified</span></div><div class="line"><span class="comment"> * callbacks (if any) to create a new object instance.</span></div><div class="line"><span class="comment"> * Uses the no-arg constructor of the superclass.</span></div><div class="line"><span class="comment"> * <span class="doctag">@return</span> a new instance</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">create</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Helper method to create an intercepted object.</span></div><div class="line"><span class="comment"> * For finer control over the generated instance, use a new instance of &lt;code&gt;Enhancer&lt;/code&gt;</span></div><div class="line"><span class="comment"> * instead of this static method.</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> type class to extend or interface to implement</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> callback the callback to use for all methods</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">create</span><span class="params">(Class type, Callback callback)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">/**</span></span></div><div class="line"><span class="function"><span class="comment"> * Helper method to create an intercepted object.</span></span></div><div class="line"><span class="function"><span class="comment"> * For finer control over the generated instance, use a new instance of &lt;code&gt;Enhancer&lt;/code&gt;</span></span></div><div class="line"><span class="function"><span class="comment"> * instead of this static method.</span></span></div><div class="line"><span class="function"><span class="comment"> * @param type class to extend or interface to implement</span></span></div><div class="line"><span class="function"><span class="comment"> * @param interfaces array of interfaces to implement, or null</span></span></div><div class="line"><span class="function"><span class="comment"> * @param callback the callback to use for all methods</span></span></div><div class="line"><span class="function"><span class="comment"> */</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">create</span><span class="params">(Class superclass, Class interfaces[], Callback callback)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">/**</span></span></div><div class="line"><span class="function"><span class="comment"> * Helper method to create an intercepted object.</span></span></div><div class="line"><span class="function"><span class="comment"> * For finer control over the generated instance, use a new instance of &lt;code&gt;Enhancer&lt;/code&gt;</span></span></div><div class="line"><span class="function"><span class="comment"> * instead of this static method.</span></span></div><div class="line"><span class="function"><span class="comment"> * @param type class to extend or interface to implement</span></span></div><div class="line"><span class="function"><span class="comment"> * @param interfaces array of interfaces to implement, or null</span></span></div><div class="line"><span class="function"><span class="comment"> * @param filter the callback filter to use when generating a new class</span></span></div><div class="line"><span class="function"><span class="comment"> * @param callbacks callback implementations to use for the enhanced object</span></span></div><div class="line"><span class="function"><span class="comment"> */</span></span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">create</span><span class="params">(Class superclass, Class[] interfaces, CallbackFilter filter, Callback[] callbacks)</span></span></div></pre></td></tr></table></figure></p>
+<p>而<code>MethodInterceptor</code>接口中只有一个方法<code>intercept</code>，直接翻译过来我们可以称它为拦截方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * General-purpose &#123;<span class="doctag">@link</span> Enhancer&#125; callback which provides for "around advice".</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Juozas Baliuka &lt;a href="mailto:baliuka@mwm.lt"&gt;baliuka@mwm.lt&lt;/a&gt;</span></div><div class="line"><span class="comment"> * <span class="doctag">@version</span> $Id: MethodInterceptor.java,v 1.8 2004/06/24 21:15:20 herbyderby Exp $</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodInterceptor</span></span></div><div class="line"><span class="class"><span class="keyword">extends</span> <span class="title">Callback</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * All generated proxied methods call this method instead of the original method.</span></div><div class="line"><span class="comment">     * The original method may either be invoked by normal reflection using the Method object,</span></div><div class="line"><span class="comment">     * or by using the MethodProxy (faster).</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> obj "this", the enhanced object</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> method intercepted Method</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> args argument array; primitive types are wrapped</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> proxy used to invoke super (non-intercepted method); may be called</span></div><div class="line"><span class="comment">     * as many times as needed</span></div><div class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable any exception may be thrown; if so, super method will not be invoked</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> any value compatible with the signature of the proxied method. Method returning void will ignore this value.</span></div><div class="line"><span class="comment">     * <span class="doctag">@see</span> MethodProxy</span></div><div class="line"><span class="comment">     */</span>    </div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object obj, java.lang.reflect.Method method, Object[] args,</span></span></div><div class="line"><span class="function"><span class="params">                               MethodProxy proxy)</span> <span class="keyword">throws</span> Throwable</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>API了解得差不多了，想必现在你也可以根据它们写出相应的代码来了吧，代码和之前JDK动态代理差不多。</p>
+<p>JDK动态代理中最主要的是实现调用处理器，而在CGLib动态代理中要实现的则是方法拦截器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintDurationInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object obj, Method method, Object[] args,</span></span></div><div class="line"><span class="function"><span class="params">			MethodProxy proxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="keyword">long</span> start = System.currentTimeMillis();</div><div class="line">		</div><div class="line">		<span class="comment">// 调用目标方法</span></div><div class="line">		Object result = proxy.invokeSuper(obj, args);</div><div class="line">		</div><div class="line">		<span class="keyword">long</span> end = System.currentTimeMillis();</div><div class="line">		System.out.println(method.getName() + <span class="string">" - duration: "</span> + (end - start));</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而在拦截方法里，同样是调用目标方法，然后在之前和之后都执行了计时代码。<br>而其中所有区别的是，我们无须再通过构造函数传入委托对象（目标对象）。</p>
+<p>在创建代理对象之前，我们先来创建一个没有实现任何接口的业务类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingA</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"MyService.doSomethingA"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(<span class="number">300</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingB</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"MyService.doSomethingB"</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Thread.sleep(<span class="number">500</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后就是编写客户端，通过<code>Enhancer</code>类的<code>create</code>方法创建业务类<code>MyService</code>的代理对象并调用业务方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Enhancer enhancer = <span class="keyword">new</span> Enhancer();</div><div class="line">		enhancer.setSuperclass(MyService.class);</div><div class="line">		enhancer.setCallback(<span class="keyword">new</span> PrintDurationInterceptor());</div><div class="line">		</div><div class="line">		MyService proxy = (MyService) enhancer.create();</div><div class="line">		System.out.println(<span class="string">"proxy = "</span> + proxy);</div><div class="line">		</div><div class="line">		proxy.doSomethingA();</div><div class="line">		proxy.doSomethingB();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/25/Eclipse-full-keyboard-style/" rel="next" title="Eclipse全键盘流---不定时更新">
+                <i class="fa fa-chevron-left"></i> Eclipse全键盘流---不定时更新
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/30/JavaSE-study-advanced-generics/" rel="prev" title="JavaSE学习笔记 - 泛型进阶">
+                JavaSE学习笔记 - 泛型进阶 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用形式"><span class="nav-number">2.</span> <span class="nav-text">应用形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式的结构、组成与实现"><span class="nav-number">3.</span> <span class="nav-text">代理模式的结构、组成与实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java动态代理"><span class="nav-number">4.</span> <span class="nav-text">Java动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起始阶段"><span class="nav-number">4.1.</span> <span class="nav-text">起始阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用代理"><span class="nav-number">4.2.</span> <span class="nav-text">不使用代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用静态代理"><span class="nav-number">4.3.</span> <span class="nav-text">使用静态代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用JDK提供的动态代理"><span class="nav-number">4.4.</span> <span class="nav-text">使用JDK提供的动态代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CGLib动态代理"><span class="nav-number">4.5.</span> <span class="nav-text">使用CGLib动态代理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
