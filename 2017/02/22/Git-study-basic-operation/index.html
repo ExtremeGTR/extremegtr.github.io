@@ -102,25 +102,23 @@
 <meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
 <meta property="og:description" content="什么是Git？　　Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。我相信很多人都用过SVN这一个版本控制系统，很多中小型公司都喜欢用这个工具的。在很早以前我就听说过Git，但由于工作需求，也就没深入接触了，现在有空就来学习学习这个强大的工具。版本控制系统可以分为2大类：集中式和分布式，SVN属于前者，Git属于后者。Git比SVN强大，原因在于Git：速度快、可离">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/centralized_version_control_system.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/distributed_version_control_system.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/storing_data_as_snapshots_of_the_project_over_time.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/storing_data_as_changes_to_a_base_version_of each_file.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/area.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/the_lifecyle_of_the_status_of_your_files.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_1.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_2.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_3.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_4.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_5.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_6.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_8.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImage/status_7.png">
-<meta property="og:updated_time" content="2017-09-17T06:49:10.832Z">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/centralized_version_control_system.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/distributed_version_control_system.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/storing_data_as_snapshots_of_the_project_over_time.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/the_lifecycle_of_the_status_of_your_files.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_1.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_2.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_3.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_4.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_5.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_6.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_8.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/status_7.png">
+<meta property="og:updated_time" content="2017-10-15T02:39:46.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git学习笔记 - 基础">
 <meta name="twitter:description" content="什么是Git？　　Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。我相信很多人都用过SVN这一个版本控制系统，很多中小型公司都喜欢用这个工具的。在很早以前我就听说过Git，但由于工作需求，也就没深入接触了，现在有空就来学习学习这个强大的工具。版本控制系统可以分为2大类：集中式和分布式，SVN属于前者，Git属于后者。Git比SVN强大，原因在于Git：速度快、可离">
-<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImg/centralized_version_control_system.png">
+<meta name="twitter:image" content="http://extremegtr.github.io/2017/02/22/Git-study-basic-operation/centralized_version_control_system.png">
 
 
 
@@ -342,8 +340,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:49:10+08:00">
-                2017-09-17
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-15T10:39:46+08:00">
+                2017-10-15
               </time>
             
           </span>
@@ -443,10 +441,10 @@
         <h2 id="什么是Git？"><a href="#什么是Git？" class="headerlink" title="什么是Git？"></a>什么是Git？</h2><p>　　Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。我相信很多人都用过SVN这一个版本控制系统，很多中小型公司都喜欢用这个工具的。在很早以前我就听说过Git，但由于工作需求，也就没深入接触了，现在有空就来学习学习这个强大的工具。版本控制系统可以分为2大类：集中式和分布式，SVN属于前者，Git属于后者。<strong>Git比SVN强大，原因在于Git：速度快、可离线工作、超强的分支管理。</strong></p>
 <h2 id="集中式-Vs-分布式"><a href="#集中式-Vs-分布式" class="headerlink" title="集中式 Vs 分布式"></a>集中式 Vs 分布式</h2><p>　　前面也说到版本控制系统可分为集中式与分布式2大类。那么到底它们之间到底有什么区别呢？</p>
 <h3 id="集中式"><a href="#集中式" class="headerlink" title="集中式"></a>集中式</h3><p>　　<br>　　我们都非常清楚版本控制系统最主要就是让多个开发者协同工作，按照正常人的一般的逻辑思维，都会想到<strong>集中式版本控制系统（Centralized Version Control System，简称CVCS）</strong>，这类系统中都有一个单一用于集中管理的服务器，它保存了所有文件的历史版本（用户并没有备份所有，用户处只有这些历史版本的一部分），多个用户之间协同工作都要通过它作为桥梁：用户可以从它取出最新版本的文件或提交修改好的文件给它。</p>
-<p><img src="http://extremegtr.github.io/assets/blogImg/centralized_version_control_system.png" alt="集中式版本控制系统"></p>
+<img src="/2017/02/22/Git-study-basic-operation/centralized_version_control_system.png" alt="集中式版本控制系统" title="集中式版本控制系统">
 <p>　　这种做法最大的好处就是便于管理，该系统的管理员可以很轻松地掌控所有历史版本以及每个开发者的权限。但相对的，坏处就是一旦桥梁崩塌了，用户之间就无法协同工作了，比如这个服务器断电了，用户们也就无法连上这个中央服务器，这导致导出最新版本或提交文件这些功能无法使用了。更糟糕的是，如果服务器并不是断电，而是因不可抗力因素，服务器损毁了，这样所有历史版本数据都丢失了，剩下有用的数据只有每个用户里所保留的单独快照（说白了，用户只有所有历史版本的很小一部分）。</p>
 <h3 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h3><p>　　<strong>分布式版本控制系统（Distributed Version Control System，简称DVCS）</strong>里的做法跟前面所说的集中式完全不同，这类系统中没有硬性规定一定要有一个统一的老大哥服务器，而是把每个用户都看作是老大哥服务器，所以实际上每个用户都存有所有历史版本的数据。当然这种版本控制系统其实一般还是有一个真正的集中式服务器，只不过它的地位下降了而已。</p>
-<p><img src="http://extremegtr.github.io/assets/blogImg/distributed_version_control_system.png" alt="分布式版本控制系统"></p>
+<img src="/2017/02/22/Git-study-basic-operation/distributed_version_control_system.png" alt="分布式版本控制系统" title="分布式版本控制系统">
 <p>　　用户每次的导出操作导出的其实是所有历史版本，这样相当于每个用户都有所有历史版本的完成备份，极大地提高了安全性。同时，也因为这样，用户在离线时也可以将改动进行提交，在有网络时便可以再继续协同工作。</p>
 <h2 id="Git的思想和基本工作原理"><a href="#Git的思想和基本工作原理" class="headerlink" title="Git的思想和基本工作原理"></a><font color="red"><strong>Git的思想和基本工作原理</strong></font></h2><p>　　这里所要讲述的内容，对其的理解程度决定了我们日后能否真正运用好Git，所以，必须弄懂，必须弄懂，必须弄懂，弄不懂就再看再思考千百遍。Git官网也这样说道：</p>
 <blockquote>
@@ -456,17 +454,17 @@
 <p><strong><font color="black">Git存储全部文件的一组<font color="#9B30FF">快照</font>（snapshot），而不是存储每个文件与初始版本的差异。</font></strong></p>
 <p>每次你提交更新，或在Git中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。<br>为了高效，如果文件没有修改，Git不再重新存储该文件，而只是保留一个链接指向之前存储的文件。Git对待数据更像是<strong>快照流</strong>。</p>
 </blockquote>
-<p><img src="http://extremegtr.github.io/assets/blogImg/storing_data_as_snapshots_of_the_project_over_time.png" alt="存储项目随时间改变的快照" title="这是Git的做法"></p>
+<img src="/2017/02/22/Git-study-basic-operation/storing_data_as_snapshots_of_the_project_over_time.png" alt="存储项目随时间改变的快照" title="存储项目随时间改变的快照">
 <p>对于Git快照的理解：<br>　　比如当你给Git提交更新时，Git会把它所管理的所有文件都制作成一个备份（但这并不是单纯的文件复制粘贴，Git还是会作出相应的处理的：压缩之类的处理）并存储它，这就是一个新版本。并且，对于经过修改文件肯定是制作一个新的备份，而对于未修改的文件，就存储一个指向上个版本那个备份的指针，这样能够稍微节省一些空间。</p>
 <p>相比之下，其他版本控制系统的做法就不一样了。</p>
 <blockquote>
 <p>其它大部分系统以文件变更列表的方式存储信息。<br>  这类系统（CVS、Subversion、Perforce、Bazaar 等等）将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。</p>
 </blockquote>
-<p><img src="http://extremegtr.github.io/assets/blogImg/storing_data_as_changes_to_a_base_version_of each_file.png" alt="存储每个文件与初始版本的差异" title="这是SVN的做法"></p>
+
 <p>对于SVN文件的差异存储的理解：<br>　　最初的版本是存储了所有文件数据的最完整版本，对于往后每次更新提交，SVN只存储相较上个版本现在更新的部分，而未修改的文件是不进行存储的。</p>
 <p><strong>综上所述，这2种做法通俗来说就是：<font color="#9B30FF">对于每次文件提交，不管文件是否有更新Git都进行存储，而SVN只存文件变动的部分。</font></strong></p>
 <p>　　其实这种区别大致是由历史环境所致的，以前硬件资源比较珍贵的，所以什么都必须节省，特别是存储空间，所以在这种环境下所诞生的版本控制系统SVN首要任务就是在记录改动时必须最大程度地节省存储空间。<br>　　这么看来SVN比Git节省空间咯？（虽然也不一定，我现在也不清楚，或许以后会知道哪个更好。）<br>　　但我只知道一个原则：等价交换。所谓有得必有失，速度换空间还是空间换速度，更倾向于哪个就要看需求还有各种限制因素了。上网随便一查Git与SVN对比就会发现大家基本都会说Git在速度上肯定是远胜SVN的。所以Git这种做法首先带来了速度上的优势，同时这个官方Git教程表示：<strong><font color="red">Git采用这种存储版本数据的方式会对分支管理非常有利</font></strong>。</p>
-<h3 id="三个重要的区域"><a href="#三个重要的区域" class="headerlink" title="三个重要的区域"></a><font color="#0072E3"><strong>三个重要的区域</strong></font></h3><p><img src="http://extremegtr.github.io/assets/blogImg/area.png" alt="Git项目三个工作区域"></p>
+<h3 id="三个重要的区域"><a href="#三个重要的区域" class="headerlink" title="三个重要的区域"></a><font color="#0072E3"><strong>三个重要的区域</strong></font></h3>
 <ul>
 <li><p><strong><font color="#9B30FF">工作目录</font>(working directory)</strong></p>
 <blockquote>
@@ -650,7 +648,8 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 <li>执行<code>git commit</code>命令将刚才添加到暂存区的文件提交给仓库。</li>
 </ol>
 <h2 id="Git中文件的多种状态"><a href="#Git中文件的多种状态" class="headerlink" title="Git中文件的多种状态"></a>Git中文件的多种状态</h2><p>　　之前所演示的只是最简单的把新增1个文件这种变动提交到仓库，步骤上确实很简单，但不明白其中的原理那就无法很好地继续学习Git了。比如，<code>git add</code>命令的真实作用现在我们是不了解的，之前所说的把文件添加到暂存区过于抽象简化不便于我们理解Git到底做了什么。</p>
-<h3 id="文件状态概念"><a href="#文件状态概念" class="headerlink" title="文件状态概念"></a>文件状态概念</h3><p>先来看这张图：<br><img src="http://extremegtr.github.io/assets/blogImage/the_lifecyle_of_the_status_of_your_files.png" alt="文件的状态变化周期"></p>
+<h3 id="文件状态概念"><a href="#文件状态概念" class="headerlink" title="文件状态概念"></a>文件状态概念</h3><p>先来看这张图：</p>
+<img src="/2017/02/22/Git-study-basic-operation/the_lifecycle_of_the_status_of_your_files.png" alt="文件的状态变化周期" title="文件的状态变化周期">
 <p>这个图非常清晰地展示了工作目录中的文件状态是如何变化的。</p>
 <p><strong>在工作目录中的文件可被Git标记为多种状态，大体可分为2种：<font color="red">未被跟踪</font>和<font color="red">已被跟踪</font>，后者还能细分为3种状态：</strong></p>
 <ul>
@@ -677,7 +676,7 @@ nothing to commit, working tree clean
 </code></pre><p>这里Git给我们说道：没有任何更新需要提交，工作目录非常干净。</p>
 <p><strong>这表示：工作目录中所有文件在上次提交更新后，整个工作目录都没有发生任何变动，这就是所谓的工作目录中所有文件都处于未修改状态。</strong></p>
 <p>当前3个区域的简单状态图：</p>
-<p><img src="http://extremegtr.github.io/assets/blogImage/status_1.png" alt="未修改状态"></p>
+<img src="/2017/02/22/Git-study-basic-operation/status_1.png" alt="未修改状态" title="未修改状态">
 <p>　　在仓库中，<code>HEAD</code>是一个指针，它指向正在工作的分支，现在它指向的是名为<code>master</code>的分支，并且该分支中有一个id为<code>a3763e7</code>的版本，版本中记录了上次提交的更新<code>readme.txt</code>的文件快照。现在我们只知道这么多就可以了，而关于<code>HEAD</code>、<code>master</code>、分支、版本id这几个点更深入的内容是以后再关注的。</p>
 <p><br></p>
 <h4 id="添加新文件"><a href="#添加新文件" class="headerlink" title="添加新文件"></a><strong><font color="#0072E3" style="font-size: 19px">添加新文件</font></strong></h4><hr>
@@ -695,7 +694,7 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 </code></pre><p>这里Git明确告诉我们：这里有未被跟踪的文件<code>temp.txt</code>，并叫我们使用<code>git add</code>命令来让它跟踪此文件。</p>
 <p><strong>这表示：给工作目录中添加新文件时，该文件就处于未被跟踪状态，我们可以通过<code>git add</code>命令把它添加到暂存区，那么Git才能跟踪它。</strong></p>
 <p>添加新文件后3个区域的简单状态图：</p>
-<p><img src="http://extremegtr.github.io/assets/blogImage/status_2.png" alt="未被跟踪状态"></p>
+<img src="/2017/02/22/Git-study-basic-operation/status_2.png" alt="未被跟踪状态" title="未被跟踪状态">
 <p><br></p>
 <h4 id="暂存新文件"><a href="#暂存新文件" class="headerlink" title="暂存新文件"></a><strong><font color="#0072E3" style="font-size: 19px">暂存新文件</font></strong></h4><hr>
 
@@ -708,7 +707,7 @@ Changes to be committed:
 </code></pre><p>  在我们把<code>temp.txt</code>添加到暂存区后，Git列出了以下更新变动是将要被提交，这里只有添加新文件<code>temp.txt</code>这一变动。</p>
 <p>  <strong>这表示：执行<code>git add</code>命令将文件添加到暂存区后，该文件就处于已暂存状态，已暂存的文件都是将要被提交到仓库的。</strong></p>
 <p>  暂存新文件后3个区域的简单状态图：</p>
-<p>  <img src="http://extremegtr.github.io/assets/blogImage/status_3.png" alt="已暂存状态"></p>
+  <img src="/2017/02/22/Git-study-basic-operation/status_3.png" alt="已暂存状态" title="已暂存状态">
 <p>  现在看图就更清楚<code>git add</code>做了什么，正如之前所讲，把要提交的文件添加到暂存区中。</p>
 <p><br></p>
 <h4 id="修改被版本库记录的文件"><a href="#修改被版本库记录的文件" class="headerlink" title="修改被版本库记录的文件"></a><strong><font color="#0072E3" style="font-size: 19px">修改被版本库记录的文件</font></strong></h4><hr>
@@ -731,7 +730,7 @@ Changes not staged for commit:
         modified:   readme.txt
 </code></pre><p>  这里后面那块信息才是我们要关注的：<br>  Git告知我们与版本库相比较，工作目录中的<code>readme.txt</code>被修改了，但它还没被暂存，并提示我们可以使用<code>git add</code>将这个更新暂存。</p>
 <p>  这表示：当我们修改曾经提交给版本库的文件，该文件就会从未修改转变为已修改状态。</p>
-<p>  <img src="http://extremegtr.github.io/assets/blogImage/status_4.png" alt="已修改状态"></p>
+  <img src="/2017/02/22/Git-study-basic-operation/status_4.png" alt="已修改状态" title="已修改状态">
 <p><br></p>
 <h4 id="暂存已修改的文件"><a href="#暂存已修改的文件" class="headerlink" title="暂存已修改的文件"></a><strong><font color="#0072E3" style="font-size: 19px">暂存已修改的文件</font></strong></h4><hr>
 
@@ -743,7 +742,7 @@ Changes to be committed:
         modified:   readme.txt
         new file:   temp.txt
 </code></pre><p>现在，我们非常清楚，新添加的文件<code>temp.txt</code>以及已修改的文件<code>readme.txt</code>都被添加到暂存区。</p>
-<p><img src="http://extremegtr.github.io/assets/blogImage/status_5.png" alt="暂存已修改的文件"></p>
+<img src="/2017/02/22/Git-study-basic-operation/status_5.png" alt="暂存已修改的文件" title="暂存已修改的文件">
 <p><br></p>
 <h4 id="修改已暂存的文件"><a href="#修改已暂存的文件" class="headerlink" title="修改已暂存的文件"></a><strong><font color="#0072E3" style="font-size: 19px">修改已暂存的文件</font></strong></h4><hr>
 
@@ -766,7 +765,7 @@ Changes not staged for commit:
         modified:   readme.txt
 </code></pre><p><strong><code>readme.txt</code>居然同时处于已暂存和已修改2种状态！</strong></p>
 <p>　　实际上，<code>readme.txt</code>在暂存区中有一个版本，工作目录中又是另外一个版本。暂存区里存储的是之前通过<code>git add</code>添加进去的版本，而在工作目录中最新的变动并没有被暂存；如果现在使用<code>git commit</code>提交当前更新，提交到版本库的<code>readme.txt</code>是暂存区中那个版本而非工作目录中的版本。<br>    所以在一般情况下，我们应该再次执行<code>git add</code>命令把最新的变动添加到暂存区，最后才提交到版本库。</p>
-<p>修改已暂存文件后的3个区域的状态图：<br><img src="http://extremegtr.github.io/assets/blogImage/status_6.png" alt="修改已暂存的文件"></p>
+<p>修改已暂存文件后的3个区域的状态图：<br><img src="/2017/02/22/Git-study-basic-operation/status_6.png" alt="修改已暂存的文件" title="修改已暂存的文件"></p>
 <p>从图可以非常清楚看出之前所得出的结论，<code>readme.txt</code>一个文件同时有2个版本，一个比较新的在暂存区，一个最新的在工作目录中。</p>
 <p><br></p>
 <h4 id="将最新的变动暂存"><a href="#将最新的变动暂存" class="headerlink" title="将最新的变动暂存"></a><strong><font color="#0072E3" style="font-size: 19px">将最新的变动暂存</font></strong></h4><hr>
@@ -778,13 +777,13 @@ Changes to be committed:
 
         modified:   readme.txt
         new file:   temp.txt
-</code></pre><p><img src="http://extremegtr.github.io/assets/blogImage/status_8.png" alt="暂存最新变动"></p>
+</code></pre><img src="/2017/02/22/Git-study-basic-operation/status_8.png" alt="暂存最新变动" title="暂存最新变动">
 <p>现在确保所有最新的文件变动都添加到暂存区了，那就可以执行更新提交命令了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;wrote a temp.txt file and modified readme.txt&quot;</div></pre></td></tr></table></figure></p>
 <pre><code>[master adc1a5a] wrote a temp.txt file and modified readme.txt
   2 files changed, 2 insertions(+), 1 deletion(-)
   create mode 100644 temp.txt
 </code></pre><p>提交更新后3个区域的简单状态图：</p>
-<p><img src="http://extremegtr.github.io/assets/blogImage/status_7.png" alt="提交更新后"></p>
+<img src="/2017/02/22/Git-study-basic-operation/status_7.png" alt="提交更新后" title="提交更新后">
 <p>在执行<code>git commit</code>更新后，暂存区的内容都会被提交到仓库中；在仓库<code>master</code>分支中，也增加了一个id为<code>abc1a5a</code>的版本。</p>
 <p><br></p>
 <h4 id="将文件状态从已被跟踪转变为未被跟踪"><a href="#将文件状态从已被跟踪转变为未被跟踪" class="headerlink" title="将文件状态从已被跟踪转变为未被跟踪"></a><strong><font color="#0072E3" style="font-size: 19px">将文件状态从已被跟踪转变为未被跟踪</font></strong></h4><hr>
@@ -1276,7 +1275,7 @@ a3763e7d95ace909b1f90d35e1c36c0627f03f3d wrote a readme.txt file
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1298,7 +1297,7 @@ a3763e7d95ace909b1f90d35e1c36c0627f03f3d wrote a readme.txt file
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1850,7 +1850,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffa430;
+  background: #e3ff90;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3061,6 +3061,10 @@ pre .javascript .function {
   cursor: zoom-in;
   cursor: -webkit-zoom-in;
 }
+.post-body .image-caption,
+.post-body .figure .caption {
+  text-align: left;
+}
 .post-body .label {
   font-weight: bold;
 }
@@ -3085,9 +3089,10 @@ hr {
   background-image: none;
 }
 .posts-expand h2 {
-  padding-bottom: 0.1em;
+  font-size: 30px;
+  padding-bottom: 0.3em;
   line-height: 33px;
-  border-bottom: 2px solid #dbdbdb;
+  border-bottom: 1px solid #eaecef;
 }
 .posts-expand .post-tags a {
   background: #e6e6e6;

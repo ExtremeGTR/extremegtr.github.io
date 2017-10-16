@@ -102,15 +102,15 @@
 <meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
 <meta property="og:description" content="问题某次我在使用Eclipse调试Java代码时，突然遇到了一个问题： 在调试模式下查看变量的窗口Variables中无法查看方法中的局部变量；虽然还可以看到方法参数的值，但参数名信息全都丢失了。  我发现以前调试的时候也没出现这种情况，所以我还翻出了以前的代码进行调试，也没出现出这种奇怪的问题，这让我很纳闷。不过我发现，只有在调试有关JDK的源码会出现这种状况，而在调试其他框架的源码的时候根本没">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/eclipse_debug_problem1.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/eclipse_debug_problem2.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/eclipse_debug_ok1.png">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/eclipse_debug_ok2.png">
-<meta property="og:updated_time" content="2017-09-17T06:48:38.479Z">
+<meta property="og:image" content="http://extremegtr.github.io/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_problem1.png">
+<meta property="og:image" content="http://extremegtr.github.io/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_problem2.png">
+<meta property="og:image" content="http://extremegtr.github.io/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_ok1.png">
+<meta property="og:image" content="http://extremegtr.github.io/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_ok2.png">
+<meta property="og:updated_time" content="2017-10-14T04:45:14.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Eclipse调试JDK源码时无法查看局部变量的问题">
 <meta name="twitter:description" content="问题某次我在使用Eclipse调试Java代码时，突然遇到了一个问题： 在调试模式下查看变量的窗口Variables中无法查看方法中的局部变量；虽然还可以看到方法参数的值，但参数名信息全都丢失了。  我发现以前调试的时候也没出现这种情况，所以我还翻出了以前的代码进行调试，也没出现出这种奇怪的问题，这让我很纳闷。不过我发现，只有在调试有关JDK的源码会出现这种状况，而在调试其他框架的源码的时候根本没">
-<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImg/eclipse_debug_problem1.png">
+<meta name="twitter:image" content="http://extremegtr.github.io/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_problem1.png">
 
 
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:48:38+08:00">
-                2017-09-17
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-14T12:45:14+08:00">
+                2017-10-14
               </time>
             
           </span>
@@ -434,8 +434,8 @@
 <font color="red"><strong>在调试模式下查看变量的窗口<code>Variables</code>中无法查看方法中的局部变量；虽然还可以看到方法参数的值，但参数名信息全都丢失了。</strong></font>
 
 <p>我发现以前调试的时候也没出现这种情况，所以我还翻出了以前的代码进行调试，也没出现出这种奇怪的问题，这让我很纳闷。不过我发现，只有在调试有关JDK的源码会出现这种状况，而在调试其他框架的源码的时候根本没有问题。<font color="blue"><strong>所以在这我也确定了，其实就是调试JDK源码的时候会出现这个问题。</strong></font></p>
-<p>虽然关联了JDK源码，我们也知道方法的参数名，但在调试的时候，这些信息就丢失了，参数名变成了毫无意义的<code>arg0</code>、<code>arg1</code>、<code>arg2</code>。<br><img src="http://extremegtr.github.io/assets/blogImg/eclipse_debug_problem1.png" alt="方法参数名信息丢失"></p>
-<p>在调试的时候，<code>Variables</code>窗口没有显示局部变量，并且使用<code>watch</code>或<code>inspect</code>查看都不行。<br><img src="http://extremegtr.github.io/assets/blogImg/eclipse_debug_problem2.png" alt="无法查看局部变量"></p>
+<p>虽然关联了JDK源码，我们也知道方法的参数名，但在调试的时候，这些信息就丢失了，参数名变成了毫无意义的<code>arg0</code>、<code>arg1</code>、<code>arg2</code>。<br><img src="/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_problem1.png" alt="方法参数名信息丢失" title="方法参数名信息丢失"></p>
+<p>在调试的时候，<code>Variables</code>窗口没有显示局部变量，并且使用<code>watch</code>或<code>inspect</code>查看都不行。<br><img src="/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_problem2.png" alt="无法查看局部变量" title="无法查看局部变量"></p>
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>在知道具体问题后，我便在网上查了一下，产生该问题的大体原因就是官方发布的JDK是去除了编译时的调试信息，这是为了降低JDK安装包的体积。而当我们调试JDK的源码想要查看各种变量信息，这就需要编译后带有调试信息的class文件。所以，<code>rt.jar</code>这个jar包中所编译好的字节码文件是不带调试信息的。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>解决方案有2种，一种是到网上搜寻看有没有已经编译过已经带有调试信息的jar包下载，而另一种方法肯定是我们亲自编译官方所提供的源码<code>src.zip</code>，并使其带上调试信息。我也在网上找过，但大多的都是JDK6的版本，而没有找到过JDK7或8相关已经重新编译好的jar包，并且，有的资源还是要高分才能下载的。而我在某些博文中也看到以前官方是提供了用于debug的JDK，但这些链接全都是过时了。</p>
 <p>所以，最好的解决方案就是我们亲自动手，所谓自己动手丰衣足食。</p>
@@ -454,8 +454,8 @@
 <li><strong>10.将这个新生成好jar包复制到<code>JAVA_HOME\jre\lib\endorsed</code>，如果没有<code>endorsed</code>这个文件夹，那就先创建它</strong></li>
 </ul>
 <p>完成以上步骤后，查看一下Eclipse里的<code>Installed JRES</code>JDK环境是否添加了<code>rt_debug.jar</code>，添加完成后，现在再次用Eclipse调试JDK源码，这就不会再出现之前的问题了。</p>
-<p><img src="http://extremegtr.github.io/assets/blogImg/eclipse_debug_ok1.png" alt="查看方法参数"></p>
-<p><img src="http://extremegtr.github.io/assets/blogImg/eclipse_debug_ok2.png" alt="查看临时变量"></p>
+<img src="/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_ok1.png" alt="查看方法参数" title="查看方法参数">
+<img src="/2016/01/12/Eclipse-debug-problem_cant-watch-jdk-source-variables/eclipse_debug_ok2.png" alt="查看临时变量" title="查看临时变量">
 
       
     </div>
@@ -581,7 +581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -603,7 +603,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

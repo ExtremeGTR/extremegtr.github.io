@@ -102,12 +102,12 @@
 <meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
 <meta property="og:description" content="本文要点这里主要是总结我在学习Servlet这块时的基础知识。其中，实践代码以及用途介绍较多，而原理性的分析则较少，在学习JavaWeb开发这块，我也渐渐了解到，能够把技术用在开发上了才是首要的，之后再深入了解它其中的原理然后举一反三。技术实践与原理研究两个方面我们都要兼顾，技术实践更加重要，但原理研究我们也不能懈怠。 Servlet基础要点接下来要介绍的是Servlet最基础的知识，都是平日开发">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://extremegtr.github.io/assets/blogImg/servlet_hierarchy.png">
-<meta property="og:updated_time" content="2017-09-17T06:51:07.455Z">
+<meta property="og:image" content="http://extremegtr.github.io/2015/10/07/JavaEE-study-Servlet/servlet_hierarchy.png">
+<meta property="og:updated_time" content="2017-10-14T04:45:18.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaEE学习笔记 - Servlet">
 <meta name="twitter:description" content="本文要点这里主要是总结我在学习Servlet这块时的基础知识。其中，实践代码以及用途介绍较多，而原理性的分析则较少，在学习JavaWeb开发这块，我也渐渐了解到，能够把技术用在开发上了才是首要的，之后再深入了解它其中的原理然后举一反三。技术实践与原理研究两个方面我们都要兼顾，技术实践更加重要，但原理研究我们也不能懈怠。 Servlet基础要点接下来要介绍的是Servlet最基础的知识，都是平日开发">
-<meta name="twitter:image" content="http://extremegtr.github.io/assets/blogImg/servlet_hierarchy.png">
+<meta name="twitter:image" content="http://extremegtr.github.io/2015/10/07/JavaEE-study-Servlet/servlet_hierarchy.png">
 
 
 
@@ -329,8 +329,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:51:07+08:00">
-                2017-09-17
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-14T12:45:18+08:00">
+                2017-10-14
               </time>
             
           </span>
@@ -468,7 +468,7 @@
 <li>如果一个url路径映射多个Servlet，那访问url路径访问的肯定是最后一个Servlet</li>
 </ul>
 <h3 id="Servlet类型层次"><a href="#Servlet类型层次" class="headerlink" title="Servlet类型层次"></a>Servlet类型层次</h3><p>我们首先要了解的是Servlet的层次，这些接口和类就是我们要重点关注的对象。类型层次如下图：</p>
-<p><img src="http://extremegtr.github.io/assets/blogImg/servlet_hierarchy.png" alt="Servlet类型层次"></p>
+<img src="/2015/10/07/JavaEE-study-Servlet/servlet_hierarchy.png" alt="servlet_hierarchy.png" title="">
 <p>我们可以通过使用这些Servlet类型来创建自定义Servlet。</p>
 <p><strong>Servlet接口</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Servlet</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req, ServletResponse res)</span></span></div><div class="line"><span class="function">            <span class="keyword">throws</span> ServletException, IOException</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -706,7 +706,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -728,7 +728,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

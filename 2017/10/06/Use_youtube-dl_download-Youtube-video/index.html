@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Youtube," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="前言　　只要我们用百度或谷歌随便查找一下，那就能知道有挺多种方式可以下载Youtube视频的，不过挺多方式都有其的缺点，比如速度慢，又比如不能下载分辨率大于1080p的高清视频等等，当然你需求比较少，只有能下载视频就够了，很多下载方法都能够满足你。　　下载Youtube视频翻墙是必要的，没有翻墙想下载Youtube的视频基本是没辙了，或者速度像乌龟那么慢，就算你下载的视频只是几百M的大小，那也是要">
+<meta name="keywords" content="Youtube">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用youtube-dl下载Youtube视频">
+<meta property="og:url" content="http://extremegtr.github.io/2017/10/06/Use_youtube-dl_download-Youtube-video/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="前言　　只要我们用百度或谷歌随便查找一下，那就能知道有挺多种方式可以下载Youtube视频的，不过挺多方式都有其的缺点，比如速度慢，又比如不能下载分辨率大于1080p的高清视频等等，当然你需求比较少，只有能下载视频就够了，很多下载方法都能够满足你。　　下载Youtube视频翻墙是必要的，没有翻墙想下载Youtube的视频基本是没辙了，或者速度像乌龟那么慢，就算你下载的视频只是几百M的大小，那也是要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-09T03:10:59.828Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用youtube-dl下载Youtube视频">
+<meta name="twitter:description" content="前言　　只要我们用百度或谷歌随便查找一下，那就能知道有挺多种方式可以下载Youtube视频的，不过挺多方式都有其的缺点，比如速度慢，又比如不能下载分辨率大于1080p的高清视频等等，当然你需求比较少，只有能下载视频就够了，很多下载方法都能够满足你。　　下载Youtube视频翻墙是必要的，没有翻墙想下载Youtube的视频基本是没辙了，或者速度像乌龟那么慢，就算你下载的视频只是几百M的大小，那也是要">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://extremegtr.github.io/2017/10/06/Use_youtube-dl_download-Youtube-video/"/>
+
+
+
+
+
+  <title>使用youtube-dl下载Youtube视频 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-106151602-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2017/10/06/Use_youtube-dl_download-Youtube-video/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用youtube-dl下载Youtube视频</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-06T17:48:25+08:00">
+                2017-10-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-09T11:10:59+08:00">
+                2017-10-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/每日短文/" itemprop="url" rel="index">
+                    <span itemprop="name">每日短文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/06/Use_youtube-dl_download-Youtube-video/" class="leancloud_visitors" data-flag-title="使用youtube-dl下载Youtube视频">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,700
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　只要我们用百度或谷歌随便查找一下，那就能知道有挺多种方式可以下载Youtube视频的，不过挺多方式都有其的缺点，比如速度慢，又比如不能下载分辨率大于1080p的高清视频等等，当然你需求比较少，只有能下载视频就够了，很多下载方法都能够满足你。<br>　　下载Youtube视频<strong><font color="#0072E3">翻墙</font></strong>是必要的，没有翻墙想下载Youtube的视频基本是没辙了，或者速度像乌龟那么慢，就算你下载的视频只是几百M的大小，那也是要到猴年马月。所以，无论如何，要先搞到一个好的翻墙方式，</p>
+<h2 id="常用的方式"><a href="#常用的方式" class="headerlink" title="常用的方式"></a>常用的方式</h2><p>以前我最常用的一招就是使用免费的翻墙软件<code>XX-Net</code>搭配以下的方法进行下载：</p>
+<ol>
+<li><p><a href="http://www.clipconverter.cc/" target="_blank" rel="external">ClipConverter</a><br>这是一个在线媒体转码网站，只要你把Youtube视频地址复制过去，就有一个分辨率选择列表，你想要什么分辨率都行，4K也是没问题的。<br>选择完分辨率，等它转换完，那就可以下载了，不过有时候这个网站的服务器抽风那就没辙了。</p>
+</li>
+<li><p><a href="https://youtubedownloader.com/" target="_blank" rel="external">Free YouTube Downloader</a><br>这个是要安装客户端的下载软件，以前免费可以下载2K的视频，现在是必须付费才能下载大于1080p的视频。<br>同样地，也是把视频地址粘上去，就会给一个列表你选，选后直接按下载就行了。</p>
+</li>
+<li><p><a href="https://www.4kdownload.com/" target="_blank" rel="external">4K Video Downloader</a><br>这也是一个需要安装客户端得下载软件，功能和上面那个差不多。<br>而它甚至可以免费下载4K的视频，这是非常好的一点，但缺点也明显，与<span class="label info">Free YouTube Downloader</span>比起来，解析链接的速度可以说非常慢。</p>
+</li>
+</ol>
+<h2 id="学习使用youtube-dl"><a href="#学习使用youtube-dl" class="headerlink" title="学习使用youtube-dl"></a>学习使用youtube-dl</h2><p>　　<a href="https://github.com/rg3/youtube-dl" target="_blank" rel="external">youtube-dl</a>这个工具的用法不像之前那些工具那么傻瓜式了，是需要输入命令里进行操作的，但通过各种参数进行配合，这会显得更加灵活，不过电脑小白用的话或许就会感到有些吃力，但用多几次就感觉还好。大部分用户用的都是Windows，并且我也是Linux系统的门外汉，所以这里只讲Windows下的使用过程。</p>
+<h3 id="把工具弄好"><a href="#把工具弄好" class="headerlink" title="把工具弄好"></a>把工具弄好</h3><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a><strong><font color="#9B30FF">Python</font></strong></h4><p>要使用<span class="label primary">youtube-dl</span>，那就得先安装<span class="label info">Python</span>。<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>，到里面就可以找到下载地址，下载后安装即可，没啥好说的了。</p>
+<h4 id="youtube-dl"><a href="#youtube-dl" class="headerlink" title="youtube-dl"></a><strong><font color="#9B30FF">youtube-dl</font></strong></h4><ol>
+<li><p><strong><font color="#0072E3">下载</font></strong><br>之前所提供的的<span class="label primary">youtube-dl</span>的<a href="https://github.com/rg3/youtube-dl" target="_blank" rel="external">链接</a>里面就有<a href="https://yt-dl.org/latest/youtube-dl.exe" target="_blank" rel="external">下载链接</a>，下载<code>youtube-dl.exe</code>这个工具就行了，其余不用多管。</p>
+</li>
+<li><p><strong><font color="#0072E3">放置</font></strong><br>下载完之后，把它放到你所想的目录里（除了<code>%SYSTEMROOT%\System32</code>，任何地方你都可以放）。</p>
+</li>
+<li><p><strong><font color="#0072E3">配置系统环境变量<code>Path</code></font></strong><br>给系统环境变量<code>Path</code>的变量值最后加上<code>youtube-dl.exe</code>所在的路径。</p>
+</li>
+<li><p><strong><font color="#0072E3">设置配置文件</font></strong><br>在Windows下，<span class="label primary">youtube-dl</span>这个工具默认使用的配置文件是<code>%APPDATA%\youtube-dl\config.txt</code>或<code>C:\Users\&lt;user name&gt;\youtube-dl.conf</code>。</p>
+<div class="note warning"><font style="font-size: 10px">如果在那些目录里找不到配置文件，那你就自己在那些目录里自己创建一个。</font></div>
+<p>这里，我也没找到相应的配置文件，所以就在自己的C盘的用户目录<code>C:\Users\&lt;user name&gt;</code>里创建一个<code>youtube-dl.conf</code>，并添加以下内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Use this proxy</div><div class="line">--proxy 127.0.0.1:8087</div></pre></td></tr></table></figure>
+<p>这是配置代理，只要把你自己的代理对应的IP以及端口配置上就行了。<br>如果不在配置文件配置代理，那么每次下载视频的视频都要在命令上加上这个代理参数。</p>
+</li>
+</ol>
+<p>就做以上这4步，就把<span class="label primary">youtube-dl</span>工具给弄好了，之后我们就可以开始用它来下载Youtube视频了。</p>
+<h4 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a><strong><font color="#9B30FF">FFmpeg</font></strong></h4><p>因为Youtube的高清格式的视频都是音视频分开的，所以就算把1080p、2K、4K下载回来了，也是需要合成的，所以<span class="label primary">FFmpeg</span>是必不可少的合成工具。</p>
+<ol>
+<li><p><strong><font color="#0072E3">下载</font></strong><br>到<span class="label primary">FFmpeg</span><a href="https://www.ffmpeg.org/" target="_blank" rel="external">官网</a>下载工具。</p>
+</li>
+<li><p><strong><font color="#0072E3">放置</font></strong><br>下载后解压到你指定的位置。</p>
+</li>
+<li><p><strong><font color="#0072E3">配置系统环境变量<code>Path</code></font></strong><br>给系统环境变量<code>Path</code>的变量值最后加上解压后<span class="label primary">FFmpeg</span>所在的路径。</p>
+</li>
+</ol>
+<h3 id="下载视频"><a href="#下载视频" class="headerlink" title="下载视频"></a>下载视频</h3><p>现在一切都搞好了，正式开始下载视频：打开控制台，输入一下命令就能够下载视频了。<br><strong>这里你可以用这个视频地址自己尝试一下：<code>https://www.youtube.com/watch?v=1La4QzGeaaQ</code>。</strong></p>
+<h4 id="最普通的下载命令"><a href="#最普通的下载命令" class="headerlink" title="最普通的下载命令"></a><strong><font color="#9B30FF">最普通的下载命令</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl 视频地址</div></pre></td></tr></table></figure>
+<p>这样直接下载的是指定视频地址的最高质量视频，并且已经是音视频合成好的视频。</p>
+<h4 id="配置代理参数"><a href="#配置代理参数" class="headerlink" title="配置代理参数"></a><strong><font color="#9B30FF">配置代理参数</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl --proxy 127.0.0.1:8087 视频地址</div></pre></td></tr></table></figure>
+<p>没有在配置文件设置代理的情况下，在配置文件配置了就不用加上这个参数<code>--proxy</code>参数。</p>
+<h4 id="查看所能下载的所有格式"><a href="#查看所能下载的所有格式" class="headerlink" title="查看所能下载的所有格式"></a><strong><font color="#9B30FF">查看所能下载的所有格式</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -F或--list-formats 视频地址</div></pre></td></tr></table></figure>
+<div class="note warning"><font style="font-size: 10px">其中<code>-F</code>的<code>F</code>必须是大写，不能是小写的<code>f</code>，如果你写成小写，那就会报错。</font></div>
+<p>输入该命令后，那在控制台上就会显示该视频地址所能下载到的所有格式。</p>
+<p>比如输入以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">youtube-dl -F https://www.youtube.com/watch?v=1La4QzGeaaQ</div><div class="line">或</div><div class="line">youtube-dl --list-formats https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure></p>
+<p>得到的结果就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">format code  extension  resolution note</div><div class="line">139          m4a        audio only DASH audio   48k , m4a_dash container, mp4a.40.5@ 48k (22050Hz), 1.92MiB</div><div class="line">249          webm       audio only DASH audio   58k , opus @ 50k, 2.01MiB</div><div class="line">250          webm       audio only DASH audio   78k , opus @ 70k, 2.68MiB</div><div class="line">171          webm       audio only DASH audio  125k , vorbis@128k, 4.64MiB</div><div class="line">140          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k (44100Hz), 5.12MiB</div><div class="line">251          webm       audio only DASH audio  150k , opus @160k, 5.29MiB</div><div class="line">160          mp4        256x144    DASH video  118k , avc1.4d400c, 30fps, video only, 4.49MiB</div><div class="line">278          webm       256x144    144p  119k , webm container, vp9, 30fps, video only, 3.92MiB</div><div class="line">330          webm       256x144    144p60 HDR  199k , vp9.2, 60fps, video only,5.97MiB</div><div class="line">133          mp4        426x240    DASH video  260k , avc1.4d4015, 30fps, video only, 9.92MiB</div><div class="line">331          webm       426x240    240p60 HDR  271k , vp9.2, 60fps, video only, 9.16MiB</div><div class="line">242          webm       426x240    240p  281k , vp9, 30fps, video only, 8.51MiB</div><div class="line">243          webm       640x360    360p  491k , vp9, 30fps, video only, 15.83MiB</div><div class="line"></div><div class="line">332          webm       640x360    360p60 HDR  583k , vp9.2, 60fps, video only, 19.51MiB</div><div class="line">134          mp4        640x360    DASH video  645k , avc1.4d401e, 30fps, videoonly, 21.83MiB</div><div class="line">244          webm       854x480    480p  905k , vp9, 30fps, video only, 29.17MiB</div><div class="line"></div><div class="line">333          webm       854x480    480p60 HDR 1090k , vp9.2, 60fps, video only, 36.77MiB</div><div class="line">135          mp4        854x480    DASH video 1178k , avc1.4d401f, 30fps, video only, 42.40MiB</div><div class="line">247          webm       1280x720   720p 2088k , vp9, 30fps, video only, 59.14MiB</div><div class="line"></div><div class="line">136          mp4        1280x720   720p 2357k , avc1.4d401f, 30fps, video only, 84.20MiB</div><div class="line">334          webm       1280x720   720p60 HDR 2496k , vp9.2, 60fps, video only, 82.87MiB</div><div class="line">302          webm       1280x720   720p60 3061k , vp9, 60fps, video only, 97.24MiB</div><div class="line">298          mp4        1280x720   DASH video 3585k , avc1.4d4020, 60fps, video only, 115.60MiB</div><div class="line">248          webm       1920x1080  1080p 3694k , vp9, 30fps, video only, 104.08MiB</div><div class="line">335          webm       1920x1080  1080p60 HDR 4305k , vp9.2, 60fps, video only, 140.18MiB</div><div class="line">137          mp4        1920x1080  1080p 4591k , avc1.640028, 30fps, video only, 157.97MiB</div><div class="line">303          webm       1920x1080  1080p60 5564k , vp9, 60fps, video only, 166.17MiB</div><div class="line">299          mp4        1920x1080  DASH video 5915k , avc1.64002a, 60fps, video only, 205.13MiB</div><div class="line">264          mp4        2560x1440  DASH video 10757k , avc1.640032, 30fps, video only, 365.34MiB</div><div class="line">336          webm       2560x1440  1440p60 HDR 11180k , vp9.2, 60fps, video only, 379.99MiB</div><div class="line">271          webm       2560x1440  1440p 11533k , vp9, 30fps, video only, 329.39MiB</div><div class="line">308          webm       2560x1440  1440p60 16424k , vp9, 60fps, video only, 489.65MiB</div><div class="line">337          webm       3840x2160  2160p60 HDR 23026k , vp9.2, 60fps, video only, 762.28MiB</div><div class="line">266          mp4        3840x2160  DASH video 23442k , avc1.640033, 30fps, video only, 679.31MiB</div><div class="line">313          webm       3840x2160  2160p 24334k , vp9, 30fps, video only, 700.74MiB</div><div class="line">315          webm       3840x2160  2160p60 32601k , vp9, 60fps, video only, 1.01GiB</div><div class="line">138          mp4        7680x4320  DASH video 78931k , avc1.640033, 30fps, video only, 2.33GiB</div><div class="line">272          webm       7680x4320  4320p60 92526k , vp9, 60fps, video only, 2.70GiB</div><div class="line">17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k</div><div class="line">36           3gp        320x180    small , mp4v.20.3, mp4a.40.2</div><div class="line">43           webm       640x360    medium , vp8.0, vorbis@128k</div><div class="line">18           mp4        640x360    medium , avc1.42001E, mp4a.40.2@ 96k</div><div class="line">22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)</div></pre></td></tr></table></figure></p>
+<h4 id="下载指定格式的文件"><a href="#下载指定格式的文件" class="headerlink" title="下载指定格式的文件"></a><strong><font color="#9B30FF">下载指定格式的文件</font></strong></h4><p>关于这一块，重点关注的是命令中的参数，这里参数变化就会多一点点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 或 --format 格式代号 视频地址</div></pre></td></tr></table></figure>
+<div class="note warning"><font style="font-size: 10px">与之前的相反，这里的<code>-f</code>只能是小写，不能是大写。</font></div>
+<p>前面我们查看了指定视频地址的所有能够下载到的格式，其中<strong><code>format code</code>这一列就是格式代号</strong>，比如就拿之前所看到的数据来说：</p>
+<ul>
+<li><code>137</code>是<code>1080p 30fps</code>、<code>299</code>是<code>1080p 60fps</code><br>并且这两个都是只有视频画面的<code>mp4</code>文件，它们都是不带音频的视频。</li>
+<li><code>266</code>是<code>2160p 30fps</code>不带音频的<code>mp4</code>视频</li>
+<li><code>315</code>是<code>2160p 60fps</code>不带音频的<code>webm</code>视频</li>
+<li><code>138</code>是<code>4320p 30fps</code>不带音频的<code>mp4</code>视频</li>
+<li><code>140</code>是<code>128k 44100Hz</code>的<code>m4a</code>音频</li>
+</ul>
+<p>你想下载什么样的格式，就在下载命令里填什么样的格式代号。</p>
+<p>又比如我想下载之前所提供的那个链接的4K且视频格式为<code>mp4</code>的视频，那么下载命令就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 266 https://www.youtube.com/watch?v=1La4QzGeaaQ</div><div class="line">或</div><div class="line">youtube-dl --format 266 https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure></p>
+<p>我们下载视频当然想要的是即是高清又带声音的，所以不能只是单纯地下载不带声音的视频，必须要把音频也搞下来，然后利用<span class="label primary">FFmpeg</span>合成即可。</p>
+<p>但使用<span class="label primary">FFmpeg</span>进行合成又要使用命令了，这显得很繁琐，但还好有一种更简单的方式：<br><strong><font color="#0072E3">只要你安装配置好了</font><span class="label primary">FFmpeg</span>，<font color="#0072E3">在</font><span class="label primary">youtube-dl</span><font color="#0072E3">命令里同时指定视频与音频两者的格式代号进行下载，那</font><span class="label primary">youtube-dl</span><font color="#0072E3">就会自动调用</font><span class="label primary">FFmpeg</span><font color="#0072E3">进行合成。</font></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 视频格式代号+音频格式代号 视频地址</div></pre></td></tr></table></figure></p>
+<div class="note warning"><font style="font-size: 10px">这里两个格式代号，前面必须是视频，后面必须是音频，不能搞反了。</font></div>
+<p>现在还是拿之前那个Youtube视频链接作为案例。</p>
+<ol>
+<li><p><strong>现在想下载它对应的质量最佳的视频以及质量最佳的音频以合成一个完整的视频</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f bestvideo+bestaudio https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure>
+<p>其实这条命令就相当于最开始那条普通的下载命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>下载4K30帧的<code>mp4</code>视频</strong><br>那就得首先查询音频视频的格式代号，再进行下载。4K30帧<code>mp4</code>视频的格式代号是<code>266</code>，对应的<code>m4a</code>音频代号是<code>140</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 266+140 https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure>
+<p>有时候，我们不一定要想最佳质量的，反而是想根据自己的需要来下载的，想下载其他分辨率或其他格式的如法炮制就行</p>
+</li>
+</ol>
+<h4 id="指定下载的路径"><a href="#指定下载的路径" class="headerlink" title="指定下载的路径"></a><strong><font color="#9B30FF">指定下载的路径</font></strong></h4><p>如果你已经试过前面的命令了，那就会发现：所下载的视频对应的文件都被放在执行该下载命令的路径下，要修改下载路径很简单：<strong>使用参数<code>-o</code></strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -o &quot;绝对路径\%(title)s.%(ext)s&quot;</div></pre></td></tr></table></figure></p>
+<p>其中，前半部分的绝对路径是你指定的，后半部分最好是固定的，使用原来的标题作为文件名以及使用原扩展名。</p>
+<p>比如把之前的4K30帧的<code>mp4</code>视频下载到<code>H:\youtube_videos</code>内，那么命令就是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -o &quot;H:\youtube_videos\%(title)s.%(ext)s&quot; -f 266+140 https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Youtube/" rel="tag"><i class="fa fa-tag"></i> Youtube</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/05/HTTP cache - Last-Modified_and_Last-Modified-Since/" rel="next" title="HTTP缓存 - Last-Modified和Last-Modified-Since">
+                <i class="fa fa-chevron-left"></i> HTTP缓存 - Last-Modified和Last-Modified-Since
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/13/Implement-file-download-by-http-response-header/" rel="prev" title="通过HTTP响应头实现文件下载">
+                通过HTTP响应头实现文件下载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div id="gitment-container"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ExtremeGTR" />
+          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+           
+              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的方式"><span class="nav-number">2.</span> <span class="nav-text">常用的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习使用youtube-dl"><span class="nav-number">3.</span> <span class="nav-text">学习使用youtube-dl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#把工具弄好"><span class="nav-number">3.1.</span> <span class="nav-text">把工具弄好</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python"><span class="nav-number">3.1.1.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#youtube-dl"><span class="nav-number">3.1.2.</span> <span class="nav-text">youtube-dl</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FFmpeg"><span class="nav-number">3.1.3.</span> <span class="nav-text">FFmpeg</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载视频"><span class="nav-number">3.2.</span> <span class="nav-text">下载视频</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最普通的下载命令"><span class="nav-number">3.2.1.</span> <span class="nav-text">最普通的下载命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置代理参数"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置代理参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所能下载的所有格式"><span class="nav-number">3.2.3.</span> <span class="nav-text">查看所能下载的所有格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载指定格式的文件"><span class="nav-number">3.2.4.</span> <span class="nav-text">下载指定格式的文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指定下载的路径"><span class="nav-number">3.2.5.</span> <span class="nav-text">指定下载的路径</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Gemini
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+        <script type="text/javascript">
+            var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'ExtremeGTR',
+                    repo: 'extremegtr.github.io',
+                    oauth: {
+                        client_id: 'fb006b67b16f091184ea',
+                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+                    }});
+            gitment.render('gitment-container');
+        </script>
+    
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
