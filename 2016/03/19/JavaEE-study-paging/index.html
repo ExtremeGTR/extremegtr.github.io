@@ -2,15 +2,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -22,6 +34,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -55,6 +68,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -65,7 +84,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -75,43 +94,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaSE,JavaEE," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
 
 
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
-<meta name="description" content="分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。 原理分析平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。  在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。 先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。">
-<meta name="keywords" content="JavaSE,JavaEE">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JavaEE学习笔记 - 分页">
-<meta property="og:url" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/index.html">
-<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
-<meta property="og:description" content="分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。 原理分析平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。  在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。 先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/google_paging_bar.png">
-<meta property="og:image" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/google_paging_bar2.png">
-<meta property="og:image" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/paging_bar_width_10.png">
-<meta property="og:image" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/paging_bar_width_5.png">
-<meta property="og:image" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/paging_demo.png">
-<meta property="og:updated_time" content="2017-10-14T14:07:29.359Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaEE学习笔记 - 分页">
-<meta name="twitter:description" content="分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。 原理分析平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。  在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。 先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。">
-<meta name="twitter:image" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/google_paging_bar.png">
+
+
+
 
 
 
@@ -120,14 +121,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '6.3.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -139,12 +139,44 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。 原理分析平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。  在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。 先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。">
+<meta name="keywords" content="JavaSE,JavaEE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaEE学习笔记 - 分页">
+<meta property="og:url" content="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。 原理分析平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。  在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。 先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://farm5.staticflickr.com/4678/25696412377_f76a55651a_o.png">
+<meta property="og:image" content="https://farm5.staticflickr.com/4779/40567054811_1403b44b5f_o.png">
+<meta property="og:image" content="https://farm5.staticflickr.com/4787/25696412277_4d63bf40b6_o.png">
+<meta property="og:image" content="https://farm5.staticflickr.com/4801/38756668900_f375464084_o.png">
+<meta property="og:image" content="https://farm5.staticflickr.com/4740/40567054741_663834f8a5_o.png">
+<meta property="og:updated_time" content="2018-03-02T06:51:11.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaEE学习笔记 - 分页">
+<meta name="twitter:description" content="分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。 原理分析平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。  在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。 先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。">
+<meta name="twitter:image" content="https://farm5.staticflickr.com/4678/25696412377_f76a55651a_o.png">
+
+
+
+
+
 
   <link rel="canonical" href="http://extremegtr.github.io/2016/03/19/JavaEE-study-paging/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>JavaEE学习笔记 - 分页 | ExtremeGTR's Blog</title>
   
@@ -152,13 +184,13 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-106151602-1', 'auto');
-  ga('send', 'pageview');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106151602-1');
 </script>
 
 
@@ -166,21 +198,43 @@
 
 
 
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
 
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
 
-
-
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -189,19 +243,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ExtremeGTR's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -209,68 +265,105 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+  </li>
 
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
       
     </ul>
   
 
   
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
 
@@ -283,6 +376,10 @@
   
   
 
+  
+    <div class="reading-progress-bar"></div>
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -292,7 +389,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="有空就写点什么...">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -305,11 +402,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaEE学习笔记 - 分页</h1>
+          <h1 class="post-title" itemprop="name headline">JavaEE学习笔记 - 分页
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -317,25 +422,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-19T21:25:42+08:00">
-                2016-03-19
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2016-03-19 21:25:42" itemprop="dateCreated datePublished" datetime="2016-03-19T21:25:42+08:00">2016-03-19</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-03-02 14:51:11" itemprop="dateModified" datetime="2018-03-02T14:51:11+08:00">2018-03-02</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-14T22:07:29+08:00">
-                2017-10-14
-              </time>
             
           </span>
 
@@ -351,11 +461,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaEE</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaEE/" itemprop="url" rel="index"><span itemprop="name">JavaEE</span></a></span>
 
                 
                 
@@ -364,6 +470,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/19/JavaEE-study-paging/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2016/03/19/JavaEE-study-paging/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -375,7 +491,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数 </span>
+                 <span class="post-meta-item-text">阅读次数：</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -384,18 +500,17 @@
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  3,514
-                </span>
+                <span title="本文字数">16k</span>
               
 
               
@@ -407,11 +522,9 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">阅读时长</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  15
-                </span>
+                <span title="阅读时长">15 分钟</span>
               
             </div>
           
@@ -433,7 +546,7 @@
       
         <p>分页技术在Java Web开发中是必须要用到的，虽然它不难，但长时间不接触渐渐就会对其淡忘了，毕竟这种轮子在项目开发中并不会经常被重造。</p>
 <h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><p>平常，我们就使用到各种搜索引擎、论坛，里面也有分页功能，那大可以模仿它们的来做出属于我们自己的分页功能。</p>
-<img src="/2016/03/19/JavaEE-study-paging/google_paging_bar.png" alt="Google分页条" title="Google分页条">
+<p><img src="https://farm5.staticflickr.com/4678/25696412377_f76a55651a_o.png" alt="" title="Google分页条"></p>
 <p>在动手做之前，首先是根据分页功能推理出它内部底层到底是怎么运作起来的。</p>
 <p>先不用去想分页条这么复杂的东西，我们先把最基础的东西慢慢开始构思就行了。</p>
 <p>最简单地，我们能够首先想到的肯定是<strong><code>每页所显示的实体数据</code></strong>，比如：使用谷歌百度搜索出来显示的是搜索结果列表、论坛贴吧显示的则是对应的帖子列表、淘宝显示的是商品列表。再来，就是<strong><code>每页所显示实体数据的个数</code></strong>，既然是我们自己的分页，所以我们可以根据自己喜好随便限制每页显示多少个实体数据，或者是做成可以让用户动态地修改这个数值。这两个数据是最好理解的。</p>
@@ -472,9 +585,9 @@
 <p>首先要明确的是，起始页码和结束页码的变化与<strong><code>当前页页码</code></strong>、<strong><code>总页数</code></strong>、<strong><code>分页条宽度</code></strong>这3个数据变量有关。</p>
 <p>分页条的变化，大体分为2种情况。<br>第1种情况很简单，实体数据不多，也就是总页数很少并且少于等于分页条宽度的时候，那么<strong>分页条的起始页码只能是1，而它的结束页码就是总页数了</strong>。<br>反之，第2种情况就是总页数大于分页条宽度的时候，而这种情况里面又细分了几种情况，事情就变得复杂许多了。</p>
 <p>我们可以通过观察Google搜索里分页条的变化从而摸索出其中的规律。</p>
-<img src="/2016/03/19/JavaEE-study-paging/google_paging_bar2.png" alt="当前页页码是7的时候" title="当前页页码是7的时候">
+<p><img src="https://farm5.staticflickr.com/4779/40567054811_1403b44b5f_o.png" alt="" title="当前页页码是7的时候"></p>
 <p>从上图也可以非常清楚地看到：当前页页码为7的时候，分页条就开始产生变化了。所以，在这里就可以画图推断了。</p>
-<img src="/2016/03/19/JavaEE-study-paging/paging_bar_width_10.png" alt="分页条宽度为10的情况" title="分页条宽度为10的情况">
+<p><img src="https://farm5.staticflickr.com/4787/25696412277_4d63bf40b6_o.png" alt="" title="分页条宽度为10的情况"></p>
 <p>这里，假设总页数为15，并且罗列出当前页页码变化时分页条起始页码和结束页码对应变化的数据。现在可以得出分页条的变化分为3种情况：</p>
 <ul>
 <li><strong>当前页页码小于等于分页条宽度一半</strong></li>
@@ -485,29 +598,32 @@
 <p>不过现阶段还没完，如果客户要求自定义分页条宽度呢？这些计算公式肯定不能满足这种需求的，图中的计算公式只能满足<strong>分页条宽度为偶数</strong>的情况。</p>
 <p>所以说只要把分页条宽度为奇数这种情况的计算公式也推导出来，这样无论分页条宽度如何变化，分页条都能正常工作了。</p>
 <p>其实分页条宽度为奇数相比之前分页条宽度为偶数所得出的计算公式变化并不大，下面是假设分页条宽度为5时所画的图。</p>
-<img src="/2016/03/19/JavaEE-study-paging/paging_bar_width_5.png" alt="分页条宽度为5的情况" title="分页条宽度为5的情况">
+<p><img src="https://farm5.staticflickr.com/4801/38756668900_f375464084_o.png" alt="" title="分页条宽度为5的情况"></p>
 <h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p>这里，就用普通的Web程序来演示分页功能。</p>
 <p>从底层开始开发，那样，先把数据库以及对应的表构建起来。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> paging</div><div class="line"><span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8</div><div class="line"><span class="keyword">COLLATE</span> utf8_general_ci;</div><div class="line"></div><div class="line"><span class="keyword">USE</span> paging;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> book(</div><div class="line">	<span class="keyword">id</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) PRIMARY <span class="keyword">KEY</span>,</div><div class="line">	<span class="keyword">name</span> <span class="built_in">VARCHAR</span>(<span class="number">60</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>,</div><div class="line">	author <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">	price <span class="built_in">DECIMAL</span>(<span class="number">8</span>, <span class="number">2</span>),</div><div class="line">	publisher <span class="built_in">VARCHAR</span>(<span class="number">255</span>),</div><div class="line">	<span class="keyword">type</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> paging</div><div class="line"><span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8</div><div class="line"><span class="keyword">COLLATE</span> utf8_general_ci;</div><div class="line"></div><div class="line"><span class="keyword">USE</span> paging;</div><div class="line"></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> book(</div><div class="line">    <span class="keyword">id</span> <span class="built_in">VARCHAR</span>(<span class="number">255</span>) PRIMARY <span class="keyword">KEY</span>,</div><div class="line">    <span class="keyword">name</span> <span class="built_in">VARCHAR</span>(<span class="number">60</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>,</div><div class="line">    author <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    price <span class="built_in">DECIMAL</span>(<span class="number">8</span>, <span class="number">2</span>),</div><div class="line">    publisher <span class="built_in">VARCHAR</span>(<span class="number">255</span>),</div><div class="line">    <span class="keyword">type</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
 <p>然后，可以根据表来创建对应的类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String id;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> String author;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">double</span> price;</div><div class="line">	<span class="keyword">private</span> String publisher;</div><div class="line">	<span class="keyword">private</span> String type;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">()</span> </span>&#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String id, String name, String author, <span class="keyword">double</span> price,</span></span></div><div class="line"><span class="function"><span class="params">			String publisher, String type)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.id = id;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.author = author;</div><div class="line">		<span class="keyword">this</span>.price = price;</div><div class="line">		<span class="keyword">this</span>.publisher = publisher;</div><div class="line">		<span class="keyword">this</span>.type = type;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="string">"Book [id="</span> + id + <span class="string">", name="</span> + name + <span class="string">", author="</span> + author</div><div class="line">				+ <span class="string">", price="</span> + price + <span class="string">", publisher="</span> + publisher + <span class="string">", type="</span></div><div class="line">				+ type + <span class="string">"]"</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 省略get/set方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> String author;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> price;</div><div class="line">    <span class="keyword">private</span> String publisher;</div><div class="line">    <span class="keyword">private</span> String type;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">()</span> </span>&#123;</div><div class="line">    	</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String id, String name, String author, <span class="keyword">double</span> price,</span></span></div><div class="line"><span class="function"><span class="params">            String publisher, String type)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.author = author;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">        <span class="keyword">this</span>.publisher = publisher;</div><div class="line">        <span class="keyword">this</span>.type = type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Book [id="</span> + id + <span class="string">", name="</span> + name + <span class="string">", author="</span> + author</div><div class="line">                    + <span class="string">", price="</span> + price + <span class="string">", publisher="</span> + publisher + <span class="string">", type="</span></div><div class="line">                    + type + <span class="string">"]"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 省略get/set方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>接着，则要来构建并实现封装分页数据的分页类，它是整个分页功能最核心的敌方。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Page</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">	<span class="comment">// 一页的数据</span></div><div class="line">	<span class="keyword">private</span> List&lt;T&gt; list = <span class="keyword">null</span>;</div><div class="line">	<span class="comment">// 一页数据的起始位置</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> offset = <span class="number">0</span>;</div><div class="line">	<span class="comment">// 一页数据的大小</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> pageSize = <span class="number">2</span>;</div><div class="line">	<span class="comment">// 总记录数</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> recordCount = <span class="number">0</span>;</div><div class="line">	<span class="comment">// 总页数</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> pageCount = <span class="number">0</span>;</div><div class="line">	<span class="comment">//当前页索引</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> currentPage = <span class="number">0</span>;</div><div class="line">	</div><div class="line">	<span class="comment">// 分页条宽度</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> width = <span class="number">10</span>;</div><div class="line">	<span class="comment">// 分页条起始位置</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> begin;</div><div class="line">	<span class="comment">// 分页条结束位置</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> end;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Page</span><span class="params">(<span class="keyword">int</span> rCount, <span class="keyword">int</span> currPage)</span> </span>&#123;</div><div class="line">		recordCount = rCount;</div><div class="line">		currentPage = currPage;</div><div class="line">		</div><div class="line">		pageCount = recordCount / pageSize + (recordCount % pageSize == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>);</div><div class="line">		</div><div class="line">		offset = (currentPage - <span class="number">1</span>) * pageSize;</div><div class="line">		</div><div class="line">		<span class="comment">// 计算分页条起始和结束的位置</span></div><div class="line">		<span class="comment">// 具体分为两种情况:</span></div><div class="line">		<span class="comment">//   1.总页数小于等于分页条宽度</span></div><div class="line">		<span class="comment">//   2.总页数大于分页条宽度</span></div><div class="line">		<span class="keyword">if</span> (pageCount &lt;= width) &#123;</div><div class="line">			begin = <span class="number">1</span>;</div><div class="line">			end = pageCount;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// 当总页数多于分页条宽度时, 又分3种情况</span></div><div class="line">			<span class="comment">//   1.当前页索引小于等于分页条一半宽度</span></div><div class="line">			<span class="comment">//   2.当前页索引大于(总页数-分页条一半宽度)</span></div><div class="line">			<span class="comment">//   3.当前页索引介于条件1, 2之间</span></div><div class="line">			<span class="keyword">int</span> pivot = width / <span class="number">2</span>;</div><div class="line">			<span class="keyword">if</span> (currentPage &lt;= pivot) &#123;</div><div class="line">				begin = <span class="number">1</span>;</div><div class="line">				end = width;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentPage &gt; pageCount - pivot) &#123;</div><div class="line">				begin = pageCount - width + <span class="number">1</span>;</div><div class="line">				end = pageCount;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				begin = currentPage - pivot;</div><div class="line">				<span class="comment">// width &amp; 0x1 ^ 0x1的作用相当于width % 2 == 0 : 1 : 0 </span></div><div class="line">				end = currentPage + pivot - (width &amp; <span class="number">0x1</span> ^ <span class="number">0x1</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">getList</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> list;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;T&gt; list)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.list = list;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOffset</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> offset;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageSize</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> pageSize;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageSize</span><span class="params">(<span class="keyword">int</span> pageSize)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.pageSize = pageSize;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getRecordCount</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> recordCount;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRecordCount</span><span class="params">(<span class="keyword">int</span> recordCount)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.recordCount = recordCount;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageCount</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> pageCount;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageCount</span><span class="params">(<span class="keyword">int</span> pageCount)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.pageCount = pageCount;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCurrentPage</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> currentPage;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCurrentPage</span><span class="params">(<span class="keyword">int</span> currentPage)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.currentPage = currentPage;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> width;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWidth</span><span class="params">(<span class="keyword">int</span> width)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.width = width;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBegin</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> begin;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBegin</span><span class="params">(<span class="keyword">int</span> begin)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.begin = begin;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> end;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEnd</span><span class="params">(<span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.end = end;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Page</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">// 一页的数据</span></div><div class="line">    <span class="keyword">private</span> List&lt;T&gt; list = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">// 一页数据的起始位置</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> offset = <span class="number">0</span>;</div><div class="line">    <span class="comment">// 一页数据的大小</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pageSize = <span class="number">2</span>;</div><div class="line">    <span class="comment">// 总记录数</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> recordCount = <span class="number">0</span>;</div><div class="line">    <span class="comment">// 总页数</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pageCount = <span class="number">0</span>;</div><div class="line">    <span class="comment">//当前页索引</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> currentPage = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 分页条宽度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> width = <span class="number">10</span>;</div><div class="line">    <span class="comment">// 分页条起始位置</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> begin;</div><div class="line">    <span class="comment">// 分页条结束位置</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> end;</div><div class="line">	</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Page</span><span class="params">(<span class="keyword">int</span> rCount, <span class="keyword">int</span> currPage)</span> </span>&#123;</div><div class="line">        recordCount = rCount;</div><div class="line">        currentPage = currPage;</div><div class="line"></div><div class="line">        pageCount = recordCount / pageSize + (recordCount % pageSize == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>);</div><div class="line"></div><div class="line">        offset = (currentPage - <span class="number">1</span>) * pageSize;</div><div class="line"></div><div class="line">        <span class="comment">// 计算分页条起始和结束的位置</span></div><div class="line">        <span class="comment">// 具体分为两种情况:</span></div><div class="line">        <span class="comment">//   1.总页数小于等于分页条宽度</span></div><div class="line">        <span class="comment">//   2.总页数大于分页条宽度</span></div><div class="line">        <span class="keyword">if</span> (pageCount &lt;= width) &#123;</div><div class="line">            begin = <span class="number">1</span>;</div><div class="line">            end = pageCount;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// 当总页数多于分页条宽度时, 又分3种情况</span></div><div class="line">            <span class="comment">//   1.当前页索引小于等于分页条一半宽度</span></div><div class="line">            <span class="comment">//   2.当前页索引大于(总页数-分页条一半宽度)</span></div><div class="line">            <span class="comment">//   3.当前页索引介于条件1, 2之间</span></div><div class="line">            <span class="keyword">int</span> pivot = width / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span> (currentPage &lt;= pivot) &#123;</div><div class="line">                begin = <span class="number">1</span>;</div><div class="line">                end = width;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentPage &gt; pageCount - pivot) &#123;</div><div class="line">                begin = pageCount - width + <span class="number">1</span>;</div><div class="line">                end = pageCount;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                begin = currentPage - pivot;</div><div class="line">                <span class="comment">// width &amp; 0x1 ^ 0x1的作用相当于width % 2 == 0 : 1 : 0 </span></div><div class="line">                end = currentPage + pivot - (width &amp; <span class="number">0x1</span> ^ <span class="number">0x1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">getList</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;T&gt; list)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.list = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOffset</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> offset;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageSize</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> pageSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageSize</span><span class="params">(<span class="keyword">int</span> pageSize)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.pageSize = pageSize;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getRecordCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> recordCount;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRecordCount</span><span class="params">(<span class="keyword">int</span> recordCount)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.recordCount = recordCount;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> pageCount;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPageCount</span><span class="params">(<span class="keyword">int</span> pageCount)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.pageCount = pageCount;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCurrentPage</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> currentPage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCurrentPage</span><span class="params">(<span class="keyword">int</span> currentPage)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.currentPage = currentPage;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> width;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWidth</span><span class="params">(<span class="keyword">int</span> width)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.width = width;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBegin</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> begin;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBegin</span><span class="params">(<span class="keyword">int</span> begin)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.begin = begin;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEnd</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> end;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEnd</span><span class="params">(<span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.end = end;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在<code>Page</code>类的构造函数里运用了之前推导的计算公式，将每个分页要用到的数据变量都计算出来。</p>
 <p>那接下来的事情就很简单了，我们只要随便往数据库表里面插入一些数据，在查询出来显示到页面上即可。</p>
 <p>操作图书数据的Dao类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookDao</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 获取一页图书数据</span></div><div class="line"><span class="comment">	 * </span></div><div class="line"><span class="comment">	 * <span class="doctag">@param</span> offset</span></div><div class="line"><span class="comment">	 * <span class="doctag">@param</span> size</span></div><div class="line"><span class="comment">	 * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> List&lt;Book&gt; <span class="title">getPageData</span><span class="params">(<span class="keyword">int</span> offset, <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">		List&lt;Book&gt; list = <span class="keyword">new</span> ArrayList&lt;Book&gt;();</div><div class="line">		</div><div class="line">		Connection con = <span class="keyword">null</span>;</div><div class="line">		PreparedStatement pStmt = <span class="keyword">null</span>;</div><div class="line">		ResultSet rs = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			con = DBUtils.getConnection();</div><div class="line">			String sql = <span class="string">"select * from book limit ?, ?"</span>;</div><div class="line">			pStmt = con.prepareStatement(sql);</div><div class="line">			</div><div class="line">			<span class="comment">// 设置参数</span></div><div class="line">			pStmt.setInt(<span class="number">1</span>, offset);</div><div class="line">			pStmt.setInt(<span class="number">2</span>, size);</div><div class="line">			<span class="comment">// 执行查询</span></div><div class="line">			rs = pStmt.executeQuery();</div><div class="line">			<span class="keyword">while</span> (rs.next()) &#123;</div><div class="line">				String id = rs.getString(<span class="number">1</span>);</div><div class="line">				String name = rs.getString(<span class="number">2</span>);</div><div class="line">				String author = rs.getString(<span class="number">3</span>);</div><div class="line">				<span class="keyword">double</span> price = rs.getDouble(<span class="number">4</span>);</div><div class="line">				String publisher = rs.getString(<span class="number">5</span>);</div><div class="line">				String type = rs.getString(<span class="number">6</span>);</div><div class="line">				</div><div class="line">				Book book = <span class="keyword">new</span> Book(id, name, author, price, publisher, type);</div><div class="line">				list.add(book);</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			DBUtils.release(con, pStmt, rs);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> list;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 获取统计的图书记录数</span></div><div class="line"><span class="comment">	 * </span></div><div class="line"><span class="comment">	 * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">		</div><div class="line">		Connection con = <span class="keyword">null</span>;</div><div class="line">		Statement stmt = <span class="keyword">null</span>;</div><div class="line">		ResultSet rs = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			con = DBUtils.getConnection();</div><div class="line">			stmt = con.createStatement();</div><div class="line">			String sql = <span class="string">"select count(*) from book"</span>;</div><div class="line">			rs = stmt.executeQuery(sql);</div><div class="line">			rs.next();</div><div class="line">			count = rs.getInt(<span class="number">1</span>);</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			DBUtils.release(con, stmt, rs);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> count;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 插入图书数据</span></div><div class="line"><span class="comment">	 * </span></div><div class="line"><span class="comment">	 * <span class="doctag">@param</span> book</span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(Book book)</span> </span>&#123;</div><div class="line">		Connection con = <span class="keyword">null</span>;</div><div class="line">		PreparedStatement pStmt = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			con = DBUtils.getConnection();</div><div class="line">			String sql = <span class="string">"insert into book values(?, ?, ?, ?, ?, ?)"</span>;</div><div class="line">			pStmt = con.prepareStatement(sql);</div><div class="line">			</div><div class="line">			<span class="comment">// 设置参数</span></div><div class="line">			pStmt.setString(<span class="number">1</span>, book.getId());</div><div class="line">			pStmt.setString(<span class="number">2</span>, book.getName());</div><div class="line">			pStmt.setString(<span class="number">3</span>, book.getAuthor());</div><div class="line">			pStmt.setDouble(<span class="number">4</span>, book.getPrice());</div><div class="line">			pStmt.setString(<span class="number">5</span>, book.getPublisher());</div><div class="line">			pStmt.setString(<span class="number">6</span>, book.getType());</div><div class="line">			<span class="comment">// 执行</span></div><div class="line">			pStmt.execute();</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			DBUtils.release(con, pStmt, <span class="keyword">null</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 删除所有图书数据</span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteAll</span><span class="params">()</span> </span>&#123;</div><div class="line">		Connection con = <span class="keyword">null</span>;</div><div class="line">		Statement stmt = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			con = DBUtils.getConnection();</div><div class="line">			stmt = con.createStatement();</div><div class="line">			String sql = <span class="string">"delete from book"</span>;</div><div class="line">			stmt.execute(sql);</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">finally</span> &#123;</div><div class="line">			DBUtils.release(con, stmt, <span class="keyword">null</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookDao</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 获取一页图书数据</span></div><div class="line"><span class="comment">     * </span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> offset</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> size</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Book&gt; <span class="title">getPageData</span><span class="params">(<span class="keyword">int</span> offset, <span class="keyword">int</span> size)</span> </span>&#123;</div><div class="line">        List&lt;Book&gt; list = <span class="keyword">new</span> ArrayList&lt;Book&gt;();</div><div class="line"></div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        PreparedStatement pStmt = <span class="keyword">null</span>;</div><div class="line">        ResultSet rs = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            con = DBUtils.getConnection();</div><div class="line">            String sql = <span class="string">"select * from book limit ?, ?"</span>;</div><div class="line">            pStmt = con.prepareStatement(sql);</div><div class="line"></div><div class="line">            <span class="comment">// 设置参数</span></div><div class="line">            pStmt.setInt(<span class="number">1</span>, offset);</div><div class="line">            pStmt.setInt(<span class="number">2</span>, size);</div><div class="line">            <span class="comment">// 执行查询</span></div><div class="line">            rs = pStmt.executeQuery();</div><div class="line">            <span class="keyword">while</span> (rs.next()) &#123;</div><div class="line">                String id = rs.getString(<span class="number">1</span>);</div><div class="line">                String name = rs.getString(<span class="number">2</span>);</div><div class="line">                String author = rs.getString(<span class="number">3</span>);</div><div class="line">                <span class="keyword">double</span> price = rs.getDouble(<span class="number">4</span>);</div><div class="line">                String publisher = rs.getString(<span class="number">5</span>);</div><div class="line">                String type = rs.getString(<span class="number">6</span>);</div><div class="line"></div><div class="line">                Book book = <span class="keyword">new</span> Book(id, name, author, price, publisher, type);</div><div class="line">                list.add(book);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            DBUtils.release(con, pStmt, rs);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">    * 获取统计的图书记录数</span></div><div class="line"><span class="comment">    * </span></div><div class="line"><span class="comment">    * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        Statement stmt = <span class="keyword">null</span>;</div><div class="line">        ResultSet rs = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            con = DBUtils.getConnection();</div><div class="line">            stmt = con.createStatement();</div><div class="line">            String sql = <span class="string">"select count(*) from book"</span>;</div><div class="line">            rs = stmt.executeQuery(sql);</div><div class="line">            rs.next();</div><div class="line">            count = rs.getInt(<span class="number">1</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            DBUtils.release(con, stmt, rs);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> count;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">    * 插入图书数据</span></div><div class="line"><span class="comment">    * </span></div><div class="line"><span class="comment">    * <span class="doctag">@param</span> book</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(Book book)</span> </span>&#123;</div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        PreparedStatement pStmt = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            con = DBUtils.getConnection();</div><div class="line">            String sql = <span class="string">"insert into book values(?, ?, ?, ?, ?, ?)"</span>;</div><div class="line">            pStmt = con.prepareStatement(sql);</div><div class="line"></div><div class="line">            <span class="comment">// 设置参数</span></div><div class="line">            pStmt.setString(<span class="number">1</span>, book.getId());</div><div class="line">            pStmt.setString(<span class="number">2</span>, book.getName());</div><div class="line">            pStmt.setString(<span class="number">3</span>, book.getAuthor());</div><div class="line">            pStmt.setDouble(<span class="number">4</span>, book.getPrice());</div><div class="line">            pStmt.setString(<span class="number">5</span>, book.getPublisher());</div><div class="line">            pStmt.setString(<span class="number">6</span>, book.getType());</div><div class="line">            <span class="comment">// 执行</span></div><div class="line">            pStmt.execute();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            DBUtils.release(con, pStmt, <span class="keyword">null</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">    * 删除所有图书数据</span></div><div class="line"><span class="comment">    */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteAll</span><span class="params">()</span> </span>&#123;</div><div class="line">        Connection con = <span class="keyword">null</span>;</div><div class="line">        Statement stmt = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            con = DBUtils.getConnection();</div><div class="line">            stmt = con.createStatement();</div><div class="line">            String sql = <span class="string">"delete from book"</span>;</div><div class="line">            stmt.execute(sql);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            DBUtils.release(con, stmt, <span class="keyword">null</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>写一个测试方法，随便插入一些图书数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInsert</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">	BookDao bookDao = <span class="keyword">new</span> BookDao();</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</div><div class="line">		Book book = <span class="keyword">new</span> Book(UUID.randomUUID().toString(),</div><div class="line">				<span class="string">"Thinking In Java"</span> + i,</div><div class="line">				<span class="string">"makwan"</span> + i,</div><div class="line">				<span class="number">60.0</span> + i,</div><div class="line">				<span class="string">"机械工业出版社"</span> + i,</div><div class="line">				<span class="string">"Java编程语言"</span>);</div><div class="line">		bookDao.insert(book);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testInsert</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    BookDao bookDao = <span class="keyword">new</span> BookDao();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) &#123;</div><div class="line">        Book book = <span class="keyword">new</span> Book(UUID.randomUUID().toString(),</div><div class="line">                        <span class="string">"Thinking In Java"</span> + i,</div><div class="line">                        <span class="string">"makwan"</span> + i,</div><div class="line">                        <span class="number">60.0</span> + i,</div><div class="line">                        <span class="string">"机械工业出版社"</span> + i,</div><div class="line">                        <span class="string">"Java编程语言"</span>);</div><div class="line">        bookDao.insert(book);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>处理图书数据的服务层也是比较重要的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookService</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> BookDao bookDao = <span class="keyword">new</span> BookDao();</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> Page&lt;Book&gt; <span class="title">getPageData</span><span class="params">(String currentPage)</span> </span>&#123;</div><div class="line">		Page&lt;Book&gt; page = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// 获取总记录数</span></div><div class="line">			<span class="keyword">int</span> count = bookDao.getCount();</div><div class="line">			<span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">int</span> cp = StringUtils.isBlank(currentPage) ? <span class="number">1</span> </div><div class="line">						: Integer.parseInt(currentPage);</div><div class="line">				page = <span class="keyword">new</span> Page&lt;Book&gt;(count, cp);</div><div class="line">				<span class="comment">// 获取指定页的数据</span></div><div class="line">				List&lt;Book&gt; list = bookDao.getPageData(page.getOffset(), page.getPageSize());</div><div class="line">				page.setList(list);</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> page;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookService</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> BookDao bookDao = <span class="keyword">new</span> BookDao();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Page&lt;Book&gt; <span class="title">getPageData</span><span class="params">(String currentPage)</span> </span>&#123;</div><div class="line">        Page&lt;Book&gt; page = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// 获取总记录数</span></div><div class="line">            <span class="keyword">int</span> count = bookDao.getCount();</div><div class="line">            <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">int</span> cp = StringUtils.isBlank(currentPage) ? <span class="number">1</span> </div><div class="line">                            : Integer.parseInt(currentPage);</div><div class="line">                page = <span class="keyword">new</span> Page&lt;Book&gt;(count, cp);</div><div class="line">                <span class="comment">// 获取指定页的数据</span></div><div class="line">                List&lt;Book&gt; list = bookDao.getPageData(page.getOffset(), page.getPageSize());</div><div class="line">                page.setList(list);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> page;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>我们可以看到这就像之前分析的一样，用户提供当前页页码传递进来，并且总记录数也查询出来，这2个数据是构成<code>Page</code>对象的关键所在。</p>
-<p>其他无关要紧的层就不再一一列举了。现在再来编写一个页面分页显示数据即可。这是用于显示图书分页数据的jsp页面。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span></div><div class="line"><span class="tag">    <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> <span class="attr">prefix</span>=<span class="string">"c"</span> %&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>图书信息展示页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css">	<span class="selector-class">.pagingbar</span> &#123;</span></div><div class="line"><span class="undefined">		text-align: center;	</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	</span></div><div class="line"><span class="undefined">	a &#123;</span></div><div class="line"><span class="undefined">		text-decoration: none;</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 数据列表 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">table</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">border</span>=<span class="string">"1"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>编号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>书名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>作者<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>价格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>出版社<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>类型<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">c:choose</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;not empty requestScope.page&#125;"</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">c:forEach</span> <span class="attr">items</span>=<span class="string">"$&#123;requestScope.page.list&#125;"</span> <span class="attr">var</span>=<span class="string">"book"</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.id&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.name&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.author&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.price&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.publisher&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.type&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">						<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">					<span class="tag">&lt;/<span class="name">c:forEach</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">c:otherwise</span>&gt;</span></div><div class="line">					<span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">						<span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">							<span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"red"</span>&gt;</span>当前没有数据<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">						<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">					<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">c:otherwise</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">c:choose</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">	</div><div class="line">	<span class="comment">&lt;!-- 分页条 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pagingbar"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;not empty requestScope.page&#125;"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &gt; 1&#125;"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=1"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &gt; 1&#125;"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;requestScope.page.currentPage - 1&#125;"</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">c:forEach</span> <span class="attr">begin</span>=<span class="string">"$&#123;requestScope.page.begin&#125;"</span> <span class="attr">end</span>=<span class="string">"$&#123;requestScope.page.end&#125;"</span> <span class="attr">step</span>=<span class="string">"1"</span> <span class="attr">var</span>=<span class="string">"pageNum"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;pageNum&#125;"</span></span></div><div class="line"><span class="tag">				   $&#123;<span class="attr">pageNum</span> == <span class="string">requestScope.page.currentPage</span> ? "<span class="attr">style</span>=<span class="string">'font-size:20px;color:red;'</span>" <span class="attr">:</span> "<span class="attr">style</span>=<span class="string">'color:blue;'</span>"&#125;</span></div><div class="line"><span class="tag">				&gt;</span></div><div class="line">					$&#123;pageNum&#125;</div><div class="line">				<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">c:forEach</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &lt; requestScope.page.pageCount&#125;"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;requestScope.page.currentPage + 1&#125;"</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &lt; requestScope.page.pageCount&#125;"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;requestScope.page.pageCount&#125;"</span>&gt;</span>尾页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">style</span>=<span class="string">"display: inline;"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"currentPage"</span> <span class="attr">style</span>=<span class="string">"width: 20px"</span>/&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Go"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">		当前 $&#123;requestScope.page.currentPage&#125;页</div><div class="line">		共    $&#123;requestScope.page.pageCount&#125;页</div><div class="line">		共    $&#123;requestScope.page.recordCount&#125;条记录</div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>其他无关要紧的层就不再一一列举了。现在再来编写一个页面分页显示数据即可。这是用于显示图书分页数据的jsp页面。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span></div><div class="line"><span class="tag">    <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">taglib</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> <span class="attr">prefix</span>=<span class="string">"c"</span> %&gt;</span></div><div class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>图书信息展示页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css">    <span class="selector-class">.pagingbar</span> &#123;</span></div><div class="line"><span class="undefined">        text-align: center;	</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">    a &#123;</span></div><div class="line"><span class="undefined">        text-decoration: none;</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 数据列表 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">border</span>=<span class="string">"1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>编号<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>书名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>作者<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>价格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>出版社<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>类型<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">c:choose</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:when</span> <span class="attr">test</span>=<span class="string">"$&#123;not empty requestScope.page&#125;"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">c:forEach</span> <span class="attr">items</span>=<span class="string">"$&#123;requestScope.page.list&#125;"</span> <span class="attr">var</span>=<span class="string">"book"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.id&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.name&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.author&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.price&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.publisher&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;book.type&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">c:forEach</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:when</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:otherwise</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"9"</span>&gt;</span></div><div class="line">                        <span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"red"</span>&gt;</span>当前没有数据<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:otherwise</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">c:choose</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">	</div><div class="line">    <span class="comment">&lt;!-- 分页条 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pagingbar"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;not empty requestScope.page&#125;"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &gt; 1&#125;"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=1"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &gt; 1&#125;"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;requestScope.page.currentPage - 1&#125;"</span>&gt;</span></div><div class="line">                    上一页</div><div class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:forEach</span> <span class="attr">begin</span>=<span class="string">"$&#123;requestScope.page.begin&#125;"</span> <span class="attr">end</span>=<span class="string">"$&#123;requestScope.page.end&#125;"</span> <span class="attr">step</span>=<span class="string">"1"</span> <span class="attr">var</span>=<span class="string">"pageNum"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;pageNum&#125;"</span></span></div><div class="line"><span class="tag">                $&#123;<span class="attr">pageNum</span> == <span class="string">requestScope.page.currentPage</span> ? "<span class="attr">style</span>=<span class="string">'font-size:20px;color:red;'</span>" <span class="attr">:</span> "<span class="attr">style</span>=<span class="string">'color:blue;'</span>"&#125;&gt;</span></div><div class="line">                    $&#123;pageNum&#125;</div><div class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:forEach</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &lt; requestScope.page.pageCount&#125;"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;requestScope.page.currentPage + 1&#125;"</span>&gt;</span></div><div class="line">                    下一页</div><div class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">c:if</span> <span class="attr">test</span>=<span class="string">"$&#123;requestScope.page.currentPage &lt; requestScope.page.pageCount&#125;"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData&amp;currentPage=$&#123;requestScope.page.pageCount&#125;"</span>&gt;</span></div><div class="line">                    尾页</div><div class="line">                <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">c:if</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/bookservlet?method=getPageData"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">style</span>=<span class="string">"display: inline;"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"currentPage"</span> <span class="attr">style</span>=<span class="string">"width: 20px"</span>/&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Go"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">        当前 $&#123;requestScope.page.currentPage&#125;页</div><div class="line">        共    $&#123;requestScope.page.pageCount&#125;页</div><div class="line">        共    $&#123;requestScope.page.recordCount&#125;条记录</div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>分页功能正如上面所演示的一样，效果如下图。</p>
-<img src="/2016/03/19/JavaEE-study-paging/paging_demo.png" alt="分页功能效果" title="分页功能效果">
+<p><img src="https://farm5.staticflickr.com/4740/40567054741_663834f8a5_o.png" alt="" title="分页功能效果"></p>
 
       
     </div>
+
+    
+
     
     
     
@@ -522,9 +638,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaSE/" rel="tag"><i class="fa fa-tag"></i> JavaSE</a>
+            <a href="/tags/JavaSE/" rel="tag"># JavaSE</a>
           
-            <a href="/tags/JavaEE/" rel="tag"><i class="fa fa-tag"></i> JavaEE</a>
+            <a href="/tags/JavaEE/" rel="tag"># JavaEE</a>
           
         </div>
       
@@ -565,25 +681,21 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       
         <div id="gitment-container"></div>
       
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -606,103 +718,203 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="ExtremeGTR" />
-          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="ExtremeGTR" />
+            
+              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
               <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          </div>
+
           
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">39</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
-                  
-                    <i class="fa fa-fw fa-google"></i>
-                  
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
       </section>
 
       
@@ -742,30 +954,41 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+
+  
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Gemini
-  </a>
-</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
 
 
         
+
+
+
+
+
+
+
 
         
       </div>
@@ -773,6 +996,11 @@
 
     
 
+    
+	
+    
+
+    
   </div>
 
   
@@ -791,81 +1019,6 @@
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -875,35 +1028,449 @@
 
 
 
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
   
 
 
 
 
 
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
 
     
+
     
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'ExtremeGTR',
+            repo: 'extremegtr.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+            
+                client_id: 'fb006b67b16f091184ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
-    
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    
-        <script type="text/javascript">
-            var gitment = new Gitment({
-                    id: window.location.pathname,
-                    owner: 'ExtremeGTR',
-                    repo: 'extremegtr.github.io',
-                    oauth: {
-                        client_id: 'fb006b67b16f091184ea',
-                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-                    }});
-            gitment.render('gitment-container');
-        </script>
-    
+
+
+
+
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
@@ -913,7 +1480,7 @@
 
   
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);
@@ -969,35 +1536,40 @@
             var counter = results[0];
             counter.fetchWhenSave(true);
             counter.increment("time");
+            
             counter.save(null, {
               success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
               },
               error: function(counter, error) {
                 console.log('Failed to save Visitor num, with error message: ' + error.message);
               }
             });
           } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
           }
         },
         error: function(error) {
@@ -1024,26 +1596,22 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
   

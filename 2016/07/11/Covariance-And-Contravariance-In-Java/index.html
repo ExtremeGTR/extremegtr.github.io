@@ -2,15 +2,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -22,6 +34,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -55,6 +68,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -65,7 +84,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -75,37 +94,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaSE," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
 
 
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
-<meta name="description" content="“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，">
-<meta name="keywords" content="JavaSE">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java中的协变与逆变">
-<meta property="og:url" content="http://extremegtr.github.io/2016/07/11/Covariance-And-Contravariance-In-Java/index.html">
-<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
-<meta property="og:description" content="“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T06:48:14.271Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中的协变与逆变">
-<meta name="twitter:description" content="“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，">
+
+
+
 
 
 
@@ -114,14 +121,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '6.3.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -133,12 +139,38 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，">
+<meta name="keywords" content="JavaSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中的协变与逆变">
+<meta property="og:url" content="http://extremegtr.github.io/2016/07/11/Covariance-And-Contravariance-In-Java/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-27T17:35:21.011Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中的协变与逆变">
+<meta name="twitter:description" content="“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，">
+
+
+
+
+
 
   <link rel="canonical" href="http://extremegtr.github.io/2016/07/11/Covariance-And-Contravariance-In-Java/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Java中的协变与逆变 | ExtremeGTR's Blog</title>
   
@@ -146,13 +178,13 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-106151602-1', 'auto');
-  ga('send', 'pageview');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106151602-1');
 </script>
 
 
@@ -160,21 +192,43 @@
 
 
 
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
 
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
 
-
-
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -183,19 +237,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ExtremeGTR's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -203,68 +259,105 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+  </li>
 
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
       
     </ul>
   
 
   
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
 
@@ -277,6 +370,10 @@
   
   
 
+  
+    <div class="reading-progress-bar"></div>
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -286,7 +383,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="有空就写点什么...">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -299,11 +396,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java中的协变与逆变</h1>
+          <h1 class="post-title" itemprop="name headline">Java中的协变与逆变
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -311,25 +416,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-11T20:35:09+08:00">
-                2016-07-11
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2016-07-11 20:35:09" itemprop="dateCreated datePublished" datetime="2016-07-11T20:35:09+08:00">2016-07-11</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-28 01:35:21" itemprop="dateModified" datetime="2018-04-28T01:35:21+08:00">2018-04-28</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-17T14:48:14+08:00">
-                2017-09-17
-              </time>
             
           </span>
 
@@ -345,11 +455,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaSE/" itemprop="url" rel="index"><span itemprop="name">JavaSE</span></a></span>
 
                 
                 
@@ -358,6 +464,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/11/Covariance-And-Contravariance-In-Java/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2016/07/11/Covariance-And-Contravariance-In-Java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -369,7 +485,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数 </span>
+                 <span class="post-meta-item-text">阅读次数：</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -378,18 +494,17 @@
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  3,667
-                </span>
+                <span title="本文字数">7k</span>
               
 
               
@@ -401,11 +516,9 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">阅读时长</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  13
-                </span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -426,77 +539,52 @@
 
       
         <p>　　“协变”一词我并不是第一次见到了，在以前我学习C++的时候就碰到过，而到后来学习Java的时候也遇到了，而在学习Java泛型时更是碰到“逆变”一词。不过我见得最多的是“协变返回类型”，想必大多数人也跟我差不多。“协变”、“逆变”这些概念性的名词看起来就十分高大上的样子，但是很多基础书籍并没有明确地说明这些概念到底是什么意思，更不用说什么长篇大论描述了。所以，很多时候看到这些概念我都是似懂非懂，而今天自己就查阅了各种资料并通过这篇博文总结一下。</p>
-<h2 id="里氏替换原则（Liskov-Substitution-Principle-LSP）"><a href="#里氏替换原则（Liskov-Substitution-Principle-LSP）" class="headerlink" title="里氏替换原则（Liskov Substitution Principle, LSP）"></a>里氏替换原则（Liskov Substitution Principle, LSP）</h2><p>在讲述“协变”、“逆变”概念之前，首先要说一个面向对象设计的基本原则——<strong><font style="font-size: 19px">里氏替换原则<font></font></font></strong>。</p>
-<p>　　我们要深入了解那些概念，那首先就得认识这一个里氏替换原则，“协变”、“逆变”这些概念估计就是从这个原则上推导出来的（虽然我没查过是不是，但从感官上来说确实像这么回事。）只要我们知道这个基本原则是什么，那么在理解之后要详述的概念是事半功倍，所以，我并不急着一上来就扯一大堆关于“协变”和“逆变”的内容。</p>
-<blockquote>
-<p><strong><font color="black">里氏代换原则（Liskov Substitution Principle, LSP）的通俗定义</font></strong></p>
-</blockquote>
+<h2 id="概念描述"><a href="#概念描述" class="headerlink" title="概念描述"></a>概念描述</h2><p>　　这些概念都是十分抽象的，我觉得没有一定编程基础而来看这些内容的都会是一脸懵逼，完全找不到切入角度。所以，最好先把基础稍微过一遍。<br>　　关于这些概念的解释，我查阅了很多文章，各个描述不一，但根据我自己的编程经验来看，它们所要表达的意思似乎都是一样的，在这里我就总结一下。如果你想要查看这些文章，打开本文最底下所提供的<a href="#anchor_references">参考资料</a>链接即可。下面就开始详述我们最为关心的内容了。</p>
+<h3 id="文字定义"><a href="#文字定义" class="headerlink" title="文字定义"></a>文字定义</h3><p>　　即将要说的那些名词，可以说基本都是源于数学或物理学。当然，在这里我们无需了解它们在数学或物理学上的定义，毕竟这里要探讨的是编程上的知识，不过，如果你非常清楚的话那是再好不过了，因为主体思想是一样的，只是套用到不同的领域上而已，所以说，其实学好基本学科还是挺重要的，更甚，如果对语言文字比较精通，那么就能直接从这些概念名词的字面意思开始入手。而对于基本学科学得比较差的人（比如我自己）来说，只能是根据具体现象来反向记忆这些概念的定义。<br>　　这些概念定义是广义的，所以它们不仅是适用于Java，更是适用于大多数编程语言。</p>
 <ul>
-<li><strong>Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.<br><font color="red">所有引用父类型的地方必须能透明地使用其子类型的对象。</font></strong></li>
-</ul>
-<p>　　这定义十分好理解吧？更通俗直白地讲，就是某段程序代码所使用的是父类型，而无须改变这段程序代码就能将其子类型替换进去进行使用。还不明白？那你可以想象一下平时自己在编程的时候是怎么做的，那你立刻就能理解这句话的实际含义。比如我是使用Java进行编程的。我定义了接口和抽象类，并在某些代码中使用了这些接口类型或抽象类类型的对象，而程序代码的具体实现就是使用接口的具体实现类对象或者抽象类的子类对象，这就是平常我们都在运用的多态啊。</p>
-<p>　　我查过了关于该原则的定义，各式各样的描述都有，但我觉得上面这个是最容易让人理解的，至于更正式更规范的定义，如果你想知道可以自己Google百度搜索一下，这里就不再赘述了。</p>
-<h2 id="协变（Covariance）与逆变（Contravariance）"><a href="#协变（Covariance）与逆变（Contravariance）" class="headerlink" title="协变（Covariance）与逆变（Contravariance）"></a>协变（Covariance）与逆变（Contravariance）</h2><p>　　关于这些概念的解释，我查阅了很多文章，描述不一，但它们所要表达的意思似乎都是一样的，在这里我就总结一下。如果你想要查看这些文章，打开本文最底下所提供的<a href="#anchor_references">参考资料</a>链接即可。下面就开始详述我们最为关心的内容了。</p>
-<h3 id="概念描述"><a href="#概念描述" class="headerlink" title="概念描述"></a>概念描述</h3><p>概念是十分抽象的，在什么都不了解的前提下，这些概念对于你我来说可以说是不知所云或者似懂非懂，反正就是一脸懵逼，完全找不到切入角度。</p>
-<blockquote>
-<p><strong><font color="black" style="font-size: 19px">文字定义</font></strong></p>
-</blockquote>
-<ul>
-<li><p><strong><font color="red">协变</font>（covariance）与<font color="red">逆变</font>（contravariance）统称为变体或者<font color="red">变体</font>或<font color="red">变型</font>（variance）。</strong></p>
+<li><p><strong><font color="red">协变</font>（covariance）与<font color="red">逆变</font>（contravariance）统称为<font color="red">变体</font>或<font color="red">变型</font>（variance）。</strong></p>
 </li>
-<li><p><strong><font color="red">变型</font>（variance）描述具有子类型关系之间的类型经过<font color="red">“类型转换”</font>（type transformation）后，所构造出更复杂的类型之间的关系是如何变化的。</strong></p>
-<font style="font-size: 12px"><strong>此处所说的“类型转换”<font color="red">非</font>平日我们经常所提到的诸如隐式类型转换（implicit type conversion）、显示类型转换（explicit type conversion）、强制类型转换（type coertion），<br>这些都统称为类型转换（type conversion），描述的是数值类型以及父子类型的转换，比如<code>int</code>转换为<code>long</code>、<code>String</code>转换为<code>Object</code>。</strong></font>
+<li><p><strong><font color="red">变型</font>（variance）描述子类型关系在<font color="#9B30FF">类型变换</font>（type transformation）的作用下是如何变化的。</strong></p>
+<div class="note info"><p><strong><font style="font-size: 15px">关于<font color="#9B30FF">类型变换</font>一词的解释：</font></strong><br><strong><font style="font-size: 12px">这里我选用<font color="#9B30FF">类型变换</font>一词，只是想整套描述更符合数学/物理学的美学，其实也可以用另一种说法：<font color="#9B30FF">类型映射</font>或者<font color="#9B30FF">“类型构造”</font>，或许你更喜欢这些词。</font></strong></p><p><strong><font style="font-size: 12px">此处所说的<font color="#9B30FF">类型变换</font><font color="red">非</font>平日我们经常所见到的诸如隐式类型转换（implicit type conversion）、显示类型转换（explicit type conversion）、强制类型转换（type coertion），<br>这些都统称为类型转换（type conversion），描述的是数值类型以及父子类型的转换，比如<code>int</code>转换为<code>long</code>、<code>String</code>转换为<code>Object</code>。</font></strong></p><p><strong><font style="font-size: 15px" color="#3F5FBF"><font color="#9B30FF">类型变换</font>指的是在一种类型的基础上<font color="#B351B9">构造 / 映射 / 变换</font>出另一种新类型，是质的转变，即原类型与新类型不在一个抽象层面上。</font></strong><br><strong><font style="font-size: 12px">比如：<code>int</code>映射出<code>int[]</code>，<code>String</code>映射出<code>List&lt;String&gt;</code>。</font></strong> </p></div>
 </li>
-<li><p><strong><font color="red">协变</font>（covariance）指的是具有子类型关系之间的类型经过<font color="red">“类型转换”</font>后，所构造出更复杂的类型之间仍保持着子类型关系。</strong></p>
-<font style="font-size: 12px"><strong>协变更广泛的含义：一种事务变换为另一种事物后，仍保持着<font color="red">相同的形式或规律</font>，这就是协变。</strong></font>
+<li><p><strong><font color="red">协变</font> / <font color="red">共变</font>（covariance）指的是子类型关系在类型变换的作用下<font color="blue">保持原样</font>。</strong></p>
 </li>
-<li><p><strong><font color="red">逆变</font>（contravariance）与协变相对立，指的是具有子类型关系之间的类型经过<font color="red">“类型转换”</font>后，所构造的更复杂的类型之间建立了逆向子类型关系。</strong></p>
+<li><p><strong><font color="red">逆变</font> / <font color="red">反变</font>（contravariance）指的是子类型关系在类型变换的作用下<font color="blue">发生逆转</font>。</strong></p>
 </li>
-<li><p><strong><font color="red">不可变</font>（invariance） 表示协变与逆变2种情况同时不成立。</strong></p>
+<li><p><strong><font color="red">双变</font>（bivariance）表示子类型关系在类型变换的作用下同时拥有协变与逆变2种效果。</strong></p>
+</li>
+<li><p><strong><font color="red">不可变</font>（invariance） 表示子类型关系在类型变换的作用下，既没有协变的效果，也没有逆变的效果。</strong></p>
 </li>
 </ul>
-<p>看完上面这些文字，如果你还是摸不着头脑，没关系，你只需要知道它们都是<font color="red">描述类型规则的</font>。<br>但你想更深入地理解，则必须要抓住其中的重点词<font color="green" style="font-size: 17px"><strong>“具有父子关系之间的类型”</strong></font>、<font color="green" style="font-size: 17px"><strong>“类型转换”</strong></font>来继续看以下的内容。</p>
-<p><strong><font color="orange">tips：本文所说的“类型转换”指的是从一种类型构造为另一种新的类型，是质的转变，即新类型与原类型不在同一个抽象层面上。<font></font></font></strong></p>
-<blockquote>
-<p><strong><font color="black" style="font-size: 19px">具体公式</font></strong></p>
-</blockquote>
-<p>假设此处有<code>X</code>、<code>Y</code>2种类型，而符号<code>≤</code>表示子类型关系（比如：<code>X ≤ Y</code>即类型<code>X</code>是类型<code>Y</code>的子类型），并且<code>f</code>表示类型转换，<br>经过类型转换后便构造出更复杂的类型<code>f(X)</code>和<code>f(Y)</code>，那么，就可以得出以下这些结论：</p>
+<p>看完上面这些文字，如果你还是摸不着头脑，没关系，之后从具体实例来着手，那就能更深刻地明白这些定义到底在说什么。</p>
+<h3 id="具体公式"><a href="#具体公式" class="headerlink" title="具体公式"></a>具体公式</h3><p>有<code>X</code>、<code>Y</code>2种类型，而符号<code>≤</code>表示子类型关系（比如：<code>X ≤ Y</code>即类型<code>X</code>是类型<code>Y</code>的子类型），<code>f</code>表示类型变换，<br>假设<code>X ≤ Y</code>，并且<code>X</code>和<code>Y</code>经过同一类型变换<code>f</code>后构造出对应更复杂的类型<code>f(X)</code>和<code>f(Y)</code>，那么就可以得出如下这些结论：</p>
 <ul>
-<li><strong>如果<code>X ≤ Y</code>，经过<code>f</code>后有<code>f(X) ≤ f(Y)</code>，那么<code>f</code>具有协变性。</strong></li>
-<li><strong>如果<code>X ≤ Y</code>，经过<code>f</code>后有<code>f(Y) ≤ f(X)</code>，那么<code>f</code>具有逆变性。</strong></li>
-<li><strong>如果以上两者都不符合，那么类型转换<code>f</code>具有不可变性。</strong></li>
+<li><strong>如果<code>f(X) ≤ f(Y)</code>，即保持<code>X</code>和<code>Y</code>的关系，那么类型变换<code>f</code>是协变的（covariant），或具有协变性；</strong></li>
+<li><strong>如果<code>f(Y) ≤ f(X)</code>，即逆转<code>X</code>和<code>Y</code>的关系，那么类型变换<code>f</code>是逆变的（contravariant），或具有逆变性；</strong></li>
+<li><strong>如果即是<code>f(X) ≤ f(Y)</code>也是<code>f(Y) ≤ f(X)</code>，那么类型变换<code>f</code>是双变的（bivariant），或具有双变性；</strong></li>
+<li><strong>如果既不是<code>f(X) ≤ f(Y)</code>也不是<code>f(Y) ≤ f(X)</code>，那么类型变换<code>f</code>是不可变的（invariant），或具有不可变性；</strong></li>
 </ul>
-<p>公式还是抽象的，但在这里我就给出一个最简单的例子你就能马上理解这些公式了。</p>
-<p>如果有这么2个类型<code>Animal</code>和<code>Cat</code>，那么它们之间的关系是<code>Cat ≤ Animal</code>即<code>Cat</code>是<code>Animal</code>的子类型；<br>通过它们构造出对应的数组类型<code>Animal[]</code>和<code>Cat[]</code>（此处就是本文所谓的“类型转换”），<br>最终这对数组类型的关系是<code>Cat[] ≤ Animal[]</code>，即数组类型也保持着原类型之间的关系，这说明数组具有协变性，同时这符合里氏替换原则。</p>
+<p>公式还是抽象的，但在这里我就给出一个最简单的例子你就能马上理解这些公式了：<br>　　如果有这么2个类型<code>Animal</code>和<code>Cat</code>，那么它们之间的关系是<code>Cat ≤ Animal</code>即<code>Cat</code>是<code>Animal</code>的子类型；通过它们构造出对应的数组类型<code>Animal[]</code>和<code>Cat[]</code>（此处就是本文所谓的“类型变换”，即由简单类型构造或映射出更复杂的类型），最终这对数组类型的关系是<code>Cat[] ≤ Animal[]</code>，即数组类型也保持着原类型之间的关系，这说明数组具有协变性。</p>
 <p>所以你可以这样写代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Animal[] animals = <span class="keyword">new</span> Cat[<span class="number">10</span>];</div></pre></td></tr></table></figure></p>
 <h2 id="Java中的协变与逆变"><a href="#Java中的协变与逆变" class="headerlink" title="Java中的协变与逆变"></a>Java中的协变与逆变</h2><p>Java中支持协变、逆变这种特性的类型不算特别多，在《Thinking In Java》中其实已经有例子了，所以，这里也沿用里面的例子。</p>
 <p>首先，这里准备一些基本的自定义类型：<code>Fruit</code>、<code>Apple</code>、<code>Orange</code>、<code>RedFujiApple</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedFujiApple</span> <span class="keyword">extends</span> <span class="title">Apple</span> </span>&#123; &#125;</div></pre></td></tr></table></figure>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>在Java中数组是具有协变性的，这等于说<strong>子类型的数组可以赋予父类型的数组进行使用，即1个<code>Apple</code>数组是1个<code>Fruit</code>数组</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CovariantArrays</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Fruit[] fruits = <span class="keyword">new</span> Apple[<span class="number">10</span>];</div><div class="line">		fruits[<span class="number">0</span>] = <span class="keyword">new</span> Apple();</div><div class="line">		fruits[<span class="number">1</span>] = <span class="keyword">new</span> RedFujiApple();</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// java.lang.ArrayStoreException</span></div><div class="line">			fruits[<span class="number">0</span>] = <span class="keyword">new</span> Fruit();</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="comment">// java.lang.ArrayStoreException</span></div><div class="line">			fruits[<span class="number">0</span>] = <span class="keyword">new</span> Orange();</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利用数组的协变性，运行时代码就有可能出现问题。<br>编译时肯定是不会出错的，因为这些代码符合类型规则，但到了运行时，我们有可能得到一个运行时异常<code>java.lang.ArrayStoreException</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CovariantArrays</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Fruit[] fruits = <span class="keyword">new</span> Apple[<span class="number">10</span>];</div><div class="line">        fruits[<span class="number">0</span>] = <span class="keyword">new</span> Apple();</div><div class="line">        fruits[<span class="number">1</span>] = <span class="keyword">new</span> RedFujiApple();	    </div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// java.lang.ArrayStoreException</span></div><div class="line">            fruits[<span class="number">0</span>] = <span class="keyword">new</span> Fruit();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;	    </div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// java.lang.ArrayStoreException</span></div><div class="line">            fruits[<span class="number">0</span>] = <span class="keyword">new</span> Orange();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong><font color="red">利用数组的协变性，运行时代码就有可能出现问题，这说明协变数据并不是类型安全的</font></strong>。<br>编译时肯定是不会出错的，因为这些代码符合类型规则，但到了运行时，我们有可能得到一个运行时异常<code>java.lang.ArrayStoreException</code>。</p>
 <p>所以现在就用上面这份代码作为例子进行问题分析，在推导的时候带着前提条件去分析，并且针对<strong>读取</strong>和<strong>写入</strong>2种情况进行分析：</p>
-<blockquote>
-<p><strong><font color="black">前提条件</font></strong></p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Fruit[] fruits = <span class="keyword">new</span> Apple[<span class="number">10</span>];</div></pre></td></tr></table></figure>
+<h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Fruit[] fruits = <span class="keyword">new</span> Apple[<span class="number">10</span>];</div></pre></td></tr></table></figure>
 <p>协变数组<code>fruits</code>被类型<code>Fruit[]</code>所引用，而实际上的类型是<code>Apple[]</code>。</p>
-<blockquote>
-<p><strong><font color="black">问题详细分析</font></strong></p>
-</blockquote>
-<p>从之前所看到的前提条件我们可以确定2件事：</p>
+<h4 id="问题详细分析"><a href="#问题详细分析" class="headerlink" title="问题详细分析"></a>问题详细分析</h4><p>从之前所看到的前提条件我们可以确定2件事：</p>
 <ul>
 <li>从<code>fruits</code> 协变数组中读取出来的元素是<code>Fruit</code>类型。</li>
 <li>在编译期，编译器是绝对允许我们将<code>Fruit</code>以及其子类型的元素写入到<code>fruits</code>协变数组中。</li>
 </ul>
-<p>从协变数组<code>fruits</code>中读取元素是<strong><font color="blue">完全安全</font></strong>的，无论是编译期还是运行时，都不会发生任何问题，正如上面所说的，<code>fruits</code>所引用的数组其实是<code>Apple[]</code>类型，从<code>Apple[]</code>类型数组中读取出的元素绝对是<code>Fruit</code>类型啊。</p>
-<p>但是将<code>Fruit</code>类型以及其子类型的元素写入到协变数组<code>fruits</code>中是<strong><font color="blue">有可能在运行时出现问题</font></strong>的；正如前面所讲：编译器是完全没有理由阻止我们将<code>Fruit</code>类型以及其子类型的元素写入到协变数组<code>fruits</code>中，因为这个操作完全可以通过编译期的类型检查。</p>
-<p>但是你可以试想一下：如果这个协变数组是从别人所写API的方法中返回的，对于方法用户的我们而言，可能忽视了这个协变数组的真实类型，又或者是我们写代码有时写得头昏脑胀，完全忘记这个数组是一个协变数组，我们很自然地把它当作一个普通数组来用；在这2种情况下我们都很自然把某些符合父子关系类型的元素写入到该数组中，编译期完全不会报错，然而到了运行时，我们很可能就会收到一个异常<code>java.lang.ArrayStoreException</code>。</p>
-<p>上面的代码示例就很好地反映出这个问题，我尝试把<code>Fruit</code>元素和<code>Orange</code>元素往协变数组<code>fruits</code>中放；<code>fruits</code>表面上是<code>Fruit</code>数组，而实际上是一个<code>Apple</code>数组，那运行时报错是铁定了。<code>Apple</code>数组肯定只存放<code>Apple</code>元素啊，你放<code>Orange</code>进去肯定给你报错啦。</p>
-<blockquote>
-<p><strong><font color="black">协变数组的结论</font></strong></p>
-</blockquote>
-<p><font color="gray"><strong>这是Java协变数组的“缺陷”，但我们其实十分清楚引发这个问题深层原因，所以我们在利用数组的协变特性时可以完全规避这个问题：</strong></font><br><strong><font style="font-size: 19px">在利用数组的协变性时，应该尽量把协变数组当作<font color="red">只读</font>数组使用。</font></strong></p>
+<p>从协变数组<code>fruits</code>中读取元素是<strong><font color="blue">完全安全</font></strong>的，无论是编译期还是运行时，都不会发生任何问题，<br>正如上面所说的，<code>fruits</code>所引用的数组其实是<code>Apple[]</code>类型，从<code>Apple[]</code>类型数组中读取出的元素绝对是<code>Fruit</code>类型啊。</p>
+<p>但是将<code>Fruit</code>类型以及其子类型的元素写入到协变数组<code>fruits</code>中是<strong><font color="blue">有可能在运行时出现问题</font></strong>的；<br>这是因为编译器是完全没有理由阻止我们将<code>Fruit</code>类型以及其子类型的元素写入到协变数组<code>fruits</code>中，因为这个操作完全可以通过编译期的类型检查。</p>
+<div class="note warning"><p><strong><font style="font-size: 12px">可以试想一下，钻编译器空子而引发的问题：<br>这个协变数组是从别人所写API的方法中返回获取的，对于方法用户的我们而言，可能直接忽视这协变数组的真实类型（正确来讲这不是好的API，因为它本身就不够清晰）；<br>而有时我们写代码写得头昏脑胀，完全忘记自己定义的数组是一个协变数组，我们很自然地把它当作一个普通数组来用；<br>在这2种情况下我们都很自然把某些符合父子关系类型的元素写入到该数组中，编译期没错，然而到了运行时，我们很可能就会收到一个异常<code>java.lang.ArrayStoreException</code>。</font></strong></p></div>
+<p>上面的代码示例就很好地反映出这个问题：<br>　　我尝试把<code>Fruit</code>元素和<code>Orange</code>元素往协变数组<code>fruits</code>中放；<code>fruits</code>表面上是<code>Fruit</code>数组，而实际上是一个<code>Apple</code>数组，那运行时报错是铁定了。<code>Apple</code>数组肯定只存放<code>Apple</code>元素啊，你放<code>Orange</code>进去肯定给你报错啦。</p>
+<h4 id="协变数组的结论"><a href="#协变数组的结论" class="headerlink" title="协变数组的结论"></a>协变数组的结论</h4><p><font color="gray"><strong>这是Java协变数组的“缺陷”，但我们其实十分清楚引发这个问题深层原因，所以我们在利用数组的协变特性时可以完全规避这个问题：</strong></font><br><strong><font color="#9B30FF">应该尽量把协变数组当作<font color="red">只读</font>数组使用，编译器没有这个强制要求，这必须是人为的强制要求（其实是挺难做到的）。</font></strong></p>
 <p>既然Java支持协变数组，你可能会问Java支持逆变数组吗？答案是：<strong><font color="green">Java不支持逆变数组。</font></strong></p>
 <p>但我们可以试想一下以下的代码，并且假设这些代码是能够在Java中正常工作的（实际上是不能）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Fruit[] fruits = <span class="keyword">new</span> Fruit[<span class="number">10</span>] &#123;<span class="keyword">new</span> Apple(), <span class="keyword">new</span> Orange(), <span class="keyword">new</span> RedFujiApple()&#125;;</div><div class="line">Orange[] oranges = fruits; <span class="comment">// contravariant array</span></div><div class="line">oranges[<span class="number">0</span>] = <span class="keyword">new</span> Orange();</div></pre></td></tr></table></figure>
@@ -505,14 +593,15 @@
 <p>但真的有逆变数组提供给我们使用，同样也是会出现问题的。逆变数组是协变数组的对立面，所以出现问题的地方也是对立的：<br><strong>协变数组是在写入元素的时候有可能出现问题，那么逆变数组是在读取元素的时候有可能出现问题了。</strong></p>
 <p>所以，此时请回顾一下思考协变数组时的思路，再将这个思路逆向，我们就可以得出答案了：</p>
 <p>正如上面代码所演示的那样，逆变数组<code>oranges</code>表面上是<code>Orange</code>数组，那运行时报错是铁定了。而实际是<code>Fruit</code>数组；即逆变数组<code>oranges</code>所引用的数组其实存储的是<code>Fruit</code>以及其子类型的元素，所以编译器或许允许我们通过<code>oranges</code>读取<code>Orange</code>元素，正如之前将其它类型的元素写入协变数组中一样，编译器认为这种行为是正确无误的。但到了运行时就有可能产生运行是错误，如果我们通过逆变数组<code>oranges</code>所取的元素刚好不是<code>Orange</code>类型，而是<code>Apple</code>类型，这样就引发错误产生运行时异常。而对于写入操作，逆变数组进行这种操作是完全安全的，因为<code>oranges</code>只能写入<code>Orange</code>类型的元素，将<code>Orange</code>元素放到<code>Fruit</code>数组中那肯定是毫无问题的。</p>
-<p><font color="gray"><strong>如果Java真的支持逆变数组，那么我们在使用它的时候估计还是要像使用协变数组一样规避问题：</strong></font><br><strong><font style="font-size: 19px">在利用数组的逆变性时，应该尽量把逆变数组当作<font color="red">只写</font>数组使用。</font></strong></p>
+<p><font color="gray"><strong>如果Java真的支持逆变数组，那么我们在使用它的时候估计还是要像使用协变数组一样规避问题：</strong></font><br><strong><font color="#9B30FF">应该尽量把逆变数组当作<font color="red">只写</font>数组使用（当然，有没有这个要求那要看编译器的实现）。</font></strong></p>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>在Java 1.5以及之后就支持<strong><font color="red">协变返回类型</font>（covariant return type）</strong>这一个特性：<br><strong>这特性指的是子类型覆盖父类型方法时，子类型方法的返回类型是父类型方法返回类型的子类型，我们就把这个返回类型称作协变返回类型。</strong></p>
 <p>或许你很懵逼，这方法返回类型也具有协变性？<br>正如前面概念所说的那样，在这里对应的过程就是简单类型经过“类型转换”后所构造出的复杂类型正是方法返回类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</div><div class="line">	<span class="function">Base <span class="title">get</span><span class="params">()</span> </span>&#123; </div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Base();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</div><div class="line">	<span class="comment">// return type of overridden method is allowed to vary</span></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function">Derived <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Derived();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Super sup = <span class="keyword">new</span> Sub();</div><div class="line">		Base base = sup.get();</div><div class="line">		<span class="comment">// Derived</span></div><div class="line">		System.out.println(base.getClass().getSimpleName());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>有了具体代码示例就更好理解了。<code>Base</code>和<code>Derived</code>之间具有父子类型关系，然后经过“类型转换”后，<code>Base</code>成为了<code>Super</code>类<code>get</code>方法的返回类型，而<code>Sub</code>继承<code>Super</code>覆盖它的<code>get</code>方法时，<code>Derived</code>成为了它的返回值；<strong>即<code>Base</code>和<code>Derived</code>成为了抽象层面更高的方法返回类型，但它们仍保持着一种子类型关系，所以说方法返回类型具有协变性</strong>。</p>
-<p>但这种特性在Java 1.5之前的版本就不适用了，以前子类型覆盖父类型的方法，必须是方法签名和方法返回类型都保持一致的。</p>
-<p>在Java中关于方法的协变逆变就只有这么多内容。</p>
-<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>Java泛型是具有不可变性。但尽管如此，Java泛型自带的特性之一可以使得泛型具有协变性或不可变性，在此处就不作详细讨论，在<a href="https://extremegtr.github.io/2016/05/30/JavaSE-study-advanced-generics/#u901A_u914D_u7B26_uFF08Wildcard_uFF09">另一篇探讨Java泛型的博文</a>里再作详细分析。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> <span class="keyword">extends</span> <span class="title">Base</span> </span>&#123; &#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Super</span> </span>&#123;</div><div class="line">    <span class="function">Base <span class="title">get</span><span class="params">()</span> </span>&#123; </div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Base();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span> <span class="keyword">extends</span> <span class="title">Super</span> </span>&#123;</div><div class="line">    <span class="comment">// return type of overridden method is allowed to vary</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function">Derived <span class="title">get</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Derived();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Super sup = <span class="keyword">new</span> Sub();</div><div class="line">        Base base = sup.get();</div><div class="line">        <span class="comment">// Derived</span></div><div class="line">        System.out.println(base.getClass().getSimpleName());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有了具体代码示例就更好理解了：<br>　　<code>Base</code>和<code>Derived</code>之间具有父子类型关系，然后经过“类型转换”后，<code>Base</code>成为了<code>Super</code>类<code>get</code>方法的返回类型，而<code>Sub</code>继承<code>Super</code>覆盖它的<code>get</code>方法时，<code>Derived</code>成为了它的返回值；<strong>即<code>Base</code>和<code>Derived</code>成为了抽象层面更高的方法返回类型，但它们仍保持着一种子类型关系，所以说方法返回类型具有协变性</strong>。<br>　　但这种特性在Java 1.5之前的版本就不适用了，以前子类型覆盖父类型的方法，必须是方法签名和方法返回类型都保持一致的。在Java中关于方法的协变逆变内容我就只知道这么多内容。</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>Java泛型本身具有不可变性。但尽管如此，使用Java泛型自带的特性——<strong>通配符</strong>，<br>那可以使得泛型具有协变性或逆变性，在此处就不作详细讨论，在<a href="https://extremegtr.github.io/2016/05/30/JavaSE-study-advanced-generics/#u901A_u914D_u7B26_uFF08Wildcard_uFF09">另一篇探讨Java泛型的博文</a>里再作详细分析。</p>
+<h2 id="重点概念相关词语"><a href="#重点概念相关词语" class="headerlink" title="重点概念相关词语"></a>重点概念相关词语</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">variance           变体、变型、变异性、可变性</div><div class="line">covariance         协变、协变性</div><div class="line">contravariance     逆变、逆变性</div><div class="line">bivariance         双变、双变性</div><div class="line">invariance         不变、不变性</div><div class="line"></div><div class="line">variant            变异的、可变的</div><div class="line">covariant          协变的</div><div class="line">contravariannt     逆变的</div><div class="line">bivariant          双变的</div><div class="line">invariant          不变的</div></pre></td></tr></table></figure>
+<p>其中，对于<code>variance</code>、<code>variant</code>、<code>bivariance</code>、<code>bivariant</code>这4个单词的中文翻译，我还是感觉有点膈应的，<br>我看书少，见识也少，基础学科也学得不怎么行，而查了好多资料也找不到一个让我感觉比较舒服一点的中文翻译，强迫症简直是不能忍。</p>
+<p>现在我确实明白到：<br>为啥大多数做学术的在科普或者讨论时都是中英混杂，因为基本上都是根据该外语词所对应的现象来记忆它的具体意思，<br>之所以这样又因为不是每个人都非常精通母语，所以脑袋拼凑不出与之对应的母语词，最终，只能是选择不翻译直接用外语词，<br>翻译这种事，对母语的精通程度必须要远超出对外语的精通程度，同时又要非常熟悉对应的专业领域，所以就编程专业来说，翻译很好的书非常少。</p>
 <p><div id="anchor_references"></div></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="http://www.codeproject.com/Articles/899319/Comparing-covariance-contravariance-rules" target="_blank" rel="external">Comparing covariance/contravariance rules in C#, Java and Scala</a></li>
@@ -523,6 +612,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -537,7 +629,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaSE/" rel="tag"><i class="fa fa-tag"></i> JavaSE</a>
+            <a href="/tags/JavaSE/" rel="tag"># JavaSE</a>
           
         </div>
       
@@ -578,25 +670,21 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       
         <div id="gitment-container"></div>
       
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -619,103 +707,203 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="ExtremeGTR" />
-          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="ExtremeGTR" />
+            
+              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
               <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          </div>
+
           
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">39</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
-                  
-                    <i class="fa fa-fw fa-google"></i>
-                  
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
       </section>
 
       
@@ -728,7 +916,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#里氏替换原则（Liskov-Substitution-Principle-LSP）"><span class="nav-number">1.</span> <span class="nav-text">里氏替换原则（Liskov Substitution Principle, LSP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协变（Covariance）与逆变（Contravariance）"><span class="nav-number">2.</span> <span class="nav-text">协变（Covariance）与逆变（Contravariance）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念描述"><span class="nav-number">2.1.</span> <span class="nav-text">概念描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的协变与逆变"><span class="nav-number">3.</span> <span class="nav-text">Java中的协变与逆变</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">3.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">3.3.</span> <span class="nav-text">泛型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念描述"><span class="nav-number">1.</span> <span class="nav-text">概念描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文字定义"><span class="nav-number">1.1.</span> <span class="nav-text">文字定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体公式"><span class="nav-number">1.2.</span> <span class="nav-text">具体公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的协变与逆变"><span class="nav-number">2.</span> <span class="nav-text">Java中的协变与逆变</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">2.1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前提条件"><span class="nav-number">2.1.1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题详细分析"><span class="nav-number">2.1.2.</span> <span class="nav-text">问题详细分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协变数组的结论"><span class="nav-number">2.1.3.</span> <span class="nav-text">协变数组的结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">2.2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">2.3.</span> <span class="nav-text">泛型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点概念相关词语"><span class="nav-number">3.</span> <span class="nav-text">重点概念相关词语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -755,30 +943,41 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+
+  
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Gemini
-  </a>
-</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
 
 
         
+
+
+
+
+
+
+
 
         
       </div>
@@ -786,6 +985,11 @@
 
     
 
+    
+	
+    
+
+    
   </div>
 
   
@@ -804,81 +1008,6 @@
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -888,35 +1017,449 @@
 
 
 
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
   
 
 
 
 
 
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
 
     
+
     
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'ExtremeGTR',
+            repo: 'extremegtr.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+            
+                client_id: 'fb006b67b16f091184ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
-    
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    
-        <script type="text/javascript">
-            var gitment = new Gitment({
-                    id: window.location.pathname,
-                    owner: 'ExtremeGTR',
-                    repo: 'extremegtr.github.io',
-                    oauth: {
-                        client_id: 'fb006b67b16f091184ea',
-                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-                    }});
-            gitment.render('gitment-container');
-        </script>
-    
+
+
+
+
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
@@ -926,7 +1469,7 @@
 
   
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);
@@ -982,35 +1525,40 @@
             var counter = results[0];
             counter.fetchWhenSave(true);
             counter.increment("time");
+            
             counter.save(null, {
               success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
               },
               error: function(counter, error) {
                 console.log('Failed to save Visitor num, with error message: ' + error.message);
               }
             });
           } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
           }
         },
         error: function(error) {
@@ -1037,26 +1585,22 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
   

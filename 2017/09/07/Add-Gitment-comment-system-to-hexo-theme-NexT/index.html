@@ -2,15 +2,27 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -22,6 +34,7 @@
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
 
 
 
@@ -55,6 +68,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -65,7 +84,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -75,42 +94,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo,NexT主题," />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
 
 
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
 
 
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
 
 
 
-<meta name="description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册GitHub账号不管是你部署这个评论系统还是在使用Gitment的地方进行评论，都要有GitHub账号 不能滥用通俗来讲就是说毫无意义的">
-<meta name="keywords" content="Hexo,NexT主题">
-<meta property="og:type" content="article">
-<meta property="og:title" content="添加Gitment评论系统到Hexo主题NexT">
-<meta property="og:url" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/index.html">
-<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
-<meta property="og:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册GitHub账号不管是你部署这个评论系统还是在使用Gitment的地方进行评论，都要有GitHub账号 不能滥用通俗来讲就是说毫无意义的">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png">
-<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png">
-<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png">
-<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_4.png">
-<meta property="og:updated_time" content="2017-10-16T08:22:48.163Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="添加Gitment评论系统到Hexo主题NexT">
-<meta name="twitter:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册GitHub账号不管是你部署这个评论系统还是在使用Gitment的地方进行评论，都要有GitHub账号 不能滥用通俗来讲就是说毫无意义的">
-<meta name="twitter:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png">
+
+
+
 
 
 
@@ -119,14 +121,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '6.3.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -138,12 +139,43 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册Git">
+<meta name="keywords" content="Hexo,NexT主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="添加Gitment评论系统到Hexo主题NexT">
+<meta property="og:url" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册Git">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png">
+<meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_4.png">
+<meta property="og:updated_time" content="2018-04-28T09:02:10.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="添加Gitment评论系统到Hexo主题NexT">
+<meta name="twitter:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册Git">
+<meta name="twitter:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png">
+
+
+
+
+
 
   <link rel="canonical" href="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>添加Gitment评论系统到Hexo主题NexT | ExtremeGTR's Blog</title>
   
@@ -151,13 +183,13 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-106151602-1', 'auto');
-  ga('send', 'pageview');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106151602-1');
 </script>
 
 
@@ -165,21 +197,43 @@
 
 
 
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
 
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
 
-
-
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -188,19 +242,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ExtremeGTR's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -208,68 +264,105 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+  </li>
 
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
       
     </ul>
   
 
   
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
 
@@ -282,6 +375,10 @@
   
   
 
+  
+    <div class="reading-progress-bar"></div>
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -291,7 +388,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="有空就写点什么...">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
@@ -304,11 +401,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">添加Gitment评论系统到Hexo主题NexT</h1>
+          <h1 class="post-title" itemprop="name headline">添加Gitment评论系统到Hexo主题NexT
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -316,25 +421,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-07T21:02:23+08:00">
-                2017-09-07
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2017-09-07 21:02:23" itemprop="dateCreated datePublished" datetime="2017-09-07T21:02:23+08:00">2017-09-07</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-04-28 17:02:10" itemprop="dateModified" datetime="2018-04-28T17:02:10+08:00">2018-04-28</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-10-16T16:22:48+08:00">
-                2017-10-16
-              </time>
             
           </span>
 
@@ -350,11 +460,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
 
                 
                 
@@ -363,6 +469,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -374,7 +490,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数 </span>
+                 <span class="post-meta-item-text">阅读次数：</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -383,18 +499,17 @@
           
 
           
-            <div class="post-wordcount">
+            <div class="post-symbolscount">
               
-                
+
+              
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">字数统计</span>
+                  <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="字数统计">
-                  3,160
-                </span>
+                <span title="本文字数">9.3k</span>
               
 
               
@@ -406,11 +521,9 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">阅读时长</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">
-                  12
-                </span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -430,14 +543,14 @@
       
 
       
-        <div class="note default"><p>在不久之前<span class="label primary">多说</span>这个评论系统关闭了，所以要找代替的解决方案，可以用<span class="label primary">Disqus</span>，但这里我最后还是决定用<span class="label primary">Gitment</span>。</p></div>
+        <div class="note default"><p>在不久之前<span class="label primary">多说</span>这个评论系统关闭了，所以要找代替的解决方案，可以用<span class="label primary">Disqus</span>，但这里我最后还是决定用<span class="label primary">Gitment</span>。<br>2018.4，好了，现在<span class="label info">Next</span>更新了<code>v6.0.0版本后</code>，就会自带这个<span class="label primary">Gitment</span>评论系统，这样再也不用我们自己费劲手工添加了。</p></div>
 <h2 id="什么是Gitment？"><a href="#什么是Gitment？" class="headerlink" title="什么是Gitment？"></a>什么是Gitment？</h2><p><a href="https://github.com/imsun/gitment" target="_blank" rel="external">Gitment</a>是一款基于<span class="label primary">GitHub Issues</span>的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：</p>
 <ul>
 <li><strong>必须注册<span class="label primary">GitHub</span>账号</strong><br>不管是你部署这个评论系统还是在使用<span class="label primary">Gitment</span>的地方进行评论，都要有<span class="label primary">GitHub</span>账号</li>
 <li><strong>不能滥用</strong><br>通俗来讲就是说毫无意义的灌水等最好最好是不要做了</li>
 </ul>
 <p>一般来讲，能用<span class="label primary">GitHub</span>的一般都不会怎么胡来吧？所以GitHub才允许我们通过这种方式来运用<span class="label primary">GitHub Issues</span>，不然早就禁止了。</p>
-<h2 id="集成Gitment的步骤"><a href="#集成Gitment的步骤" class="headerlink" title="集成Gitment的步骤"></a>集成Gitment的步骤</h2><p>　　这里所有步骤适用于<span class="label primary">Hexo</span>主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next</a>（<a href="https://github.com/iissnan/hexo-theme-next/releases/tag/v5.1.2" target="_blank" rel="external">5.1.2</a>），其他主题或这个主题的其他版本我就不清楚了，我估计都是差不多的，不会有太大差别。同时这里不会详细分析问题、内在的技术等等，这里只把具体步骤给列出来（其实是我不懂）。如果以后Next主题也集成了该评论系统，那我们也不用自己来动手加入它了。</p>
+<h2 id="集成Gitment的步骤"><a href="#集成Gitment的步骤" class="headerlink" title="集成Gitment的步骤"></a>集成Gitment的步骤</h2><p>　　这里所有步骤适用于<span class="label primary">Hexo</span>主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next</a>（<a href="https://github.com/iissnan/hexo-theme-next/releases/tag/v5.1.2" target="_blank" rel="external">5.1.2</a>），其他主题或这个主题的其他版本我就不清楚了，我估计都是差不多的，不会有太大差别。同时这里不会详细分析问题、内在的技术等等，这里只把具体步骤给列出来（其实是我不懂）。如果以后<span class="label info">Next</span>主题也集成了该评论系统，那我们也不用自己来动手加入它了。</p>
 <h3 id="注册OAuth-Application"><a href="#注册OAuth-Application" class="headerlink" title="注册OAuth Application"></a>注册OAuth Application</h3><p>在注册这个之前，你必须要注册<span class="label primary">GitHub</span>帐号，注册<span class="label primary">GitHub</span>帐号就不用讲了，这个都不会注册还玩个蛋啊。<br>注册并登陆<span class="label primary">GitHub</span>帐号后，那就可以在<a href="https://github.com/settings/developers" target="_blank" rel="external">https://github.com/settings/developers</a>此处进行<span class="label primary">OAuth Application</span>的注册：</p>
 <ul>
 <li>点击右上角的<code>Register a new application</code></li>
@@ -474,16 +587,14 @@
 <p>我的设置就像上面这么填的，很简单，除了两个布尔值之外，其他的就是把你自己的值替换进去就行了。</p>
 <p>　　最后，我们现在非常清楚地看到：在这设置的这些数值，都是供<a href="#添加具体实现">之前的具体实现</a>所用的，以上就是所有具体步骤，照着做就行了，我自己也按照以上这些步骤重复了几遍试验都没出错，应该是绝对OK的。</p>
 <h2 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h2><p>　　以上整个过程，全凭我自己不断地猜测摸索以及收集资料总结下来的。由于自己对前端只是略知一二，所以连搞这么一个简单的东西我都经常碰壁。<br>　　最开始我是跟着网上很多文章的教程一步一个脚印来做的，总是出错，有的时候情况还非常奇葩，前一次配置完后试了下是成功的，再试一次就未必，这让人十分抓狂，这篇文章的步骤不成就试试另一个，另一个不行再找另一篇的教程再试一次，真的繁琐，但无可奈何，不试试怎么知道那种做法到底是错还是对呢？再加上自己在跟着做的过程中有可能不小心多打个字符啥的，所以这确实挺烦人的。</p>
-<div class="note warning"><h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3></div>
-<p>在100%确保是完全跟着步骤来走，内容也没写错的情况下，仍然出现莫名的错误，导致<span class="label primary">Gitment</span>完全是无法正常使用。</p>
+<h3 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h3><p>在100%确保是完全跟着步骤来走，内容也没写错的情况下，仍然出现莫名的错误，导致<span class="label primary">Gitment</span>完全是无法正常使用。</p>
 <ul>
 <li>步骤是对的，内容也完全没错，但还是不能用，不过有些时候它又好了，再试多几次发现又出错了（大多数是之后要说的那两种错误）</li>
 <li>发评论后，刷新后发现新发表的评论并没有显示出来，但是在仓库的<span class="label primary">GitHub Issues</span>是有刚才添加的评论的</li>
 </ul>
 <p>当时我就猜测：既然这也是关于Web的，会不会是缓存的问题。之后我清理了浏览器的缓存再怎么用都没发现问题了。<br>这问题真的相当奇葩，还好是发现了问题所在，后来在<span class="label primary">Gitment</span>一些问题的讨论中发现有些评论也说道这是缓存的问题，这就证明我瞎蒙还是蒙对了。</p>
 <p><br></p>
-<div class="note danger"><h3 id="Error-Not-Found"><a href="#Error-Not-Found" class="headerlink" title="Error: Not Found"></a>Error: Not Found</h3></div>
-<p>这个错误出现的时候评论区的状态正如下图一样，也是什么都不懂的新手小白第一次搞就会经常遇到的。<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png" title=""></p>
+<h3 id="Error-Not-Found"><a href="#Error-Not-Found" class="headerlink" title="Error: Not Found"></a>Error: Not Found</h3><p>这个错误出现的时候评论区的状态正如下图一样，也是什么都不懂的新手小白第一次搞就会经常遇到的。<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png" title=""></p>
 <p>根据我自己总结，出现这种状况一般是这个原因：在<a href="#修改NexT主题配置文件">修改NexT主题配置文件</a>这一小节内你给<code>repo</code>配的值是错误的：</p>
 <ul>
 <li>你给<code>repo</code>指定的仓库名对应的仓库在<span class="label primary">GitHub</span>上根本不存在</li>
@@ -491,8 +602,7 @@
 </ul>
 <p>引发错误的问题已经说清楚了，怎么解决也不用明说了吧？第一个只是一时疏忽，而第二个新手要特别注意，因为挺多地方有误导和没有明说才导致的。</p>
 <p><br> </p>
-<div class="note danger"><h3 id="Error-Comments-Not-Initialized"><a href="#Error-Comments-Not-Initialized" class="headerlink" title="Error: Comments Not Initialized"></a>Error: Comments Not Initialized</h3></div>
-<p>遇到这个错误的时候，情况就像下图所示：</p>
+<h3 id="Error-Comments-Not-Initialized"><a href="#Error-Comments-Not-Initialized" class="headerlink" title="Error: Comments Not Initialized"></a>Error: Comments Not Initialized</h3><p>遇到这个错误的时候，情况就像下图所示：</p>
 <img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png" title="">
 <p>一般来讲这个错误的原因只有两个：</p>
 <ul>
@@ -500,8 +610,7 @@
 <li>你还没有在该页面的<span class="label primary">Gitment</span>评论区登陆<span class="label primary">GitHub</span>账号</li>
 </ul>
 <p><br></p>
-<div class="note danger"><h3 id="Issues重复初始化"><a href="#Issues重复初始化" class="headerlink" title="Issues重复初始化"></a>Issues重复初始化</h3></div>
-<p>我们看一篇文章首次登陆<span class="label primary">GitHub</span>账号后，评论区的状态是这样的。</p>
+<h3 id="Issues重复初始化"><a href="#Issues重复初始化" class="headerlink" title="Issues重复初始化"></a>Issues重复初始化</h3><p>我们看一篇文章首次登陆<span class="label primary">GitHub</span>账号后，评论区的状态是这样的。</p>
 <img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png" title="">
 <p><strong><font color="blue">点一次蓝色的<code>Initialize Comments</code>初始化评论按钮，这样就相当于在配置的仓库为这一篇文章创建一个对应的Issues。</font></strong><br><strong><font color="red">很多教程都把<a href="#添加具体实现">添加具体实现</a>这一小节所添加的<code>gitment.swig</code>文件内的<code>id</code>属性直接删掉或设置为<code>document.location.href</code>，引发Issues重复初始化错误。</font></strong></p>
 <p>重现这个错误的做法非常简单：</p>
@@ -515,8 +624,7 @@
 <p>这时到存储评论的<span class="label primary">GitHub</span>仓库那看，你会发现对同一篇文章会创建多个Issues，而不管访问该文章的<code>URL</code>链接是相同还是不同：<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_4.png" alt="问题" title="问题"></p>
 <p>解决这个问题的办法也是非常简单的：<strong><font color="#0072E3">只要把<code>id</code>属性加回来并且将其值设置为<code>window.location.pathname</code>，那这个问题就会迎刃而解。</font></strong></p>
 <p><br></p>
-<div class="note warning"><h3 id="新添加的评论没有显示出来"><a href="#新添加的评论没有显示出来" class="headerlink" title="新添加的评论没有显示出来"></a>新添加的评论没有显示出来</h3></div>
-<p>这个问题你或许会遇到，运气不好还会经常遇到也说不定。<br>当你添加了新的评论，仓库Issues那边正常情况下都是有的了，或许是浏览器缓存的问题，刷几遍页面或者等一会再看看，新评论还是能显示出来的。</p>
+<h3 id="新添加的评论没有显示出来"><a href="#新添加的评论没有显示出来" class="headerlink" title="新添加的评论没有显示出来"></a>新添加的评论没有显示出来</h3><p>这个问题你或许会遇到，运气不好还会经常遇到也说不定。<br>当你添加了新的评论，仓库Issues那边正常情况下都是有的了，或许是浏览器缓存的问题，刷几遍页面或者等一会再看看，新评论还是能显示出来的。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://github.com/imsun/gitment" target="_blank" rel="external">GitHub上的Gitment</a></li>
 <li><a href="https://github.com/imsun/gitment/issues/62" target="_blank" rel="external">一个页面的多个锚会对应多个issue问题</a></li>
@@ -530,6 +638,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -544,9 +655,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
-            <a href="/tags/NexT主题/" rel="tag"><i class="fa fa-tag"></i> NexT主题</a>
+            <a href="/tags/NexT主题/" rel="tag"># NexT主题</a>
           
         </div>
       
@@ -587,25 +698,21 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-  <div class="comments" id="comments">
-    
+  
+    <div class="comments" id="comments">
       
         <div id="gitment-container"></div>
       
-    
-  </div>
+    </div>
+
+  
+
 
 
         </div>
@@ -628,103 +735,203 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="ExtremeGTR" />
-          <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-           
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="ExtremeGTR" />
+            
+              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
               <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
+          </div>
+
           
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
         </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">39</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/_makwan_" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://plus.google.com/u/1/114400338224749450657" target="_blank" title="Google">
-                  
-                    <i class="fa fa-fw fa-google"></i>
-                  
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
       </section>
 
       
@@ -764,30 +971,41 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+
+  
+
+  
 </div>
 
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
 
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Gemini
-  </a>
-</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+
+
 
 
         
+
+
+
+
+
+
+
 
         
       </div>
@@ -795,6 +1013,11 @@
 
     
 
+    
+	
+    
+
+    
   </div>
 
   
@@ -813,81 +1036,6 @@
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -897,35 +1045,449 @@
 
 
 
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
   
 
 
 
 
 
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
 
     
+
     
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'ExtremeGTR',
+            repo: 'extremegtr.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+            
+                client_id: 'fb006b67b16f091184ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
-    
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    
-        <script type="text/javascript">
-            var gitment = new Gitment({
-                    id: window.location.pathname,
-                    owner: 'ExtremeGTR',
-                    repo: 'extremegtr.github.io',
-                    oauth: {
-                        client_id: 'fb006b67b16f091184ea',
-                        client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-                    }});
-            gitment.render('gitment-container');
-        </script>
-    
+
+
+
+
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
@@ -935,7 +1497,7 @@
 
   
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("jmsuBeMw24f5O9Y5FI1KewiD-gzGzoHsz", "9SUHHpLgkTPicQB70KxdCqq6");</script>
+  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);
@@ -991,35 +1553,40 @@
             var counter = results[0];
             counter.fetchWhenSave(true);
             counter.increment("time");
+            
             counter.save(null, {
               success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
               },
               error: function(counter, error) {
                 console.log('Failed to save Visitor num, with error message: ' + error.message);
               }
             });
           } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
+            
+              var newcounter = new Counter();
+              /* Set ACL */
+              var acl = new AV.ACL();
+              acl.setPublicReadAccess(true);
+              acl.setPublicWriteAccess(true);
+              newcounter.setACL(acl);
+              /* End Set ACL */
+              newcounter.set("title", title);
+              newcounter.set("url", url);
+              newcounter.set("time", 1);
+              newcounter.save(null, {
+                success: function(newcounter) {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+                },
+                error: function(newcounter, error) {
+                  console.log('Failed to create');
+                }
+              });
+            
           }
         },
         error: function(error) {
@@ -1046,26 +1613,22 @@
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
   
