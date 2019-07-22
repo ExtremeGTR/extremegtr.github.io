@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    fancybox: true,
+    mediumzoom: false,
+    fastclick: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="需求现实中的需求千奇百怪，但只要在理论上没问题的，无论需求多么奇怪，它都能被实现。有时候，我们想要修改jar包中所存储的配置文件。那做法很简单，单纯通过手工解压jar，修改我们所想要的修改的配置文件后，再重新打包。这种劳神费力的操作偶尔1-2次还好，如果这个操作非常频繁，其实最好的办法就是写一个程序，让电脑帮我们把这个事情给自动办妥了。 分析其实jar包就是一个特殊版的压缩包，而Java是自带一套">
+<meta name="keywords" content="JavaSE,jar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过Java程序修改jar包里的内容">
+<meta property="og:url" content="http://extremegtr.github.io/2018/10/10/Modify-jar-by-java-program/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="需求现实中的需求千奇百怪，但只要在理论上没问题的，无论需求多么奇怪，它都能被实现。有时候，我们想要修改jar包中所存储的配置文件。那做法很简单，单纯通过手工解压jar，修改我们所想要的修改的配置文件后，再重新打包。这种劳神费力的操作偶尔1-2次还好，如果这个操作非常频繁，其实最好的办法就是写一个程序，让电脑帮我们把这个事情给自动办妥了。 分析其实jar包就是一个特殊版的压缩包，而Java是自带一套">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-27T03:44:19.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过Java程序修改jar包里的内容">
+<meta name="twitter:description" content="需求现实中的需求千奇百怪，但只要在理论上没问题的，无论需求多么奇怪，它都能被实现。有时候，我们想要修改jar包中所存储的配置文件。那做法很简单，单纯通过手工解压jar，修改我们所想要的修改的配置文件后，再重新打包。这种劳神费力的操作偶尔1-2次还好，如果这个操作非常频繁，其实最好的办法就是写一个程序，让电脑帮我们把这个事情给自动办妥了。 分析其实jar包就是一个特殊版的压缩包，而Java是自带一套">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://extremegtr.github.io/2018/10/10/Modify-jar-by-java-program/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>通过Java程序修改jar包里的内容 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-106151602-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2018/10/10/Modify-jar-by-java-program/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="有空就写点什么...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">通过Java程序修改jar包里的内容
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-10 23:32:55" itemprop="dateCreated datePublished" datetime="2018-10-10T23:32:55+08:00">2018-10-10</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-27 11:44:19" itemprop="dateModified" datetime="2018-11-27T11:44:19+08:00">2018-11-27</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaSE/" itemprop="url" rel="index"><span itemprop="name">JavaSE</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">0</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>现实中的需求千奇百怪，但只要在理论上没问题的，无论需求多么奇怪，它都能被实现。有时候，我们想要修改jar包中所存储的配置文件。那做法很简单，单纯通过手工解压jar，修改我们所想要的修改的配置文件后，再重新打包。这种劳神费力的操作偶尔1-2次还好，如果这个操作非常频繁，其实最好的办法就是写一个程序，让电脑帮我们把这个事情给自动办妥了。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>其实jar包就是一个特殊版的压缩包，而Java是自带一套处理压缩文件的API，所以Java也应该自带了一套处理jar包的API，如果真没有那就没辙了，就自己想办法造轮子吧，不过幸运的是真的有，所以我们可以直接拿来用了。其实，如果Java没有自带这套API才是最搞笑的，毕竟自家的东西，自己反而没有做好处理它的工具提供给用户使用，这就非常不人性化了。至于实现过程是如何的，这个问题就更加简单了，本质上来说就是弄懂Java操作压缩文件的的步骤，只要在网上看一下各种Demo是如何做的，加上再看API文档，那立马就能开干了，就算程序不能立马跑起来，这起码能让自己把程序的大体框架搭建起来。一旦你弄懂了如何通过API操作压缩文件，那么最后那就是换上操作jar包的API即可，步骤大同小异，然后再针对不同的地方再进行修改即可。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="打印jar包内所有内容的名称"><a href="#打印jar包内所有内容的名称" class="headerlink" title="打印jar包内所有内容的名称"></a>打印jar包内所有内容的名称</h3><p>其实，要实现这个基本功能就相当于实现查看压缩文件内的所有内容一样，我们平常查看压缩文件其实看到的就是和平时查看目录差不多。这里只贴核心代码，我们只关注这些代码即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java SE7</span></span><br><span class="line"><span class="keyword">try</span> (JarFile jarFile = <span class="keyword">new</span> JarFile(jarPath)) &#123;</span><br><span class="line">    <span class="keyword">for</span> (Enumeration&lt;JarEntry&gt; entries = jarFile.entries(); entries.hasMoreElements();) &#123;</span><br><span class="line">        JarEntry entry = entries.nextElement();</span><br><span class="line">        System.out.println(entry.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Java SE8</span></span><br><span class="line"><span class="keyword">try</span> (JarFile jarFile = <span class="keyword">new</span> JarFile(jarPath)) &#123;</span><br><span class="line">    jarFile.stream().forEach(entry -&gt; System.out.println(entry.getName()));</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这我们可以很清楚看到，要实现这个功能要运用两个新类：<code>java.util.jar.JarFile</code>和<code>java.util.jar.JarEntry</code>。就算不看文档，光从类名就能稍微猜到它们描述什么事物，前者肯定是jar包，而后者则是jar包内各个内容条目。而前面也说过了，jar包只不过是特殊版本的压缩包，所以说用处理压缩包的类<code>java.util.zip.ZipFile</code>和<code>java.util.zip.ZipEntry</code>来实现这个基本功能，最终效果是一样的。</p>
+<p>而如果你看源码的话，你就会发现处理jar包的相关类与处理普通压缩包的相关类是有继承关系的：</p>
+<ul>
+<li><p>在<code>java.util.zip</code>包内处理普通压缩包的相关类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZipFile</span> <span class="keyword">implements</span> <span class="title">ZipConstants</span>, <span class="title">Closeable</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZipEntry</span> <span class="keyword">implements</span> <span class="title">ZipConstants</span>, <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>java.util.jar</code>包内处理jar包的相关类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JarFile</span> <span class="keyword">extends</span> <span class="title">ZipFile</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JarEntry</span> <span class="keyword">extends</span> <span class="title">ZipEntry</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>所以说，如果并不用操作jar包特有的功能，那直接用处理普通压缩包的类对jar包进行操作也是一样的。</p>
+<p>核心代码运行效果如下：</p>
+<pre><code>META-INF/
+META-INF/MANIFEST.MF
+com/
+com/makwan/
+com/makwan/javaee/
+com/makwan/javaee/a_path/
+com/makwan/javaee/b_xml_parse/
+com/makwan/javaee/b_xml_parse/a_dom/
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/
+com/makwan/javaee/b_xml_parse/bean/
+com/makwan/javaee/c_practice/
+com/makwan/javaee/a_path/ClassPathProblem.class
+com/makwan/javaee/a_path/ClassPathProblem.java
+com/makwan/javaee/a_path/RelativePathProblem.class
+com/makwan/javaee/a_path/RelativePathProblem.java
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/Dom4jHelloWorld.class
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/Dom4jHelloWorld.java
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/Dom4jModification.class
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/Dom4jModification.java
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/Dom4jRecursiveTraversal.class
+com/makwan/javaee/b_xml_parse/a_dom/dom4j/Dom4jRecursiveTraversal.java
+com/makwan/javaee/b_xml_parse/bean/Person.class
+com/makwan/javaee/b_xml_parse/bean/Person.java
+com/makwan/javaee/b_xml_parse/data.xml
+com/makwan/javaee/c_practice/Book.class
+com/makwan/javaee/c_practice/Book.java
+com/makwan/javaee/c_practice/config.properties
+com/makwan/javaee/c_practice/HelloWorld.class
+com/makwan/javaee/c_practice/HelloWorld.java
+com/makwan/javaee/c_practice/MainProgram.class
+com/makwan/javaee/c_practice/MainProgram.java
+com/makwan/javaee/c_practice/Operation.class
+com/makwan/javaee/c_practice/Operation.java
+com/makwan/javaee/c_practice/personlist_template.html
+com/makwan/javaee/c_practice/test_data.xml
+default.properties
+META-INF/maven/
+META-INF/maven/com.makwan.javaee/
+META-INF/maven/com.makwan.javaee/day02-xml/
+META-INF/maven/com.makwan.javaee/day02-xml/pom.xml
+META-INF/maven/com.makwan.javaee/day02-xml/pom.properties
+</code></pre><p>我们可以看到，jar包即压缩包中的所有条目名称正是所有路径名。这很有用，如果你想要定位压缩包中的某个文件，就要用到这个路径名。</p>
+<h3 id="复制jar包"><a href="#复制jar包" class="headerlink" title="复制jar包"></a>复制jar包</h3><p>如果单纯说复制一个文件，不管这个文件是什么文件，那实现都非常简单了，直接用字节流读取并写入新文件即可。当然这里是要求使用指定的API读取jar包内每一个条目并写到新的jar包内。</p>
+<p>这里同样还是只把核心代码贴出来。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java SE7</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    JarFile jarFile = <span class="keyword">new</span> JarFile(srcJarPath);</span><br><span class="line">    JarOutputStream jos = <span class="keyword">new</span> JarOutputStream(<span class="keyword">new</span> FileOutputStream(copyJarPath))</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="keyword">for</span> (Enumeration&lt;JarEntry&gt; entries = jarFile.entries(); entries.hasMoreElements();) &#123;</span><br><span class="line">        JarEntry entry = entries.nextElement();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> (InputStream is = jarFile.getInputStream(entry)) &#123;</span><br><span class="line">            jos.putNextEntry(entry);</span><br><span class="line">            jos.write(IOUtils.readNBytes(is, is.available()));</span><br><span class="line">            jos.closeEntry();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Java SE8</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    JarFile jarFile = <span class="keyword">new</span> JarFile(srcJarPath);</span><br><span class="line">    JarOutputStream jos = <span class="keyword">new</span> JarOutputStream(<span class="keyword">new</span> FileOutputStream(copyJarPath))</span><br><span class="line">) &#123;</span><br><span class="line">    jarFile.stream().forEach(entry -&gt; &#123;</span><br><span class="line">        <span class="keyword">try</span> (InputStream is = jarFile.getInputStream(entry)) &#123;</span><br><span class="line">            jos.putNextEntry(entry);</span><br><span class="line">            jos.write(IOUtils.readNBytes(is, is.available()));</span><br><span class="line">            jos.closeEntry();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>只要给这段核心代码指定好原jar包的所在路径<code>srcJarPath</code>以及复制后新创建的jar包路径<code>copyJarPath</code>即可运行程序。</p>
+<p>这里最主要用到一个新类<code>java.util.jar.JarOutputStream</code>，从名字就可以猜到它的作用了，它是jar输出流，当然，它不是单纯地把整个jar包数据进行输出，它是把一个接一个条目数据进行输出的。所以，首先要设法将jar包的每个条目的数据读取到，才能通过它进行输出，这样要获取每个条目的输入流，而正好可以通过调用<code>java.util.jar.JarFile</code>的<code>getInputStream</code>并给它传递一个<code>java.util.jar.JarEntry</code>对象即可以获取这个条目的输入流，接着通过工具类<code>sun.misc.IOUtils</code>就可以以最简便的形式读取到该条目的数据（当然，不用这个工具类也是可以的，自己再造一遍轮子来实现这个功能也并不是很难），最后通过jar输出流进行输出。</p>
+<p>在很多教程里值得关注的是：使用jar输出流进行输出之前调用<code>putNextEntry</code>，输出完毕之后则调用<code>closeEntry</code>，这里我的代码也都遵照这种模式这样做了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JarOutputStream</span> <span class="keyword">extends</span> <span class="title">ZipOutputStream</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Begins writing a new JAR file entry and positions the stream</span></span><br><span class="line"><span class="comment">     * to the start of the entry data. This method will also close</span></span><br><span class="line"><span class="comment">     * any previous entry. The default compression method will be</span></span><br><span class="line"><span class="comment">     * used if no compression method was specified for the entry.</span></span><br><span class="line"><span class="comment">     * The current time will be used if the entry has no set modification</span></span><br><span class="line"><span class="comment">     * time.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ze the ZIP/JAR entry to be written</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@exception</span> ZipException if a ZIP error has occurred</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@exception</span> IOException if an I/O error has occurred</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putNextEntry</span><span class="params">(ZipEntry ze)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">super</span>.putNextEntry(ze);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZipOutputStream</span> <span class="keyword">extends</span> <span class="title">DeflaterOutputStream</span> <span class="keyword">implements</span> <span class="title">ZipConstants</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Begins writing a new ZIP file entry and positions the stream to the</span></span><br><span class="line"><span class="comment">     * start of the entry data. Closes the current entry if still active.</span></span><br><span class="line"><span class="comment">     * The default compression method will be used if no compression method</span></span><br><span class="line"><span class="comment">     * was specified for the entry, and the current time will be used if</span></span><br><span class="line"><span class="comment">     * the entry has no set modification time.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> e the ZIP entry to be written</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@exception</span> ZipException if a ZIP format error has occurred</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@exception</span> IOException if an I/O error has occurred</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putNextEntry</span><span class="params">(ZipEntry e)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ensureOpen();</span><br><span class="line">        <span class="keyword">if</span> (current != <span class="keyword">null</span>) &#123;</span><br><span class="line">            closeEntry();       <span class="comment">// close previous entry</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">        current = <span class="keyword">new</span> XEntry(e, written);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Closes the current ZIP entry and positions the stream for writing</span></span><br><span class="line"><span class="comment">     * the next entry.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@exception</span> ZipException if a ZIP format error has occurred</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@exception</span> IOException if an I/O error has occurred</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeEntry</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ensureOpen();</span><br><span class="line">        <span class="keyword">if</span> (current != <span class="keyword">null</span>) &#123;</span><br><span class="line">            ...</span><br><span class="line">            current = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但从源码发现，调用<code>putNextEntry</code>会间接调用<code>closeEntry</code>，它会把之前还没关闭的条目关闭掉。现阶段，我暂时是不太懂开发者在开发时调用这个<code>closeEntry</code>有什么意义，这个问题有待以后考究。</p>
+<h3 id="修改jar包里的配置文件"><a href="#修改jar包里的配置文件" class="headerlink" title="修改jar包里的配置文件"></a>修改jar包里的配置文件</h3><p>弄懂上面那些基本操作后，那就可以继续向前。这里同样把之前演示所用的那个jar包作为样例，而这次要修改它里面的配置文件<code>com/makwan/javaee/c_practice/config.properties</code>的内容。</p>
+<p>具体思路其实和复制jar包是差不多的：</p>
+<ol>
+<li>读取原jar包的所有条目的数据</li>
+<li>当所读取的条目正好是<code>com/makwan/javaee/c_practice/config.properties</code>配置文件时，则把数据读取出来，根据自己的需求进行修改</li>
+<li>把读取出来不需要改变的条目数据以及根据需求修改后的条目数据写到另一个新jar包里，最后删除原jar包并把新jar包重命名为原jar包的文件名<br><strong><font color="#9B30FF" style="font-size: 13px">不喜欢用这种文件替换法，其实可以先把所有新数据都写到内存内，最后再把它写到原jar包内</font></strong></li>
+</ol>
+<p>思路还算是很简单的，实现起来也并不复杂，下面就把两种方式都演示一遍。</p>
+<h4 id="通过临时文件作为桥梁"><a href="#通过临时文件作为桥梁" class="headerlink" title="通过临时文件作为桥梁"></a>通过临时文件作为桥梁</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    JarFile jarFile = <span class="keyword">new</span> JarFile(srcJarPath);</span><br><span class="line">    JarOutputStream jos = <span class="keyword">new</span> JarOutputStream(<span class="keyword">new</span> FileOutputStream(tmpJarPath))</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="keyword">for</span> (Enumeration&lt;JarEntry&gt; entries = jarFile.entries(); entries.hasMoreElements();) &#123;</span><br><span class="line">        JarEntry entry = entries.nextElement();</span><br><span class="line">        <span class="keyword">try</span> (InputStream is = jarFile.getInputStream(entry)) &#123;</span><br><span class="line">            <span class="comment">// 这里与之前不一样, 要创建一个新的Entry传递进去</span></span><br><span class="line">            jos.putNextEntry(<span class="keyword">new</span> JarEntry(entry.getName()));</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"com/makwan/javaee/c_practice/config.properties"</span>.equals(entry.getName())) &#123;</span><br><span class="line">                Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">                properties.load(is);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 根据需求修改该配置文件的数据</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="string">""</span>.equals(properties.getProperty(<span class="string">"xmlPath"</span>))) &#123;</span><br><span class="line">                    properties.setProperty(<span class="string">"xmlPath"</span>, <span class="string">"D:/test.xml"</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                properties.store(jos, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                jos.write(IOUtils.readNBytes(is, is.available()));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            jos.closeEntry();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除原jar包, 重命名临时jar包</span></span><br><span class="line"><span class="keyword">new</span> File(srcJarPath).delete();</span><br><span class="line"><span class="keyword">new</span> File(tmpJarPath).renameTo(<span class="keyword">new</span> File(srcJarPath));</span><br></pre></td></tr></table></figure>
+<h4 id="通过内存作为桥梁"><a href="#通过内存作为桥梁" class="headerlink" title="通过内存作为桥梁"></a>通过内存作为桥梁</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (ByteArrayOutputStream bArrOS = <span class="keyword">new</span> ByteArrayOutputStream()) &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        JarFile jarFile = <span class="keyword">new</span> JarFile(jarPath);</span><br><span class="line">        JarOutputStream jos = <span class="keyword">new</span> JarOutputStream(bArrOS)</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Enumeration&lt;JarEntry&gt; entries = jarFile.entries(); entries.hasMoreElements();) &#123;</span><br><span class="line">            JarEntry entry = entries.nextElement();</span><br><span class="line">            <span class="keyword">try</span> (InputStream is = jarFile.getInputStream(entry)) &#123;</span><br><span class="line">                <span class="comment">// 这里与之前不一样, 要创建一个新的Entry传递进去</span></span><br><span class="line">                jos.putNextEntry(<span class="keyword">new</span> JarEntry(entry.getName()));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (<span class="string">"com/makwan/javaee/c_practice/config.properties"</span>.equals(entry.getName())) &#123;</span><br><span class="line">                    Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">                    properties.load(is);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 根据需求修改该配置文件的数据</span></span><br><span class="line">                    <span class="keyword">if</span> (<span class="string">""</span>.equals(properties.getProperty(<span class="string">"xmlPath"</span>))) &#123;</span><br><span class="line">                        properties.setProperty(<span class="string">"xmlPath"</span>, <span class="string">"D:/test.xml"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    properties.store(jos, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    jos.write(IOUtils.readNBytes(is, is.available()));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                jos.closeEntry();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bArrOS.writeTo(<span class="keyword">new</span> FileOutputStream(jarPath));</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Java8可以这样实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (ByteArrayOutputStream bArrOS = <span class="keyword">new</span> ByteArrayOutputStream()) &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        JarFile jarFile = <span class="keyword">new</span> JarFile(jarPath);</span><br><span class="line">        JarOutputStream jos = <span class="keyword">new</span> JarOutputStream(bArrOS)</span><br><span class="line">    ) &#123;</span><br><span class="line">        jarFile.stream().forEach(entry -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> (InputStream is = jarFile.getInputStream(entry)) &#123;</span><br><span class="line">                jos.putNextEntry(<span class="keyword">new</span> JarEntry(entry.getName()));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (<span class="string">"com/makwan/javaee/c_practice/config.properties"</span>.equals(entry.getName())) &#123;</span><br><span class="line">                    Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">                    properties.load(is);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 根据需求修改该配置文件的数据</span></span><br><span class="line">                    <span class="keyword">if</span> (<span class="string">""</span>.equals(properties.getProperty(<span class="string">"xmlPath"</span>))) &#123;</span><br><span class="line">                        properties.setProperty(<span class="string">"xmlPath"</span>, <span class="string">"D:/test.xml"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    properties.store(jos, <span class="keyword">null</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    jos.write(IOUtils.readNBytes(is, is.available()));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                jos.closeEntry();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bArrOS.writeTo(<span class="keyword">new</span> FileOutputStream(jarPath));</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况!!!"></a>特殊情况!!!</h4><p>我们开发好的Java程序，自己可以很方便地通过IDE运行，但是，如果想把程序给别人使用，叫别人安装IDE来运行明显是不实际的，最实际且简单的方法是先让别人安装JRE，然后我们把开发好的程序打成jar包并把它交给别人使用，这样就能让别人运行jar包中的程序。前面这种做法那是十分普遍的，对于之前所写的修改jar包程序，同样也是如此对待，但对于一种特殊需求那就直接不能运行了。</p>
+<p>这个特殊的需求具体来说就是：<strong><font color="#9B30FF">正处于运行中的修改jar包程序所要修改的jar包正好是包含该修改jar包程序的jar包</font>。</strong></p>
+<p>你觉得这需求很荒诞，但是在现实中，某些很简单的实用功能就是要通过实现这种奇葩的需求支撑起来的。其实较真一点来说，通过Java实现修改jar包也算是比较奇葩的，实现它干嘛呢？<br>在此，就有这么一个实际需求：<strong><font color="#0072E3">程序每次运行后都要把用户修改过的配置信息更新到jar包里头的配置文件中待下次再使用，为了让用户忽略各种细节，所以就是不能把配置文件放到jar包外头。</font></strong><br>更通俗直白地就是说：<strong><font color="green">我们把开发好的Java程序打成jar包给别人使用，而在每次程序运行后，都会自动把用户修改过的配置信息或者程序运行过程中产生的有价值信息记录到该jar包里的配置文件中。</font></strong></p>
+<p>而这么一个简单的实际需求，就要建立于通过Java程序修改jar包的功能，更要建立于通过jar包内的Java程序修改jar包自身这种功能。<br>这需求看似简单而实现起来却又是另一回事，更准确地来说是不能再用常规思路实现它。所以事情并不会顺风顺水，立刻对问题就有头绪。不过这是好事，因为正因为这样才能真正让自己学到新知识。</p>
+<p>要实现这个特殊需求，我们立刻可以想到或碰到的问题是：<strong><font color="red">如何通过代码获取当前正在运行的jar包的路径？</font></strong></p>
+<p>我们不能再像之前那样指定jar包的绝对路径，而指定相对路径也是不行的，这些方法都不是通用的。<br>而我的想法是jar包也是Java专属的产物，那估计同样也会有配套的API解决这个问题，所以顺着这个思路去查了一下，还真的找到解决这个问题的API：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String jarPath = CurrentClassName.class.getProtectionDomain().getCodeSource().getLocation().getPath();</span><br></pre></td></tr></table></figure></p>
+<p>这一连串的调用，最后所得出的结果正是用户正在使用的jar包的路径，<strong>要注意的是：这里的<code>CurrentClassName</code>一定要写我们自己jar包内的类名</strong>。</p>
+<p>首要问题解决了，然而这并没有告一段落。根据日常经验，我们很快就会知道，若想实现这种特殊的需求，那不得不面对一个问题：<strong><font color="red">正处于运行状态的文件是无法被修改的！</font></strong></p>
+<p>正如平日我们运行了一个应用程序，程序还在运行的时候就尝试把该程序卸载掉或把它相关的文件删掉，那系统肯定不让你那么干，你先得让程序停止运行才能做那种事，所以说，这相当于给之前所演示的<a href="#通过临时文件作为桥梁">通过临时文件作为桥梁</a>这种修改jar包的方法判了死刑。因为我们要修改的是正在运行的jar包，jar包正在被JVM加载使用中，所以那是肯定不能通过代码把这个正在的运行的jar包删除。</p>
+<p>所以说，只剩下<a href="#通过内存作为桥梁">通过内存作为桥梁</a>这最后一种方案可以用了，如果你尝试一下，确实是可以修改成功的，也没有其余的错误，这十分好。<br>但值得注意的是：<strong><font color="#0072E3">只有当程序完全关闭了，即jar包不再被JVM加载了，修改的新内容才得以写到该jar包内</font></strong>。</p>
+<p>所以最终结论就出来了：<strong><font color="#9B30FF">正处于运行状态的jar包需修改自身，在实现时最好是确保修改jar包过程放到程序退出前执行</font></strong>。<br>因为所要更新的数据可能并不只是单纯被改动一次，或许随着程序的运行或者用户的需要会，该数据会被修改很多次，所以并不用每次都执行该修改jar包的过程，从而节省更多的资源。</p>
+<p>至于如何确保该修改jar包的过程在程序退出前执行有很多方法，比如：把这个过程放在<code>main</code>方法最后，又或者使用以下这个方法也可以实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Runtime</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Registers a new virtual-machine shutdown hook.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addShutdownHook</span><span class="params">(Thread hook)</span> </span>&#123;</span><br><span class="line">        SecurityManager sm = System.getSecurityManager();</span><br><span class="line">        <span class="keyword">if</span> (sm != <span class="keyword">null</span>) &#123;</span><br><span class="line">            sm.checkPermission(<span class="keyword">new</span> RuntimePermission(<span class="string">"shutdownHooks"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        ApplicationShutdownHooks.add(hook);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过调用<code>Runtime</code>的<code>addShutdownHook</code>方法，把修改jar包的过程放到线程中再传递给该方法，这样，程序结束前，修改jar包的过程也会被执行。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.jianshu.com/p/1535d3b13236" target="_blank" rel="noopener">Java压缩文件夹成Zip文件和解压缩Zip文件的实现</a></li>
+<li><a href="http://javaweb.org/?p=1450" target="_blank" rel="noopener">不需解压修改jar包文件内容</a></li>
+<li><a href="https://stackoverflow.com/questions/13435683/invalid-entry-compressed-size" target="_blank" rel="noopener">Invalid Entry Compressed Size</a></li>
+<li><a href="https://stackoverflow.com/questions/320542/how-to-get-the-path-of-a-running-jar-file" target="_blank" rel="noopener">How to get the path of a running JAR file?</a></li>
+<li><a href="https://stackoverflow.com/questions/11502260/modifying-a-text-file-in-a-zip-archive-in-java" target="_blank" rel="noopener">Modifying a text file in a ZIP archive in Java</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/JavaSE/" rel="tag"># JavaSE</a>
+          
+            <a href="/tags/jar/" rel="tag"># jar</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/12/IntelliJ-IDEA-java-code-highlight-in-Dark-Theme/" rel="next" title="IntelliJ IDEA黑色主题下自定义Java代码高亮配色">
+                <i class="fa fa-chevron-left"></i> IntelliJ IDEA黑色主题下自定义Java代码高亮配色
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/29/What-is-the-current-frontier-level-of-Quantum-Computing-technology/" rel="prev" title="【转载】当前量子计算技术前沿是什么水平？">
+                【转载】当前量子计算技术前沿是什么水平？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+  <div class="site-description motion-element" itemprop="description">有空就写点什么...</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打印jar包内所有内容的名称"><span class="nav-number">3.1.</span> <span class="nav-text">打印jar包内所有内容的名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制jar包"><span class="nav-number">3.2.</span> <span class="nav-text">复制jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改jar包里的配置文件"><span class="nav-number">3.3.</span> <span class="nav-text">修改jar包里的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过临时文件作为桥梁"><span class="nav-number">3.3.1.</span> <span class="nav-text">通过临时文件作为桥梁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过内存作为桥梁"><span class="nav-number">3.3.2.</span> <span class="nav-text">通过内存作为桥梁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊情况"><span class="nav-number">3.3.3.</span> <span class="nav-text">特殊情况!!!</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fb006b67b16f091184ea',
+    clientSecret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+    repo: 'extremegtr.github.io',
+    owner: 'ExtremeGTR',
+    admin: ['ExtremeGTR'],
+    id: md5(location.pathname),
+    
+      language: window.navigator.language || window.navigator.userLanguage,
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

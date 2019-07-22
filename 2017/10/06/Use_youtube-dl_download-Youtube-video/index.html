@@ -15,10 +15,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -32,28 +32,23 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
 
@@ -76,6 +71,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -84,7 +85,7 @@
   
     
     
-    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -92,40 +93,33 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.3.0',
-    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '7.2.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
     fancybox: true,
+    mediumzoom: false,
     fastclick: false,
     lazyload: false,
+    pangu: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -134,15 +128,14 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="前言　　只要我们用百度或谷歌随便查找一下，那就能知道有挺多种方式可以下载Youtube视频的，不过挺多方式都有其的缺点，比如速度慢，又比如不能下载分辨率大于1080p的高清视频等等，当然你需求比较少，只有能下载视频就够了，很多下载方法都能够满足你。　　下载Youtube视频翻墙是必要的，没有翻墙想下载Youtube的视频基本是没辙了，或者速度像乌龟那么慢，就算你下载的视频只是几百M的大小，那也是要">
 <meta name="keywords" content="Youtube">
@@ -161,31 +154,38 @@
 
 
 
+  
+  
+  <link rel="canonical" href="http://extremegtr.github.io/2017/10/06/Use_youtube-dl_download-Youtube-video/">
 
-  <link rel="canonical" href="http://extremegtr.github.io/2017/10/06/Use_youtube-dl_download-Youtube-video/"/>
 
 
-
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
 </script>
 
+  
   <title>使用youtube-dl下载Youtube视频 | ExtremeGTR's Blog</title>
   
 
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-106151602-1');
+    }
+  </script>
 
-  gtag('config', 'UA-106151602-1');
-</script>
+
+
 
 
 
@@ -193,29 +193,27 @@
 
 
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -233,7 +231,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -247,6 +245,7 @@
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
     
   </div>
 
@@ -270,43 +269,75 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+
   </li>
 
       
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
-        </li>
       
     </ul>
   
@@ -314,34 +345,7 @@
   
 
   
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
 </nav>
-
-
-
-  
 
 
 
@@ -371,8 +375,6 @@
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -384,7 +386,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
       <meta itemprop="description" content="有空就写点什么...">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -397,19 +399,20 @@
         
         
           <h1 class="post-title" itemprop="name headline">使用youtube-dl下载Youtube视频
+
               
             
           </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
 
-            
-            
-            
+          
+          
+          
 
-            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -422,16 +425,14 @@
               
 
               <time title="创建时间：2017-10-06 17:48:25" itemprop="dateCreated datePublished" datetime="2017-10-06T17:48:25+08:00">2017-10-06</time>
+            </span>
+          
+
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -439,15 +440,12 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2017-10-09 11:10:59" itemprop="dateModified" datetime="2017-10-09T11:10:59+08:00">2017-10-09</time>
-              
+              </span>
             
-          </span>
+          
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -465,62 +463,39 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/06/Use_youtube-dl_download-Youtube-video/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/06/Use_youtube-dl_download-Youtube-video/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
           
           
-             <span id="/2017/10/06/Use_youtube-dl_download-Youtube-video/" class="leancloud_visitors" data-flag-title="使用youtube-dl下载Youtube视频">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
           
-            <div class="post-symbolscount">
-              
 
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
               
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">7.5k</span>
+                <span class="post-meta-item-text">本文字数：</span>
               
+              <span title="本文字数">0</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
               
-                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">7 分钟</span>
-              
-            </div>
+              <span title="阅读时长">1 分钟</span>
+            </span>
           
 
           
@@ -541,33 +516,35 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　只要我们用百度或谷歌随便查找一下，那就能知道有挺多种方式可以下载Youtube视频的，不过挺多方式都有其的缺点，比如速度慢，又比如不能下载分辨率大于1080p的高清视频等等，当然你需求比较少，只有能下载视频就够了，很多下载方法都能够满足你。<br>　　下载Youtube视频<strong><font color="#0072E3">翻墙</font></strong>是必要的，没有翻墙想下载Youtube的视频基本是没辙了，或者速度像乌龟那么慢，就算你下载的视频只是几百M的大小，那也是要到猴年马月。所以，无论如何，要先搞到一个好的翻墙方式，</p>
 <h2 id="常用的方式"><a href="#常用的方式" class="headerlink" title="常用的方式"></a>常用的方式</h2><p>以前我最常用的一招就是使用免费的翻墙软件<code>XX-Net</code>搭配以下的方法进行下载：</p>
 <ol>
-<li><p><a href="http://www.clipconverter.cc/" target="_blank" rel="external">ClipConverter</a><br>这是一个在线媒体转码网站，只要你把Youtube视频地址复制过去，就有一个分辨率选择列表，你想要什么分辨率都行，4K也是没问题的。<br>选择完分辨率，等它转换完，那就可以下载了，不过有时候这个网站的服务器抽风那就没辙了。</p>
+<li><p><a href="http://www.clipconverter.cc/" target="_blank" rel="noopener">ClipConverter</a><br>这是一个在线媒体转码网站，只要你把Youtube视频地址复制过去，就有一个分辨率选择列表，你想要什么分辨率都行，4K也是没问题的。<br>选择完分辨率，等它转换完，那就可以下载了，不过有时候这个网站的服务器抽风那就没辙了。</p>
 </li>
-<li><p><a href="https://youtubedownloader.com/" target="_blank" rel="external">Free YouTube Downloader</a><br>这个是要安装客户端的下载软件，以前免费可以下载2K的视频，现在是必须付费才能下载大于1080p的视频。<br>同样地，也是把视频地址粘上去，就会给一个列表你选，选后直接按下载就行了。</p>
+<li><p><a href="https://youtubedownloader.com/" target="_blank" rel="noopener">Free YouTube Downloader</a><br>这个是要安装客户端的下载软件，以前免费可以下载2K的视频，现在是必须付费才能下载大于1080p的视频。<br>同样地，也是把视频地址粘上去，就会给一个列表你选，选后直接按下载就行了。</p>
 </li>
-<li><p><a href="https://www.4kdownload.com/" target="_blank" rel="external">4K Video Downloader</a><br>这也是一个需要安装客户端得下载软件，功能和上面那个差不多。<br>而它甚至可以免费下载4K的视频，这是非常好的一点，但缺点也明显，与<span class="label info">Free YouTube Downloader</span>比起来，解析链接的速度可以说非常慢。</p>
+<li><p><a href="https://www.4kdownload.com/" target="_blank" rel="noopener">4K Video Downloader</a><br>这也是一个需要安装客户端得下载软件，功能和上面那个差不多。<br>而它甚至可以免费下载4K的视频，这是非常好的一点，但缺点也明显，与<span class="label info">Free YouTube Downloader</span>比起来，解析链接的速度可以说非常慢。</p>
 </li>
 </ol>
-<h2 id="学习使用youtube-dl"><a href="#学习使用youtube-dl" class="headerlink" title="学习使用youtube-dl"></a>学习使用youtube-dl</h2><p>　　<a href="https://github.com/rg3/youtube-dl" target="_blank" rel="external">youtube-dl</a>这个工具的用法不像之前那些工具那么傻瓜式了，是需要输入命令里进行操作的，但通过各种参数进行配合，这会显得更加灵活，不过电脑小白用的话或许就会感到有些吃力，但用多几次就感觉还好。大部分用户用的都是Windows，并且我也是Linux系统的门外汉，所以这里只讲Windows下的使用过程。</p>
-<h3 id="把工具弄好"><a href="#把工具弄好" class="headerlink" title="把工具弄好"></a>把工具弄好</h3><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a><strong><font color="#9B30FF">Python</font></strong></h4><p>要使用<span class="label primary">youtube-dl</span>，那就得先安装<span class="label info">Python</span>。<a href="https://www.python.org/" target="_blank" rel="external">Python官网</a>，到里面就可以找到下载地址，下载后安装即可，没啥好说的了。</p>
+<h2 id="学习使用youtube-dl"><a href="#学习使用youtube-dl" class="headerlink" title="学习使用youtube-dl"></a>学习使用youtube-dl</h2><p>　　<a href="https://github.com/rg3/youtube-dl" target="_blank" rel="noopener">youtube-dl</a>这个工具的用法不像之前那些工具那么傻瓜式了，是需要输入命令里进行操作的，但通过各种参数进行配合，这会显得更加灵活，不过电脑小白用的话或许就会感到有些吃力，但用多几次就感觉还好。大部分用户用的都是Windows，并且我也是Linux系统的门外汉，所以这里只讲Windows下的使用过程。</p>
+<h3 id="把工具弄好"><a href="#把工具弄好" class="headerlink" title="把工具弄好"></a>把工具弄好</h3><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a><strong><font color="#9B30FF">Python</font></strong></h4><p>要使用<span class="label primary">youtube-dl</span>，那就得先安装<span class="label info">Python</span>。<a href="https://www.python.org/" target="_blank" rel="noopener">Python官网</a>，到里面就可以找到下载地址，下载后安装即可，没啥好说的了。</p>
 <h4 id="youtube-dl"><a href="#youtube-dl" class="headerlink" title="youtube-dl"></a><strong><font color="#9B30FF">youtube-dl</font></strong></h4><ol>
-<li><p><strong><font color="#0072E3">下载</font></strong><br>之前所提供的的<span class="label primary">youtube-dl</span>的<a href="https://github.com/rg3/youtube-dl" target="_blank" rel="external">链接</a>里面就有<a href="https://yt-dl.org/latest/youtube-dl.exe" target="_blank" rel="external">下载链接</a>，下载<code>youtube-dl.exe</code>这个工具就行了，其余不用多管。</p>
+<li><p><strong><font color="#0072E3">下载</font></strong><br>之前所提供的的<span class="label primary">youtube-dl</span>的<a href="https://github.com/rg3/youtube-dl" target="_blank" rel="noopener">链接</a>里面就有<a href="https://yt-dl.org/latest/youtube-dl.exe" target="_blank" rel="noopener">下载链接</a>，下载<code>youtube-dl.exe</code>这个工具就行了，其余不用多管。</p>
 </li>
 <li><p><strong><font color="#0072E3">放置</font></strong><br>下载完之后，把它放到你所想的目录里（除了<code>%SYSTEMROOT%\System32</code>，任何地方你都可以放）。</p>
 </li>
 <li><p><strong><font color="#0072E3">配置系统环境变量<code>Path</code></font></strong><br>给系统环境变量<code>Path</code>的变量值最后加上<code>youtube-dl.exe</code>所在的路径。</p>
 </li>
 <li><p><strong><font color="#0072E3">设置配置文件</font></strong><br>在Windows下，<span class="label primary">youtube-dl</span>这个工具默认使用的配置文件是<code>%APPDATA%\youtube-dl\config.txt</code>或<code>C:\Users\&lt;user name&gt;\youtube-dl.conf</code>。</p>
-<div class="note warning"><font style="font-size: 10px">如果在那些目录里找不到配置文件，那你就自己在那些目录里自己创建一个。</font></div>
+<div class="note warning">
+            <font style="font-size: 10px">如果在那些目录里找不到配置文件，那你就自己在那些目录里自己创建一个。</font>
+          </div>
 <p>这里，我也没找到相应的配置文件，所以就在自己的C盘的用户目录<code>C:\Users\&lt;user name&gt;</code>里创建一个<code>youtube-dl.conf</code>，并添加以下内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Use this proxy</div><div class="line">--proxy 127.0.0.1:8087</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Use this proxy</span><br><span class="line">--proxy 127.0.0.1:8087</span><br></pre></td></tr></table></figure>
 <p>这是配置代理，只要把你自己的代理对应的IP以及端口配置上就行了。<br>如果不在配置文件配置代理，那么每次下载视频的视频都要在命令上加上这个代理参数。</p>
 </li>
 </ol>
 <p>就做以上这4步，就把<span class="label primary">youtube-dl</span>工具给弄好了，之后我们就可以开始用它来下载Youtube视频了。</p>
 <h4 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a><strong><font color="#9B30FF">FFmpeg</font></strong></h4><p>因为Youtube的高清格式的视频都是音视频分开的，所以就算把1080p、2K、4K下载回来了，也是需要合成的，所以<span class="label primary">FFmpeg</span>是必不可少的合成工具。</p>
 <ol>
-<li><p><strong><font color="#0072E3">下载</font></strong><br>到<span class="label primary">FFmpeg</span><a href="https://www.ffmpeg.org/" target="_blank" rel="external">官网</a>下载工具。</p>
+<li><p><strong><font color="#0072E3">下载</font></strong><br>到<span class="label primary">FFmpeg</span><a href="https://www.ffmpeg.org/" target="_blank" rel="noopener">官网</a>下载工具。</p>
 </li>
 <li><p><strong><font color="#0072E3">放置</font></strong><br>下载后解压到你指定的位置。</p>
 </li>
@@ -575,18 +552,22 @@
 </li>
 </ol>
 <h3 id="下载视频"><a href="#下载视频" class="headerlink" title="下载视频"></a>下载视频</h3><p>现在一切都搞好了，正式开始下载视频：打开控制台，输入一下命令就能够下载视频了。<br><strong>这里你可以用这个视频地址自己尝试一下：<code>https://www.youtube.com/watch?v=1La4QzGeaaQ</code>。</strong></p>
-<h4 id="最普通的下载命令"><a href="#最普通的下载命令" class="headerlink" title="最普通的下载命令"></a><strong><font color="#9B30FF">最普通的下载命令</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl 视频地址</div></pre></td></tr></table></figure>
+<h4 id="最普通的下载命令"><a href="#最普通的下载命令" class="headerlink" title="最普通的下载命令"></a><strong><font color="#9B30FF">最普通的下载命令</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl 视频地址</span><br></pre></td></tr></table></figure>
 <p>这样直接下载的是指定视频地址的最高质量视频，并且已经是音视频合成好的视频。</p>
-<h4 id="配置代理参数"><a href="#配置代理参数" class="headerlink" title="配置代理参数"></a><strong><font color="#9B30FF">配置代理参数</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl --proxy 127.0.0.1:8087 视频地址</div></pre></td></tr></table></figure>
+<h4 id="配置代理参数"><a href="#配置代理参数" class="headerlink" title="配置代理参数"></a><strong><font color="#9B30FF">配置代理参数</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl --proxy 127.0.0.1:8087 视频地址</span><br></pre></td></tr></table></figure>
 <p>没有在配置文件设置代理的情况下，在配置文件配置了就不用加上这个参数<code>--proxy</code>参数。</p>
-<h4 id="查看所能下载的所有格式"><a href="#查看所能下载的所有格式" class="headerlink" title="查看所能下载的所有格式"></a><strong><font color="#9B30FF">查看所能下载的所有格式</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -F或--list-formats 视频地址</div></pre></td></tr></table></figure>
-<div class="note warning"><font style="font-size: 10px">其中<code>-F</code>的<code>F</code>必须是大写，不能是小写的<code>f</code>，如果你写成小写，那就会报错。</font></div>
+<h4 id="查看所能下载的所有格式"><a href="#查看所能下载的所有格式" class="headerlink" title="查看所能下载的所有格式"></a><strong><font color="#9B30FF">查看所能下载的所有格式</font></strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -F或--list-formats 视频地址</span><br></pre></td></tr></table></figure>
+<div class="note warning">
+            <font style="font-size: 10px">其中<code>-F</code>的<code>F</code>必须是大写，不能是小写的<code>f</code>，如果你写成小写，那就会报错。</font>
+          </div>
 <p>输入该命令后，那在控制台上就会显示该视频地址所能下载到的所有格式。</p>
-<p>比如输入以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">youtube-dl -F https://www.youtube.com/watch?v=1La4QzGeaaQ</div><div class="line">或</div><div class="line">youtube-dl --list-formats https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure></p>
-<p>得到的结果就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">format code  extension  resolution note</div><div class="line">139          m4a        audio only DASH audio   48k , m4a_dash container, mp4a.40.5@ 48k (22050Hz), 1.92MiB</div><div class="line">249          webm       audio only DASH audio   58k , opus @ 50k, 2.01MiB</div><div class="line">250          webm       audio only DASH audio   78k , opus @ 70k, 2.68MiB</div><div class="line">171          webm       audio only DASH audio  125k , vorbis@128k, 4.64MiB</div><div class="line">140          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k (44100Hz), 5.12MiB</div><div class="line">251          webm       audio only DASH audio  150k , opus @160k, 5.29MiB</div><div class="line">160          mp4        256x144    DASH video  118k , avc1.4d400c, 30fps, video only, 4.49MiB</div><div class="line">278          webm       256x144    144p  119k , webm container, vp9, 30fps, video only, 3.92MiB</div><div class="line">330          webm       256x144    144p60 HDR  199k , vp9.2, 60fps, video only,5.97MiB</div><div class="line">133          mp4        426x240    DASH video  260k , avc1.4d4015, 30fps, video only, 9.92MiB</div><div class="line">331          webm       426x240    240p60 HDR  271k , vp9.2, 60fps, video only, 9.16MiB</div><div class="line">242          webm       426x240    240p  281k , vp9, 30fps, video only, 8.51MiB</div><div class="line">243          webm       640x360    360p  491k , vp9, 30fps, video only, 15.83MiB</div><div class="line"></div><div class="line">332          webm       640x360    360p60 HDR  583k , vp9.2, 60fps, video only, 19.51MiB</div><div class="line">134          mp4        640x360    DASH video  645k , avc1.4d401e, 30fps, videoonly, 21.83MiB</div><div class="line">244          webm       854x480    480p  905k , vp9, 30fps, video only, 29.17MiB</div><div class="line"></div><div class="line">333          webm       854x480    480p60 HDR 1090k , vp9.2, 60fps, video only, 36.77MiB</div><div class="line">135          mp4        854x480    DASH video 1178k , avc1.4d401f, 30fps, video only, 42.40MiB</div><div class="line">247          webm       1280x720   720p 2088k , vp9, 30fps, video only, 59.14MiB</div><div class="line"></div><div class="line">136          mp4        1280x720   720p 2357k , avc1.4d401f, 30fps, video only, 84.20MiB</div><div class="line">334          webm       1280x720   720p60 HDR 2496k , vp9.2, 60fps, video only, 82.87MiB</div><div class="line">302          webm       1280x720   720p60 3061k , vp9, 60fps, video only, 97.24MiB</div><div class="line">298          mp4        1280x720   DASH video 3585k , avc1.4d4020, 60fps, video only, 115.60MiB</div><div class="line">248          webm       1920x1080  1080p 3694k , vp9, 30fps, video only, 104.08MiB</div><div class="line">335          webm       1920x1080  1080p60 HDR 4305k , vp9.2, 60fps, video only, 140.18MiB</div><div class="line">137          mp4        1920x1080  1080p 4591k , avc1.640028, 30fps, video only, 157.97MiB</div><div class="line">303          webm       1920x1080  1080p60 5564k , vp9, 60fps, video only, 166.17MiB</div><div class="line">299          mp4        1920x1080  DASH video 5915k , avc1.64002a, 60fps, video only, 205.13MiB</div><div class="line">264          mp4        2560x1440  DASH video 10757k , avc1.640032, 30fps, video only, 365.34MiB</div><div class="line">336          webm       2560x1440  1440p60 HDR 11180k , vp9.2, 60fps, video only, 379.99MiB</div><div class="line">271          webm       2560x1440  1440p 11533k , vp9, 30fps, video only, 329.39MiB</div><div class="line">308          webm       2560x1440  1440p60 16424k , vp9, 60fps, video only, 489.65MiB</div><div class="line">337          webm       3840x2160  2160p60 HDR 23026k , vp9.2, 60fps, video only, 762.28MiB</div><div class="line">266          mp4        3840x2160  DASH video 23442k , avc1.640033, 30fps, video only, 679.31MiB</div><div class="line">313          webm       3840x2160  2160p 24334k , vp9, 30fps, video only, 700.74MiB</div><div class="line">315          webm       3840x2160  2160p60 32601k , vp9, 60fps, video only, 1.01GiB</div><div class="line">138          mp4        7680x4320  DASH video 78931k , avc1.640033, 30fps, video only, 2.33GiB</div><div class="line">272          webm       7680x4320  4320p60 92526k , vp9, 60fps, video only, 2.70GiB</div><div class="line">17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k</div><div class="line">36           3gp        320x180    small , mp4v.20.3, mp4a.40.2</div><div class="line">43           webm       640x360    medium , vp8.0, vorbis@128k</div><div class="line">18           mp4        640x360    medium , avc1.42001E, mp4a.40.2@ 96k</div><div class="line">22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)</div></pre></td></tr></table></figure></p>
+<p>比如输入以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -F https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br><span class="line">或</span><br><span class="line">youtube-dl --list-formats https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br></pre></td></tr></table></figure></p>
+<p>得到的结果就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">format code  extension  resolution note</span><br><span class="line">139          m4a        audio only DASH audio   48k , m4a_dash container, mp4a.40.5@ 48k (22050Hz), 1.92MiB</span><br><span class="line">249          webm       audio only DASH audio   58k , opus @ 50k, 2.01MiB</span><br><span class="line">250          webm       audio only DASH audio   78k , opus @ 70k, 2.68MiB</span><br><span class="line">171          webm       audio only DASH audio  125k , vorbis@128k, 4.64MiB</span><br><span class="line">140          m4a        audio only DASH audio  128k , m4a_dash container, mp4a.40.2@128k (44100Hz), 5.12MiB</span><br><span class="line">251          webm       audio only DASH audio  150k , opus @160k, 5.29MiB</span><br><span class="line">160          mp4        256x144    DASH video  118k , avc1.4d400c, 30fps, video only, 4.49MiB</span><br><span class="line">278          webm       256x144    144p  119k , webm container, vp9, 30fps, video only, 3.92MiB</span><br><span class="line">330          webm       256x144    144p60 HDR  199k , vp9.2, 60fps, video only,5.97MiB</span><br><span class="line">133          mp4        426x240    DASH video  260k , avc1.4d4015, 30fps, video only, 9.92MiB</span><br><span class="line">331          webm       426x240    240p60 HDR  271k , vp9.2, 60fps, video only, 9.16MiB</span><br><span class="line">242          webm       426x240    240p  281k , vp9, 30fps, video only, 8.51MiB</span><br><span class="line">243          webm       640x360    360p  491k , vp9, 30fps, video only, 15.83MiB</span><br><span class="line"></span><br><span class="line">332          webm       640x360    360p60 HDR  583k , vp9.2, 60fps, video only, 19.51MiB</span><br><span class="line">134          mp4        640x360    DASH video  645k , avc1.4d401e, 30fps, videoonly, 21.83MiB</span><br><span class="line">244          webm       854x480    480p  905k , vp9, 30fps, video only, 29.17MiB</span><br><span class="line"></span><br><span class="line">333          webm       854x480    480p60 HDR 1090k , vp9.2, 60fps, video only, 36.77MiB</span><br><span class="line">135          mp4        854x480    DASH video 1178k , avc1.4d401f, 30fps, video only, 42.40MiB</span><br><span class="line">247          webm       1280x720   720p 2088k , vp9, 30fps, video only, 59.14MiB</span><br><span class="line"></span><br><span class="line">136          mp4        1280x720   720p 2357k , avc1.4d401f, 30fps, video only, 84.20MiB</span><br><span class="line">334          webm       1280x720   720p60 HDR 2496k , vp9.2, 60fps, video only, 82.87MiB</span><br><span class="line">302          webm       1280x720   720p60 3061k , vp9, 60fps, video only, 97.24MiB</span><br><span class="line">298          mp4        1280x720   DASH video 3585k , avc1.4d4020, 60fps, video only, 115.60MiB</span><br><span class="line">248          webm       1920x1080  1080p 3694k , vp9, 30fps, video only, 104.08MiB</span><br><span class="line">335          webm       1920x1080  1080p60 HDR 4305k , vp9.2, 60fps, video only, 140.18MiB</span><br><span class="line">137          mp4        1920x1080  1080p 4591k , avc1.640028, 30fps, video only, 157.97MiB</span><br><span class="line">303          webm       1920x1080  1080p60 5564k , vp9, 60fps, video only, 166.17MiB</span><br><span class="line">299          mp4        1920x1080  DASH video 5915k , avc1.64002a, 60fps, video only, 205.13MiB</span><br><span class="line">264          mp4        2560x1440  DASH video 10757k , avc1.640032, 30fps, video only, 365.34MiB</span><br><span class="line">336          webm       2560x1440  1440p60 HDR 11180k , vp9.2, 60fps, video only, 379.99MiB</span><br><span class="line">271          webm       2560x1440  1440p 11533k , vp9, 30fps, video only, 329.39MiB</span><br><span class="line">308          webm       2560x1440  1440p60 16424k , vp9, 60fps, video only, 489.65MiB</span><br><span class="line">337          webm       3840x2160  2160p60 HDR 23026k , vp9.2, 60fps, video only, 762.28MiB</span><br><span class="line">266          mp4        3840x2160  DASH video 23442k , avc1.640033, 30fps, video only, 679.31MiB</span><br><span class="line">313          webm       3840x2160  2160p 24334k , vp9, 30fps, video only, 700.74MiB</span><br><span class="line">315          webm       3840x2160  2160p60 32601k , vp9, 60fps, video only, 1.01GiB</span><br><span class="line">138          mp4        7680x4320  DASH video 78931k , avc1.640033, 30fps, video only, 2.33GiB</span><br><span class="line">272          webm       7680x4320  4320p60 92526k , vp9, 60fps, video only, 2.70GiB</span><br><span class="line">17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k</span><br><span class="line">36           3gp        320x180    small , mp4v.20.3, mp4a.40.2</span><br><span class="line">43           webm       640x360    medium , vp8.0, vorbis@128k</span><br><span class="line">18           mp4        640x360    medium , avc1.42001E, mp4a.40.2@ 96k</span><br><span class="line">22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)</span><br></pre></td></tr></table></figure></p>
 <h4 id="下载指定格式的文件"><a href="#下载指定格式的文件" class="headerlink" title="下载指定格式的文件"></a><strong><font color="#9B30FF">下载指定格式的文件</font></strong></h4><p>关于这一块，重点关注的是命令中的参数，这里参数变化就会多一点点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 或 --format 格式代号 视频地址</div></pre></td></tr></table></figure>
-<div class="note warning"><font style="font-size: 10px">与之前的相反，这里的<code>-f</code>只能是小写，不能是大写。</font></div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -f 或 --format 格式代号 视频地址</span><br></pre></td></tr></table></figure>
+<div class="note warning">
+            <font style="font-size: 10px">与之前的相反，这里的<code>-f</code>只能是小写，不能是大写。</font>
+          </div>
 <p>前面我们查看了指定视频地址的所有能够下载到的格式，其中<strong><code>format code</code>这一列就是格式代号</strong>，比如就拿之前所看到的数据来说：</p>
 <ul>
 <li><code>137</code>是<code>1080p 30fps</code>、<code>299</code>是<code>1080p 60fps</code><br>并且这两个都是只有视频画面的<code>mp4</code>文件，它们都是不带音频的视频。</li>
@@ -596,25 +577,27 @@
 <li><code>140</code>是<code>128k 44100Hz</code>的<code>m4a</code>音频</li>
 </ul>
 <p>你想下载什么样的格式，就在下载命令里填什么样的格式代号。</p>
-<p>又比如我想下载之前所提供的那个链接的4K且视频格式为<code>mp4</code>的视频，那么下载命令就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 266 https://www.youtube.com/watch?v=1La4QzGeaaQ</div><div class="line">或</div><div class="line">youtube-dl --format 266 https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure></p>
+<p>又比如我想下载之前所提供的那个链接的4K且视频格式为<code>mp4</code>的视频，那么下载命令就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -f 266 https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br><span class="line">或</span><br><span class="line">youtube-dl --format 266 https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br></pre></td></tr></table></figure></p>
 <p>我们下载视频当然想要的是即是高清又带声音的，所以不能只是单纯地下载不带声音的视频，必须要把音频也搞下来，然后利用<span class="label primary">FFmpeg</span>合成即可。</p>
-<p>但使用<span class="label primary">FFmpeg</span>进行合成又要使用命令了，这显得很繁琐，但还好有一种更简单的方式：<br><strong><font color="#0072E3">只要你安装配置好了</font><span class="label primary">FFmpeg</span>，<font color="#0072E3">在</font><span class="label primary">youtube-dl</span><font color="#0072E3">命令里同时指定视频与音频两者的格式代号进行下载，那</font><span class="label primary">youtube-dl</span><font color="#0072E3">就会自动调用</font><span class="label primary">FFmpeg</span><font color="#0072E3">进行合成。</font></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 视频格式代号+音频格式代号 视频地址</div></pre></td></tr></table></figure></p>
-<div class="note warning"><font style="font-size: 10px">这里两个格式代号，前面必须是视频，后面必须是音频，不能搞反了。</font></div>
+<p>但使用<span class="label primary">FFmpeg</span>进行合成又要使用命令了，这显得很繁琐，但还好有一种更简单的方式：<br><strong><font color="#0072E3">只要你安装配置好了</font><span class="label primary">FFmpeg</span>，<font color="#0072E3">在</font><span class="label primary">youtube-dl</span><font color="#0072E3">命令里同时指定视频与音频两者的格式代号进行下载，那</font><span class="label primary">youtube-dl</span><font color="#0072E3">就会自动调用</font><span class="label primary">FFmpeg</span><font color="#0072E3">进行合成。</font></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -f 视频格式代号+音频格式代号 视频地址</span><br></pre></td></tr></table></figure></p>
+<div class="note warning">
+            <font style="font-size: 10px">这里两个格式代号，前面必须是视频，后面必须是音频，不能搞反了。</font>
+          </div>
 <p>现在还是拿之前那个Youtube视频链接作为案例。</p>
 <ol>
 <li><p><strong>现在想下载它对应的质量最佳的视频以及质量最佳的音频以合成一个完整的视频</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f bestvideo+bestaudio https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -f bestvideo+bestaudio https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br></pre></td></tr></table></figure>
 <p>其实这条命令就相当于最开始那条普通的下载命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>下载4K30帧的<code>mp4</code>视频</strong><br>那就得首先查询音频视频的格式代号，再进行下载。4K30帧<code>mp4</code>视频的格式代号是<code>266</code>，对应的<code>m4a</code>音频代号是<code>140</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -f 266+140 https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -f 266+140 https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br></pre></td></tr></table></figure>
 <p>有时候，我们不一定要想最佳质量的，反而是想根据自己的需要来下载的，想下载其他分辨率或其他格式的如法炮制就行</p>
 </li>
 </ol>
-<h4 id="指定下载的路径"><a href="#指定下载的路径" class="headerlink" title="指定下载的路径"></a><strong><font color="#9B30FF">指定下载的路径</font></strong></h4><p>如果你已经试过前面的命令了，那就会发现：所下载的视频对应的文件都被放在执行该下载命令的路径下，要修改下载路径很简单：<strong>使用参数<code>-o</code></strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -o &quot;绝对路径\%(title)s.%(ext)s&quot;</div></pre></td></tr></table></figure></p>
+<h4 id="指定下载的路径"><a href="#指定下载的路径" class="headerlink" title="指定下载的路径"></a><strong><font color="#9B30FF">指定下载的路径</font></strong></h4><p>如果你已经试过前面的命令了，那就会发现：所下载的视频对应的文件都被放在执行该下载命令的路径下，要修改下载路径很简单：<strong>使用参数<code>-o</code></strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -o &quot;绝对路径\%(title)s.%(ext)s&quot;</span><br></pre></td></tr></table></figure></p>
 <p>其中，前半部分的绝对路径是你指定的，后半部分最好是固定的，使用原来的标题作为文件名以及使用原扩展名。</p>
-<p>比如把之前的4K30帧的<code>mp4</code>视频下载到<code>H:\youtube_videos</code>内，那么命令就是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">youtube-dl -o &quot;H:\youtube_videos\%(title)s.%(ext)s&quot; -f 266+140 https://www.youtube.com/watch?v=1La4QzGeaaQ</div></pre></td></tr></table></figure></p>
+<p>比如把之前的4K30帧的<code>mp4</code>视频下载到<code>H:\youtube_videos</code>内，那么命令就是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youtube-dl -o &quot;H:\youtube_videos\%(title)s.%(ext)s&quot; -f 266+140 https://www.youtube.com/watch?v=1La4QzGeaaQ</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -622,17 +605,27 @@
     
 
     
+      
+    
+
+    
     
     
 
     
 
+    
+      
+    
     
 
     
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
             <a href="/tags/Youtube/" rel="tag"># Youtube</a>
@@ -683,10 +676,7 @@
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+    <div class="comments" id="gitalk-container">
     </div>
 
   
@@ -706,7 +696,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -722,203 +711,216 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="ExtremeGTR" />
-            
-              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
-          </div>
+  
+  <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+  <div class="site-description motion-element" itemprop="description">有空就写点什么...</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
 
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">43</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">35</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
           
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
         </div>
-      </section>
+      </div>
 
       
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -926,12 +928,12 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
       
 
       
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           
             <span id="scrollpercent"><span>0</span>%</span>
@@ -941,6 +943,7 @@
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -949,7 +952,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
@@ -961,9 +964,7 @@
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -971,7 +972,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 
 
@@ -992,15 +993,16 @@
     
 
     
-	
+
     
 
     
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1011,12 +1013,6 @@
 
 
 
-
-
-
-
-
-
   
 
 
@@ -1032,41 +1028,34 @@
 
 
   
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
   
 
 
+
+
+
+
+
+
+
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -1074,28 +1063,33 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+  <script src="/js/affix.js?v=7.2.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
 
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
+  
+
+  
 
   
 
 
+  
+  
+
+  
+  
 
   
 
@@ -1104,512 +1098,81 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
+
+
+
+
+  
     
 
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fb006b67b16f091184ea',
+    clientSecret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+    repo: 'extremegtr.github.io',
+    owner: 'ExtremeGTR',
+    admin: ['ExtremeGTR'],
+    id: md5(location.pathname),
     
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'ExtremeGTR',
-            repo: 'extremegtr.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-            
-                client_id: 'fb006b67b16f091184ea'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
+      language: window.navigator.language || window.navigator.userLanguage,
     
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            
-            counter.save(null, {
-              success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
-                
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            
-              var newcounter = new Counter();
-              /* Set ACL */
-              var acl = new AV.ACL();
-              acl.setPublicReadAccess(true);
-              acl.setPublicWriteAccess(true);
-              newcounter.setACL(acl);
-              /* End Set ACL */
-              newcounter.set("title", title);
-              newcounter.set("url", url);
-              newcounter.set("time", 1);
-              newcounter.save(null, {
-                success: function(newcounter) {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-                },
-                error: function(newcounter, error) {
-                  console.log('Failed to create');
-                }
-              });
-            
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 
 
-  
-  
-
-  
-
-  
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 

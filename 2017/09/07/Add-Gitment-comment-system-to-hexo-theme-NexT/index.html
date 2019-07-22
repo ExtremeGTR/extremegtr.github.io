@@ -15,10 +15,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -32,28 +32,23 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
 
@@ -76,6 +71,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -84,7 +85,7 @@
   
     
     
-    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -92,40 +93,33 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.3.0',
-    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '7.2.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
     fancybox: true,
+    mediumzoom: false,
     fastclick: false,
     lazyload: false,
+    pangu: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -134,23 +128,22 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
 
-
-  
-
-
-
-
-  <meta name="description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册Git">
+  <meta name="description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。            什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但">
 <meta name="keywords" content="Hexo,NexT主题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="添加Gitment评论系统到Hexo主题NexT">
 <meta property="og:url" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/index.html">
 <meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
-<meta property="og:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册Git">
+<meta property="og:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。            什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png">
 <meta property="og:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png">
@@ -159,38 +152,45 @@
 <meta property="og:updated_time" content="2018-04-28T09:02:10.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="添加Gitment评论系统到Hexo主题NexT">
-<meta name="twitter:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。 什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：  必须注册Git">
+<meta name="twitter:description" content="在不久之前多说这个评论系统关闭了，所以要找代替的解决方案，可以用Disqus，但这里我最后还是决定用Gitment。2018.4，好了，现在Next更新了v6.0.0版本后，就会自带这个Gitment评论系统，这样再也不用我们自己费劲手工添加了。            什么是Gitment？Gitment是一款基于GitHub Issues的评论系统，所以还是很强大的，但">
 <meta name="twitter:image" content="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png">
 
 
 
 
 
+  
+  
+  <link rel="canonical" href="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/">
 
-  <link rel="canonical" href="http://extremegtr.github.io/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/"/>
 
 
-
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
 </script>
 
+  
   <title>添加Gitment评论系统到Hexo主题NexT | ExtremeGTR's Blog</title>
   
 
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-106151602-1');
+    }
+  </script>
 
-  gtag('config', 'UA-106151602-1');
-</script>
+
+
 
 
 
@@ -198,29 +198,27 @@
 
 
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -238,7 +236,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -252,6 +250,7 @@
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
     
   </div>
 
@@ -275,43 +274,75 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+
   </li>
 
       
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
-        </li>
       
     </ul>
   
@@ -319,34 +350,7 @@
   
 
   
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
 </nav>
-
-
-
-  
 
 
 
@@ -376,8 +380,6 @@
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -389,7 +391,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
       <meta itemprop="description" content="有空就写点什么...">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -402,19 +404,20 @@
         
         
           <h1 class="post-title" itemprop="name headline">添加Gitment评论系统到Hexo主题NexT
+
               
             
           </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
 
-            
-            
-            
+          
+          
+          
 
-            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -427,16 +430,14 @@
               
 
               <time title="创建时间：2017-09-07 21:02:23" itemprop="dateCreated datePublished" datetime="2017-09-07T21:02:23+08:00">2017-09-07</time>
+            </span>
+          
+
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -444,15 +445,12 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2018-04-28 17:02:10" itemprop="dateModified" datetime="2018-04-28T17:02:10+08:00">2018-04-28</time>
-              
+              </span>
             
-          </span>
+          
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -470,62 +468,39 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
           
           
-             <span id="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/" class="leancloud_visitors" data-flag-title="添加Gitment评论系统到Hexo主题NexT">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
           
-            <div class="post-symbolscount">
-              
 
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
               
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">9.3k</span>
+                <span class="post-meta-item-text">本文字数：</span>
               
+              <span title="本文字数">0</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
               
-                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">8 分钟</span>
-              
-            </div>
+              <span title="阅读时长">1 分钟</span>
+            </span>
           
 
           
@@ -543,22 +518,26 @@
       
 
       
-        <div class="note default"><p>在不久之前<span class="label primary">多说</span>这个评论系统关闭了，所以要找代替的解决方案，可以用<span class="label primary">Disqus</span>，但这里我最后还是决定用<span class="label primary">Gitment</span>。<br>2018.4，好了，现在<span class="label info">Next</span>更新了<code>v6.0.0版本后</code>，就会自带这个<span class="label primary">Gitment</span>评论系统，这样再也不用我们自己费劲手工添加了。</p></div>
-<h2 id="什么是Gitment？"><a href="#什么是Gitment？" class="headerlink" title="什么是Gitment？"></a>什么是Gitment？</h2><p><a href="https://github.com/imsun/gitment" target="_blank" rel="external">Gitment</a>是一款基于<span class="label primary">GitHub Issues</span>的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：</p>
+        <div class="note default">
+            <p>在不久之前<span class="label primary">多说</span>这个评论系统关闭了，所以要找代替的解决方案，可以用<span class="label primary">Disqus</span>，但这里我最后还是决定用<span class="label primary">Gitment</span>。<br>2018.4，好了，现在<span class="label info">Next</span>更新了<code>v6.0.0版本后</code>，就会自带这个<span class="label primary">Gitment</span>评论系统，这样再也不用我们自己费劲手工添加了。</p>
+          </div>
+<h2 id="什么是Gitment？"><a href="#什么是Gitment？" class="headerlink" title="什么是Gitment？"></a>什么是Gitment？</h2><p><a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">Gitment</a>是一款基于<span class="label primary">GitHub Issues</span>的评论系统，所以还是很强大的，但若要使用它，必须满足这些条件：</p>
 <ul>
 <li><strong>必须注册<span class="label primary">GitHub</span>账号</strong><br>不管是你部署这个评论系统还是在使用<span class="label primary">Gitment</span>的地方进行评论，都要有<span class="label primary">GitHub</span>账号</li>
 <li><strong>不能滥用</strong><br>通俗来讲就是说毫无意义的灌水等最好最好是不要做了</li>
 </ul>
 <p>一般来讲，能用<span class="label primary">GitHub</span>的一般都不会怎么胡来吧？所以GitHub才允许我们通过这种方式来运用<span class="label primary">GitHub Issues</span>，不然早就禁止了。</p>
-<h2 id="集成Gitment的步骤"><a href="#集成Gitment的步骤" class="headerlink" title="集成Gitment的步骤"></a>集成Gitment的步骤</h2><p>　　这里所有步骤适用于<span class="label primary">Hexo</span>主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next</a>（<a href="https://github.com/iissnan/hexo-theme-next/releases/tag/v5.1.2" target="_blank" rel="external">5.1.2</a>），其他主题或这个主题的其他版本我就不清楚了，我估计都是差不多的，不会有太大差别。同时这里不会详细分析问题、内在的技术等等，这里只把具体步骤给列出来（其实是我不懂）。如果以后<span class="label info">Next</span>主题也集成了该评论系统，那我们也不用自己来动手加入它了。</p>
-<h3 id="注册OAuth-Application"><a href="#注册OAuth-Application" class="headerlink" title="注册OAuth Application"></a>注册OAuth Application</h3><p>在注册这个之前，你必须要注册<span class="label primary">GitHub</span>帐号，注册<span class="label primary">GitHub</span>帐号就不用讲了，这个都不会注册还玩个蛋啊。<br>注册并登陆<span class="label primary">GitHub</span>帐号后，那就可以在<a href="https://github.com/settings/developers" target="_blank" rel="external">https://github.com/settings/developers</a>此处进行<span class="label primary">OAuth Application</span>的注册：</p>
+<h2 id="集成Gitment的步骤"><a href="#集成Gitment的步骤" class="headerlink" title="集成Gitment的步骤"></a>集成Gitment的步骤</h2><p>　　这里所有步骤适用于<span class="label primary">Hexo</span>主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">Next</a>（<a href="https://github.com/iissnan/hexo-theme-next/releases/tag/v5.1.2" target="_blank" rel="noopener">5.1.2</a>），其他主题或这个主题的其他版本我就不清楚了，我估计都是差不多的，不会有太大差别。同时这里不会详细分析问题、内在的技术等等，这里只把具体步骤给列出来（其实是我不懂）。如果以后<span class="label info">Next</span>主题也集成了该评论系统，那我们也不用自己来动手加入它了。</p>
+<h3 id="注册OAuth-Application"><a href="#注册OAuth-Application" class="headerlink" title="注册OAuth Application"></a>注册OAuth Application</h3><p>在注册这个之前，你必须要注册<span class="label primary">GitHub</span>帐号，注册<span class="label primary">GitHub</span>帐号就不用讲了，这个都不会注册还玩个蛋啊。<br>注册并登陆<span class="label primary">GitHub</span>帐号后，那就可以在<a href="https://github.com/settings/developers" target="_blank" rel="noopener">https://github.com/settings/developers</a>此处进行<span class="label primary">OAuth Application</span>的注册：</p>
 <ul>
 <li>点击右上角的<code>Register a new application</code></li>
 <li>这时会让你填写相关的信息<ul>
 <li><code>Application name</code> —— 随便起一个应用名</li>
 <li><code>Homepage URL</code> —— 填写你的博客地址</li>
 <li><code>Application description</code> —— 应用的描述，随便填写</li>
-<li><code>Authorization callback URL</code> —— 这个也是填写你的博客地址  <div class="note warning"><p>一定要确保100%填写正确，比如我这里填的是<code>https://extremegtr.github.io</code></p></div></li>
+<li><code>Authorization callback URL</code> —— 这个也是填写你的博客地址  <div class="note warning">
+            <p>一定要确保100%填写正确，比如我这里填的是<code>https://extremegtr.github.io</code></p>
+          </div></li>
 </ul>
 </li>
 <li>填写信息完毕后点<code>Register application</code></li>
@@ -566,24 +545,24 @@
 <li>其中<strong><code>Client ID</code></strong>和<strong><code>Client Secret</code></strong>这两个值是待会要用到的。</li>
 </ul>
 <h3 id="修改评论区布局框架"><a href="#修改评论区布局框架" class="headerlink" title="修改评论区布局框架"></a>修改评论区布局框架</h3><p>这里要修改的是评论区布局框架，所以需要修改评论区布局框架源文件是<code>themes\next\layout\_partials\comments.swig</code>。</p>
-<p>在里头，我们可以看见关于<span class="label primary">多说</span>、<span class="label primary">Facebook</span>、<span class="label primary">Disqus</span>等评论系统已经被添加到评论区布局框架上：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ds-thread"</span> <span class="attr">data-thread-key</span>=<span class="string">"&#123;&#123; page.path &#125;&#125;"</span></span></div><div class="line"><span class="tag">        <span class="attr">data-title</span>=<span class="string">"&#123;&#123; page.title &#125;&#125;"</span> <span class="attr">data-url</span>=<span class="string">"&#123;&#123; page.permalink &#125;&#125;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.facebook_sdk.enable and theme.facebook_comments_plugin.enable %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fb-comments"</span></span></div><div class="line"><span class="tag">        <span class="attr">data-href</span>=<span class="string">"&#123;&#123; page.permalink &#125;&#125;"</span></span></div><div class="line"><span class="tag">        <span class="attr">data-numposts</span>=<span class="string">"&#123;&#123; theme.facebook_comments_plugin.num_of_posts &#125;&#125;"</span></span></div><div class="line"><span class="tag">        <span class="attr">data-width</span>=<span class="string">"&#123;&#123; theme.facebook_comments_plugin.width &#125;&#125;"</span></span></div><div class="line"><span class="tag">        <span class="attr">data-colorscheme</span>=<span class="string">"&#123;&#123; theme.facebook_comments_plugin.scheme &#125;&#125;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.vkontakte_api.enable and theme.vkontakte_api.comments %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vk_comments"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.disqus.enable %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"disqus_thread"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">noscript</span>&gt;</span></div><div class="line">            Please enable JavaScript to view the</div><div class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.hypercomments_id %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"hypercomments_widget"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.youyan_uid %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"uyan_frame"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.livere_uid %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"lv-container"</span> <span class="attr">data-id</span>=<span class="string">"city"</span> <span class="attr">data-uid</span>=<span class="string">"&#123;&#123; theme.livere_uid &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% elseif theme.changyan.appid and theme.changyan.appkey %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"SOHUCS"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">&#123;% endif%&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>在里头，我们可以看见关于<span class="label primary">多说</span>、<span class="label primary">Facebook</span>、<span class="label primary">Disqus</span>等评论系统已经被添加到评论区布局框架上：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&#123;% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ds-thread"</span> <span class="attr">data-thread-key</span>=<span class="string">"&#123;&#123; page.path &#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">data-title</span>=<span class="string">"&#123;&#123; page.title &#125;&#125;"</span> <span class="attr">data-url</span>=<span class="string">"&#123;&#123; page.permalink &#125;&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.facebook_sdk.enable and theme.facebook_comments_plugin.enable %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fb-comments"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">data-href</span>=<span class="string">"&#123;&#123; page.permalink &#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">data-numposts</span>=<span class="string">"&#123;&#123; theme.facebook_comments_plugin.num_of_posts &#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">data-width</span>=<span class="string">"&#123;&#123; theme.facebook_comments_plugin.width &#125;&#125;"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">data-colorscheme</span>=<span class="string">"&#123;&#123; theme.facebook_comments_plugin.scheme &#125;&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.vkontakte_api.enable and theme.vkontakte_api.comments %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vk_comments"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.disqus.enable %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"disqus_thread"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">noscript</span>&gt;</span></span><br><span class="line">            Please enable JavaScript to view the</span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.hypercomments_id %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"hypercomments_widget"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.youyan_uid %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"uyan_frame"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.livere_uid %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"lv-container"</span> <span class="attr">data-id</span>=<span class="string">"city"</span> <span class="attr">data-uid</span>=<span class="string">"&#123;&#123; theme.livere_uid &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% elseif theme.changyan.appid and theme.changyan.appkey %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"SOHUCS"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif%&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>而这一个分支条件应该对应的就是一个评论系统，所以我们只需在最后添加一个关于<span class="label primary">Gitment</span>的分支即可。</p>
-<p>把目光定位到这多个分支的<code>endif</code>上，并在它之前多添加一个<code>elseif</code>分支 —— 把下面的内容直接复制到那个<code>endif</code>之前就行了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;% elseif theme.gitment.enable %&#125;</div><div class="line">      &#123;% if theme.gitment.lazy %&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">"showGitment()"</span> <span class="attr">id</span>=<span class="string">"gitment-display-button"</span>&gt;</span>&#123;&#123;  __('gitmentbutton') &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitment-container"</span> <span class="attr">style</span>=<span class="string">"display:none"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      &#123;% else %&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitment-container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      &#123;% endif %&#125;</div></pre></td></tr></table></figure></p>
+<p>把目光定位到这多个分支的<code>endif</code>上，并在它之前多添加一个<code>elseif</code>分支 —— 把下面的内容直接复制到那个<code>endif</code>之前就行了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitment.enable %&#125;</span><br><span class="line">      &#123;% if theme.gitment.lazy %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">"showGitment()"</span> <span class="attr">id</span>=<span class="string">"gitment-display-button"</span>&gt;</span>&#123;&#123;  __('gitmentbutton') &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitment-container"</span> <span class="attr">style</span>=<span class="string">"display:none"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      &#123;% else %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"gitment-container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      &#123;% endif %&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样就把<span class="label primary">Gitment</span>添加到评论布局框架上了。</p>
 <h3 id="添加具体实现"><a href="#添加具体实现" class="headerlink" title="添加具体实现"></a>添加具体实现</h3><p>刚才我们所做的工作通俗来说就是告诉NexT主题评论区可以调用<span class="label primary">Gitment</span>评论系统，但那只是个空壳，没有具体实现。</p>
-<p>我们必须在<code>themes\next\layout\_third-party\comments</code>额外增加一个文件<code>gitment.swig</code>，并在里面添加具体实现：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">&#123;% if theme.gitment.enable %&#125;</div><div class="line">    &#123;% set owner = theme.gitment.owner %&#125;</div><div class="line">    &#123;% set repo = theme.gitment.repo %&#125;</div><div class="line">    &#123;% set cid = theme.gitment.client_id %&#125;</div><div class="line">    &#123;% set cs = theme.gitment.client_secret %&#125;</div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://imsun.github.io/gitment/style/default.css"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://imsun.github.io/gitment/dist/gitment.browser.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    &#123;% if theme.gitment.lazy %&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">            function showGitment()&#123;</span></div><div class="line"><span class="undefined">                document.getElementById("gitment-display-button").style.display = "none";</span></div><div class="line"><span class="undefined">                document.getElementById("gitment-container").style.display = "block";</span></div><div class="line"><span class="undefined">                var gitment = new Gitment(&#123;</span></div><div class="line"><span class="undefined">                        id: window.location.pathname, </span></div><div class="line"><span class="undefined">                        owner: '&#123;&#123;owner&#125;&#125;',</span></div><div class="line"><span class="undefined">                        repo: '&#123;&#123;repo&#125;&#125;',</span></div><div class="line"><span class="undefined">                        oauth: &#123;</span></div><div class="line"><span class="undefined">                            client_id: '&#123;&#123;cid&#125;&#125;',</span></div><div class="line"><span class="undefined">                            client_secret: '&#123;&#123;cs&#125;&#125;',</span></div><div class="line"><span class="undefined">                        &#125;&#125;);</span></div><div class="line"><span class="undefined">                gitment.render('gitment-container');</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    &#123;% else %&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">            var gitment = new Gitment(&#123;</span></div><div class="line"><span class="undefined">                    id: window.location.pathname, </span></div><div class="line"><span class="undefined">                    owner: '&#123;&#123;owner&#125;&#125;',</span></div><div class="line"><span class="undefined">                    repo: '&#123;&#123;repo&#125;&#125;',</span></div><div class="line"><span class="undefined">                    oauth: &#123;</span></div><div class="line"><span class="undefined">                        client_id: '&#123;&#123;cid&#125;&#125;',</span></div><div class="line"><span class="undefined">                        client_secret: '&#123;&#123;cs&#125;&#125;',</span></div><div class="line"><span class="undefined">                    &#125;&#125;);</span></div><div class="line"><span class="undefined">            gitment.render('gitment-container');</span></div><div class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    &#123;% endif %&#125;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure></p>
-<p>具体实现搞完后，最后还需要做一步工作：在<code>themes\next\layout\_third-party\comments\index.swig</code>添加一行导入实现源文件的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% include &apos;gitment.swig&apos; %&#125;</div></pre></td></tr></table></figure></p>
+<p>我们必须在<code>themes\next\layout\_third-party\comments</code>额外增加一个文件<code>gitment.swig</code>，并在里面添加具体实现：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.gitment.enable %&#125;</span><br><span class="line">    &#123;% set owner = theme.gitment.owner %&#125;</span><br><span class="line">    &#123;% set repo = theme.gitment.repo %&#125;</span><br><span class="line">    &#123;% set cid = theme.gitment.client_id %&#125;</span><br><span class="line">    &#123;% set cs = theme.gitment.client_secret %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://imsun.github.io/gitment/style/default.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://imsun.github.io/gitment/dist/gitment.browser.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    &#123;% if theme.gitment.lazy %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">            function showGitment()&#123;</span></span><br><span class="line"><span class="undefined">                document.getElementById("gitment-display-button").style.display = "none";</span></span><br><span class="line"><span class="undefined">                document.getElementById("gitment-container").style.display = "block";</span></span><br><span class="line"><span class="undefined">                var gitment = new Gitment(&#123;</span></span><br><span class="line"><span class="undefined">                        id: window.location.pathname, </span></span><br><span class="line"><span class="undefined">                        owner: '&#123;&#123;owner&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                        repo: '&#123;&#123;repo&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                        oauth: &#123;</span></span><br><span class="line"><span class="undefined">                            client_id: '&#123;&#123;cid&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                            client_secret: '&#123;&#123;cs&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                        &#125;&#125;);</span></span><br><span class="line"><span class="undefined">                gitment.render('gitment-container');</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    &#123;% else %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">            var gitment = new Gitment(&#123;</span></span><br><span class="line"><span class="undefined">                    id: window.location.pathname, </span></span><br><span class="line"><span class="undefined">                    owner: '&#123;&#123;owner&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                    repo: '&#123;&#123;repo&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                    oauth: &#123;</span></span><br><span class="line"><span class="undefined">                        client_id: '&#123;&#123;cid&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                        client_secret: '&#123;&#123;cs&#125;&#125;',</span></span><br><span class="line"><span class="undefined">                    &#125;&#125;);</span></span><br><span class="line"><span class="undefined">            gitment.render('gitment-container');</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>具体实现搞完后，最后还需要做一步工作：在<code>themes\next\layout\_third-party\comments\index.swig</code>添加一行导入实现源文件的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include &apos;gitment.swig&apos; %&#125;</span><br></pre></td></tr></table></figure></p>
 <p>现在，<span class="label primary">Gitment</span>评论系统最核心的东西都添加到<span class="label primary">NexT</span>主题中了，剩下都是表面的工作。</p>
 <h3 id="添加国际化信息"><a href="#添加国际化信息" class="headerlink" title="添加国际化信息"></a>添加国际化信息</h3><p>这里主要就是修改<code>themes\next\languages</code>内的文件。</p>
-<p>在<code>en.yml</code>中添加以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">gitmentbutton:</span> <span class="string">Show</span> <span class="string">comments</span> <span class="string">from</span> <span class="string">Gitment</span></div></pre></td></tr></table></figure></p>
-<p>在<code>zh-Hans.yml</code>中添加以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">gitmentbutton:</span> <span class="string">显示Gitment评论</span></div></pre></td></tr></table></figure></p>
+<p>在<code>en.yml</code>中添加以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitmentbutton:</span> <span class="string">Show</span> <span class="string">comments</span> <span class="string">from</span> <span class="string">Gitment</span></span><br></pre></td></tr></table></figure></p>
+<p>在<code>zh-Hans.yml</code>中添加以下内容：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitmentbutton:</span> <span class="string">显示Gitment评论</span></span><br></pre></td></tr></table></figure></p>
 <p>这里只给英文和和简体中文给添加了懒加载按钮的国际化信息，给其他语言或给<span class="label primary">Gitment</span>其他元素添加国际化信息做法也是一样的。</p>
-<h3 id="添加自定义样式"><a href="#添加自定义样式" class="headerlink" title="添加自定义样式"></a>添加自定义样式</h3><p>可以到<code>themes\next\source\css\_common\components\third-party</code>内添加一个文件<code>gitment.styl</code><br>　　——　这个源文件就是用于描述刚才我们添加到评论区布局的<span class="label primary">Gitment</span>第三方评论系统的样式。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#gitment-display-button</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#0a9caf</span>;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#0a9caf</span>;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#gitment-display-button</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#0a9caf</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#gitment-container</span> <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">border-bottom</span>: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="添加自定义样式"><a href="#添加自定义样式" class="headerlink" title="添加自定义样式"></a>添加自定义样式</h3><p>可以到<code>themes\next\source\css\_common\components\third-party</code>内添加一个文件<code>gitment.styl</code><br>　　——　这个源文件就是用于描述刚才我们添加到评论区布局的<span class="label primary">Gitment</span>第三方评论系统的样式。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#gitment-display-button</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#0a9caf</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#0a9caf</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#gitment-display-button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#0a9caf</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#gitment-container</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">border-bottom</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这里也只是自定义了按钮的样式，你可以按照自己的需求喜好，对各个部分进行样式的自定义。</p>
-<p>在<code>themes\next\source\css\_common\components\third-party\third-party.styl</code>中添加一行代码。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">"gitment"</span>;</div></pre></td></tr></table></figure></p>
+<p>在<code>themes\next\source\css\_common\components\third-party\third-party.styl</code>中添加一行代码。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">"gitment"</span>;</span><br></pre></td></tr></table></figure></p>
 <p>这样自定义样式才算添加成功了。</p>
 <h3 id="修改NexT主题配置文件"><a href="#修改NexT主题配置文件" class="headerlink" title="修改NexT主题配置文件"></a>修改NexT主题配置文件</h3><p>在<code>themes\next\_config.yml</code>的任意位置添加以下内容：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Gitment</span></div><div class="line"><span class="comment"># Introduction: https://imsun.net/posts/gitment-introduction/</span></div><div class="line"><span class="attr">gitment:</span></div><div class="line"><span class="attr">    enable:</span> <span class="literal">true</span>                                             <span class="comment"># gitment评论系统开关</span></div><div class="line"><span class="attr">    owner:</span> <span class="string">ExtremeGTR</span>                                        <span class="comment"># GitHub用户名</span></div><div class="line"><span class="attr">    repo:</span> <span class="string">extremegtr.github.io</span>                               <span class="comment"># 存储评论数据的GitHub仓库的仓库名</span></div><div class="line"><span class="attr">    client_id:</span> <span class="string">fb0***********1184ea</span>                          <span class="comment"># OAuth Application的Client ID</span></div><div class="line"><span class="attr">    client_secret:</span> <span class="number">0e926</span><span class="string">f35*****************************744</span>  <span class="comment"># OAuth Application的Client Secret</span></div><div class="line"><span class="attr">    lazy:</span> <span class="literal">true</span>                                               <span class="comment"># 评论懒加载开关</span></div></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gitment</span></span><br><span class="line"><span class="comment"># Introduction: https://imsun.net/posts/gitment-introduction/</span></span><br><span class="line"><span class="attr">gitment:</span></span><br><span class="line"><span class="attr">    enable:</span> <span class="literal">true</span>                                             <span class="comment"># gitment评论系统开关</span></span><br><span class="line"><span class="attr">    owner:</span> <span class="string">ExtremeGTR</span>                                        <span class="comment"># GitHub用户名</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">extremegtr.github.io</span>                               <span class="comment"># 存储评论数据的GitHub仓库的仓库名</span></span><br><span class="line"><span class="attr">    client_id:</span> <span class="string">fb0***********1184ea</span>                          <span class="comment"># OAuth Application的Client ID</span></span><br><span class="line"><span class="attr">    client_secret:</span> <span class="number">0e926</span><span class="string">f35*****************************744</span>  <span class="comment"># OAuth Application的Client Secret</span></span><br><span class="line"><span class="attr">    lazy:</span> <span class="literal">true</span>                                               <span class="comment"># 评论懒加载开关</span></span><br></pre></td></tr></table></figure>
 <p>我的设置就像上面这么填的，很简单，除了两个布尔值之外，其他的就是把你自己的值替换进去就行了。</p>
 <p>　　最后，我们现在非常清楚地看到：在这设置的这些数值，都是供<a href="#添加具体实现">之前的具体实现</a>所用的，以上就是所有具体步骤，照着做就行了，我自己也按照以上这些步骤重复了几遍试验都没出错，应该是绝对OK的。</p>
 <h2 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h2><p>　　以上整个过程，全凭我自己不断地猜测摸索以及收集资料总结下来的。由于自己对前端只是略知一二，所以连搞这么一个简单的东西我都经常碰壁。<br>　　最开始我是跟着网上很多文章的教程一步一个脚印来做的，总是出错，有的时候情况还非常奇葩，前一次配置完后试了下是成功的，再试一次就未必，这让人十分抓狂，这篇文章的步骤不成就试试另一个，另一个不行再找另一篇的教程再试一次，真的繁琐，但无可奈何，不试试怎么知道那种做法到底是错还是对呢？再加上自己在跟着做的过程中有可能不小心多打个字符啥的，所以这确实挺烦人的。</p>
@@ -594,7 +573,7 @@
 </ul>
 <p>当时我就猜测：既然这也是关于Web的，会不会是缓存的问题。之后我清理了浏览器的缓存再怎么用都没发现问题了。<br>这问题真的相当奇葩，还好是发现了问题所在，后来在<span class="label primary">Gitment</span>一些问题的讨论中发现有些评论也说道这是缓存的问题，这就证明我瞎蒙还是蒙对了。</p>
 <p><br></p>
-<h3 id="Error-Not-Found"><a href="#Error-Not-Found" class="headerlink" title="Error: Not Found"></a>Error: Not Found</h3><p>这个错误出现的时候评论区的状态正如下图一样，也是什么都不懂的新手小白第一次搞就会经常遇到的。<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png" title=""></p>
+<h3 id="Error-Not-Found"><a href="#Error-Not-Found" class="headerlink" title="Error: Not Found"></a>Error: Not Found</h3><p>这个错误出现的时候评论区的状态正如下图一样，也是什么都不懂的新手小白第一次搞就会经常遇到的。<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_1.png"></p>
 <p>根据我自己总结，出现这种状况一般是这个原因：在<a href="#修改NexT主题配置文件">修改NexT主题配置文件</a>这一小节内你给<code>repo</code>配的值是错误的：</p>
 <ul>
 <li>你给<code>repo</code>指定的仓库名对应的仓库在<span class="label primary">GitHub</span>上根本不存在</li>
@@ -603,7 +582,7 @@
 <p>引发错误的问题已经说清楚了，怎么解决也不用明说了吧？第一个只是一时疏忽，而第二个新手要特别注意，因为挺多地方有误导和没有明说才导致的。</p>
 <p><br> </p>
 <h3 id="Error-Comments-Not-Initialized"><a href="#Error-Comments-Not-Initialized" class="headerlink" title="Error: Comments Not Initialized"></a>Error: Comments Not Initialized</h3><p>遇到这个错误的时候，情况就像下图所示：</p>
-<img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png" title="">
+<img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_2.png">
 <p>一般来讲这个错误的原因只有两个：</p>
 <ul>
 <li>在<a href="#注册OAuth Application">注册OAuth Application</a>这个步骤中，你给<code>Authorization callback URL</code>指定的地址错了</li>
@@ -611,29 +590,31 @@
 </ul>
 <p><br></p>
 <h3 id="Issues重复初始化"><a href="#Issues重复初始化" class="headerlink" title="Issues重复初始化"></a>Issues重复初始化</h3><p>我们看一篇文章首次登陆<span class="label primary">GitHub</span>账号后，评论区的状态是这样的。</p>
-<img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png" alt="Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png" title="">
+<img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_3.png">
 <p><strong><font color="blue">点一次蓝色的<code>Initialize Comments</code>初始化评论按钮，这样就相当于在配置的仓库为这一篇文章创建一个对应的Issues。</font></strong><br><strong><font color="red">很多教程都把<a href="#添加具体实现">添加具体实现</a>这一小节所添加的<code>gitment.swig</code>文件内的<code>id</code>属性直接删掉或设置为<code>document.location.href</code>，引发Issues重复初始化错误。</font></strong></p>
 <p>重现这个错误的做法非常简单：</p>
 <ul>
 <li>比如就拿这篇文章来说，登陆<span class="label primary">GitHub</span>账号后，点蓝色的<code>Intialize Comments</code>初始化按钮。</li>
-<li>然后以下这2个操作任意选1个来搞<br><strong>①：随便点个上一篇文章或下一篇文章，在那篇新文章也点一下初始化按钮，然后点浏览器的返回按钮回到原来的这篇文章</strong><div class="note danger"><font color="red" style="font-size: 10px">这种操作引发的重复创建Issues问题到现在还是个没有解决的BUG，所以使用时要注意操作并且更不能恶意使用该BUG。</font></div>
+<li>然后以下这2个操作任意选1个来搞<br><strong>①：随便点个上一篇文章或下一篇文章，在那篇新文章也点一下初始化按钮，然后点浏览器的返回按钮回到原来的这篇文章</strong><div class="note danger">
+            <font color="red" style="font-size: 10px">这种操作引发的重复创建Issues问题到现在还是个没有解决的BUG，所以使用时要注意操作并且更不能恶意使用该BUG。</font>
+          </div>
 ②：登出<span class="label primary">GitHub</span>账号，然后再次登陆<br>③：在本篇文章的地址栏加上跳转锚点（很多Hexo主题都自带目录，点目录就相当于这个操作了，在原地址后加上<code>#....</code>锚点）</li>
 <li>接着<strong>可能</strong>会出现的是原来这篇文章的评论区那个蓝色初始化按钮又再次出现了<font color="orange" style="font-size: 13px"><strong>（之所以说是可能，这是因为浏览器缓存或者各种奇怪的原因导致错误不会重现）</strong></font></li>
 <li>再点一下蓝色初始化按钮</li>
 </ul>
-<p>这时到存储评论的<span class="label primary">GitHub</span>仓库那看，你会发现对同一篇文章会创建多个Issues，而不管访问该文章的<code>URL</code>链接是相同还是不同：<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_4.png" alt="问题" title="问题"></p>
+<p>这时到存储评论的<span class="label primary">GitHub</span>仓库那看，你会发现对同一篇文章会创建多个Issues，而不管访问该文章的<code>URL</code>链接是相同还是不同：<br><img src="/2017/09/07/Add-Gitment-comment-system-to-hexo-theme-NexT/Add-Gitment-comment-system-to-hexo-theme-NexT_problem_4.png" title="问题"></p>
 <p>解决这个问题的办法也是非常简单的：<strong><font color="#0072E3">只要把<code>id</code>属性加回来并且将其值设置为<code>window.location.pathname</code>，那这个问题就会迎刃而解。</font></strong></p>
 <p><br></p>
 <h3 id="新添加的评论没有显示出来"><a href="#新添加的评论没有显示出来" class="headerlink" title="新添加的评论没有显示出来"></a>新添加的评论没有显示出来</h3><p>这个问题你或许会遇到，运气不好还会经常遇到也说不定。<br>当你添加了新的评论，仓库Issues那边正常情况下都是有的了，或许是浏览器缓存的问题，刷几遍页面或者等一会再看看，新评论还是能显示出来的。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://github.com/imsun/gitment" target="_blank" rel="external">GitHub上的Gitment</a></li>
-<li><a href="https://github.com/imsun/gitment/issues/62" target="_blank" rel="external">一个页面的多个锚会对应多个issue问题</a></li>
-<li><a href="https://github.com/imsun/gitment/issues/55" target="_blank" rel="external">如何将带www的URL和不带www的URL视为同一URL？</a></li>
-<li><a href="https://github.com/imsun/gitment/issues/63" target="_blank" rel="external">点浏览器返回按钮会导致issues重复创建</a></li>
-<li><a href="https://github.com/imsun/gitment/issues/31" target="_blank" rel="external">Error: Comments Not Initialized</a></li>
-<li><a href="https://github.com/imsun/gitment/issues/16" target="_blank" rel="external">认证重定向错误</a></li>
-<li><a href="http://yangq.me/post/ab9bb85a.html" target="_blank" rel="external">hexo next主题集成gitment评论系统</a></li>
-<li><a href="https://imsun.net/posts/gitment-introduction/" target="_blank" rel="external">Gitment：使用 GitHub Issues 搭建评论系统</a></li>
+<li><a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">GitHub上的Gitment</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/62" target="_blank" rel="noopener">一个页面的多个锚会对应多个issue问题</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/55" target="_blank" rel="noopener">如何将带www的URL和不带www的URL视为同一URL？</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/63" target="_blank" rel="noopener">点浏览器返回按钮会导致issues重复创建</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/31" target="_blank" rel="noopener">Error: Comments Not Initialized</a></li>
+<li><a href="https://github.com/imsun/gitment/issues/16" target="_blank" rel="noopener">认证重定向错误</a></li>
+<li><a href="http://yangq.me/post/ab9bb85a.html" target="_blank" rel="noopener">hexo next主题集成gitment评论系统</a></li>
+<li><a href="https://imsun.net/posts/gitment-introduction/" target="_blank" rel="noopener">Gitment：使用 GitHub Issues 搭建评论系统</a></li>
 </ul>
 
       
@@ -642,17 +623,27 @@
     
 
     
+      
+    
+
+    
     
     
 
     
 
+    
+      
+    
     
 
     
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
             <a href="/tags/Hexo/" rel="tag"># Hexo</a>
@@ -705,10 +696,7 @@
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+    <div class="comments" id="gitalk-container">
     </div>
 
   
@@ -728,7 +716,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -744,203 +731,216 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="ExtremeGTR" />
-            
-              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
-          </div>
+  
+  <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+  <div class="site-description motion-element" itemprop="description">有空就写点什么...</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
 
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">43</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">35</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
           
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
         </div>
-      </section>
+      </div>
 
       
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -948,12 +948,12 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
       
 
       
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           
             <span id="scrollpercent"><span>0</span>%</span>
@@ -963,6 +963,7 @@
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -971,7 +972,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
@@ -983,9 +984,7 @@
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -993,7 +992,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 
 
@@ -1014,15 +1013,16 @@
     
 
     
-	
+
     
 
     
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1033,12 +1033,6 @@
 
 
 
-
-
-
-
-
-
   
 
 
@@ -1054,41 +1048,34 @@
 
 
   
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
   
 
 
+
+
+
+
+
+
+
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -1096,28 +1083,33 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+  <script src="/js/affix.js?v=7.2.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
 
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
+  
+
+  
 
   
 
 
+  
+  
+
+  
+  
 
   
 
@@ -1126,512 +1118,81 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
+
+
+
+
+  
     
 
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fb006b67b16f091184ea',
+    clientSecret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+    repo: 'extremegtr.github.io',
+    owner: 'ExtremeGTR',
+    admin: ['ExtremeGTR'],
+    id: md5(location.pathname),
     
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'ExtremeGTR',
-            repo: 'extremegtr.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-            
-                client_id: 'fb006b67b16f091184ea'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
+      language: window.navigator.language || window.navigator.userLanguage,
     
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            
-            counter.save(null, {
-              success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
-                
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            
-              var newcounter = new Counter();
-              /* Set ACL */
-              var acl = new AV.ACL();
-              acl.setPublicReadAccess(true);
-              acl.setPublicWriteAccess(true);
-              newcounter.setACL(acl);
-              /* End Set ACL */
-              newcounter.set("title", title);
-              newcounter.set("url", url);
-              newcounter.set("time", 1);
-              newcounter.save(null, {
-                success: function(newcounter) {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-                },
-                error: function(newcounter, error) {
-                  console.log('Failed to create');
-                }
-              });
-            
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 
 
-  
-  
-
-  
-
-  
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 

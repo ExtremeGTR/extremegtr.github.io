@@ -15,10 +15,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -32,28 +32,23 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
 
@@ -76,6 +71,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -84,7 +85,7 @@
   
     
     
-    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -92,40 +93,33 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.3.0',
-    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '7.2.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
     fancybox: true,
+    mediumzoom: false,
     fastclick: false,
     lazyload: false,
+    pangu: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -134,15 +128,14 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="【Fallout3 - 辐射3 - FO3】（简称FO3），一个发布于2008年10月末的游戏，所以这是一个出了将近10年的老游戏了。想当年家里还没上网，就算后来上网了，那我用的也是100多k的小水管，要下载一个几G的游戏可是非常费力的，所以当时还是买的盗版碟才玩上的。买正版？不存在的，毕竟当年穷，游戏大作的价格不是每个人都可以承受得起，同时消费渠道也少，不像现在消费渠道有的是，并且最重要的是">
 <meta name="keywords" content="游戏,游戏问题">
@@ -186,31 +179,38 @@
 
 
 
+  
+  
+  <link rel="canonical" href="http://extremegtr.github.io/2018/07/03/Fallout3-of-steam-version-setup-guide-in-windows10/">
 
-  <link rel="canonical" href="http://extremegtr.github.io/2018/07/03/Fallout3-of-steam-version-setup-guide-in-windows10/"/>
 
 
-
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
 </script>
 
+  
   <title>在Windows 10中安装并运行Steam上的Fallout3年度版 | ExtremeGTR's Blog</title>
   
 
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-106151602-1');
+    }
+  </script>
 
-  gtag('config', 'UA-106151602-1');
-</script>
+
+
 
 
 
@@ -218,29 +218,27 @@
 
 
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -258,7 +256,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -272,6 +270,7 @@
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
     
   </div>
 
@@ -295,43 +294,75 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+
   </li>
 
       
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
-        </li>
       
     </ul>
   
@@ -339,34 +370,7 @@
   
 
   
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
 </nav>
-
-
-
-  
 
 
 
@@ -396,8 +400,6 @@
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -409,7 +411,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
       <meta itemprop="description" content="有空就写点什么...">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -422,19 +424,20 @@
         
         
           <h1 class="post-title" itemprop="name headline">在Windows 10中安装并运行Steam上的Fallout3年度版
+
               
             
           </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
 
-            
-            
-            
+          
+          
+          
 
-            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -447,16 +450,14 @@
               
 
               <time title="创建时间：2018-07-03 15:06:46" itemprop="dateCreated datePublished" datetime="2018-07-03T15:06:46+08:00">2018-07-03</time>
+            </span>
+          
+
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -464,15 +465,12 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2018-07-15 00:51:00" itemprop="dateModified" datetime="2018-07-15T00:51:00+08:00">2018-07-15</time>
-              
+              </span>
             
-          </span>
+          
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -490,62 +488,39 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/07/03/Fallout3-of-steam-version-setup-guide-in-windows10/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/03/Fallout3-of-steam-version-setup-guide-in-windows10/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
           
           
-             <span id="/2018/07/03/Fallout3-of-steam-version-setup-guide-in-windows10/" class="leancloud_visitors" data-flag-title="在Windows 10中安装并运行Steam上的Fallout3年度版">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
           
-            <div class="post-symbolscount">
-              
 
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
               
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">7k</span>
+                <span class="post-meta-item-text">本文字数：</span>
               
+              <span title="本文字数">0</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
               
-                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">6 分钟</span>
-              
-            </div>
+              <span title="阅读时长">1 分钟</span>
+            </span>
           
 
           
@@ -568,58 +543,62 @@
 <p><img src="https://farm2.staticflickr.com/1762/42470387624_d5d7ac3dd9_o.png" alt="辐射3年度版"></p>
 <p>千万别搞错了，游戏名不是单纯的<span class="label info">Fallout 3</span>，而是<span class="label success">Fallout 3: Game of the Year Edition</span>。安装完游戏后先别急着运行游戏，还有很多额外的事情要搞的。</p>
 <h2 id="安装Games-for-Windows-Live"><a href="#安装Games-for-Windows-Live" class="headerlink" title="安装Games for Windows Live"></a>安装Games for Windows Live</h2><p><strong>在运行游戏之前必须要安装</strong><span class="label primary">Games for Windows Live</span>。</p>
-<p>下载地址：<a href="http://www.nexusmods.com/fallout3/mods/1086/?tab=2&amp;navtag=http%3A%2F%2Fwww.nexusmods.com%2Ffallout3%2Fajax%2Fmodfiles%2F%3Fid%3D1086&amp;pUp=1" target="_blank" rel="external">地址1</a>、<a href="https://www.microsoft.com/en-us/download/details.aspx?id=5549" target="_blank" rel="external">地址2</a>，不过呢，其实也不用再额外下载了，在Steam安装FO3年度版的地方就有<code>GFWLive</code>这么一个文件夹，里面就有安装包<code>xliveredist.msi</code>。</p>
+<p>下载地址：<a href="http://www.nexusmods.com/fallout3/mods/1086/?tab=2&amp;navtag=http%3A%2F%2Fwww.nexusmods.com%2Ffallout3%2Fajax%2Fmodfiles%2F%3Fid%3D1086&amp;pUp=1" target="_blank" rel="noopener">地址1</a>、<a href="https://www.microsoft.com/en-us/download/details.aspx?id=5549" target="_blank" rel="noopener">地址2</a>，不过呢，其实也不用再额外下载了，在Steam安装FO3年度版的地方就有<code>GFWLive</code>这么一个文件夹，里面就有安装包<code>xliveredist.msi</code>。</p>
 <p><strong><font color="red">如果你没有安装这个软件而直接开始运行游戏，给你弹出错误窗口基本是必然的事了：</font></strong></p>
-<p><img src="https://farm1.staticflickr.com/916/29317314928_39028ae6cd_o.png" alt=""></p>
-<p><img src="https://farm1.staticflickr.com/927/28349137657_c7f7037172_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/916/29317314928_39028ae6cd_o.png" alt></p>
+<p><img src="https://farm1.staticflickr.com/927/28349137657_c7f7037172_o.png" alt></p>
 <p>一般情况下都会出现上面两种情况的其中一个，但在安装<span class="label primary">Games for Windows Live</span>后这种错误就不会再出现了。这个工作做完后，同样别急着打开游戏，继续往下看。</p>
 <h2 id="禁用Games-for-Windows-Live"><a href="#禁用Games-for-Windows-Live" class="headerlink" title="禁用Games for Windows Live"></a>禁用Games for Windows Live</h2><p>很多教程以及帖子都有讲过<span class="label primary">Games for Windows Live</span>会给FO3带来很多奇葩的问题，但为了正常打开游戏又不得不安装它。<br>在这之后，就有人就弄出了可以针对FO3运行时禁用屏蔽<span class="label primary">Games for Windows Live</span>的小工具，据说安装天邈汉化也有这效果，不过稳妥起见我建议还是把这个工作做了，弄一下不会吃亏的。</p>
-<p>禁用屏蔽<span class="label primary">Games for Windows Live</span>小工具的<a href="https://www.nexusmods.com/fallout3/mods/1086/?tab=2&amp;navtag=http%3A%2F%2Fwww.nexusmods.com%2Ffallout3%2Fajax%2Fmodfiles%2F%3Fid%3D1086&amp;pUp=1" target="_blank" rel="external">下载地址</a></p>
+<p>禁用屏蔽<span class="label primary">Games for Windows Live</span>小工具的<a href="https://www.nexusmods.com/fallout3/mods/1086/?tab=2&amp;navtag=http%3A%2F%2Fwww.nexusmods.com%2Ffallout3%2Fajax%2Fmodfiles%2F%3Fid%3D1086&amp;pUp=1" target="_blank" rel="noopener">下载地址</a></p>
 <p>直接打开那个小工具并点击<strong>Disable G4WL按钮</strong>即可为FO3禁用<span class="label primary">Games for Windows Live</span>。</p>
-<p><img src="https://farm2.staticflickr.com/1761/29317682888_705e7b30cf_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1761/29317682888_705e7b30cf_o.png" alt></p>
 <p>做这个事情的时候你或许会碰见以下这个问题：</p>
-<p><img src="https://farm1.staticflickr.com/920/43169302142_658610d440_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/920/43169302142_658610d440_o.png" alt></p>
 <p>这个错误就好理解了，通俗来讲就是：<br>如果要禁用<span class="label primary">Games for Windows Live</span>，那首先得找到<code>FALLOUT.INI</code>配置文件才行，它在游戏生成存档文件夹的时候一同生成，所以，如果连1次FO3都没运行过的，这个禁用手段是进行不下去的。</p>
 <p>所以，解决办法很简单，我们要弄出一份FO3的存档，连带就是为了生成<code>FALLOUT.INI</code>，现在就来运行FO3，从Steam的FO3游戏页面点击开始，就会弹出以下窗口：</p>
-<p><img src="https://farm2.staticflickr.com/1803/43189317591_51072777ca_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1803/43189317591_51072777ca_o.png" alt></p>
 <p>点<span class="label info">OPTIONS</span>设置好分辨率以及特效后，那就可以点击<span class="label info">PLAY</span>运行FO3。</p>
-<div class="note warning"><p>在这你可能会遇到一些问题：</p><ol><li>在<span class="label info">OPTIONS</span>里面没有一个正确的分辨率可以选<br>解决办法也很粗暴简单：只要把<code>C:\Users\%username%\Documents</code>内的<code>\My Games\Fallout3</code>整个文件夹或者其内的所有内容删除，再重启游戏即可，尝试1次不行就多试几次，肯定可以的。<br><br></li><li><p>运行游戏时弹出以下这个窗口</p><p><img src="https://farm2.staticflickr.com/1788/29382207008_e92efec169_o.png" alt=""></p><p>这个倒不用管，直接关掉它就行了，我这里也没用兼容模式也是可以成功地运行游戏。</p></li></ol></div>
+<div class="note warning">
+            <p>在这你可能会遇到一些问题：</p><ol><li>在<span class="label info">OPTIONS</span>里面没有一个正确的分辨率可以选<br>解决办法也很粗暴简单：只要把<code>C:\Users\%username%\Documents</code>内的<code>\My Games\Fallout3</code>整个文件夹或者其内的所有内容删除，再重启游戏即可，尝试1次不行就多试几次，肯定可以的。<br><br></li><li><p>运行游戏时弹出以下这个窗口</p><p><img src="https://farm2.staticflickr.com/1788/29382207008_e92efec169_o.png" alt></p><p>这个倒不用管，直接关掉它就行了，我这里也没用兼容模式也是可以成功地运行游戏。</p></li></ol>
+          </div>
 <p>现在，顺利地在Windows 10内运行Steam上纯净的FO3年度版，就是这么简单，并不用做太多工作就能正常打开游戏而不会遇到各种闪退的情况：</p>
-<p><img src="https://farm2.staticflickr.com/1803/43189314231_0258a43009_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1803/43189314231_0258a43009_o.png" alt></p>
 <p>注意看上图，看到选项菜单中有一个<span class="label warning">LIVE</span>按钮了吗？其实所谓禁用<span class="label primary">Games for Windows Live</span>，就是要禁用游戏内的这个按钮。</p>
 <p>现在，在<code>我的文档</code>，即Windows 10系统的路径<code>C:\Users\%username%\Documents</code>那里就会生成<code>\My Games\Fallout3</code>，这个名为<code>Fallout3</code>的就是存档文件夹。</p>
-<p><img src="https://farm1.staticflickr.com/842/43248049311_0e41ba0e9b_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/842/43248049311_0e41ba0e9b_o.png" alt></p>
 <p>在这个文件夹里，<code>Saves</code>文件夹是真正存放游戏进度的地方，而其余的文件都是游戏相关的配置文件，要修改游戏配置，来这里修改即可。关于存档文件夹的更多细节<a href="#FO3存档的细节">请看这里</a>。</p>
 <p>有了<code>FALLOUT.INI</code>之后，我们就能继续进行之前未完成的工作了，点击小工具的<strong>Disable G4WL按钮</strong>即可禁用<span class="label primary">Games for Windows Live</span>，禁用后再打开游戏来看：</p>
-<p><img src="https://farm2.staticflickr.com/1781/43248576901_b623a2f6e2_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1781/43248576901_b623a2f6e2_o.png" alt></p>
 <p>可以很清楚地看到，游戏选项菜单里的<span class="label warning">LIVE</span>按钮没有了，证明禁用操作有效果了。</p>
-<div class="note success"><p><strong>更进一步的思考：</strong><br><strong>禁用<span class="label primary">Games for Windows Live</span>是通过修改<code>FALLOUT.INI</code>达到的（修改存档处的配置文件而不是游戏自身的文件），所以，每次新建存档都要把这个流程走一遍才能达到禁<span class="label warning">LIVE</span>按钮的效果。</strong></p></div>
+<div class="note success">
+            <p><strong>更进一步的思考：</strong><br><strong>禁用<span class="label primary">Games for Windows Live</span>是通过修改<code>FALLOUT.INI</code>达到的（修改存档处的配置文件而不是游戏自身的文件），所以，每次新建存档都要把这个流程走一遍才能达到禁<span class="label warning">LIVE</span>按钮的效果。</strong></p>
+          </div>
 <h2 id="安装天邈汉化"><a href="#安装天邈汉化" class="headerlink" title="安装天邈汉化"></a>安装天邈汉化</h2><p>如果你是一个英语很好的玩家，那现在不必再做其他额外的工作了，确实可以直接开玩了，如果想玩MOD，那确实有很多后续工作要折腾，<strong>不过安装天邈汉化其实也是相当于安装和使用MOD</strong>。</p>
-<p><strong><font style="font-size: 17px">天邈汉化详细教程地址：<a href="http://bbs.591danji.com/thread-46587-1-1.html" target="_blank" rel="external">代号“毁灭公爵”~《辐射3年度版》 天邈&amp;13号避难所联合汉化补丁 v2.3</a><br>但必须注意这个教程里所说的：<span class="label danger">本汉化适用于《辐射3年度版》纯净英文版（推荐Steam版）的玩家</span>，这个是安装该汉化的大前提！不首先注意这点，你怎么搞都是问题多多。</font></strong></p>
+<p><strong><font style="font-size: 17px">天邈汉化详细教程地址：<a href="http://bbs.591danji.com/thread-46587-1-1.html" target="_blank" rel="noopener">代号“毁灭公爵”~《辐射3年度版》 天邈&amp;13号避难所联合汉化补丁 v2.3</a><br>但必须注意这个教程里所说的：<span class="label danger">本汉化适用于《辐射3年度版》纯净英文版（推荐Steam版）的玩家</span>，这个是安装该汉化的大前提！不首先注意这点，你怎么搞都是问题多多。</font></strong></p>
 <p>安装汉化的步骤也比较简单了，照着那个教程做是99.99999%不会出什么岔子：</p>
 <ol>
 <li>下载并运行汉化安装包</li>
 <li>在安装汉化包的过程中指定FO3年度版所在的路径，<strong>并且在选择汉化语言版本的时候选择你所想安装的版本</strong></li>
-<li>对<code>C:\Users\%usnername%\Documents\My Games\Fallout3</code>路径下的配置文件<code>FALLOUT.INI</code>进行修改<br>打开<code>FALLOUT.INI</code>找到<code>[Fonts]</code>，并把<code>[Fonts]</code>下原有的配置都注释起来（在行头加分号<code>;</code>就是注释），<strong>然后根据你所选的汉化语言版本加上下面对应的配置</strong><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">;原版</span></div><div class="line"><span class="attr">sFontFile_1</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"><span class="attr">sFontFile_2</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"><span class="attr">sFontFile_3</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"><span class="attr">sFontFile_4</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"><span class="attr">sFontFile_5</span>=Textures\Fonts\GB_FixedsysOrigion_Hei18_low.fnt</div><div class="line"><span class="attr">sFontFile_6</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"><span class="attr">sFontFile_7</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"><span class="attr">sFontFile_8</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</div><div class="line"></div><div class="line"><span class="comment">;DUI</span></div><div class="line"><span class="attr">sFontFile_1</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</div><div class="line"><span class="attr">sFontFile_2</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</div><div class="line"><span class="attr">sFontFile_3</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</div><div class="line"><span class="attr">sFontFile_4</span>=Textures\Fonts\GB_DarN_Sui_Generis_Otl_13.fnt</div><div class="line"><span class="attr">sFontFile_5</span>=Textures\Fonts\GB_FixedsysOrigion_Hei18_low.fnt</div><div class="line"><span class="attr">sFontFile_6</span>=Textures\Fonts\GB_DarN_Sui_Generis_Otl_13.fnt</div><div class="line"><span class="attr">sFontFile_7</span>=Textures\Fonts\GB_DarN_Sui_Generis_Otl_13.fnt</div><div class="line"><span class="attr">sFontFile_8</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</div></pre></td></tr></table></figure>
+<li>对<code>C:\Users\%usnername%\Documents\My Games\Fallout3</code>路径下的配置文件<code>FALLOUT.INI</code>进行修改<br>打开<code>FALLOUT.INI</code>找到<code>[Fonts]</code>，并把<code>[Fonts]</code>下原有的配置都注释起来（在行头加分号<code>;</code>就是注释），<strong>然后根据你所选的汉化语言版本加上下面对应的配置</strong><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">;原版</span></span><br><span class="line"><span class="attr">sFontFile_1</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"><span class="attr">sFontFile_2</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"><span class="attr">sFontFile_3</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"><span class="attr">sFontFile_4</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"><span class="attr">sFontFile_5</span>=Textures\Fonts\GB_FixedsysOrigion_Hei18_low.fnt</span><br><span class="line"><span class="attr">sFontFile_6</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"><span class="attr">sFontFile_7</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"><span class="attr">sFontFile_8</span>=Textures\Fonts\GB_Glow_Monofonto_Medium_Common.fnt</span><br><span class="line"></span><br><span class="line"><span class="comment">;DUI</span></span><br><span class="line"><span class="attr">sFontFile_1</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</span><br><span class="line"><span class="attr">sFontFile_2</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</span><br><span class="line"><span class="attr">sFontFile_3</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</span><br><span class="line"><span class="attr">sFontFile_4</span>=Textures\Fonts\GB_DarN_Sui_Generis_Otl_13.fnt</span><br><span class="line"><span class="attr">sFontFile_5</span>=Textures\Fonts\GB_FixedsysOrigion_Hei18_low.fnt</span><br><span class="line"><span class="attr">sFontFile_6</span>=Textures\Fonts\GB_DarN_Sui_Generis_Otl_13.fnt</span><br><span class="line"><span class="attr">sFontFile_7</span>=Textures\Fonts\GB_DarN_Sui_Generis_Otl_13.fnt</span><br><span class="line"><span class="attr">sFontFile_8</span>=Textures\Fonts\GB_DarN_FranKleinBold_16.fnt</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="目录细节"><a href="#目录细节" class="headerlink" title="目录细节"></a>目录细节</h3><p>汉化安装完成后，<span class="label warning">请注意游戏安装目录发生的几个重要变化</span>，如果你不是太关心细节可以直接跳过这一段内容：</p>
 <ul>
 <li><p>游戏根目录<code>Fallout 3 goty</code>多了两个很重要的文件夹<code>Backup</code>和<code>CN_Uninst</code></p>
-<p><img src="https://farm2.staticflickr.com/1826/41502479070_9c28d55db5_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1826/41502479070_9c28d55db5_o.png" alt></p>
 <p>其中，<code>Backup</code>是备份了一些原始的游戏文件，<code>CN_Unist</code>里存放了可以让你卸载天邈汉化让游戏还原为原始英文版的卸载程序<code>unins000.exe</code>。</p>
 </li>
 <li><p>游戏根目录<code>Fallout 3 goty</code>里的原有的游戏启动器<code>FalloutLauncher.exe</code>被挪到了<code>Backup</code>，并且被一个同名的给代替了</p>
-<p><img src="https://farm1.staticflickr.com/927/41494204000_5dff428760_o.png" alt=""><img src="https://farm2.staticflickr.com/1825/28434669337_7beda2fec3_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/927/41494204000_5dff428760_o.png" alt><img src="https://farm2.staticflickr.com/1825/28434669337_7beda2fec3_o.png" alt></p>
 <p>可以看出游戏原版的启动器比较大，而安装汉化后新的启动器比较小，所以，如果以后需要用到原版的游戏启动器，那就从<code>Backup</code>复制出来就可以用了。</p>
 </li>
 <li><p>如果你仔细一点就可以发现，汉化后新增的重点正是以下所示的这些内容</p>
 <p>在<code>\Fallout 3 goty\Data</code>内，你会发现新增了几个文件夹，这些文件夹并不是只单纯用来存放某些汉化资源，它们是用来存放MOD的资源：</p>
-<p><img src="https://farm2.staticflickr.com/1809/43265841652_1aab668b9a_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1809/43265841652_1aab668b9a_o.png" alt></p>
 <p>并且在<code>Data</code>中，现在FO3本身以及每个资料片对应的<code>.esm</code>文件都对应着一个文件名以<code>CS</code>结尾的<code>.esm</code>文件，这些应该是每个资料片对应的汉化资源之一：</p>
-<p><img src="https://farm1.staticflickr.com/924/43315719681_925336c37d_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/924/43315719681_925336c37d_o.png" alt></p>
 <p>浏览一下<code>Data</code>某些子文件夹可以发现一些重要的游戏汉化资源，直接是可以从图中看出来，更正规一点的说法就是本地化，比如游戏内某些图标原来是英文形式，现在被汉化成中文形式：</p>
-<p><img src="https://farm1.staticflickr.com/921/29445257348_a43f7b62eb_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/921/29445257348_a43f7b62eb_o.png" alt></p>
 </li>
 </ul>
 <p><strong>这些资源光摆在这是没用的，必须让游戏加载上才算真正地发挥作用的，至于要怎么加载后面会讲到。</strong></p>
@@ -627,26 +606,26 @@
 <h3 id="只用天邈汉化"><a href="#只用天邈汉化" class="headerlink" title="只用天邈汉化"></a>只用天邈汉化</h3><ol>
 <li>先对游戏根目录内的游戏启动器随便改个名，然后把<code>\Fallout 3 goty\Backup\FalloutLauncher.exe</code>原版游戏启动器复制到外头</li>
 <li><p>然后通过Steam启动，再弹出FO3启动器窗口后别急着点<span class="label info">PLAY</span>，先来点<span class="label primary">DATA FILES</span>，然后即可看到：</p>
-<p><img src="https://farm1.staticflickr.com/922/42482654195_f5ed3f5e8f_o.jpg" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/922/42482654195_f5ed3f5e8f_o.jpg" alt></p>
 </li>
 <li><p>把<span class="label primary">DATA FILES</span>中所有选项都勾上并点OK，这样所有工作都大功告成了</p>
-<p><img src="https://farm1.staticflickr.com/924/28527663387_cc64537539_o.jpg" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/924/28527663387_cc64537539_o.jpg" alt></p>
 </li>
 <li><p>把游戏根目录的原版游戏启动器删除，然后把之前被我们改名的游戏启动器的文件名改回<code>FalloutLauncher.exe</code></p>
 </li>
 </ol>
 <p>至此，只用汉化而不用其他MOD现在即可开始游戏了！</p>
-<h3 id="还用其他MOD"><a href="#还用其他MOD" class="headerlink" title="还用其他MOD"></a>还用其他MOD</h3><p>1.下载并安装<span class="label success">FOSE</span>，<a href="http://fose.silverlock.org/" target="_blank" rel="external">下载地址</a><br>2.解压<span class="label success">FOSE</span>，并把里面所有文件复制到游戏根目录<code>Fallout 3 goty</code></p>
-<p>  <img src="https://farm2.staticflickr.com/1810/42501612035_54afa5a8cb_o.png" alt=""></p>
-<p>3.下载并安装<span class="label success">Nexus Mod Manager</span>，<a href="https://www.nexusmods.com/mods/modmanager/" target="_blank" rel="external">下载地址</a>，下载这个需要注册登录账号，不过这个网站注册登录是十分简单的</p>
+<h3 id="还用其他MOD"><a href="#还用其他MOD" class="headerlink" title="还用其他MOD"></a>还用其他MOD</h3><p>1.下载并安装<span class="label success">FOSE</span>，<a href="http://fose.silverlock.org/" target="_blank" rel="noopener">下载地址</a><br>2.解压<span class="label success">FOSE</span>，并把里面所有文件复制到游戏根目录<code>Fallout 3 goty</code></p>
+<p>  <img src="https://farm2.staticflickr.com/1810/42501612035_54afa5a8cb_o.png" alt></p>
+<p>3.下载并安装<span class="label success">Nexus Mod Manager</span>，<a href="https://www.nexusmods.com/mods/modmanager/" target="_blank" rel="noopener">下载地址</a>，下载这个需要注册登录账号，不过这个网站注册登录是十分简单的</p>
 <h2 id="使用天邈汉化时经常会遇到的几个问题"><a href="#使用天邈汉化时经常会遇到的几个问题" class="headerlink" title="使用天邈汉化时经常会遇到的几个问题"></a>使用天邈汉化时经常会遇到的几个问题</h2><p>我们有时候无缘无故就忽略教程细节，没一步一个脚印去做，那必然引发很多奇葩的问题，做事有小疏漏再正常不过，不过，这毕竟只是个游戏，而不是如临大敌，别把神经绷太紧了。而有的时候，正因为奇葩的问题总是出现，不管我们怎么尝试都解决不了而烦躁起来，我们加快步调，更甚认为教程步骤不对就自个儿胡来，那么这简直就是错上加错，简单的问题反而被搞复杂了，俗话说欲速则不达就是这道理。对于急性子的我来说，一开始什么都不懂这简直就是折磨。</p>
 <h3 id="无限弹窗"><a href="#无限弹窗" class="headerlink" title="无限弹窗"></a>无限弹窗</h3><p>安装汉化后，在无任何存档的条件下运行游戏，那就会产生该问题，<code>FalloutLauncher.exe</code>这个程序窗口会不断运行又关闭，而且可以看到<code>我的文档</code>处创建存档失败了。但你只要把<code>Fallout 3 goty\FalloutLauncher.exe</code>挪到别处，无限弹窗立刻就消失了。然后先把安装汉化时给你备份好的原始启动器<code>Fallout 3 goty\Backup\FalloutLauncher.exe</code>挪到游戏安装根目录，然后用它来运行游戏创建一份干净的存档，又或是你有以前的存档备份，就拿它来用，之后再把汉化后所使用的游戏启动器<code>FalloutLauncher.exe</code>挪回去就行了。</p>
 <h3 id="游戏直接崩溃停止工作"><a href="#游戏直接崩溃停止工作" class="headerlink" title="游戏直接崩溃停止工作"></a>游戏直接崩溃停止工作</h3><p>如果你在安装天邈汉化并把<code>FALLOUT.INI</code>的配置改好了之后，再用英文原版的游戏启动器<code>FalloutLauncher.exe</code>运行游戏，那就会出现以下现象：</p>
-<p><img src="https://farm2.staticflickr.com/1809/42574390174_abfb928c43_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1809/42574390174_abfb928c43_o.png" alt></p>
 <p>运行FO3时弹出<span class="label danger">Fallout3 已停止工作</span>的窗口又或是游戏刚启动没几秒自己卡了一会就关闭了。所以，安装汉化并改了配置文件后不要用原版的启动器运行游戏。</p>
-<h3 id="文字都是乱码"><a href="#文字都是乱码" class="headerlink" title="文字都是乱码"></a>文字都是乱码</h3><p><img src="https://farm2.staticflickr.com/1770/42577427384_f9b375bca4_o.jpg" alt=""></p>
+<h3 id="文字都是乱码"><a href="#文字都是乱码" class="headerlink" title="文字都是乱码"></a>文字都是乱码</h3><p><img src="https://farm2.staticflickr.com/1770/42577427384_f9b375bca4_o.jpg" alt></p>
 <p>这个问题原因非常简单：通过原版启动器选项<span class="label primary">DATA FILES</span>或<span class="label success">NEXUS MODS</span>加载了汉化资源然而没有在<code>FALLOUT.INI</code>进行相应的汉化配置。</p>
-<h3 id="图标汉化了反而是普通文本没汉化"><a href="#图标汉化了反而是普通文本没汉化" class="headerlink" title="图标汉化了反而是普通文本没汉化"></a>图标汉化了反而是普通文本没汉化</h3><p><img src="https://farm2.staticflickr.com/1769/43385776101_fdbd309b52_o.jpg" alt=""></p>
+<h3 id="图标汉化了反而是普通文本没汉化"><a href="#图标汉化了反而是普通文本没汉化" class="headerlink" title="图标汉化了反而是普通文本没汉化"></a>图标汉化了反而是普通文本没汉化</h3><p><img src="https://farm2.staticflickr.com/1769/43385776101_fdbd309b52_o.jpg" alt></p>
 <p>你可能会遇到这种情况，游戏内的各种图标被本地化从英文变成中文了，但菜单、对话反而没有得到汉化。<br><strong>这是因为你没有让游戏都加载上文件名以<code>CS</code>结尾的<code>.esm</code>文件，所以这些文本都没有得到相应的汉化。</strong>至于如何加载，那请看<a href="#真正地开始游戏">前面所说过的步骤</a>，这里就不再重复了。</p>
 <h3 id="Steam无法累计游戏时间"><a href="#Steam无法累计游戏时间" class="headerlink" title="Steam无法累计游戏时间"></a>Steam无法累计游戏时间</h3><p>安装完汉化后，Steam并不能累计通过汉化后的游戏启动器<code>FalloutLauncher.exe</code>运行游戏的游戏时间。<br>解决办法：</p>
 <ol>
@@ -658,9 +637,9 @@
 <h2 id="FO3存档相关的问题与细节"><a href="#FO3存档相关的问题与细节" class="headerlink" title="FO3存档相关的问题与细节"></a>FO3存档相关的问题与细节</h2><p><strong>遇到FO3的运行问题，首先要排除存档问题，所以一般遇到问题首先备份好原来的存档文件夹，然后用原版游戏启动器运行游戏从而建立一份干净的存档以及相应的配置文件。</strong></p>
 <h3 id="文件名的大小写"><a href="#文件名的大小写" class="headerlink" title="文件名的大小写"></a>文件名的大小写</h3><p>这个问题挺常见的，在<code>C:\Users\%username%\Documents\My Games\Fallout3</code>里的配置文件<code>FALLOUT.INI</code>会出现两种状况。</p>
 <p>文件名字母全是大写，这种情况最正常：</p>
-<p><img src="https://farm1.staticflickr.com/842/43248049311_0e41ba0e9b_o.png" alt=""></p>
+<p><img src="https://farm1.staticflickr.com/842/43248049311_0e41ba0e9b_o.png" alt></p>
 <p>然而，还会有这么一种情况，该配置文件的文件名有时候会变成<code>Fallout.ini</code>：</p>
-<p><img src="https://farm2.staticflickr.com/1802/29322018318_ee0e4fd4c2_o.png" alt=""></p>
+<p><img src="https://farm2.staticflickr.com/1802/29322018318_ee0e4fd4c2_o.png" alt></p>
 <p>造成文件名变化的成因很简单：<strong>在FO3游戏首次启动创建存档时，该连带生成的配置文件的文件名是根据<span class="label info">我的文档</span>中是否存在<span class="label info">Fallout3</span>文件夹所决定的</strong></p>
 <ol>
 <li>存在 - 首字母大写<code>Fallout.ini</code></li>
@@ -671,12 +650,12 @@
 <p>最简单的解决办法将游戏进度备份下来，删除整个<span class="label info">Fallout3</span>文件夹，启动游戏重新生成一份新的，再把游戏进度复制进去<code>Saves</code>。</p>
 <p>如果是开启游戏载入游戏进度时出错，这不用说了吧？都是一个法子。所以比较好的方法是，做好备份！</p>
 <h2 id="各种教程-资源-问题解决方案的参考地址"><a href="#各种教程-资源-问题解决方案的参考地址" class="headerlink" title="各种教程/资源/问题解决方案的参考地址"></a>各种教程/资源/问题解决方案的参考地址</h2><ul>
-<li><a href="http://bbs.591danji.com/forum.php" target="_blank" rel="external">游翔网游戏论坛</a></li>
-<li><a href="http://bbs.591danji.com/thread-46587-1-1.html" target="_blank" rel="external">代号“毁灭公爵”~《辐射3年度版》 天邈&amp;13号避难所联合汉化补丁 v2.3</a></li>
-<li><a href="https://steamcommunity.com/app/22370/discussions/0/828937546147175081/" target="_blank" rel="external">ULTIMATE Fallout 3 Setup Guide READ THIS!</a></li>
-<li><a href="https://steamcommunity.com/app/22370/discussions/0/496880503058536690/" target="_blank" rel="external">Steam not tracking time in game – FIXED</a></li>
-<li><a href="https://www.nexusmods.com/" target="_blank" rel="external">NEXUS MODS</a></li>
-<li><a href="http://fose.silverlock.org/" target="_blank" rel="external">Fallout Script Extender (FOSE)</a></li>
+<li><a href="http://bbs.591danji.com/forum.php" target="_blank" rel="noopener">游翔网游戏论坛</a></li>
+<li><a href="http://bbs.591danji.com/thread-46587-1-1.html" target="_blank" rel="noopener">代号“毁灭公爵”~《辐射3年度版》 天邈&amp;13号避难所联合汉化补丁 v2.3</a></li>
+<li><a href="https://steamcommunity.com/app/22370/discussions/0/828937546147175081/" target="_blank" rel="noopener">ULTIMATE Fallout 3 Setup Guide READ THIS!</a></li>
+<li><a href="https://steamcommunity.com/app/22370/discussions/0/496880503058536690/" target="_blank" rel="noopener">Steam not tracking time in game – FIXED</a></li>
+<li><a href="https://www.nexusmods.com/" target="_blank" rel="noopener">NEXUS MODS</a></li>
+<li><a href="http://fose.silverlock.org/" target="_blank" rel="noopener">Fallout Script Extender (FOSE)</a></li>
 </ul>
 
       
@@ -685,17 +664,27 @@
     
 
     
+      
+    
+
+    
     
     
 
     
 
+    
+      
+    
     
 
     
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
             <a href="/tags/游戏/" rel="tag"># 游戏</a>
@@ -748,10 +737,7 @@
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+    <div class="comments" id="gitalk-container">
     </div>
 
   
@@ -771,7 +757,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -787,203 +772,216 @@
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="ExtremeGTR" />
-            
-              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
-          </div>
+  
+  <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+  <div class="site-description motion-element" itemprop="description">有空就写点什么...</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
 
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">43</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">35</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
           
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
         </div>
-      </section>
+      </div>
 
       
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -991,12 +989,12 @@
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
       
 
       
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           
             <span id="scrollpercent"><span>0</span>%</span>
@@ -1006,6 +1004,7 @@
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -1014,7 +1013,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
@@ -1026,9 +1025,7 @@
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -1036,7 +1033,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 
 
@@ -1057,15 +1054,16 @@
     
 
     
-	
+
     
 
     
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1076,12 +1074,6 @@
 
 
 
-
-
-
-
-
-
   
 
 
@@ -1097,41 +1089,34 @@
 
 
   
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
   
 
 
+
+
+
+
+
+
+
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -1139,28 +1124,33 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+  <script src="/js/affix.js?v=7.2.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
 
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
+  
+
+  
 
   
 
 
+  
+  
+
+  
+  
 
   
 
@@ -1169,512 +1159,81 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
+
+
+
+
+  
     
 
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fb006b67b16f091184ea',
+    clientSecret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+    repo: 'extremegtr.github.io',
+    owner: 'ExtremeGTR',
+    admin: ['ExtremeGTR'],
+    id: md5(location.pathname),
     
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'ExtremeGTR',
-            repo: 'extremegtr.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-            
-                client_id: 'fb006b67b16f091184ea'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
+      language: window.navigator.language || window.navigator.userLanguage,
     
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            
-            counter.save(null, {
-              success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
-                
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            
-              var newcounter = new Counter();
-              /* Set ACL */
-              var acl = new AV.ACL();
-              acl.setPublicReadAccess(true);
-              acl.setPublicWriteAccess(true);
-              newcounter.setACL(acl);
-              /* End Set ACL */
-              newcounter.set("title", title);
-              newcounter.set("url", url);
-              newcounter.set("time", 1);
-              newcounter.save(null, {
-                success: function(newcounter) {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-                },
-                error: function(newcounter, error) {
-                  console.log('Failed to create');
-                }
-              });
-            
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 
 
-  
-  
-
-  
-
-  
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
+    fancybox: true,
+    mediumzoom: false,
+    fastclick: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言一般情况下，在Windows系统下远程登录Vultr的VPS，最简单的做法就是在Putty里填上Vultr所提供VPS的IP地址以及其对应的密码进行SSH登录。 如果是新手小白，那当然也会怎么简单怎么来，自然而然也没有对VPS进行更深入的配置，就连登录所用的用户名也是默认的root，同样SSH端口也是默认的22。其实，这种一切按照常规默认的做法有利有弊，我感觉唯一的好处就是不用花很多精力进行配">
+<meta name="keywords" content="VPS,SSH,Vultr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让SSH远程登录Vultr VPS更安全">
+<meta property="og:url" content="http://extremegtr.github.io/2019/03/03/Remote-login-Vultr-vps-by-SSH-pub-key/index.html">
+<meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
+<meta property="og:description" content="前言一般情况下，在Windows系统下远程登录Vultr的VPS，最简单的做法就是在Putty里填上Vultr所提供VPS的IP地址以及其对应的密码进行SSH登录。 如果是新手小白，那当然也会怎么简单怎么来，自然而然也没有对VPS进行更深入的配置，就连登录所用的用户名也是默认的root，同样SSH端口也是默认的22。其实，这种一切按照常规默认的做法有利有弊，我感觉唯一的好处就是不用花很多精力进行配">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://farm8.staticflickr.com/7909/33550229838_35475fa2b6_o.png">
+<meta property="og:image" content="https://farm8.staticflickr.com/7918/47426131841_f491ee99af_o.png">
+<meta property="og:image" content="https://farm8.staticflickr.com/7848/33550229768_56ec204d63_o.png">
+<meta property="og:image" content="https://farm8.staticflickr.com/7825/33566632598_848f370e5b_o.png">
+<meta property="og:image" content="https://farm8.staticflickr.com/7840/47389945342_4cdfa8b428_o.png">
+<meta property="og:updated_time" content="2019-03-22T17:15:07.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="让SSH远程登录Vultr VPS更安全">
+<meta name="twitter:description" content="前言一般情况下，在Windows系统下远程登录Vultr的VPS，最简单的做法就是在Putty里填上Vultr所提供VPS的IP地址以及其对应的密码进行SSH登录。 如果是新手小白，那当然也会怎么简单怎么来，自然而然也没有对VPS进行更深入的配置，就连登录所用的用户名也是默认的root，同样SSH端口也是默认的22。其实，这种一切按照常规默认的做法有利有弊，我感觉唯一的好处就是不用花很多精力进行配">
+<meta name="twitter:image" content="https://farm8.staticflickr.com/7909/33550229838_35475fa2b6_o.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://extremegtr.github.io/2019/03/03/Remote-login-Vultr-vps-by-SSH-pub-key/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>让SSH远程登录Vultr VPS更安全 | ExtremeGTR's Blog</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-106151602-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ExtremeGTR's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Better to run than curse the road.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://extremegtr.github.io/2019/03/03/Remote-login-Vultr-vps-by-SSH-pub-key/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ExtremeGTR">
+      <meta itemprop="description" content="有空就写点什么...">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ExtremeGTR's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">让SSH远程登录Vultr VPS更安全
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-03 01:17:30" itemprop="dateCreated datePublished" datetime="2019-03-03T01:17:30+08:00">2019-03-03</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-23 01:15:07" itemprop="dateModified" datetime="2019-03-23T01:15:07+08:00">2019-03-23</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VPS/" itemprop="url" rel="index"><span itemprop="name">VPS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">0</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一般情况下，在Windows系统下远程登录<span class="label info">Vultr</span>的VPS，最简单的做法就是在<span class="label primary">Putty</span>里填上<span class="label info">Vultr</span>所提供VPS的IP地址以及其对应的密码进行SSH登录。</p>
+<p>如果是新手小白，那当然也会怎么简单怎么来，自然而然也没有对VPS进行更深入的配置，就连登录所用的用户名也是默认的<code>root</code>，同样SSH端口也是默认的<code>22</code>。其实，这种一切按照常规默认的做法有利有弊，我感觉唯一的好处就是不用花很多精力进行配置，相比之下坏处可能就多点，最坏就是让别人很容易入侵你的VPS，或许你会说，网上教程是多如牛毛，找一些教程跟着做就是了。话虽如此，但教程是否适用于当前自己所处的情况，那就真的不得而知了，对于新手小白是无法甄别教程的好坏，只能一个一个去试，甚至是多种做法结合起来，才能解决问题，加上怕麻烦的心里，所以最终干脆就是所有配置默认就好了。</p>
+<p>其实，基本所有高手/有经验的人也是由小白/菜鸟慢慢成长起来的，所以，对于一些讲求技术和规范的流程或场景，小白更不应该怕，直面它，稳扎稳打一步一步解决，自己才会有进步，或许自己的步伐会比别人慢很多，但没关系，总比原地踏步甚至回避问题而永远不学习新东西永远不进步要来得好。我同样也是小白，也曾经那样原地踏步一段时间了，后来尝试求变，发现其实并不难，只要自己不怕敢去尝试，其实自己也能做到。</p>
+<h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>这篇教程的所有结果是在以下环境实现的：</p>
+<ol>
+<li><span class="label primary">Windows 10</span></li>
+<li><span class="label primary">CentOS 7</span>
+</li>
+</ol>
+<p>Windows 10是现在大家最常用的系统，虽然也有挺多人用Windows 7的，不过我觉得应该也同样能适用；<br>我的VPS是CentOS 7，有些命令或许就不能用在其他Linux系统上了，而我也只是懂一点Linux的皮毛，关于这个我也说不清楚，说错勿怪，但不用担心，本文里的命令在CentOS 7执行是毫无问题的。</p>
+<h2 id="改变SSH登录端口"><a href="#改变SSH登录端口" class="headerlink" title="改变SSH登录端口"></a>改变SSH登录端口</h2><h3 id="修改SSH配置的端口配置"><a href="#修改SSH配置的端口配置" class="headerlink" title="修改SSH配置的端口配置"></a>修改SSH配置的端口配置</h3><ol>
+<li><code>nano /etc/ssh/sshd_config</code>打开SSH配置文件</li>
+<li>找到<code>Port</code>这行配置，可以看到它默认的配置是<code>22</code>，并且这一行默认是被注释的，把注释标记<code>#</code>去掉</li>
+<li><p>在刚去掉注释<code>Port</code>这一行的下面多增加一行<code>Port</code>配置，这样就指定自定义端口，比如就指定为<code>7878</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Port 7878</span><br></pre></td></tr></table></figure>
+<p>配置输入完成后<code>Ctrl+X</code>，按<code>Y</code>再按回车，这样就是保存修改并退出</p>
+</li>
+<li><code>systemctl restart sshd</code>重启SSH服务</li>
+</ol>
+<p>这里是为了避免因配置不正确而造成不能登录的麻烦，所以，先把默认的<code>22</code>端口留着，就算新端口配置不成，那也可以继续用默认端口登录。</p>
+<h3 id="修改防火墙的端口配置"><a href="#修改防火墙的端口配置" class="headerlink" title="修改防火墙的端口配置"></a>修改防火墙的端口配置</h3><p>光在SSH配置文件增加一个端口还不能让我们使用那个端口进行SSH登录，你必须让防火墙允许这个端口能进行通信，那才能让端口真正能被使用。</p>
+<h4 id="新增端口"><a href="#新增端口" class="headerlink" title="新增端口"></a>新增端口</h4><ol>
+<li><code>firewall-cmd --zone=public --add-port=7878/tcp --permanent</code>告诉防火墙端口<code>7878</code></li>
+<li><code>firewall-cmd --reload</code>重新加载防火墙配置</li>
+</ol>
+<p>现在，尝试使用新端口进行SSH登录，如果成功了，那就再把<code>22</code>默认端口那行配置删掉或注释掉，仅留下自己所配置的自定义端口即可，如果想增加多个端口，重复以上步骤即可。</p>
+<h4 id="查看-删除端口"><a href="#查看-删除端口" class="headerlink" title="查看/删除端口"></a>查看/删除端口</h4><ul>
+<li><code>firewall-cmd --list-ports</code>查看被防火墙允许进行通信的端口，执行该命令就会列出所有被防火墙允许进行通信的端口。</li>
+<li><code>firewall-cmd --zone=public --remove-port=7878/tcp --permanent</code>删除指定的端口，比如删除刚才配置的端口<code>7878</code>，删除后就无法通过端口<code>7878</code>进行SSH登录。</li>
+</ul>
+<p>最后提醒一点，凡是修改防火墙配置后，都要记得执行<code>firewall-cmd --reload</code>重新加载防火墙的配置，这样配置才会生效。</p>
+<h2 id="改变SSH登录用户"><a href="#改变SSH登录用户" class="headerlink" title="改变SSH登录用户"></a>改变SSH登录用户</h2><p>正如通过默认端口<code>22</code>进行SSH登录可以是可以的，那同样通过默认用户<code>root</code>进行SSH登录也不是不可以，但也正如之前所说，这明显是不安全的。因为VPS的IP地址或许很容易就会暴露于外部（至于是具体是通过什么方式暴露的那我就不懂了），如果这时别人试出了SSH端口同时也试出了默认用户名<code>root</code>可以对你的VPS进行SSH登录，那就有机会进行暴力破解进而入侵了。</p>
+<p>我们之前所做的工作首先就是把默认端口<code>22</code>改成自定义的，让VPS更安全，同样，使用默认用户名<code>root</code>也是不可取的，为了增加安全性，用户名必须也要进行自定义。</p>
+<h3 id="自定义最高权限用户"><a href="#自定义最高权限用户" class="headerlink" title="自定义最高权限用户"></a>自定义最高权限用户</h3><p>Linux系统默认自带拥有最高权限用户，其名正是<code>root</code>，而默认可进行SSH登录的用户是它；登录密码是Vultr提供的，但它绝对不方便记忆，所以我们要把用户名和密码都一并改了，其他维持不变。</p>
+<ol>
+<li>首先通过用户名<code>root</code>以及Vultr提供的密码进行SSH登录</li>
+<li><code>nano /etc/passwd</code>打开这个文件，<code>passwd</code>是存放所有用户账号信息的文件</li>
+<li><p>第一行就是与用户<code>root</code>相关的信息了，把用户名改成其他</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>配置的通用格式：<strong>username:password:user_id:group_id:comment:home_directory:login_command</strong></p><table><thead><tr><th style="text-align:center">username</th><th style="text-align:center">passowrd</th><th style="text-align:center">user_id</th><th style="text-align:center">group_id</th><th style="text-align:center">comment</th><th style="text-align:center">home_diractory</th><th style="text-align:center">login_command</th></tr></thead><tbody><tr><td style="text-align:center">用户名</td><td style="text-align:center">密码</td><td style="text-align:center">用户唯一标识</td><td style="text-align:center">用户组唯一标识</td><td style="text-align:center">用户描述</td><td style="text-align:center">用户目录</td><td style="text-align:center">登录所执行的命令</td></tr></tbody></table><p>可以很清楚看到，这里所有用户相关信息的密码都是一个<code>x</code>，只起一个占位符的作用，密码其实存储在了另一个文件<code>/etc/shadow</code>里，但里头的密码肯定是经过加密后才存储的，不会是明文</p>
+          </div>
+<p>我们只要把第一个<code>root</code>改成我们所想要的名字便可，比如改成<code>root_DotA</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root_DotA:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="4">
+<li><code>passwd root_DotA</code>修改用户<code>root_DotA</code>的密码，执行该命令后，它会让你输入密码两次，两次输入一样即可</li>
+<li><code>nano /etc/sudoers</code>打开这个配置文件</li>
+<li><p>找到如下这一行配置，这样做是告诉系统让新的用户名也有sudo权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root    ALL=(ALL)    ALL</span><br></pre></td></tr></table></figure>
+<p>然后就在这一行配置后再起一行，然后加上我们的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root_DotA    ALL=(ALL)    ALL</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>现在，最高权限用户就不再叫<code>root</code>了，而叫<code>root_DotA</code>了，同时与它相关的登录密码也不再是Vultr所提供的。</p>
+<h3 id="添加普通新用户"><a href="#添加普通新用户" class="headerlink" title="添加普通新用户"></a>添加普通新用户</h3><p>修改最高权限用户这个工作必须做，其实之后还可以添加普通新用户。比如，这里演示的是增加一个名为<code>DotA</code>的新用户。</p>
+<ol>
+<li>先用最高权限的用户登录上去</li>
+<li>执行<code>adduser DotA</code>这个命令简单且易懂，就是增加一个用户名为<code>DotA</code>的用户</li>
+<li>执行<code>passwd DotA</code>指定密码</li>
+<li><p>给普通用户添加sudo权限，就像前面所讲的那样，也是打开<code>/etc/sudoers</code>，并给用户<code>DotA</code>增加一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DotA    ALL=(ALL)    ALL</span><br></pre></td></tr></table></figure>
+<p>如果不做这一步，对于普通用户来说很多命令都执行不了，因为普通用户的权限很低。</p>
+</li>
+</ol>
+<p>完成上述所有步骤后，既添加新用户<code>DotA</code>并赋予sudo权限就大功告成了。</p>
+<div class="note info">
+            <p>如果没有特殊情况，一般来说普通用户的用户目录就是<code>/home/user_name</code>，比如对于上面增加的<code>DotA</code>用户来说，它的用户目录就是<code>/home/DotA</code>。</p>
+          </div>
+<h3 id="更多与用户相关的SSH配置"><a href="#更多与用户相关的SSH配置" class="headerlink" title="更多与用户相关的SSH配置"></a>更多与用户相关的SSH配置</h3><p>之前的步骤都准确无误地做完，那就可以通过新增加的用户进行SSH登录；更重要的是，已更新用户名和密码后的最高权限用户不能再用默认用户名<code>root</code>以及Vultr提供的密码进行SSH登录。</p>
+<p>如果你添加了很多用户，而只允许个别用户进行SSH登录，那就要进行额外的SSH配置：</p>
+<ol>
+<li><code>nano /etc/ssh/sshd_config</code>打开SSH配置文件</li>
+<li>按<code>Ctrl+W</code>查找<code>AllowUsers</code>这个配置，这个配置是用于指定允许进行SSH登录的用户，可以指定多个用户名，之间用空格分隔</li>
+<li>如果找到了，就在后头加上新添的用户名，如果看到其中指定了<code>root</code>，那就视情况把它去掉; 如果没找到，那就随便找个地方另起一行，把配置加上</li>
+<li><code>systemctl restart sshd</code>重启SSH服务</li>
+</ol>
+<p>值得注意的一个细节：<br><div class="note warning">
+            <p>有些教程会让你把SSH配置文件里的<code>PermitRootLogin</code>指定为<code>no</code>，这样配置的意思就是<strong><font color="#9B30FF">不允许拥有最高权限的用户SSH登录</font>，而不是不允许用户名为<code>root</code>的用户SSH登录</strong>。<br>如果在<code>AllowUsers</code>指定了最高权限的用户，并且，同时把<code>PermitRootLogin</code>指定为<code>no</code>，这样拥有最高权限的用户也是不能进行SSH登录的。</p>
+          </div></p>
+<h2 id="公钥验证登录"><a href="#公钥验证登录" class="headerlink" title="公钥验证登录"></a>公钥验证登录</h2><p>之前进行的SSH登录都是输入用户名以及对应的密码进行登录的，如果你觉得每次输入密码都很麻烦，那其实是有解决办法的，那就是改用公钥验证进行SSH登录。</p>
+<p>所谓公钥验证登录，简单来讲就是生成由公钥和私钥组成的密钥对，服务器持有公钥，自己持有私钥，只要两者的关系在验证后能匹配得上，那就可以进行SSH登录。</p>
+<p>如果你想要每个用户都可以进行公钥验证SSH登录，那必须给每个用户都指定公钥才行，给每个用户指定的公钥可以是同一个，也可以大家都不同，这个根据自己的需求来做。</p>
+<h3 id="生成密钥对"><a href="#生成密钥对" class="headerlink" title="生成密钥对"></a>生成密钥对</h3><p>要实现公钥验证SSH登录，那在这之前必须生成公钥私钥密钥对，密钥对生成所要做的工作很简单，不同的系统有不同的做法，更详细的教程可以看<a href="#参考资料">参考资料</a>处的教程。</p>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>在Windows系统内要生成密钥对，最常见简单的做法就是用<span class="label primary">PuTTYgen</span>生成，PuTTYgen是Putty的配套工具，只要你安装过Putty，它也自然安装上了。</p>
+<ol>
+<li><p>打开PuTTYgen，点击<code>Gennerate</code>，根据提示，你要在进度条下方空白的区域不断移动你的鼠标指针，直到进度条走完为止</p>
+<p><img src="https://farm8.staticflickr.com/7909/33550229838_35475fa2b6_o.png" alt="生成密钥对的过程" title="生成密钥对的过程">进度条走完，即代表密钥生成了，这里我想的是密钥对可能就是根据鼠标指针的轨迹所生成的</p>
+</li>
+<li><p>看到<code>Key</code>这里，下面的内容就是<strong><font color="#9B30FF">公钥</font></strong>，是一个字符串</p>
+<p><img src="https://farm8.staticflickr.com/7918/47426131841_f491ee99af_o.png" alt="公钥" title="公钥"></p>
+</li>
+<li><p>随便找个地方，创建一个名为<code>authorized_keys</code>的文件，用这个文件将刚才所生成的公钥保存起来</p>
+<div class="note warning">
+            <p>公钥整个字符串只能是单独一行，千万不要给它换行，否则公钥不起作用。</p>
+          </div></li>
+<li><p>在<code>Key passphrase</code>和<code>Confirm passphrase</code>这两处输入密码，不输入也可以，但为了安全性，那肯定是指定密码啊</p>
+<p><img src="https://farm8.staticflickr.com/7848/33550229768_56ec204d63_o.png" alt="输入密码" title="输入密码"></p>
+</li>
+<li><p>点击<code>Save private key</code>按钮将私钥保存于指定文件中，PuTTYgen默认的保存格式是<code>.ppk</code></p>
+<div class="note warning">
+            <p><strong>私钥文件很重要，以后进行SSH登录都要用到它的，所以千万不能把它丢失，否则就不能进行SSH登录了。</strong></p><p>和公钥文件一样，其实私钥文件也是文本文件，如果你想查看私钥实际的文本是什么，把这个文件改成<code>.txt</code>后缀再看即可，当然，真正使用的时候还是要改回来。</p>
+          </div>
+</li>
+</ol>
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>在Linux生成密钥对当然是用命令啦，不过命令很简单，而且也就是简单几步。</p>
+<ol>
+<li><p>输入<code>ssh-keygen -t rsa</code>生成公钥/私钥组成的密钥对<br>然后它会提示让你输入保存私钥的绝对文件路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入保存私钥的绝对文件路径，不输入直接回车即指定当前用户的<code>/home_directory/.ssh/id_rsa</code>作为保存私钥的绝对文件路径</p>
+</li>
+<li><p>输入完路径后，它会接着让你输入两次密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
+<p>这里的处理方式跟<a href="#Windows">上一个小节</a>的第四步一样，这里就不再赘述</p>
+<p>完成这个步骤后，最终就可以看到以下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:6GeViKd4y9wRJBVvhgoy5AckZsx4HoMYPQk0sp8P06s your_user_name@server_info</span><br><span class="line">The key&apos;s randomart image is:</span><br><span class="line">+---[RSA 2048]----+</span><br><span class="line">|@@+.    o.       |</span><br><span class="line">|BBO.   . o       |</span><br><span class="line">|.o++o . o +      |</span><br><span class="line">| ..* . * + .     |</span><br><span class="line">|  = . + S o      |</span><br><span class="line">|   + + o o       |</span><br><span class="line">|    + + +        |</span><br><span class="line">|   . + = .       |</span><br><span class="line">|  E   + .        |</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure>
+<p>最重要的当然是前两行信息，可以看到私钥文件就是在默认的文件中，而公钥文件<code>id_rsa.pub</code>默认也和私钥放一个地方，这两个文件是最重要的</p>
+</li>
+<li>将公钥文件<code>id_rsa.pub</code>重命名为<code>authorized_keys</code>，执行命令<code>mv /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys</code>即可</li>
+</ol>
+<h3 id="部署公钥与获取私钥"><a href="#部署公钥与获取私钥" class="headerlink" title="部署公钥与获取私钥"></a>部署公钥与获取私钥</h3><p>现在，密钥对是准备好了，如果之前是在Windows生成的密钥对，那现在就差把公钥部署到VPS上，而如果之前是在VPS的Linux系统上生成密钥，那就得将其私钥下载到Windows本地。</p>
+<h4 id="部署公钥"><a href="#部署公钥" class="headerlink" title="部署公钥"></a>部署公钥</h4><p>一般默认情况下都把公钥放在<code>/home_directory/.ssh/</code>内，即用户目录内的<code>.ssh</code>文件夹内，所以，这里遵循Linux默认的做法，那就把公钥放到<code>/root/.ssh/</code>中</p>
+<p>部署有两种做法可供选择：</p>
+<ul>
+<li>在<code>/root.ssh/</code>内新建一个名为<code>authorized_keys</code>的文件，并把之前生成的公钥内容复制粘贴到这个文件中</li>
+<li>在Windows命令行执行<code>pscp -P ssh_port 本地公钥文件的绝对路径 user_name@host:/root/.ssh/</code>把之前生成好的公钥文件<code>authorized_keys</code>上传到<code>/root/.ssh/</code></li>
+</ul>
+<h4 id="获取私钥"><a href="#获取私钥" class="headerlink" title="获取私钥"></a>获取私钥</h4><p>之前的步骤是把私钥保存到<code>/root/.ssh/id_rsa</code>文件中，最重要的就是把这个私钥文件下载到本地。</p>
+<p>同样的，获取也是两种做法可供选择：</p>
+<ul>
+<li>打开私钥文件<code>nano /root/.ssh/id_rsa</code>，将里面的内容复制粘贴到Windows本地一个空文本文件中</li>
+<li>在Windows命令行执行<code>pscp -P ssh_port user_name@host:/root/.ssh/id_rsa 保存该私钥的Windows目录的绝对路径</code>把之前生成好的私钥文件下载到Windows本地目录</li>
+</ul>
+<p>通过以上两种方式把私钥下载到Windows本地后，然后通过Putty的<code>Load private key</code>加载它，接着<code>Save private key</code>，以<code>.ppk</code>格式保存即可。</p>
+<h4 id="pscp工具"><a href="#pscp工具" class="headerlink" title="pscp工具"></a>pscp工具</h4><p>简单来说，<span class="label primary">pscp</span>是一个Putty附带的工具，它通过SSH连接两台电脑并进行文件传输。</p>
+<p>官方文档是这样描述的：<br><div class="note info">
+            <p>PSCP, the PuTTY Secure Copy client, is a tool for transferring files securely between computers using an SSH connection.</p>
+          </div></p>
+<p>没有特殊要求的话，像下面这样使用即可，命令通用格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">下载</span><br><span class="line">pscp -P ssh_port [user_name@]host:source target</span><br><span class="line"></span><br><span class="line">上传</span><br><span class="line">pscp -P ssh_port source [source...] [user_name@]host:target</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>-P</code>这个参数即指定SSH端口，如果要查询命令的其他参数解析，直接执行<code>pscp</code>即可，这里不再对其余参数逐个解析。</p>
+<h3 id="SSH设置"><a href="#SSH设置" class="headerlink" title="SSH设置"></a>SSH设置</h3><p>做完了之前的步骤，仍然还不能通过公钥验证进行SSH登录的。既然进行的是SSH登录，那对SSH进行配置肯定是必不可少的。</p>
+<ol>
+<li><code>nano /etc/ssh/sshd_config</code>打开SSH配置文件</li>
+<li>将<code>PubkeyAuthentication</code>指定为<code>yes</code>，即开启公钥验证</li>
+<li><code>Ctrl+W</code>查找<code>RSAAuthentication</code>，将其指定为<code>yes</code>，如果找不到就自己加上这个键值对</li>
+<li><p>找到<code>AuthorizedKeysFile</code>，指定公钥文件的绝对路径，要配置多个路径就用空格分隔，而它默认就指定了一个路径<code>/root/.ssh/authorized_keys</code></p>
+<div class="note warning">
+            <p>看到这个配置，或许你现在知道为何之前要把公钥文件命名为<code>authorized_keys</code>了吧？正是默认做法而已。</p><p>根据这一点反推那就搞清楚一件事了：<strong>公钥文件并不一定要放在用户目录，也不一定要命名为<code>authorized_keys</code>，最重要的就是<code>AuthorizedKeysFile</code>配置</strong>。</p>
+          </div>
+<p>5.保存SSH配置文件并重启SSH服务</p>
+</li>
+</ol>
+<p>现在，那就来试试通过新的方式进行SSH登录！跟以往所做的一样，在Putty填上ip地址和SSH端口，但还要多一个步骤，即指定带上一个私钥：<br><img src="https://farm8.staticflickr.com/7825/33566632598_848f370e5b_o.png" alt="指定私钥" title="指定私钥"></p>
+<p>然后就可以登录了，在登录的时候，当输入用户名后，如果之前所做的工作都正确的，并且私钥通过了服务器上的公钥验证：那么就会显示以下信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Authenticating with public key &quot;rsa-key-comment&quot;</span><br><span class="line">Passphrase for key &quot;rsa-key-comment&quot;:</span><br></pre></td></tr></table></figure></p>
+<p>此处就是代表着公钥验证流程正常执行，现在只要输入生成私钥时所指定的密码即可完成登录；如果在生成私钥时没有指定密码，那此处就不会要求输入密码。<br><div class="note warning">
+            <p><strong>注意：这里要求输入的密码不是用户密码，而是生成私钥时所指定的密码！！</strong></p>
+          </div></p>
+<p>如果可以登录了，那就可以做最后的配置了，OK，这真的是最后的配置了！</p>
+<ol>
+<li><code>nano /etc/ssh/sshd_config</code>打开SSH配置文件</li>
+<li><code>Ctrl+W</code>查找<code>PasswordAuthentication</code>，讲其指定为<code>no</code>，即禁止SSH登录的用户密码验证，就是说只能通过公钥验证进行SSH登录</li>
+<li>重启SSH服务</li>
+</ol>
+<p>现在再去试试登录，你会发现，如果不带上私钥进行登录，那是不允许你登录的，会直接弹出这个错误消息：</p>
+<p><img src="https://farm8.staticflickr.com/7840/47389945342_4cdfa8b428_o.png" alt="不能再使用用户密码登录" title="不能再使用用户密码登录"></p>
+<p>现在一切工作都做完了！完。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.putty.org" target="_blank" rel="noopener">Putty官网</a></li>
+<li><a href="https://www.vultr.com/docs/how-do-i-generate-ssh-keys/" target="_blank" rel="noopener">Vultr Docs - How Do I Generate SSH Keys?</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/VPS/" rel="tag"># VPS</a>
+          
+            <a href="/tags/SSH/" rel="tag"># SSH</a>
+          
+            <a href="/tags/Vultr/" rel="tag"># Vultr</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/29/What-is-the-current-frontier-level-of-Quantum-Computing-technology/" rel="next" title="【转载】当前量子计算技术前沿是什么水平？">
+                <i class="fa fa-chevron-left"></i> 【转载】当前量子计算技术前沿是什么水平？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+  <div class="site-description motion-element" itemprop="description">有空就写点什么...</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统环境"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变SSH登录端口"><span class="nav-number">3.</span> <span class="nav-text">改变SSH登录端口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改SSH配置的端口配置"><span class="nav-number">3.1.</span> <span class="nav-text">修改SSH配置的端口配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改防火墙的端口配置"><span class="nav-number">3.2.</span> <span class="nav-text">修改防火墙的端口配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新增端口"><span class="nav-number">3.2.1.</span> <span class="nav-text">新增端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看-删除端口"><span class="nav-number">3.2.2.</span> <span class="nav-text">查看/删除端口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变SSH登录用户"><span class="nav-number">4.</span> <span class="nav-text">改变SSH登录用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义最高权限用户"><span class="nav-number">4.1.</span> <span class="nav-text">自定义最高权限用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加普通新用户"><span class="nav-number">4.2.</span> <span class="nav-text">添加普通新用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多与用户相关的SSH配置"><span class="nav-number">4.3.</span> <span class="nav-text">更多与用户相关的SSH配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公钥验证登录"><span class="nav-number">5.</span> <span class="nav-text">公钥验证登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成密钥对"><span class="nav-number">5.1.</span> <span class="nav-text">生成密钥对</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows"><span class="nav-number">5.1.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">5.1.2.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署公钥与获取私钥"><span class="nav-number">5.2.</span> <span class="nav-text">部署公钥与获取私钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#部署公钥"><span class="nav-number">5.2.1.</span> <span class="nav-text">部署公钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取私钥"><span class="nav-number">5.2.2.</span> <span class="nav-text">获取私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pscp工具"><span class="nav-number">5.2.3.</span> <span class="nav-text">pscp工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH设置"><span class="nav-number">5.3.</span> <span class="nav-text">SSH设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ExtremeGTR</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fb006b67b16f091184ea',
+    clientSecret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+    repo: 'extremegtr.github.io',
+    owner: 'ExtremeGTR',
+    admin: ['ExtremeGTR'],
+    id: md5(location.pathname),
+    
+      language: window.navigator.language || window.navigator.userLanguage,
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

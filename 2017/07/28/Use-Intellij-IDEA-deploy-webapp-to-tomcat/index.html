@@ -15,10 +15,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -32,28 +32,23 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
 
@@ -76,6 +71,12 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
 
@@ -84,7 +85,7 @@
   
     
     
-    <link href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -92,40 +93,33 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=6.3.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
 
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    version: '6.3.0',
-    sidebar: {"position":"left","width":350,"display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '7.2.0',
+    sidebar: {"position":"left","width":350,"display":"always","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    copycode: {"enable":true,"show_result":false,"style":null},
     fancybox: true,
+    mediumzoom: false,
     fastclick: false,
     lazyload: false,
+    pangu: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -134,15 +128,14 @@
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     }
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="对于习惯Eclipse/MyEclipse的人来说，初次使用IntelliJ IDEA开发Web项目并发布它到Tomcat的时候，那就会觉得非常陌生并且无所适从。或许这也是大多数Eclipse使用者不愿意转型的原因，并且Eclipse是那么的流行，中文学习资料也多，工作方式也非常符合常规思路（比如部署Web应用到Tomcat上），而IntelliJ IDEA在工作方式上比起Eclipse有很多">
 <meta name="keywords" content="Tomcat,IntelliJ IDEA,Maven">
@@ -228,31 +221,38 @@
 
 
 
+  
+  
+  <link rel="canonical" href="http://extremegtr.github.io/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/">
 
-  <link rel="canonical" href="http://extremegtr.github.io/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/"/>
 
 
-
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
 </script>
 
+  
   <title>IntelliJ IDEA部署Web应用到Tomcat | ExtremeGTR's Blog</title>
   
 
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106151602-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-106151602-1');
+    }
+  </script>
 
-  gtag('config', 'UA-106151602-1');
-</script>
+
+
 
 
 
@@ -260,29 +260,27 @@
 
 
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -300,7 +298,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -314,6 +312,7 @@
       
         <p class="site-subtitle">Better to run than curse the road.</p>
       
+    
     
   </div>
 
@@ -337,43 +336,75 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">42</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">20</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">43</span></a>
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">46</span></a>
+
   </li>
 
       
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
-        </li>
       
     </ul>
   
@@ -381,34 +412,7 @@
   
 
   
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
 </nav>
-
-
-
-  
 
 
 
@@ -438,8 +442,6 @@
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -451,7 +453,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ExtremeGTR">
       <meta itemprop="description" content="有空就写点什么...">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -464,19 +466,20 @@
         
         
           <h1 class="post-title" itemprop="name headline">IntelliJ IDEA部署Web应用到Tomcat
+
               
             
           </h1>
         
 
         <div class="post-meta">
-          <span class="post-time">
 
-            
-            
-            
+          
+          
+          
 
-            
+          
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
@@ -489,16 +492,14 @@
               
 
               <time title="创建时间：2017-07-28 17:59:42" itemprop="dateCreated datePublished" datetime="2017-07-28T17:59:42+08:00">2017-07-28</time>
+            </span>
+          
+
+          
             
 
             
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
@@ -506,15 +507,12 @@
                   <span class="post-meta-item-text">更新于</span>
                 
                 <time title="修改时间：2017-10-16 16:22:49" itemprop="dateModified" datetime="2017-10-16T16:22:49+08:00">2017-10-16</time>
-              
+              </span>
             
-          </span>
+          
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
@@ -532,62 +530,39 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
           
           
-             <span id="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/" class="leancloud_visitors" data-flag-title="IntelliJ IDEA部署Web应用到Tomcat">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
           
-            <div class="post-symbolscount">
-              
 
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
               
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">18k</span>
+                <span class="post-meta-item-text">本文字数：</span>
               
+              <span title="本文字数">0</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
               
-                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">16 分钟</span>
-              
-            </div>
+              <span title="阅读时长">1 分钟</span>
+            </span>
           
 
           
@@ -608,63 +583,65 @@
         <p>　　对于习惯<span class="label primary">Eclipse/MyEclipse</span>的人来说，初次使用<span class="label success">IntelliJ IDEA</span>开发Web项目并发布它到<span class="label info">Tomcat</span>的时候，那就会觉得非常陌生并且无所适从。或许这也是大多数<span class="label primary">Eclipse</span>使用者不愿意转型的原因，并且<span class="label primary">Eclipse</span>是那么的流行，中文学习资料也多，工作方式也非常符合常规思路（比如部署Web应用到<span class="label info">Tomcat</span>上），而<span class="label success">IntelliJ IDEA</span>在工作方式上比起<span class="label primary">Eclipse</span>有很多不同之处（有些还是很特别的），学习资料大多是英文的，所以学习曲线相对前者来说是比较陡峭了。</p>
 <h2 id="最基本的流程"><a href="#最基本的流程" class="headerlink" title="最基本的流程"></a><strong>最基本的流程</strong></h2><p>既然要学习怎么用这个IDE进行部署Web应用，并研究一下其中的一些问题，那就得先把这个过场从头到尾走一遍。</p>
 <h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a><strong>创建项目</strong></h3><h4 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h4><ul>
-<li>首先肯定是选择创建的是<code>Java Enterprise</code>下的<code>Web Application</code>项目，这个就是Web工程<br>一些设置：<br>①：JavaEE版本<br>②：Web应用服务器<br>③：Web应用版本<br>④：是否创建<code>web.xml</code><br>这些都根据你的需求来设置就行了，这里全部默认。<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_1.png" alt="选择创建Web工程" title="选择创建Web工程"></li>
-<li>输入对应的项目名和模块名（这个随便），此处项目名是<code>PracticeDeploy</code>，模块名是<code>first-web-app</code><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_2.png" alt="项目名和模块名" title="项目名和模块名"></li>
-<li>创建完成后的目录是这样的<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_3.png" alt="Web项目目录" title="Web项目目录">
+<li>首先肯定是选择创建的是<code>Java Enterprise</code>下的<code>Web Application</code>项目，这个就是Web工程<br>一些设置：<br>①：JavaEE版本<br>②：Web应用服务器<br>③：Web应用版本<br>④：是否创建<code>web.xml</code><br>这些都根据你的需求来设置就行了，这里全部默认。<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_1.png" title="选择创建Web工程"></li>
+<li>输入对应的项目名和模块名（这个随便），此处项目名是<code>PracticeDeploy</code>，模块名是<code>first-web-app</code><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_2.png" title="项目名和模块名"></li>
+<li>创建完成后的目录是这样的<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_3.png" title="Web项目目录">
 </li>
 </ul>
-<h4 id="创建演示用的资源"><a href="#创建演示用的资源" class="headerlink" title="创建演示用的资源"></a>创建演示用的资源</h4><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_4.png" alt="创建资源后的项目目录" title="创建资源后的项目目录">
+<h4 id="创建演示用的资源"><a href="#创建演示用的资源" class="headerlink" title="创建演示用的资源"></a>创建演示用的资源</h4><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_4.png" title="创建资源后的项目目录">
 <ul>
 <li><p>1个自定义Servlet<code>FirstServlet</code>，在<code>web.xml</code>内对它进行配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.makwan.servlet;    </div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.servlet.ServletException;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"><span class="keyword">import</span> java.io.IOException;    </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</div><div class="line">        resp.setContentType(<span class="string">"text/html; charset=utf-8"</span>);</div><div class="line">        PrintWriter writer = resp.getWriter();</div><div class="line">        writer.write(<span class="string">"Web应用被部署在: "</span> + getServletContext().getRealPath(<span class="string">"/"</span>));</div><div class="line">        writer.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>FirstServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.makwan.servlet.FirstServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span>  </div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>FirstServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/firstServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.makwan.servlet;    </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;    </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        resp.setContentType(<span class="string">"text/html; charset=utf-8"</span>);</span><br><span class="line">        PrintWriter writer = resp.getWriter();</span><br><span class="line">        writer.write(<span class="string">"Web应用被部署在: "</span> + getServletContext().getRealPath(<span class="string">"/"</span>));</span><br><span class="line">        writer.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>FirstServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.makwan.servlet.FirstServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>FirstServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/firstServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>2个HTML<code>a.html</code>和<code>b.html</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>A页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>A page -&gt; 这是A页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>B页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>B page -&gt; 这是B页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>A页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>A page -&gt; 这是A页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>B页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>B page -&gt; 这是B页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
 <h3 id="部署以及访问"><a href="#部署以及访问" class="headerlink" title="部署以及访问"></a><strong>部署以及访问</strong></h3><h4 id="部署前的设置"><a href="#部署前的设置" class="headerlink" title="部署前的设置"></a>部署前的设置</h4><p>如下图所示，从<span class="label success">IntelliJ IDEA</span>工具栏的这里，选<code>Edit Configurations...</code>就可以查看<span class="label info">Tomcat</span>的设置。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_tomcat-config-toolbar.png" alt="从工具栏打开Tomcat设置窗口" title="从工具栏打开Tomcat设置窗口">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_tomcat-config-toolbar.png" title="从工具栏打开Tomcat设置窗口">
 <p>如果还没有<span class="label info">Tomcat</span>实例，那可以先点左上角的<code>+</code>按钮创建，并且给它命名。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_6.png" alt="Tomcat Server配置" title="Tomcat Server配置">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_6.png" title="Tomcat Server配置">
 <p>接着在右边的<code>Server</code>选项卡点<code>Configure...</code>，就会出现以下这个窗口，这里指定Tomcat具体在哪。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_5.png" alt="Tomcat目录" title="Tomcat目录">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_5.png" title="Tomcat目录">
 <p>然后在<code>Deployment</code>选项卡处添加你将要部署到<span class="label info">Tomcat</span>的Web应用。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_7.png" alt="部署Web应用子窗口" title="部署Web应用子窗口">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_7.png" title="部署Web应用子窗口">
 <p>这个是用于部署Web应用的选项卡界面，其中一些功能点：</p>
 <ul>
 <li>旁边那个<code>+</code>按钮就是添加所要部署的Web应用的按钮，反之<code>-</code>按钮就是移除已经部署的Web应用。</li>
 <li>右边<code>Application context</code>项是配置该Web应用的访问路径，<code>/</code>就代表着该Web应用。</li>
 </ul>
-<p>从这里也可以看出：<br>默认什么都不做的情况下，其实只要配置好<span class="label info">Tomcat</span>，Web应用就已经自动地被添加到部署栏上，即<span class="label success">IntelliJ IDEA</span>自动把部署配置都给弄好了。<br><div class="note warning"><font style="font-size: 13px"><strong>如果不是从头开始新建项目而是导入项目的话，这些设置是不会帮你做好的，你需要自己进行配置。</strong></font></div></p>
+<p>从这里也可以看出：<br>默认什么都不做的情况下，其实只要配置好<span class="label info">Tomcat</span>，Web应用就已经自动地被添加到部署栏上，即<span class="label success">IntelliJ IDEA</span>自动把部署配置都给弄好了。<br><div class="note warning">
+            <font style="font-size: 13px"><strong>如果不是从头开始新建项目而是导入项目的话，这些设置是不会帮你做好的，你需要自己进行配置。</strong></font>
+          </div></p>
 <p>并且，这个<code>Deployment</code>选项卡是不是看起来有些熟悉？其实这跟<span class="label primary">MyEclipse</span>里面部署Web应用的这个界面差不多。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_deploy_page_in_MyEclipse.png" alt="MyEclipse部署Web应用的界面" title="MyEclipse部署Web应用的界面">
-<h4 id="运行Tomcat"><a href="#运行Tomcat" class="headerlink" title="运行Tomcat"></a>运行Tomcat</h4><p>现在什么都不用去做，直接点那个绿色的三角形<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_run_tomcat_button.png" alt="启动Tomcat按钮" title="启动Tomcat按钮">运行Tomcat，并访问<code>a.html</code>或<code>b.html</code>页面。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_tomcat_visit_page.png" alt="访问a页面的效果" title="访问a页面的效果">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_deploy_page_in_MyEclipse.png" title="MyEclipse部署Web应用的界面">
+<h4 id="运行Tomcat"><a href="#运行Tomcat" class="headerlink" title="运行Tomcat"></a>运行Tomcat</h4><p>现在什么都不用去做，直接点那个绿色的三角形<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_run_tomcat_button.png" title="启动Tomcat按钮">运行Tomcat，并访问<code>a.html</code>或<code>b.html</code>页面。</p>
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_tomcat_visit_page.png" title="访问a页面的效果">
 <p>如果把<code>Deployment</code>子界面中的访问路径配置成<code>/first-web-app</code>。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_change_path.png" alt="重新配置访问路径" title="重新配置访问路径">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_change_path.png" title="重新配置访问路径">
 <p>那么访问<code>a.html</code>的路径将是<code>http://localhost:8080/first-web-app/a.html</code>。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_after_change_path.png" alt="访问a页面的路径也发生变化" title="访问a页面的路径也发生变化">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_after_change_path.png" title="访问a页面的路径也发生变化">
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a><strong>问题</strong></h2><h3 id="构件在哪？"><a href="#构件在哪？" class="headerlink" title="构件在哪？"></a><strong><font color="red">构件在哪？</font></strong></h3><p>到现在，一切都非常顺利，整体操作运作起来跟使用<span class="label primary">Eclipse/MyEclipse</span>无异，在说问题之前，先来回顾一下<a href="http://extremegtr.github.io/2017/07/26/Tomcat-deploy-web-app/">部署Web应用到Tomcat的几种方式</a>。</p>
 <p>此刻，如果你想看一下所部署到<span class="label info">Tomcat</span>的Web应用，那你就会发现问题所在：</p>
 <ul>
 <li>在Tomcat的<code>${CATALINA_BASE}/webapps</code>目录内根本找不到我们所部署的这个Web应用</li>
 <li>在<code>$CATALINA_BASE/conf/Catalina/localhost</code>也找不到任何与这个Web应用相关的xml配置文件</li>
 </ul>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_no_webapp_in_tomcat.png" alt="Web应用不在webapps" title="Web应用不在webapps">
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_no_webapp_in_tomcat_2.png" alt="没有Web应用对应的xml文件" title="没有Web应用对应的xml文件">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_no_webapp_in_tomcat.png" title="Web应用不在webapps">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_no_webapp_in_tomcat_2.png" title="没有Web应用对应的xml文件">
 <p><strong>问题：<span class="label info">Tomcat</span>运行起来，Web应用已经可以被我们访问了，这证明部署成功了，但却在<span class="label info">Tomcat</span>里找不到它的踪影，这是最奇怪的。</strong><br><br></p>
 <h4 id="揭开谜团"><a href="#揭开谜团" class="headerlink" title="揭开谜团"></a><strong><font color="#0072E3">揭开谜团</font></strong></h4><p>　　其实想要知道所访问的Web应用被<span class="label success">IntelliJ IDEA</span>放到哪方法很简单，之前所写的那个<code>FirstServlet</code>正是为此而准备的，访问它就会显示该Web应用所部署在的真实路径。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_visit_servlet.png" alt="显示Web应用所在的路径" title="显示Web应用所在的路径">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_visit_servlet.png" title="显示Web应用所在的路径">
 <p>从路径上看，<span class="label success">IntelliJ IDEA</span>把应部署给<span class="label info">Tomcat</span>的Web应用放在了默认编译输出路径<code>&lt;project_folder&gt;/out</code>目录里，只不过多了1级子目录<code>artifacts</code>。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_webapp_real_path.png" alt="Web应用就在这" title="Web应用就在这">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_webapp_real_path.png" title="Web应用就在这">
 <p>　　关于这个，<span class="label primary">MyEclipse</span>与之比较起来就很不同了，<span class="label primary">MyEclipse</span>对普通Java项目的编译输出就像是<span class="label success IntelliJ IDEA"></span>一样，只不过<span class="label primary">MyEclipse</span>默认是把编译好的字节码文件都放到对应工程目录内的<code>bin</code>，但Web项目，<span class="label primary">MyEclipse</span>把字节码放到<code>bin</code>，但里面的字节码并不是部署的Web应用运行时所用到的字节码。默认情况下，<span class="label primary">MyEclipse</span>部署Web应用到<span class="label info">Tomcat</span>时会把字节码以及Web应用的其他各种资源拷贝到<code>${CATALINA_BASE}/webapps</code>以Web项目名命名的文件夹内。</p>
 <p>当然，你可以通过<code>Project Structure</code>配置窗口对项目构件在构建时的输出路径进行配置，将构件的输出目录配置为<span class="label info">Tomcat</span>的<code>webapps</code>目录。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_output_settings.png" alt="配置项目结构" title="配置项目结构">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_output_settings.png" title="配置项目结构">
 <p>其实<span class="label primary">MyEclipse</span>也有同样的配置窗口，只不过我们一般也很少去动它，都是用默认值。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_myeclipse_deploy_settings.png" alt="MyEclipse里差不多的配置" title="MyEclipse里差不多的配置">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_myeclipse_deploy_settings.png" title="MyEclipse里差不多的配置">
 <p><br></p>
 <h3 id="如何部署？"><a href="#如何部署？" class="headerlink" title="如何部署？"></a><strong><font color="red">如何部署？</font></strong></h3><p>　　通过上面这些细节，我们搞清楚了<span class="label success">IntelliJ IDEA</span>把已经部署到<span class="label info">Tomcat</span>的Web应用构件放在了<code>&lt;project_folder&gt;/out/artifacts</code>，但这还是有一个问题，现在只是知道构件放哪了，还不知道<span class="label success">IntelliJ IDEA</span>是如何让该构件部署到<span class="label info">Tomcat</span>上的，更直白地说是不知道<span class="label success">IntelliJ IDEA</span>如何让该构件与<span class="label info">Tomcat</span>关联起来。</p>
 <p>答案隐藏在<span class="label info">Tomcat</span>启动时<span class="label success">IntelliJ IDEA</span>控制台的信息里。在当我们通过<span class="label success">IntelliJ IDEA</span>启动<span class="label info">Tomcat</span>时，控制台就会打印出以下这些信息：</p>
@@ -690,12 +667,12 @@ JVM Vendor:            Oracle Corporation
 CATALINA_BASE:         C:\Users\plaYwiThsouL\.IntelliJIdea2017.2\system\tomcat\Tomcat_8_5_16_PracticeDeploy
 CATALINA_HOME:         G:\apache-tomcat-8.5.16
 </code></pre><p>其中有几条都出现了同一个目录的路径，这是关键信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Users\plaYwiThsouL\.IntelliJIdea2017.2\system\tomcat\Tomcat_8_5_16_PracticeDeploy</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\plaYwiThsouL\.IntelliJIdea2017.2\system\tomcat\Tomcat_8_5_16_PracticeDeploy</span><br></pre></td></tr></table></figure>
 <p>打开它可以看到以下这些内容：</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_deploy_1.png" alt="IntelliJ IDEA创建的Tomcat实例" title="IntelliJ IDEA创建的Tomcat实例">
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_deploy_2.png" alt="xml文件" title="xml文件">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_deploy_1.png" title="IntelliJ IDEA创建的Tomcat实例">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_deploy_2.png" title="xml文件">
 <p>而这个<code>first-web-app.xml</code>文件的内容：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/first-web-app"</span> <span class="attr">docBase</span>=<span class="string">"G:\IdeaProjects\PracticeDeploy\out\artifacts\first_web_app_war_exploded"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/first-web-app"</span> <span class="attr">docBase</span>=<span class="string">"G:\IdeaProjects\PracticeDeploy\out\artifacts\first_web_app_war_exploded"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>　　从这个现象来看，<span class="label success">IntelliJ IDEA</span>所用的部署方式还是沿用<a href="http://extremegtr.github.io/2017/07/26/Tomcat-deploy-web-app/#u65B9_u5F0F_u4E09_uFF1A_u5728_24CATALINA_BASE/conf/Catalina/localhost_u6DFB_u52A0_u4E00_u4E2AXML_u6587_u4EF6_u5E76_u8FDB_u884C_u914D_u7F6E">那篇文章所讲的第三种方式</a>。但却又有所不同，因为这个目录并不在<span class="label info">Tomcat</span>的安装目录内，所以这时那就要看<a href="http://extremegtr.github.io/2017/07/29/Tomcat-multiple-instances/">这篇文章</a>进一步补充了。</p>
 <p><strong>综上所述，<span class="label success">IntelliJ IDEA</span>是结合<span class="label info">Tomcat</span>多实例的方式来部署每一个Web应用的。</strong></p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a><strong>小结</strong></h2><p>在Windows下，当我们创建了Web项目时，<span class="label success">IntelliJ IDEA</span>在默认情况下都会遵循这两个步骤：</p>
@@ -718,7 +695,7 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 </ul>
 <p>这样看下来，<span class="label success">IntelliJ IDEA</span>对于构建部署Web应用的步骤也不算特别复杂，就是和我们所习惯的<span class="label primary Eclipse/MyEclipse"></span>不同而已。</p>
 <h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><p>现在开发项目基本都用<span class="label info">Maven</span>了，不用<span class="label info">Maven</span>那就是落伍甚至给自己找麻烦。</p>
-<h3 id="不用Maven的情形"><a href="#不用Maven的情形" class="headerlink" title="不用Maven的情形"></a>不用Maven的情形</h3><p>添加额外的jar并使用它，按照开发Java Web最常规的做法就是在<code>WEB-INF</code>新建一个<code>lib</code>目录，然后将所想要的jar复制到那里。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_1.png" alt="将jar放到lib中" title="将jar放到lib中"></p>
+<h3 id="不用Maven的情形"><a href="#不用Maven的情形" class="headerlink" title="不用Maven的情形"></a>不用Maven的情形</h3><p>添加额外的jar并使用它，按照开发Java Web最常规的做法就是在<code>WEB-INF</code>新建一个<code>lib</code>目录，然后将所想要的jar复制到那里。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_1.png" title="将jar放到lib中"></p>
 <p>不遵照这个约定也是可以的，直接通过<span class="label success">IntelliJ IDEA</span>添加额外的jar或库，但这种约定还是遵照着做才是最好的。</p>
 <p>正如<span class="label primary Eclipse/MyEclipse"></span>那样，这里光复制<code>dom4j-2.0.0.jar</code>到<code>WEB-INF/lib</code>内还是不能用的，还必须进行额外的设置，让它成为该模块的依赖：</p>
 <ul>
@@ -727,29 +704,29 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 <li>选右边的<code>Dependencies</code>子窗口，点击<code>+</code>按钮选择<code>JARs or directories</code>，添加本模块下<code>WEB-INF/lib</code></li>
 </ul>
 <p>这里所有操作的思路和使用<span class="label primary">Eclipse/MyEclipse</span>的思路是基本一致的，出来的效果如下图：</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_2.png" alt="添加外部依赖" title="添加外部依赖">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_2.png" title="添加外部依赖">
 <p>但光这样还不够，在构建后，输出目录里根本就没有包含我们所添加的这个依赖目录<code>WEB-INF/lib</code>。</p>
 <p>所以，必须在<code>Project Structure</code>的<code>Artifacts</code>子选项对应的界面进行额外的配置。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_3.png" alt="在此处把WEB-INF/lib配置上" title="在此处把WEB-INF/lib配置上">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_3.png" title="在此处把WEB-INF/lib配置上">
 <p>从上图我们可以看到<span class="label success">IntelliJ IDEA</span>非常人性化地提示我们必须给这个模块的构件添加上<code>lib</code>库，做法很简单：</p>
 <ul>
-<li>方式1：看见右下角那个<code>Fix</code>按钮了吗？点一下然后再选第一个，这就可以把<code>lib</code>添加到构件里去了。<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_4.png" alt="点Fix" title="点Fix">
-<code>Available Elements</code>里面所显示的都是未被添加到构件的内容。在部署并运行Web应用前必须先到这里查看还有什么遗漏的内容未添加到构件中。<br>至于要知道在此处进行什么操作来进行内容添加则更好办了，点<code>Available Elements</code>旁边的<code>?</code>就会显示方式了。<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_5.png" alt="添加方式的描述" title="添加方式的描述">比如这里显示了一个还未被添加到构件的<code>dom4j-2.0.0.jar</code>，那么只需要在<code>Available Elements</code>进行这3种操作的其中1种：<br>- 双击<code>dom4j-2.0.0.jar</code><br>- 按着<code>dom4j-2.0.0</code>不动将其拖过去左边构件目录结构那一栏里的你所期望的目录，当然还是要先创建<code>lib</code>子目录<br>- 右键单击<code>根目录</code>或<code>dom4j-2.0.0.jar</code>，在弹出菜单选中<code>Put into Output Root</code><br>  <img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_6.png" alt="Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_6.png" title="">
+<li>方式1：看见右下角那个<code>Fix</code>按钮了吗？点一下然后再选第一个，这就可以把<code>lib</code>添加到构件里去了。<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_4.png" title="点Fix">
+<code>Available Elements</code>里面所显示的都是未被添加到构件的内容。在部署并运行Web应用前必须先到这里查看还有什么遗漏的内容未添加到构件中。<br>至于要知道在此处进行什么操作来进行内容添加则更好办了，点<code>Available Elements</code>旁边的<code>?</code>就会显示方式了。<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_5.png" title="添加方式的描述">比如这里显示了一个还未被添加到构件的<code>dom4j-2.0.0.jar</code>，那么只需要在<code>Available Elements</code>进行这3种操作的其中1种：<br>- 双击<code>dom4j-2.0.0.jar</code><br>- 按着<code>dom4j-2.0.0</code>不动将其拖过去左边构件目录结构那一栏里的你所期望的目录，当然还是要先创建<code>lib</code>子目录<br>- 右键单击<code>根目录</code>或<code>dom4j-2.0.0.jar</code>，在弹出菜单选中<code>Put into Output Root</code><br>  <img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_6.png">
 </li>
 </ul>
 <p>内容添加完成后，构件输出目录就成了这样了。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_7.png" alt="成功把lib添加到构件中" title="成功把lib添加到构件中">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_lib_7.png" title="成功把lib添加到构件中">
 <p>现在一切都准备好了，可以写代码了，这里同样写一个Servlet。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> org.makwan.servlet;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.dom4j.Document;</div><div class="line"><span class="keyword">import</span> org.dom4j.DocumentHelper;</div><div class="line"><span class="keyword">import</span> org.dom4j.Element;</div><div class="line"><span class="keyword">import</span> org.dom4j.io.OutputFormat;</div><div class="line"><span class="keyword">import</span> org.dom4j.io.XMLWriter;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.servlet.ServletException;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</div><div class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</div><div class="line">        Document document = DocumentHelper.createDocument();</div><div class="line">        Element rootElt = DocumentHelper.createElement(<span class="string">"root"</span>);</div><div class="line">        document.add(rootElt);</div><div class="line">        rootElt.addElement(<span class="string">"a"</span>).setText(<span class="string">"test data - 测试数据"</span>);</div><div class="line"></div><div class="line">        resp.setContentType(<span class="string">"text/xml; charset=utf-8"</span>);</div><div class="line"></div><div class="line">        XMLWriter xmlWriter = <span class="keyword">new</span> XMLWriter(</div><div class="line">            resp.getWriter(),</div><div class="line">            OutputFormat.createPrettyPrint()</div><div class="line">        );</div><div class="line">        xmlWriter.write(document);</div><div class="line">        xmlWriter.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.makwan.servlet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.dom4j.Document;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.DocumentHelper;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.Element;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.io.OutputFormat;</span><br><span class="line"><span class="keyword">import</span> org.dom4j.io.XMLWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        Document document = DocumentHelper.createDocument();</span><br><span class="line">        Element rootElt = DocumentHelper.createElement(<span class="string">"root"</span>);</span><br><span class="line">        document.add(rootElt);</span><br><span class="line">        rootElt.addElement(<span class="string">"a"</span>).setText(<span class="string">"test data - 测试数据"</span>);</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">"text/xml; charset=utf-8"</span>);</span><br><span class="line"></span><br><span class="line">        XMLWriter xmlWriter = <span class="keyword">new</span> XMLWriter(</span><br><span class="line">            resp.getWriter(),</span><br><span class="line">            OutputFormat.createPrettyPrint()</span><br><span class="line">        );</span><br><span class="line">        xmlWriter.write(document);</span><br><span class="line">        xmlWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在<code>web.xml</code>对它进行相关的配置。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SecondServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.makwan.servlet.SecondServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SecondServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/secondServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SecondServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.makwan.servlet.SecondServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>SecondServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/secondServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>启动<span class="label info">Tomcat</span>访问该Servlet的运行结果，一切正常运作完全没问题。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_visit_second_servlet.png" alt="访问第二个Servlet" title="访问第二个Servlet">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_visit_second_servlet.png" title="访问第二个Servlet">
 <h3 id="使用Maven"><a href="#使用Maven" class="headerlink" title="使用Maven"></a><font color="red">使用Maven</font></h3><p>　　开发简单玩具性质的小项目，纯手工管理<code>jar</code>和构建确实可以，但如果开发大项目则不行了，因为需要依赖的<code>jar</code>太多了，它们的版本以及之间的关系也非常复杂，不用<span class="label info">Maven</span>管理是不行了，并且，<span class="label info">Maven</span>可以在构建这块也有非常大的作用。</p>
 <h4 id="添加Maven支持"><a href="#添加Maven支持" class="headerlink" title="添加Maven支持"></a><font color="#0072E3">添加Maven支持</font></h4><p>现在就把这个<code>first-web-app</code>加上<span class="label info">Maven</span>的支持，方法很简单：右键选该模块，选择弹出菜单中的<code>Add Framework Support...</code>。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_add_maven.png" alt="选中加入Maven的支持" title="选中加入Maven的支持">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_add_maven.png" title="选中加入Maven的支持">
 <p>加入Maven支持后，<code>first-web-app</code>模块的目录就会变成这样了。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_1.png" alt="目录结构" title="目录结构">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_1.png" title="目录结构">
 <h4 id="自定义目录结构"><a href="#自定义目录结构" class="headerlink" title="自定义目录结构"></a><font color="#0072E3">自定义目录结构</font></h4><p>在<span class="label success">IntelliJ IDEA</span>中给Web项目加入<span class="label info">Maven</span>支持后，项目并非完全遵守<span class="label info">Maven</span>默认约定的目录结构：除了存放Web应用的目录外，其他默认都是遵守的。</p>
 <p>但按照我的个人习惯（估计大多数人？），特别是用于存放项目源码、资源文件、测试源码的目录都不会遵照<span class="label info">Maven</span>的约定：</p>
 <ul>
@@ -758,103 +735,105 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 </ul>
 <p>所以我们可以在<code>pom.xml</code>对这些不遵照约定的目录进行配置，不遵守约定那肯定得多花些功夫，幸好这些配置还是挺简单的。</p>
 <p>针对该模块，我们只需配置源码目录即可。此处将源码目录配置为<code>src</code>。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="tag">&lt;<span class="name">sourceDirectory</span>&gt;</span>$&#123;basedir&#125;/src<span class="tag">&lt;/<span class="name">sourceDirectory</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">sourceDirectory</span>&gt;</span>$&#123;basedir&#125;/src<span class="tag">&lt;/<span class="name">sourceDirectory</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>配置完了还不行，要把那些类以及包含它们的包目录一并移动到<code>src</code>之下，至于Maven所生成的那些默认目录可以删除了，这里还用不上。</p>
 <h4 id="用Maven管理依赖"><a href="#用Maven管理依赖" class="headerlink" title="用Maven管理依赖"></a><font color="#0072E3">用Maven管理依赖</font></h4><p>首先我们把<code>WEB-INF/lib</code>删掉，然后在<code>Project Structure</code>内把它以及IDE添加的Servlet与JSP的依赖<span class="label info">Tomcat</span>库都移除。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_2.png" alt="移除依赖" title="移除依赖">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_2.png" title="移除依赖">
 <p>接着肯定是在<code>pom.xml</code>中配置上刚才所移除的那些依赖。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet.jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.dom4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dom4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet.jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.dom4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dom4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>构件输出这里也必须进行必要的配置。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_3.png" alt="删除构件输出目录中的依赖" title="删除构件输出目录中的依赖">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_3.png" title="删除构件输出目录中的依赖">
 <p>那现在整个模块的目录就成了这样了。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_4.png" alt="目录结构" title="目录结构">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_4.png" title="目录结构">
 <p><br></p>
 <h4 id="尝试构建并运行"><a href="#尝试构建并运行" class="headerlink" title="尝试构建并运行"></a><font color="#0072E3">尝试构建并运行</font></h4><p>现在还不能使用<span class="label info">Maven</span>对模块进行构建，因为编译时有可能会出问题，因为<span class="label info">Maven</span>编译插件的版本过低，因此还是需要进行编译插件的配置。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    ...</div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行<span class="label info">Maven</span>的<code>compile</code>这样就把模块给编译构建好了，然后按照最开始那样部署到<span class="label info">Tomcat</span>然后运行它。</p>
 <p>你会发现基本上都可以正常访问了，唯独一个使用了第三方jar<code>dom4j</code>那个Servlet不能正常访问。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_5.png" alt="找不到类" title="找不到类">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_5.png" title="找不到类">
 <p>这是因为之前在构件输出目录的配置界面把手工添加的<code>WEB-INF/lib</code>给删除了，而<span class="label info">Maven</span>虽然可以很方便地管理依赖，但仍要由你决定是否进行添加。</p>
 <p>此时还是要到<code>Project Structure</code>中对构件进一步地配置：把我们在<span class="label info">Maven</span>配置的依赖都添加到输出目录中。</p>
-<p>可以看到，还有两个Maven依赖还没添加到构件的输出目录中。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_6.png" alt="还没添加" title="还没添加"></p>
+<p>可以看到，还有两个Maven依赖还没添加到构件的输出目录中。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_6.png" title="还没添加"></p>
 <p>添加方法也是跟以前那样，添加之后是这样的。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_7.png" alt="添加后" title="添加后">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_7.png" title="添加后">
 <p>IDE会自动地将所需的依赖都输出到<code>WEB-INF/lib</code>中，注意，我们并没有创建<code>WEB-INF/lib</code>的实际目录，这里显示的只是构建后构件的目录。</p>
 <p>现在就运行Tomcat，再访问这个使用了<code>dom4j</code>的Servlet，现在就可以正常访问了。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_8.png" alt="添加后" title="添加后">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_8.png" title="添加后">
 <h2 id="Maven配置与IDE设置"><a href="#Maven配置与IDE设置" class="headerlink" title="Maven配置与IDE设置"></a><font color="#9B30FF">Maven配置与IDE设置</font></h2><p>　　我们可以通过<span class="label success">IntelliJ IDEA</span>的一些设置对Web项目进行配置，同样地，我们也可以通过<span class="label info">Maven</span>来对Web项目相同的点进行配置，那么它们两者的关系到底是如何的呢？更具体来说，我们有没有必要同时两个都进行配置，因为这里面的工作大多数都是重复的，搞清楚了会让开发更加得心应手。<br>　　为了不与之前的演示混淆而让演示更加复杂化，在此从新创建一个Web模块作为演示，也便于复习一下前面所演示的步骤。</p>
-<h3 id="演示起始"><a href="#演示起始" class="headerlink" title="演示起始"></a>演示起始</h3><h4 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a><font color="#0072E3">创建模块</font></h4><p>按照之前所说的步骤一样，首先创建一个<code>Web Application</code>项目，在这我把这个模块命名为<code>second-web-app</code><br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_9.png" alt="新建一个Web模块" title="新建一个Web模块">现在<code>second-web-app</code>只是一个普通的Web应用模块，还没有添加<span class="label info">Maven</span>的支持。</p>
-<h4 id="添加Maven支持-1"><a href="#添加Maven支持-1" class="headerlink" title="添加Maven支持"></a><font color="#0072E3">添加Maven支持</font></h4><p>给<code>second-web-app</code>添加<span class="label info">Maven</span>支持：鼠标右击该模块，选中<code>Add Frameworks Support...</code>，在左边的列表选中Maven，然后点<code>OK</code>确定即可。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_10.png" alt="选中Maven模块" title="选中Maven模块"></p>
+<h3 id="演示起始"><a href="#演示起始" class="headerlink" title="演示起始"></a>演示起始</h3><h4 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a><font color="#0072E3">创建模块</font></h4><p>按照之前所说的步骤一样，首先创建一个<code>Web Application</code>项目，在这我把这个模块命名为<code>second-web-app</code><br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_9.png" title="新建一个Web模块">现在<code>second-web-app</code>只是一个普通的Web应用模块，还没有添加<span class="label info">Maven</span>的支持。</p>
+<h4 id="添加Maven支持-1"><a href="#添加Maven支持-1" class="headerlink" title="添加Maven支持"></a><font color="#0072E3">添加Maven支持</font></h4><p>给<code>second-web-app</code>添加<span class="label info">Maven</span>支持：鼠标右击该模块，选中<code>Add Frameworks Support...</code>，在左边的列表选中Maven，然后点<code>OK</code>确定即可。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_10.png" title="选中Maven模块"></p>
 <p>做到这一步你会发现模块的目录结构没有任何变化，其实现在还没算真正地让<span class="label info">Maven</span>管理该模块的，还必须做点微小的工作。</p>
-<p>加入<span class="label info">Maven</span>后，<span class="label success">IntelliJ IDEA</span>右下角会弹出一个提示：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_11.png" alt="Maven prompt" title="Maven prompt">点<code>Import Changes</code>即可，如果你不小心把那个提示关掉也无所谓，在<code>pom.xml</code>文件中点右键选<code>Maven</code>中的<code>Reimport</code>：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_12.png" alt="reimport" title="reimport"></p>
-<h4 id="初步结果"><a href="#初步结果" class="headerlink" title="初步结果"></a><font color="#0072E3">初步结果</font></h4><p>添加<span class="label info">Maven</span>支持后，该模块的目录结构就成这样了：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_13.png" alt="添加Maven支持后的目录结构" title="添加Maven支持后的目录结构"><br>并且<code>pom.xml</code>文件的内容是这样的，当然，该模块的<code>grouId</code>和<code>artifactId</code>以及<code>version</code>三巨头你可以根据自己来进行修改：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></div><div class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>   </div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.makwan.deploy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>second-web-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>加入<span class="label info">Maven</span>后，<span class="label success">IntelliJ IDEA</span>右下角会弹出一个提示：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_11.png" title="Maven prompt">点<code>Import Changes</code>即可，如果你不小心把那个提示关掉也无所谓，在<code>pom.xml</code>文件中点右键选<code>Maven</code>中的<code>Reimport</code>：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_12.png" title="reimport"></p>
+<h4 id="初步结果"><a href="#初步结果" class="headerlink" title="初步结果"></a><font color="#0072E3">初步结果</font></h4><p>添加<span class="label info">Maven</span>支持后，该模块的目录结构就成这样了：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_13.png" title="添加Maven支持后的目录结构"><br>并且<code>pom.xml</code>文件的内容是这样的，当然，该模块的<code>grouId</code>和<code>artifactId</code>以及<code>version</code>三巨头你可以根据自己来进行修改：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span>   </span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.makwan.deploy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>second-web-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="查看IDE中的设置"><a href="#查看IDE中的设置" class="headerlink" title="查看IDE中的设置"></a>查看IDE中的设置</h3><p>　　我们先不急着对<span class="label info">Maven</span>的<code>pom.xml</code>文件进行配置，首要是查看<span class="label success">IntelliJ IDEA</span>对该模块在<code>Project Structure</code>中各种默认设置是如何的。但现在必须知道的一点是：<strong>虽然我们添加了<span class="label info">Maven</span>支持并且目录结构也产生了变化，但<code>web</code>这个目录其实还是没遵守<span class="label info">Maven</span>的约定的，它依然是保持着<span class="label success">IntelliJ IDEA</span>默认的约定。<font color="red">更确定地说，<code>Project Structure</code>中的很多设置其实还是遵守未添加<font color="#555"><span class="label info">Maven</span></font>支持前<font color="#555"><span class="label success">IntelliJ IDEA</span></font>默认的约定。</font></strong></p>
-<h4 id="项目设置"><a href="#项目设置" class="headerlink" title="项目设置"></a><font color="#0072E3">项目设置</font></h4><p>首先来看<code>Project</code>中的设置<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_14.png" alt="Project" title="Project">这里确实没什么好说的了，最主要就是设置项目名和项目编译输出目录，其余两项设置得不多，根据自己使用的JDK版本来设置就行了。</p>
+<h4 id="项目设置"><a href="#项目设置" class="headerlink" title="项目设置"></a><font color="#0072E3">项目设置</font></h4><p>首先来看<code>Project</code>中的设置<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_14.png" title="Project">这里确实没什么好说的了，最主要就是设置项目名和项目编译输出目录，其余两项设置得不多，根据自己使用的JDK版本来设置就行了。</p>
 <p><br></p>
 <h4 id="模块设置"><a href="#模块设置" class="headerlink" title="模块设置"></a><font color="#0072E3">模块设置</font></h4><p>然后到查看<code>Modules</code>中的设置，这里的设置都很关键，必须要集中精神看清楚，在这里有十分多个细节点是需要我们关注的。</p>
 <ul>
-<li><p><code>second-web-app</code>模块的<code>Sources</code>选项卡<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_15.png" alt="Sources" title="Sources">这个选项卡，最重要的就是可以让我们自定义项目的目录结构，并且指定这个某个目录结构到底是什么成分。</p>
+<li><p><code>second-web-app</code>模块的<code>Sources</code>选项卡<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_15.png" title="Sources">这个选项卡，最重要的就是可以让我们自定义项目的目录结构，并且指定这个某个目录结构到底是什么成分。</p>
 </li>
-<li><p><code>second-web-app</code>模块的<code>Paths</code>选项卡<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_16.png" alt="Paths" title="Paths">这里没什么特别，主要就是设置本模块的编译输出目录。</p>
+<li><p><code>second-web-app</code>模块的<code>Paths</code>选项卡<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_16.png" title="Paths">这里没什么特别，主要就是设置本模块的编译输出目录。</p>
 </li>
-<li><p><code>second-web-app</code>模块的<code>Dependencies</code>选项卡<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_17.png" alt="Dependencies" title="Dependencies">为该模块添加或删除依赖的就在这里进行设置。</p>
+<li><p><code>second-web-app</code>模块的<code>Dependencies</code>选项卡<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_17.png" title="Dependencies">为该模块添加或删除依赖的就在这里进行设置。</p>
 </li>
 </ul>
 <p><br></p>
-<h4 id="库设置"><a href="#库设置" class="headerlink" title="库设置"></a><font color="#0072E3">库设置</font></h4><p>接着看到<code>Libraries</code>。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_18.png" alt="Libraries" title="Libraries">现在没有引入任何第三方的jar或库，所以这里是空空如也。</p>
+<h4 id="库设置"><a href="#库设置" class="headerlink" title="库设置"></a><font color="#0072E3">库设置</font></h4><p>接着看到<code>Libraries</code>。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_18.png" title="Libraries">现在没有引入任何第三方的jar或库，所以这里是空空如也。</p>
 <p><br></p>
-<h4 id="构面设置"><a href="#构面设置" class="headerlink" title="构面设置"></a><font color="#0072E3">构面设置</font></h4><p>再来看到<code>Facets</code><br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_19.png" alt="Facets" title="Facets">光看这个选项<code>Facets</code>这个单词的字面意思：<code>面</code>、<code>方面</code>、<code>琢面</code>、<code>刻面</code>等，我们根本不知道这一块到底是什么意思。</p>
-<p>同时，细心的话你可以发现在<code>Modules</code>中是有一模一样的设置界面的：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_20.png" alt="Facets In Modules" title="Facets In Modules"></p>
-<p>当我们对一种技术有疑惑摸不着头脑的时候其实最好就是去<a href="https://www.jetbrains.com/help/idea/facet-page.html" target="_blank" rel="external">官网</a>看看有没有权威的解释，以下就是<span class="label success">IntelliJ IDEA</span>官方文档对<code>Facets</code>的解释：<br><div class="note info"><font style="font-size: 15px"><strong>When you select a framework (a facet) in the element selector pane, the settings for the framework are shown in the right-hand part of the dialog.<br>当你在元素选择窗格中选择一个框架（一个<font color="#9B30FF">构面</font>）时，框架的各种设置将显示在对话框中右侧部分。</strong></font></div>看完了这段解释再看看IDE的所拥有的这个功能：其实我们可以在该对话框内为这个模块添加其他框架（<font color="#9B30FF"><strong>构面</strong></font>）。<br>正如下图所示，在这两处我们都可以为模块进行这种操作：<br>在<code>Modules</code>中点那个<code>+</code>添加按钮，在弹出的小浮窗中有很多框架技术，它们都是可以让你添加到该模块的框架。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_21.png" alt="在Modules中进行添加" title="在Modules中进行添加"><br>在<code>Facets</code>中同样是点那个<code>+</code>添加按钮，也是有同样的效果。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_22.png" alt="在Facets中进行添加" title="在Facets中进行添加"></p>
+<h4 id="构面设置"><a href="#构面设置" class="headerlink" title="构面设置"></a><font color="#0072E3">构面设置</font></h4><p>再来看到<code>Facets</code><br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_19.png" title="Facets">光看这个选项<code>Facets</code>这个单词的字面意思：<code>面</code>、<code>方面</code>、<code>琢面</code>、<code>刻面</code>等，我们根本不知道这一块到底是什么意思。</p>
+<p>同时，细心的话你可以发现在<code>Modules</code>中是有一模一样的设置界面的：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_20.png" title="Facets In Modules"></p>
+<p>当我们对一种技术有疑惑摸不着头脑的时候其实最好就是去<a href="https://www.jetbrains.com/help/idea/facet-page.html" target="_blank" rel="noopener">官网</a>看看有没有权威的解释，以下就是<span class="label success">IntelliJ IDEA</span>官方文档对<code>Facets</code>的解释：<br><div class="note info">
+            <font style="font-size: 15px"><strong>When you select a framework (a facet) in the element selector pane, the settings for the framework are shown in the right-hand part of the dialog.<br>当你在元素选择窗格中选择一个框架（一个<font color="#9B30FF">构面</font>）时，框架的各种设置将显示在对话框中右侧部分。</strong></font>
+          </div>看完了这段解释再看看IDE的所拥有的这个功能：其实我们可以在该对话框内为这个模块添加其他框架（<font color="#9B30FF"><strong>构面</strong></font>）。<br>正如下图所示，在这两处我们都可以为模块进行这种操作：<br>在<code>Modules</code>中点那个<code>+</code>添加按钮，在弹出的小浮窗中有很多框架技术，它们都是可以让你添加到该模块的框架。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_21.png" title="在Modules中进行添加"><br>在<code>Facets</code>中同样是点那个<code>+</code>添加按钮，也是有同样的效果。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_22.png" title="在Facets中进行添加"></p>
 <p>综上所述：<strong><code>Facets</code>就是<font color="#9B30FF">构面</font>，结合上下文环境具体来讲<font color="#9B30FF">构面</font>指的是<font color="#0072E3">模块构成的技术层面</font>，即<font color="#0072E3">模块是由哪些框架、技术来构成的</font>。</strong></p>
 <p><br></p>
 <h4 id="构件设置"><a href="#构件设置" class="headerlink" title="构件设置"></a><font color="#0072E3">构件设置</font></h4><p>最后，看构件（<code>Artifacts</code>）这块的设置了，这块的设置是比较重要的。</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_23.png" alt="Artifacts" title="Artifacts">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_23.png" title="Artifacts">
 <p>此处有几个要点要讲：</p>
 <ol>
-<li>构件类型<br>如果像我们这样中途才加入<span class="label info">Maven</span>支持，那么该Web应用对应的只有<code>Web Application: Exploded</code>这一种类型的构件。<br><code>Web Application: Exploded</code>表示这是一个<strong><font color="#9B30FF">分解的构件</font></strong>，通俗来说就是这个构件不打包，构件所有内容用一个文件夹来装着，这是默认的构件类型。<br>当然，我们也可以在这手工地添加上被打包的构件：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_24.png" alt="在此处添加其他类型的构件" title="在此处添加其他类型的构件">我们在这看到很多构件类型，其中与<code>Web Application: Exploded</code>对应的是<code>Web Application: Archive</code>，即打包的构件，构件当然是一个<code>war</code>包。</li>
+<li>构件类型<br>如果像我们这样中途才加入<span class="label info">Maven</span>支持，那么该Web应用对应的只有<code>Web Application: Exploded</code>这一种类型的构件。<br><code>Web Application: Exploded</code>表示这是一个<strong><font color="#9B30FF">分解的构件</font></strong>，通俗来说就是这个构件不打包，构件所有内容用一个文件夹来装着，这是默认的构件类型。<br>当然，我们也可以在这手工地添加上被打包的构件：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_24.png" title="在此处添加其他类型的构件">我们在这看到很多构件类型，其中与<code>Web Application: Exploded</code>对应的是<code>Web Application: Archive</code>，即打包的构件，构件当然是一个<code>war</code>包。</li>
 <li>构件名<br>默认情况下对于<code>Web Application: Exploded</code>这种构件类型的构件，<span class="label success">IntelliJ IDEA</span>设置的构件名都是以<code>_war_exploded</code>结尾的。<br><code>Web Application: Exploded</code>对应的<code>Web Application: Archive</code>这种构件类型的构件默认的构件名是以<code>_war</code>结尾。</li>
 </ol>
 <h3 id="配置Maven而引起的变化"><a href="#配置Maven而引起的变化" class="headerlink" title="配置Maven而引起的变化"></a>配置Maven而引起的变化</h3><p>　　现在我们已经看过了<code>Project Structure</code>中默认情况下的设置是什么样的，要作更多的设置我们可以在此处进行：比如：修改构件名，修改构件输出路径，增加打包类型构件等，但在加入<span class="label info">Maven</span>后，这种做法是十分没必要了，甚至多余。<br>　　此处直接开门见山说结论：<strong><font color="#9B30FF">其实在加入<span class="label info">Maven</span>后，对于大多数配置来说，配置<span class="label info">Maven</span>这块就等同于在<code>Project Structure</code>中进行配置。</font></strong></p>
-<p>在看接下来的内容之前我们必须明白一点：当我们每次修改<code>pom.xml</code>过后，<span class="label success">IntelliJ IDEA</span>在右下角就会有如下图所示这样的提示。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_11.png" alt="Maven prompt" title="Maven prompt">通俗来说就是<span class="label info">Maven</span>配置改变了，那<span class="label success">IntelliJ IDEA</span>就需要你在这两个选择中作出一个选择让<span class="label info">Maven</span>配置实打实地应用到模块中：</p>
+<p>在看接下来的内容之前我们必须明白一点：当我们每次修改<code>pom.xml</code>过后，<span class="label success">IntelliJ IDEA</span>在右下角就会有如下图所示这样的提示。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_11.png" title="Maven prompt">通俗来说就是<span class="label info">Maven</span>配置改变了，那<span class="label success">IntelliJ IDEA</span>就需要你在这两个选择中作出一个选择让<span class="label info">Maven</span>配置实打实地应用到模块中：</p>
 <ol>
 <li><code>Import Changes</code>表示就把本次<span class="label info">Maven</span>改变的配置应用到模块中</li>
 <li><code>Enable Auto-Import</code>表示开启自动把<span class="label info">Maven</span>改变的配置应用到模块中<strong><font color="red" style="font-size: 13px">（不推荐）</font></strong></li>
 </ol>
 <p>只要每次把<code>pom.xml</code>配置好了，你觉得真的可以了，那么就点一下<code>Import Changes</code>确认把当前的<span class="label info">Maven</span>配置应用到模块中。</p>
-<h4 id="配置packaging"><a href="#配置packaging" class="headerlink" title="配置packaging"></a><font color="#0072E3"><strong>配置<code>packaging</code></strong></font></h4><p>在本模块的坐标描述之下多加一个<code>packaging</code>元素的配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.makwan.deploy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>second-web-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="配置packaging"><a href="#配置packaging" class="headerlink" title="配置packaging"></a><font color="#0072E3"><strong>配置<code>packaging</code></strong></font></h4><p>在本模块的坐标描述之下多加一个<code>packaging</code>元素的配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.makwan.deploy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>second-web-app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>配置后，你会发现<code>Project Structure</code>中很多处的设置都发生了变化：</p>
 <ul>
 <li><p><code>Modules</code>中<code>Sources</code>选项卡的语言级别由<code>8</code>变成<code>5.0</code></p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_25.png" alt="Language Level" title="Language Level">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_25.png" title="Language Level">
 </li>
 <li><p><code>Modules</code>中<code>Web</code>选项内的<code>Web Resource Directories</code>路径后半段由<code>\web</code>变成<code>\src\main\webapp</code></p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_26.png" alt="Web Resource Directory" title="Web Resource Directory">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_26.png" title="Web Resource Directory">
 </li>
 <li><p>同样的，<code>Facets</code>中的<code>Web Resource Directories</code>也有同样的变化</p>
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_27.png" alt="Facets" title="Facets">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_27.png" title="Facets">
 </li>
 <li><p><code>Artifacts</code>中也有两个变化：</p>
 </li>
 </ul>
 <ol>
 <li>多增加了一个构件，其类型是<code>Web Application: Archive</code></li>
-<li>分解的构件的输出路径的后半段也变成了由<span class="label info">Maven</span>的<code>artifactId</code>和<code>version</code>两者组成<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_28.png" alt="Archive" title="Archive">
-<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_29.png" alt="Exploded output directory" title="Exploded output directory">
+<li>分解的构件的输出路径的后半段也变成了由<span class="label info">Maven</span>的<code>artifactId</code>和<code>version</code>两者组成<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_28.png" title="Archive">
+<img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_29.png" title="Exploded output directory">
 </li>
 </ol>
 <p>　　现在看来，这些配置才是<span class="label info">Maven</span>默认遵守的。<strong>更具地提说，到现在，模块<code>second-web-app</code>才是真正地被<span class="label info">Maven</span></strong>约束管理起来。<br>　　这一系列的变化确实很多，但<code>packaging</code>配置所真正影响到的只会是<code>Project Structure</code>中的<code>Artifacts</code>这一处的配置，把它的值指定为<code>war</code>，这样等同于在<code>Artifacts</code>中为<code>second-web-app</code>添加一个<code>Web Application: Archive</code>类型的构件。</p>
-<h4 id="配置build内的finalName"><a href="#配置build内的finalName" class="headerlink" title="配置build内的finalName"></a><font color="#0072E3"><strong>配置<code>build</code>内的<code>finalName</code></strong></font></h4><p>之前<code>pom.xml</code>内没有<code>build</code>元素，现在给它添加上，这里的配置是告诉<span class="label info">Maven</span>和<span class="label success">IntelliJ IDEA</span>如何构建该模块。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>mk_second_web_app<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>加入这个配置后，<code>Artifacts</code>内的配置又会产生变化：所输出的构件名都变成了所指定的<code>finalName</code>的值。<br>war包的名称成了：<code>mk_second_web_app.war</code>。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_30.png" alt="war name" title="war name"></p>
-<p>分解的构件的构件名则是<code>mk_second_web_app</code>，因为分解的构件就是用文件夹装着，所以输出路径中最后一个目录名就是该构件的名称。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_31.png" alt="exploded name" title="exploded name"></p>
+<h4 id="配置build内的finalName"><a href="#配置build内的finalName" class="headerlink" title="配置build内的finalName"></a><font color="#0072E3"><strong>配置<code>build</code>内的<code>finalName</code></strong></font></h4><p>之前<code>pom.xml</code>内没有<code>build</code>元素，现在给它添加上，这里的配置是告诉<span class="label info">Maven</span>和<span class="label success">IntelliJ IDEA</span>如何构建该模块。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>mk_second_web_app<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>加入这个配置后，<code>Artifacts</code>内的配置又会产生变化：所输出的构件名都变成了所指定的<code>finalName</code>的值。<br>war包的名称成了：<code>mk_second_web_app.war</code>。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_30.png" title="war name"></p>
+<p>分解的构件的构件名则是<code>mk_second_web_app</code>，因为分解的构件就是用文件夹装着，所以输出路径中最后一个目录名就是该构件的名称。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_31.png" title="exploded name"></p>
 <ul>
-<li><font color="#0072E3"><strong>在<code>build</code>内增加一个编译插件的配置</strong></font><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<li><font color="#0072E3"><strong>在<code>build</code>内增加一个编译插件的配置</strong></font><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>再观察一下<code>Modules</code>中的配置，可以发现语言级别从之前的<code>5.0</code>又变回了<code>8</code>：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_32.png" alt="Language Level" title="Language Level">我这个<span class="label info">Maven</span>默认约定的只是<code>5.0</code>，所以你想支持更新的语言特性，必须自己配置这个编译插件。</p>
-<h4 id="在build中增加一个打包插件"><a href="#在build中增加一个打包插件" class="headerlink" title="在build中增加一个打包插件"></a><font color="#0072E3"><strong>在<code>build</code>中增加一个打包插件</strong></font></h4><p>其实我们之前也发现了在<code>Modules</code>的<code>Web</code>中或<code>Facets</code>中，<code>Web Resources Directories</code>所配置的路径变红了，证明配置不正确。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_33.png" alt="problem" title="problem"><br>报错，那是当然的，现在<code>Web Resources Directories</code>中配置的可是<span class="label info">Maven</span>默认约定的格式，但实际上目录结构又是这样：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_34.png" alt="acctually" title="acctually"><br>同样可以发现，<code>web</code>目录这个图标并没有一个蓝色的亮点，而之前是有的：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_13.png" alt="Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_13.png" title=""><strong>这正是因为<span class="label info">Maven</span>配置不正确或目录结构没有遵守<span class="label info">Maven</span>约定的缘故。</strong></p>
-<p>这里我就选择不遵守默认约定的目录结构而是配置一个<span class="label info">Maven</span>打包插件来解决这个问题：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!-- 打包插件 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                <span class="comment">&lt;!-- web资源所在的路径 --&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">warSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/web<span class="tag">&lt;/<span class="name">warSourceDirectory</span>&gt;</span></div><div class="line">                <span class="comment">&lt;!-- web应用构件(分解的构件)输出路径, 默认配置就是以下路径, 所以不配置也可以 --&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">webappDirectory</span>&gt;</span>$&#123;project.build.directory&#125;/$&#123;project.build.finalName&#125;<span class="tag">&lt;/<span class="name">webappDirectory</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>最重要的当然就是这一条了，配置它，就可以让<span class="label info">Maven</span>和<span class="label info">IntelliJ IDEA</span>都知道<code>web</code>这个目录是Web资源目录。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">warSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/web<span class="tag">&lt;/<span class="name">warSourceDirectory</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>再观察一下<code>Modules</code>中的配置，可以发现语言级别从之前的<code>5.0</code>又变回了<code>8</code>：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_32.png" title="Language Level">我这个<span class="label info">Maven</span>默认约定的只是<code>5.0</code>，所以你想支持更新的语言特性，必须自己配置这个编译插件。</p>
+<h4 id="在build中增加一个打包插件"><a href="#在build中增加一个打包插件" class="headerlink" title="在build中增加一个打包插件"></a><font color="#0072E3"><strong>在<code>build</code>中增加一个打包插件</strong></font></h4><p>其实我们之前也发现了在<code>Modules</code>的<code>Web</code>中或<code>Facets</code>中，<code>Web Resources Directories</code>所配置的路径变红了，证明配置不正确。<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_33.png" title="problem"><br>报错，那是当然的，现在<code>Web Resources Directories</code>中配置的可是<span class="label info">Maven</span>默认约定的格式，但实际上目录结构又是这样：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_34.png" title="acctually"><br>同样可以发现，<code>web</code>目录这个图标并没有一个蓝色的亮点，而之前是有的：<br><img src="/2017/07/28/Use-Intellij-IDEA-deploy-webapp-to-tomcat/Use-Intellij-IDEA-deploy-webapp-to-tomcat_maven_13.png"><strong>这正是因为<span class="label info">Maven</span>配置不正确或目录结构没有遵守<span class="label info">Maven</span>约定的缘故。</strong></p>
+<p>这里我就选择不遵守默认约定的目录结构而是配置一个<span class="label info">Maven</span>打包插件来解决这个问题：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 打包插件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- web资源所在的路径 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">warSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/web<span class="tag">&lt;/<span class="name">warSourceDirectory</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- web应用构件(分解的构件)输出路径, 默认配置就是以下路径, 所以不配置也可以 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">webappDirectory</span>&gt;</span>$&#123;project.build.directory&#125;/$&#123;project.build.finalName&#125;<span class="tag">&lt;/<span class="name">webappDirectory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>最重要的当然就是这一条了，配置它，就可以让<span class="label info">Maven</span>和<span class="label info">IntelliJ IDEA</span>都知道<code>web</code>这个目录是Web资源目录。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">warSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/web<span class="tag">&lt;/<span class="name">warSourceDirectory</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>现在到<code>Modules</code>的<code>Web</code>下或<code>Facets</code>内看到<code>Web Resources Directories</code>所配置的路径正确了，没有再报错。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>看了这么多演示，最重要的就是以上演示的那些，其他的就不再一一列举了，可以说：<br><strong><font color="#9B30FF">极大多数情况下只需配置<code>pom.xml</code>，那就相当于在<code>Project Structure</code>中进行了配置（<font color="red">必须<code>Import Changes</code></font>），那就无需再次多此一举在IDE进行配置。</font></strong></p>
 
@@ -864,17 +843,27 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
     
 
     
+      
+    
+
+    
     
     
 
     
 
+    
+      
+    
     
 
     
 
     <footer class="post-footer">
       
+        
+          
+        
         <div class="post-tags">
           
             <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
@@ -929,10 +918,7 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+    <div class="comments" id="gitalk-container">
     </div>
 
   
@@ -952,7 +938,6 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -968,203 +953,216 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="ExtremeGTR" />
-            
-              <p class="site-author-name" itemprop="name">ExtremeGTR</p>
-              <p class="site-description motion-element" itemprop="description">有空就写点什么...</p>
-          </div>
+  
+  <p class="site-author-name" itemprop="name">ExtremeGTR</p>
+  <div class="site-description motion-element" itemprop="description">有空就写点什么...</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
 
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">43</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">35</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
           
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/ExtremeGTR" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i></a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
         </div>
-      </section>
+      </div>
 
       
       <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
 
             
-              
+            
+            
             
 
             
@@ -1172,12 +1170,12 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
             
 
           </div>
-        </section>
+        </div>
       <!--/noindex-->
       
 
       
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           
             <span id="scrollpercent"><span>0</span>%</span>
@@ -1187,6 +1185,7 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 
     </div>
   </aside>
+  <div id="sidebar-dimmer"></div>
 
 
         
@@ -1195,7 +1194,7 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-star"></i>
   </span>
@@ -1207,9 +1206,7 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
@@ -1217,7 +1214,7 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Gemini</a> v6.3.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 
 
@@ -1238,15 +1235,16 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
     
 
     
-	
+
     
 
     
+
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1257,12 +1255,6 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 
 
 
-
-
-
-
-
-
   
 
 
@@ -1278,41 +1270,34 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 
 
   
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
   
 
 
+
+
+
+
+
+
+
   
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
@@ -1320,28 +1305,33 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+  <script src="/js/affix.js?v=7.2.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
 
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
 
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
 
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
+  
+
+  
 
   
 
 
+  
+  
+
+  
+  
 
   
 
@@ -1350,512 +1340,81 @@ CATALINA_HOME:         G:\apache-tomcat-8.5.16
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
+
+
+
+
+  
     
 
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fb006b67b16f091184ea',
+    clientSecret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
+    repo: 'extremegtr.github.io',
+    owner: 'ExtremeGTR',
+    admin: ['ExtremeGTR'],
+    id: md5(location.pathname),
     
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'ExtremeGTR',
-            repo: 'extremegtr.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '0e926f35d5b2aa495761a79c3dd0e4292f7ff744',
-            
-                client_id: 'fb006b67b16f091184ea'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
+      language: window.navigator.language || window.navigator.userLanguage,
     
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz", "x2mHQW6fhF08Y9wpXB6UQL7a");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            
-            counter.save(null, {
-              success: function(counter) {
-                
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
-                
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            
-              var newcounter = new Counter();
-              /* Set ACL */
-              var acl = new AV.ACL();
-              acl.setPublicReadAccess(true);
-              acl.setPublicWriteAccess(true);
-              newcounter.setACL(acl);
-              /* End Set ACL */
-              newcounter.set("title", title);
-              newcounter.set("url", url);
-              newcounter.set("time", 1);
-              newcounter.save(null, {
-                success: function(newcounter) {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-                },
-                error: function(newcounter, error) {
-                  console.log('Failed to create');
-                }
-              });
-            
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 
 
-  
-  
-
-  
-
-  
-
-  
-  <script type="text/javascript" src="/js/src/exturl.js?v=6.3.0"></script>
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
 
   
 
