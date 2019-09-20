@@ -145,7 +145,7 @@
 <meta property="og:site_name" content="ExtremeGTR&#39;s Blog">
 <meta property="og:description" content="这个NexT主题是一个比较好看的Hexo主题，它所集成的功能齐全，也十分实用。这个主题的整个框架是十分牛逼，不过在某些样式方面就不太符合个人的口味了，再改动一点点我就非常喜欢了，我也试过其他主题，基本都是要改动主题源代码的，而NexT主题在这块就显得更加人性化，留给了用户更多的操作空间，有几个文件都是可以让我们重新对该主题的样式进行自定义的。 NexT v5.1.2这些配置都在v5.1.2基础">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-30T06:31:44.228Z">
+<meta property="og:updated_time" content="2019-09-20T13:19:05.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义NexT.Gemini主题的样式">
 <meta name="twitter:description" content="这个NexT主题是一个比较好看的Hexo主题，它所集成的功能齐全，也十分实用。这个主题的整个框架是十分牛逼，不过在某些样式方面就不太符合个人的口味了，再改动一点点我就非常喜欢了，我也试过其他主题，基本都是要改动主题源代码的，而NexT主题在这块就显得更加人性化，留给了用户更多的操作空间，有几个文件都是可以让我们重新对该主题的样式进行自定义的。 NexT v5.1.2这些配置都在v5.1.2基础">
@@ -439,7 +439,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-30 14:31:44" itemprop="dateModified" datetime="2019-07-30T14:31:44+08:00">2019-07-30</time>
+                <time title="修改时间：2019-09-20 21:19:05" itemprop="dateModified" datetime="2019-09-20T21:19:05+08:00">2019-09-20</time>
               </span>
             
           
@@ -467,6 +467,16 @@
           
 
           
+          
+            <span id="/2017/09/27/Customize-NexT-Gemini-theme/" class="post-meta-item leancloud_visitors" data-flag-title="自定义NexT.Gemini主题的样式">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -561,7 +571,7 @@
 <p>后来我再上GitHub查了下，果然真的是如此：<a href="https://github.com/theme-next/hexo-theme-next/issues/982" target="_blank" rel="noopener">自定义样式怎么没了 #982</a>。</p>
 <h4 id="内容的变化"><a href="#内容的变化" class="headerlink" title="内容的变化"></a>内容的变化</h4><p>一切都搞清楚了，要做的事情就很简单了：<br>在<span class="label info">Hexo</span>的<code>source</code>目录内新建一个文件夹，比如命名为<code>custom_NexT_style</code>，然后在这里面新建两个文件，一个是存储<a href="#主要样式">主要样式</a>配置，另一个则是存储<a href="#主题显示宽度">主题显示宽度</a>配置。</p>
 <p>关于主要样式，还是有所变化的，以前<code>v6.2.0</code>的配置并不能完全套用到现在的<code>v7.2.0</code>上，但还好就是变化不多，只需改动几处便可：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// 把以前评论区的自定义样式给删了，换上下面这个</span><br><span class="line">// 评论区</span><br><span class="line"><span class="selector-class">.gt-comment-content</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(255, 255, 255, 0.42) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">0</span> <span class="built_in">rgba</span>(0,0,0,0.12), <span class="number">0</span> <span class="number">3px</span> <span class="number">1px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(0,0,0,0.06), <span class="number">0</span> <span class="number">1px</span> <span class="number">5px</span> <span class="number">0</span> <span class="built_in">rgba</span>(0,0,0,0.12);</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">        <span class="selector-tag">box-shadow</span>: 0 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 0 <span class="selector-id">#6190e8b8</span>, 0 3<span class="selector-tag">px</span> 1<span class="selector-tag">px</span> <span class="selector-tag">-2px</span> <span class="selector-id">#6190e8b8</span>, 0 1<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> 0 <span class="selector-id">#6190e8b8</span> !<span class="selector-tag">important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 各种页面的页脚自定义样式也要换成下面这种</span><br><span class="line"><span class="comment">/* 页面中某些部分的大小 */</span></span><br><span class="line">// 归档页面的页脚</span><br><span class="line"><span class="selector-class">.page-archive</span> <span class="selector-id">#footer</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: inherit;</span><br><span class="line">    <span class="attribute">height</span>: auto;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">2.7%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 详细分类页面和总分类页面的页脚</span><br><span class="line"><span class="selector-attr">[class$="sidebar-position-left "]</span> <span class="selector-id">#footer</span>, <span class="selector-attr">[class$="page-post-detail"]</span> <span class="selector-id">#footer</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: initial;</span><br><span class="line">    <span class="attribute">height</span>: auto;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">3.98%</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 详细分类页面的主要部分</span><br><span class="line"><span class="selector-attr">[class$="sidebar-position-left "]</span> <span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: -webkit-fill-available;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// 把以前评论区的自定义样式给删了，换上下面这个</span><br><span class="line">// 评论区</span><br><span class="line"><span class="selector-class">.gt-comment-content</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(255, 255, 255, 0.42) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">0</span> <span class="built_in">rgba</span>(0,0,0,0.12), <span class="number">0</span> <span class="number">3px</span> <span class="number">1px</span> -<span class="number">2px</span> <span class="built_in">rgba</span>(0,0,0,0.06), <span class="number">0</span> <span class="number">1px</span> <span class="number">5px</span> <span class="number">0</span> <span class="built_in">rgba</span>(0,0,0,0.12);</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">        <span class="selector-tag">box-shadow</span>: 0 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 0 <span class="selector-id">#6190e8b8</span>, 0 3<span class="selector-tag">px</span> 1<span class="selector-tag">px</span> <span class="selector-tag">-2px</span> <span class="selector-id">#6190e8b8</span>, 0 1<span class="selector-tag">px</span> 5<span class="selector-tag">px</span> 0 <span class="selector-id">#6190e8b8</span> !<span class="selector-tag">important</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 各种页面的页脚自定义样式也要换成下面这种</span><br><span class="line"><span class="comment">/* 页面中某些部分的大小 */</span></span><br><span class="line">// 归档页面的页脚</span><br><span class="line"><span class="selector-class">.page-archive</span> <span class="selector-id">#footer</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: inherit;</span><br><span class="line">    <span class="attribute">height</span>: auto;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">2.7%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 详细分类页面和总分类页面的页脚</span><br><span class="line"><span class="selector-attr">[class$="sidebar-position-left "]</span> <span class="selector-id">#footer</span>,</span><br><span class="line"><span class="selector-attr">[class$="page-post-detail"]</span> <span class="selector-id">#footer</span> &#123;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">3.98%</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 详细分类页面的主要部分</span><br><span class="line"><span class="selector-attr">[class$="sidebar-position-left "]</span> &#123;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="built_in">calc</span>(100vh - 89.5vh);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>变化就这么多，而后者关于主题显示宽度的自定义样式可以直接复制以前的放到另一个新文件里。</p>
 <h4 id="配置路径"><a href="#配置路径" class="headerlink" title="配置路径"></a>配置路径</h4><p>比如我在<span class="label info">Hexo</span>的<code>source/custom_NexT_style</code>里创建一个名为<code>style.styl</code>的文件存储自定义<a href="#主要样式">主要样式</a>，以及另一个名为<code>variables.styl</code>的文件存储<a href="#主题显示宽度">主题显示宽度</a>。</p>
 <p>那么在<span class="label success">NexT</span>主题的配置文件<code>_config.yml</code>里直接配上这两行即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Define custom file paths.</span><br><span class="line"># Create your custom files in site directory `source/_data` and uncomment needed files below.</span><br><span class="line">custom_file_path:</span><br><span class="line">  #head: source/_data/head.swig</span><br><span class="line">  #header: source/_data/header.swig</span><br><span class="line">  #sidebar: source/_data/sidebar.swig</span><br><span class="line">  #postMeta: source/_data/post-meta.swig</span><br><span class="line">  #postBodyEnd: source/_data/post-body-end.swig</span><br><span class="line">  #footer: source/_data/footer.swig</span><br><span class="line">  #bodyEnd: source/_data/body-end.swig</span><br><span class="line">  #variable: source/_data/variables.styl</span><br><span class="line">  variable: source/custom_NexT_style/variables.styl</span><br><span class="line">  #mixin: source/_data/mixins.styl</span><br><span class="line">  #style: source/_data/style.styl</span><br><span class="line">  style: source/custom_NexT_style/style.styl</span><br></pre></td></tr></table></figure></p>
@@ -1124,6 +1134,66 @@
 
   
 
+
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'EmWriqqgbOQ0QeFEgEiRqllg-gzGzoHsz',
+                'X-LC-Key': 'x2mHQW6fhF08Y9wpXB6UQL7a',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
 
 
 

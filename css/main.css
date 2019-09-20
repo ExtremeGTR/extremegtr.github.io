@@ -1732,7 +1732,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5917d1;
+  background: #6ee48f;
 }
 .feed-link,
 .chat {
@@ -2913,12 +2913,10 @@ ul.breadcrumb li+li:last-child {
 }
 [class$="sidebar-position-left "] #footer,
 [class$="page-post-detail"] #footer {
-  position: initial;
-  height: auto;
   padding-top: 3.98%;
 }
-[class$="sidebar-position-left "] .main {
-  height: -webkit-fill-available;
+[class$="sidebar-position-left "] {
+  padding-bottom: calc(100vh - 89.5vh);
 }
 #sidebar {
   background: rgba(255,255,255,0);
